@@ -8,11 +8,11 @@ In addition to news, El3b provides a chat feature that allows you to connect and
 
 Key Features of El3b:
 
-Games News: Stay updated with the latest news, announcements, and developments in the gaming industry. Our dedicated team curates and delivers reliable and engaging content to keep you informed.
-Multilingual Chat: Connect with a diverse community of gamers through our chat feature, available in both English and Arabic. Engage in discussions, ask questions, and share your gaming experiences in a language that suits you.
-User-Friendly Interface: El3b is designed with a user-friendly interface to provide a seamless browsing and chatting experience. Easily navigate through different sections, access news articles, and interact with other users effortlessly.
-Personalization: Customize your app experience by selecting your preferred gaming genres and topics of interest. Receive personalized recommendations and tailored news updates based on your preferences.
-Notifications: Never miss an important gaming news or a new message from your fellow gamers. Enable notifications to stay informed and engaged even when you're not actively using the app.
+* Games News: Stay updated with the latest news, announcements, and developments in the gaming industry. Our dedicated team curates and delivers reliable and engaging content to keep you informed.
+* Multilingual Chat: Connect with a diverse community of gamers through our chat feature, available in both English and Arabic. Engage in discussions, ask questions, and share your gaming experiences in a language that suits you.
+* User-Friendly Interface: El3b is designed with a user-friendly interface to provide a seamless browsing and chatting experience. Easily navigate through different sections, access news articles, and interact with other users effortlessly.
+* Personalization: Customize your app experience by selecting your preferred gaming genres and topics of interest. Receive personalized recommendations and tailored news updates based on your preferences.
+* Notifications: Never miss an important gaming news or a new message from your fellow gamers. Enable notifications to stay informed and engaged even when you're not actively using the app.
 
 We are dedicated to continuously improving El3b to meet the needs and expectations of our valued users. Your feedback and suggestions are highly appreciated and play a crucial role in shaping the future of our app.
 
