@@ -10,11 +10,39 @@ class MyTheme {
   static const Color grayPurple = Color(0xFF8F8AB8);
 
   static ThemeData lightTheme = ThemeData(
-    scaffoldBackgroundColor: offWhite
+    scaffoldBackgroundColor: offWhite,
+    textTheme:const TextTheme(
+      displaySmall: TextStyle(
+        fontSize: 12 ,
+        color: lightPurple,
+      ),
+      displayMedium: TextStyle(
+        fontSize: 16 ,
+        color: lightPurple,
+      ),
+      displayLarge: TextStyle(
+        fontSize: 20 ,
+        color: lightPurple,
+      ),
+    )
   );
 
   static ThemeData darkTheme = ThemeData(
-    scaffoldBackgroundColor: darkPurple
+    scaffoldBackgroundColor: darkPurple,
+      textTheme:const TextTheme(
+        displaySmall: TextStyle(
+          fontSize: 12 ,
+          color: offWhite,
+        ),
+        displayMedium: TextStyle(
+          fontSize: 16 ,
+          color: offWhite,
+        ),
+        displayLarge: TextStyle(
+          fontSize: 20 ,
+          color: offWhite,
+        ),
+      )
   );
 
 }

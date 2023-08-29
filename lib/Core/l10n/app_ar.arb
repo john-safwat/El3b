@@ -1,4 +1,13 @@
 {
   "makeThemeDark" : "التحول اللي الوضع الداكن",
-  "makeThemeLight" : "التحول اللي الوضع الفاتح"
+  "makeThemeLight" : "التحول اللي الوضع الفاتح",
+  "theme" :"المظهر",
+  "language" :"اللغة",
+  "email": "البريد الالكتروني",
+  "password" : "كلمة المرور",
+  "emailCantBeEmpty":"يجب ادخال بريد الكتروني",
+  "enterAValidEmail": "برجاء ادخال بريد الكتروني صحيح",
+  "passwordCantBeEmpty" : "يجب ادخال كلمة المرور",
+  "invalidPasswordLength" : "كلمة المرور يجب ان تكون اكبر من 8 حروف"
+
 }

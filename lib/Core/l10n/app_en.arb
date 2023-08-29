@@ -1,6 +1,14 @@
 {
 
   "makeThemeDark" : "Change To Dark Theme",
-  "makeThemeLight" : "Change To Light Theme"
+  "makeThemeLight" : "Change To Light Theme",
+  "theme" :"Theme",
+  "language" :"Language",
+  "email": "Email",
+  "password" : "Password",
+  "emailCantBeEmpty":"The Email Can't Be Empty",
+  "enterAValidEmail": "Please Enter A Valid Email",
+  "passwordCantBeEmpty" : "The Password Can't Be Empty",
+  "invalidPasswordLength" : "The Password Must be More Than 8 Characters"
 
 }

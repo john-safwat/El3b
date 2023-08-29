@@ -1,5 +1,7 @@
+import 'package:El3b/Core/Providers/AppConfigProvider.dart';
 import 'package:El3b/Core/Providers/LocalProvider.dart';
 import 'package:El3b/Core/Providers/ThemeProvider.dart';
+import 'package:El3b/Presentation/UI/Login/LoginView.dart';
 import 'package:El3b/Presentation/UI/Splash/SplashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -15,7 +17,8 @@ void main()async{
       MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => ThemeProvider(),),
-          ChangeNotifierProvider(create: (context) => LocalProvider(),)
+          ChangeNotifierProvider(create: (context) => LocalProvider(),),
+          ChangeNotifierProvider(create: (context) => AppConfigProvider(),)
         ],
         child: MyApp()
       )
@@ -32,6 +35,7 @@ class MyApp extends StatelessWidget {
     setTheme();
     setLocal();
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       localizationsDelegates:const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -42,6 +46,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: AppLocalizations.supportedLocales,
       routes: {
         SplashScreen.routeName :(_) => SplashScreen(),
+        LoginView.routeName :(_) => LoginView(),
         HomeScreen.routeName : (_) => HomeScreen()
       },
       initialRoute: SplashScreen.routeName,
