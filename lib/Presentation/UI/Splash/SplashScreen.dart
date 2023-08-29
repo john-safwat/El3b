@@ -1,6 +1,7 @@
 import 'package:El3b/Core/Providers/ThemeProvider.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Presentation/UI/Home/HomeScreen.dart';
+import 'package:El3b/Presentation/UI/Login/LoginView.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,8 +23,8 @@ class SplashScreen extends StatelessWidget {
               : Image.asset("Assets/Images/LightLogo.png" , fit: BoxFit.cover,),
         ),
       ),
-      nextScreen:const HomeScreen(),
-      duration: 6000,
+      nextScreen:const LoginView(),
+      duration: 2000,
       backgroundColor: themeProvider.isDark()? MyTheme.darkPurple : MyTheme.offWhite,
       splashIconSize: double.infinity,
       splashTransition: SplashTransition.scaleTransition,
