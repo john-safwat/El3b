@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<ThemeProvider>(context);
+    var themeProvider = Provider.of<ThemeProvider>(context);
     var localProvider = Provider.of<LocalProvider>(context);
     return Scaffold(
       appBar: AppBar(
@@ -22,14 +22,17 @@ class HomeScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          themeProvider.isDark()
+              ? Image.asset("Assets/Images/DarkLogo.png" , fit: BoxFit.cover,)
+              : Image.asset("Assets/Images/LightLogo.png" , fit: BoxFit.cover,),
           ElevatedButton(
             onPressed: ()async{
-              await provider.changeTheme(ThemeMode.light);
+              await themeProvider.changeTheme(ThemeMode.light);
             },
             child: Text(AppLocalizations.of(context)!.makeThemeLight)
           ), ElevatedButton(
             onPressed: ()async{
-              await provider.changeTheme( ThemeMode.dark);
+              await themeProvider.changeTheme( ThemeMode.dark);
             },
             child: Text(AppLocalizations.of(context)!.makeThemeDark)
           ),

@@ -1,5 +1,6 @@
 import 'package:El3b/Core/Providers/LocalProvider.dart';
 import 'package:El3b/Core/Providers/ThemeProvider.dart';
+import 'package:El3b/Presentation/UI/Splash/SplashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
@@ -40,9 +41,10 @@ class MyApp extends StatelessWidget {
       locale:Locale(localProvider.currentLocal),
       supportedLocales: AppLocalizations.supportedLocales,
       routes: {
-        HomeScreen.routeName : (_)=> HomeScreen()
+        SplashScreen.routeName :(_) => SplashScreen(),
+        HomeScreen.routeName : (_) => HomeScreen()
       },
-      initialRoute: HomeScreen.routeName,
+      initialRoute: SplashScreen.routeName,
       theme: MyTheme.lightTheme,
       darkTheme: MyTheme.darkTheme,
       themeMode: themeProvider.theme,
