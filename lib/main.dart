@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
   Future<void> setTheme()async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var theme = prefs.getString("theme");
-    themeProvider.changeTheme(theme == "Dark"? ThemeMode.dark : ThemeMode.light);
+    themeProvider.changeTheme(theme == "Dark" || theme == null? ThemeMode.dark : ThemeMode.light);
   }
 
   Future<void> setLocal()async{
