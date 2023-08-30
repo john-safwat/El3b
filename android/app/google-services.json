@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "186024455231",
+    "project_id": "el3b-355b4",
+    "storage_bucket": "el3b-355b4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:186024455231:android:e30ab6fef161653ec65c8a",
+        "android_client_info": {
+          "package_name": "com.example.elab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "186024455231-5kbqb27rmdt3bei111s1d7okn6o5o993.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIE5Lb2X4eHQhME5ukxD1EI6VPHnGPEGM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "186024455231-5kbqb27rmdt3bei111s1d7okn6o5o993.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
