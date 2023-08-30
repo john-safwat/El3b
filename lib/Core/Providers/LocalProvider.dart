@@ -15,4 +15,8 @@ class LocalProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool isEn(){
+    return currentLocal == "en";
+  }
+
 }
