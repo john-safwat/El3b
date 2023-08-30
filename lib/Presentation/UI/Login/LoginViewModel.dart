@@ -32,5 +32,10 @@ class LoginViewModel extends BaseViewModel<LoginNavigator>{
     return null;
   }
 
+  // login with google
+  void loginWithGoogle(){}
+
+  // login with facebook
+  void loginWithFacebook(){}
 
 }

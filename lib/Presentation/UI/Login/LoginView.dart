@@ -4,10 +4,12 @@ import 'package:El3b/Core/Providers/ThemeProvider.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Presentation/UI/Login/LoginNavigator.dart';
 import 'package:El3b/Presentation/UI/Login/LoginViewModel.dart';
+import 'package:El3b/Presentation/UI/Login/Widgets/DirectPlatformLogin.dart';
 import 'package:El3b/Presentation/UI/Widgets/CustomTextFormField.dart';
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:provider/provider.dart';
 
 class LoginView extends StatefulWidget {
@@ -28,7 +30,7 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
   @override
   Widget build(BuildContext context) {
     viewModel!.themeProvider = Provider.of<ThemeProvider>(context);
-    viewModel!.localProvider = Provider.of<LocalProvider>(context);
+    // viewModel!.localProvider = Provider.of<LocalProvider>(context);
     viewModel!.local = AppLocalizations.of(context)!;
     return ChangeNotifierProvider(
       create: (context) => viewModel!,
@@ -43,11 +45,20 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset(
-                        viewModel!.themeProvider!.isDark()
-                            ? "Assets/Images/DarkLogo2.png"
-                            : "Assets/Images/LightLogo2.png",
-                        height: 150,
+                      InkWell(
+                        onTap: (){
+                          viewModel!.themeProvider!.changeTheme(
+                              viewModel!.themeProvider!.isDark()
+                                  ? ThemeMode.light
+                                  : ThemeMode.dark);
+                        },
+                        overlayColor: MaterialStateProperty.all(Colors.transparent),
+                        child: Image.asset(
+                          viewModel!.themeProvider!.isDark()
+                              ? "Assets/Images/DarkLogo2.png"
+                              : "Assets/Images/LightLogo2.png",
+                          height: 200,
+                        ),
                       ),
                     ],
                   ),
@@ -55,7 +66,7 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
                   Form(
                     child: Column(
                       children: [
-                        //
+                        // Email Text From Field
                         CustomTextFormField(
                           controller: viewModel!.emailController,
                           inputType: TextInputType.emailAddress,
@@ -64,6 +75,7 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
                           icon: EvaIcons.email,
                         ),
                         const SizedBox(height: 20,),
+                        // Password Text From Field
                         CustomPasswordTextFormField(
                           controller: viewModel!.passwordController,
                           inputType: TextInputType.visiblePassword,
@@ -72,6 +84,7 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
                           icon: EvaIcons.lock,
                         ),
                         const SizedBox(height: 10,),
+                        // Forget Password Text Button
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -91,6 +104,7 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
                           ],
                         ),
                         const SizedBox(height: 10,),
+                        // Login Button
                         ElevatedButton(
                             onPressed: (){},
                             child: Row(
@@ -104,10 +118,14 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
                             )
                         ),
                         const SizedBox(height: 10,),
+                        // Create Account Button
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(viewModel!.local!.doNotHaveAccount , style: Theme.of(context).textTheme.displayMedium,),
+                            Text(viewModel!.local!.doNotHaveAccount ,
+                              style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                                color: viewModel!.themeProvider!.isDark()? MyTheme.offWhite : MyTheme.darkPurple
+                              ),),
                             TextButton(
                                 onPressed: () {},
                                 child: Text(
@@ -126,26 +144,69 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
                       ],
                     )
                   ),
-                  const SizedBox(height: 15,),
-
-                  ElevatedButton(
-                    onPressed: () {
-                      viewModel!.themeProvider!.changeTheme(
-                          viewModel!.themeProvider!.isDark()
-                              ? ThemeMode.light
-                              : ThemeMode.dark);
-                    },
-                    child: Text(viewModel!.local!.theme),
+                  const SizedBox(height: 10,),
+                  // or divider
+                  Row(
+                    children: [
+                      const SizedBox(width: 30),
+                      Expanded(
+                        child: Divider(
+                          thickness: 2,
+                          color: viewModel!.themeProvider!.isDark()? MyTheme.offWhite :MyTheme.lightPurple,
+                        ),
+                      ),
+                      const SizedBox(width: 15),
+                      Text(viewModel!.local!.or , style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                        color: viewModel!.themeProvider!.isDark()? MyTheme.offWhite :MyTheme.lightPurple,
+                      ),),
+                      const SizedBox(width: 15),
+                      Expanded(
+                        child: Divider(
+                          thickness: 2,
+                          color: viewModel!.themeProvider!.isDark()? MyTheme.offWhite :MyTheme.lightPurple,
+                        ),
+                      ),
+                      const SizedBox(width: 30),
+                    ],
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      viewModel!.localProvider!.changeLocal(
-                          viewModel!.localProvider!.currentLocal == 'en'
-                              ? "ar"
-                              : 'en');
+                  const SizedBox(height: 20),
+                  // login with google button
+                  DirectPlatformLogin(
+                    darkImage: "Assets/SVG/google_Dark.svg",
+                    lightImage: "Assets/SVG/google_Light.svg",
+                    title: viewModel!.local!.googleLogin,
+                    login: viewModel!.loginWithGoogle,
+                  ),
+                  const SizedBox(height: 20),
+                  DirectPlatformLogin(
+                    darkImage: "Assets/SVG/facebook_Dark.svg",
+                    lightImage: "Assets/SVG/facebook_Light.svg",
+                    title: viewModel!.local!.facebookLogin,
+                    login: viewModel!.loginWithFacebook,
+                  ),
+                  const SizedBox(height: 20),
+
+                  AnimatedToggleSwitch.rolling(
+                    current: viewModel!.localProvider!.currentLocal,
+                    values: const ["en" , "ar"],
+                    height: 40,
+                    colorBuilder: (value) => MyTheme.lightPurple,
+                    iconBuilder: (value, size, foreground) {
+                      if(value == "en"){
+                        return Flag(Flags.united_kingdom);
+                      }else {
+                        return Flag(Flags.egypt);
+                      }
                     },
-                    child: Text(viewModel!.local!.language),
-                  )
+                    onChanged: (p0) {
+                      viewModel!.localProvider!.changeLocal(
+                          viewModel!.localProvider!.currentLocal == 'en' ? "ar" : 'en');
+                    },
+                    borderRadius: BorderRadius.circular(12),
+                    borderColor: MyTheme.lightPurple,
+                    borderWidth: 1,
+                    dif: 10,
+                  ),
                 ],
               ),
             ),
