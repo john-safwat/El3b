@@ -20,53 +20,50 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20 , vertical: 10),
-      child: TextFormField(
-        controller: controller,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        style: textTheme.displayMedium,
-        cursorColor: MyTheme.lightPurple,
-        keyboardType: inputType,
-        validator: (value) => validator(value),
-        cursorHeight: 20,
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.all(20),
-          hintText: label,
-          hintStyle: textTheme.displayMedium,
-          prefixIcon: Icon(icon , color: MyTheme.lightPurple, size: 30,),
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15),
-              borderSide:const BorderSide(
-                width: 2,
-                color: MyTheme.lightPurple,
-              )),
-          enabledBorder: OutlineInputBorder(
+    return TextFormField(
+      controller: controller,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      style: textTheme.displayMedium,
+      cursorColor: MyTheme.lightPurple,
+      keyboardType: inputType,
+      validator: (value) => validator(value),
+      cursorHeight: 20,
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.all(20),
+        hintText: label,
+        hintStyle: textTheme.displayMedium,
+        prefixIcon: Icon(icon , color: MyTheme.lightPurple, size: 30,),
+        border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
             borderSide:const BorderSide(
               width: 2,
               color: MyTheme.lightPurple,
-            ),
+            )),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
+          borderSide:const BorderSide(
+            width: 2,
+            color: MyTheme.lightPurple,
           ),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15),
-              borderSide: const BorderSide(
-                width: 2,
-                color: MyTheme.lightPurple,
-              )),
-          errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15),
-              borderSide: const BorderSide(
-                width: 2,
-                color: Colors.red,
-              )),
-          focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15),
-              borderSide: const BorderSide(
-                width: 2,
-                color: Colors.red,
-              )),
         ),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: const BorderSide(
+              width: 2,
+              color: MyTheme.lightPurple,
+            )),
+        errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: const BorderSide(
+              width: 2,
+              color: Colors.red,
+            )),
+        focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: const BorderSide(
+              width: 2,
+              color: Colors.red,
+            )),
       ),
     );
   }
@@ -99,72 +96,69 @@ class _CustomPasswordTextFormFieldState extends State<CustomPasswordTextFormFiel
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20 , vertical: 10),
-      child: TextFormField(
-        controller: widget.controller,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        style: textTheme.displayMedium,
-        cursorColor: MyTheme.lightPurple,
-        keyboardType: widget.inputType,
-        validator: (value) => widget.validator(value),
-        cursorHeight: 20,
-        obscureText: !visiabel,
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.all(20),
-          hintText: widget.label,
-          hintStyle: textTheme.displayMedium,
-          prefixIcon: Icon(widget.icon , color: MyTheme.lightPurple, size: 30,),
-          suffixIcon: InkWell(
+    return TextFormField(
+      controller: widget.controller,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      style: textTheme.displayMedium,
+      cursorColor: MyTheme.lightPurple,
+      keyboardType: widget.inputType,
+      validator: (value) => widget.validator(value),
+      cursorHeight: 20,
+      obscureText: !visiabel,
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.all(20),
+        hintText: widget.label,
+        hintStyle: textTheme.displayMedium,
+        prefixIcon: Icon(widget.icon , color: MyTheme.lightPurple, size: 30,),
+        suffixIcon: InkWell(
 
-            overlayColor: MaterialStateProperty.all(Colors.transparent),
-            onTap: () {
-              setState(() {
-                visiabel = !visiabel;
-              });
-            },
-            child: visiabel
-                ? const Icon(
-              Icons.visibility_outlined,
-              color: MyTheme.lightPurple,
-            )
-                : const Icon(
-              Icons.visibility_off_outlined,
-              color: MyTheme.lightPurple,
-            ),
+          overlayColor: MaterialStateProperty.all(Colors.transparent),
+          onTap: () {
+            setState(() {
+              visiabel = !visiabel;
+            });
+          },
+          child: visiabel
+              ? const Icon(
+            Icons.visibility_outlined,
+            color: MyTheme.lightPurple,
+          )
+              : const Icon(
+            Icons.visibility_off_outlined,
+            color: MyTheme.lightPurple,
           ),
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15),
-              borderSide:const BorderSide(
-                width: 2,
-                color: MyTheme.lightPurple,
-              )),
-          enabledBorder: OutlineInputBorder(
+        ),
+        border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
             borderSide:const BorderSide(
               width: 2,
               color: MyTheme.lightPurple,
-            ),
+            )),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
+          borderSide:const BorderSide(
+            width: 2,
+            color: MyTheme.lightPurple,
           ),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15),
-              borderSide: const BorderSide(
-                width: 2,
-                color: MyTheme.lightPurple,
-              )),
-          errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15),
-              borderSide: const BorderSide(
-                width: 2,
-                color: Colors.red,
-              )),
-          focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15),
-              borderSide: const BorderSide(
-                width: 2,
-                color: Colors.red,
-              )),
         ),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: const BorderSide(
+              width: 2,
+              color: MyTheme.lightPurple,
+            )),
+        errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: const BorderSide(
+              width: 2,
+              color: Colors.red,
+            )),
+        focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: const BorderSide(
+              width: 2,
+              color: Colors.red,
+            )),
       ),
     );
   }

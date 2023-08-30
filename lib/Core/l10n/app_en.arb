@@ -9,6 +9,13 @@
   "emailCantBeEmpty":"The Email Can't Be Empty",
   "enterAValidEmail": "Please Enter A Valid Email",
   "passwordCantBeEmpty" : "The Password Can't Be Empty",
-  "invalidPasswordLength" : "The Password Must be More Than 8 Characters"
+  "invalidPasswordLength" : "The Password Must be More Than 8 Characters",
+  "forgetPassword" : "Forget Password ?",
+  "login" : "Login",
+  "doNotHaveAccount" : "Don't Have Account ?",
+  "createAccount" :"Create One",
+  "or" :"or",
+  "googleLogin" : "Login With Google",
+  "facebookLogin" : "Login With Facebook"
 
 }

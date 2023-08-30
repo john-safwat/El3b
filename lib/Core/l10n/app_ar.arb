@@ -8,6 +8,13 @@
   "emailCantBeEmpty":"يجب ادخال بريد الكتروني",
   "enterAValidEmail": "برجاء ادخال بريد الكتروني صحيح",
   "passwordCantBeEmpty" : "يجب ادخال كلمة المرور",
-  "invalidPasswordLength" : "كلمة المرور يجب ان تكون اكبر من 8 حروف"
+  "invalidPasswordLength" : "كلمة المرور يجب ان تكون اكبر من 8 حروف",
+  "forgetPassword" : "هل نسيت كلمة المرور ؟",
+  "login" : "تسجيل الدخول",
+  "doNotHaveAccount" : "ليس لديك حساب ؟",
+  "createAccount" :"انشئ واحد",
+  "or" :"او",
+  "googleLogin" : "تسجيل الدخول بواسطة جوجل",
+  "facebookLogin" : "تسجيل الدخزل بواسطة فيس بوك"
 
 }
