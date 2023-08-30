@@ -202,6 +202,7 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
                       viewModel!.localProvider!.changeLocal(
                           viewModel!.localProvider!.currentLocal == 'en' ? "ar" : 'en');
                     },
+                    transitionType: ForegroundIndicatorTransitionType.fading,
                     borderRadius: BorderRadius.circular(12),
                     borderColor: MyTheme.lightPurple,
                     borderWidth: 1,
