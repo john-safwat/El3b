@@ -47,6 +47,7 @@ dependencies:
   animated_toggle_switch: ^0.7.0
   icons_plus: ^4.0.0
   image_picker: ^1.0.4
+  firebase_core: ^2.15.1
 
 dev_dependencies:
   flutter_test:
