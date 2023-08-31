@@ -2,6 +2,7 @@ import 'package:El3b/Core/Providers/AppConfigProvider.dart';
 import 'package:El3b/Core/Providers/LocalProvider.dart';
 import 'package:El3b/Core/Providers/ThemeProvider.dart';
 import 'package:El3b/Presentation/UI/Login/LoginView.dart';
+import 'package:El3b/Presentation/UI/Register/RegisterView.dart';
 import 'package:El3b/Presentation/UI/Splash/SplashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -47,7 +48,8 @@ class MyApp extends StatelessWidget {
       routes: {
         SplashScreen.routeName :(_) => SplashScreen(),
         LoginView.routeName :(_) => LoginView(),
-        HomeScreen.routeName : (_) => HomeScreen()
+        HomeScreen.routeName : (_) => HomeScreen(),
+        RegisterView.routeName : (_) => RegisterView(),
       },
       initialRoute: SplashScreen.routeName,
       theme: MyTheme.lightTheme,

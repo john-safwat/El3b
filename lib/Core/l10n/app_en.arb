@@ -1,5 +1,4 @@
 {
-
   "makeThemeDark" : "Change To Dark Theme",
   "makeThemeLight" : "Change To Light Theme",
   "theme" :"Theme",
@@ -16,6 +15,12 @@
   "createAccount" :"Create One",
   "or" :"Or",
   "googleLogin" : "Login With Google",
-  "facebookLogin" : "Login With Facebook"
-
+  "facebookLogin" : "Login With Facebook",
+  "name" : "name",
+  "passwordConfirmation" : "password Confirmation",
+  "passwordDoesntMatch" : "Password Doesn't Match",
+  "alreadyHaveAccount" : "Already Have Account?",
+  "selectPickingImageMethod" : "Select Picking Image Method",
+  "gallery" : "Gallery",
+  "camera" : "Camera"
 }

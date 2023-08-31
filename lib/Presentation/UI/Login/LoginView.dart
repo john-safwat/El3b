@@ -5,6 +5,7 @@ import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Presentation/UI/Login/LoginNavigator.dart';
 import 'package:El3b/Presentation/UI/Login/LoginViewModel.dart';
 import 'package:El3b/Presentation/UI/Login/Widgets/DirectPlatformLogin.dart';
+import 'package:El3b/Presentation/UI/Register/RegisterView.dart';
 import 'package:El3b/Presentation/UI/Widgets/CustomTextFormField.dart';
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
@@ -127,7 +128,9 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
                                 color: viewModel!.themeProvider!.isDark()? MyTheme.offWhite : MyTheme.darkPurple
                               ),),
                             TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(context, RegisterView.routeName);
+                                },
                                 child: Text(
                                   viewModel!.local!.createAccount,
                                   style: Theme.of(context)
