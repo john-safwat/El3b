@@ -1,6 +1,7 @@
 import 'package:El3b/Core/Providers/ThemeProvider.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:flutter/material.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:provider/provider.dart';
 
 class CustomTextFormField extends StatelessWidget {
@@ -120,11 +121,11 @@ class _CustomPasswordTextFormFieldState extends State<CustomPasswordTextFormFiel
           },
           child: visiabel
               ? const Icon(
-            Icons.visibility_outlined,
+            Iconsax.eye,
             color: MyTheme.lightPurple,
           )
               : const Icon(
-            Icons.visibility_off_outlined,
+            Iconsax.eye_slash,
             color: MyTheme.lightPurple,
           ),
         ),

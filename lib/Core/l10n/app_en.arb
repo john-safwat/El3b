@@ -16,11 +16,14 @@
   "or" :"Or",
   "googleLogin" : "Login With Google",
   "facebookLogin" : "Login With Facebook",
-  "name" : "name",
-  "passwordConfirmation" : "password Confirmation",
-  "passwordDoesntMatch" : "Password Doesn't Match",
-  "alreadyHaveAccount" : "Already Have Account?",
+  "name" : "Name" ,
+  "passwordConfirmation" : "Password Confirmation",
+  "createNewAccount" : "Create Account",
+  "alreadyHaveAccount" : "Already Have Account ?",
+  "nameCantBeEmpty": "Name Can't be Empty",
+  "invalidName" : "Invalid Name",
+  "passwordDoseNotMatch": "Password Doesn't Match",
   "selectPickingImageMethod" : "Select Picking Image Method",
-  "gallery" : "Gallery",
-  "camera" : "Camera"
+  "camera" :"Camera",
+  "gallery" : "Gallery"
 }
