@@ -8,7 +8,23 @@ class LoginViewModel extends BaseViewModel<LoginNavigator>{
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  // validate on the name if it is not empty and doesn't contain ant spacial characters
+  // navigation Functions
+  // function to navigate to registration screen
+  void goToRegistrationScreen(){
+    navigator!.goToRegistrationScreen();
+  }
+
+
+  // Change Theme Functions
+  void changeTheme(){
+    themeProvider!.changeTheme(themeProvider!.isDark() ? ThemeMode.light : ThemeMode.dark);
+  }
+  // Change Local Functions
+  void changeLocal(){
+    localProvider!.changeLocal(localProvider!.currentLocal == 'en' ? "ar" : 'en');
+  }
+
+  // validation function
   // validate on the email form
   String? emailValidation(String input) {
     if (input.isEmpty) {

@@ -1,16 +1,48 @@
 import 'package:El3b/Core/Base/BaseViewModel.dart';
 import 'package:El3b/Presentation/UI/Register/RegisterNavigator.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 
 class RegisterViewModel extends BaseViewModel<RegisterNavigator>{
   TextEditingController nameController = TextEditingController();
-  TextEditingController EmailController = TextEditingController();
-  TextEditingController PasswordController = TextEditingController();
-  TextEditingController PasswordConfirmationController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController passwordConfirmationController = TextEditingController();
 
 
+  // navigation Functions
+  // function to navigate to registration screen
+  void goToLoginScreen(){
+    navigator!.goToLoginScreen();
+  }
+
+  // function to show modal Bottom Sheet
+  void showMyModalBottomSheet(){
+    navigator!.showMyModalBottomSheetWidget();
+  }
+
+  // Change Theme Functions
+  void changeTheme(){
+    themeProvider!.changeTheme(themeProvider!.isDark() ? ThemeMode.light : ThemeMode.dark);
+  }
+  // Change Local Functions
+  void changeLocal(){
+    localProvider!.changeLocal(localProvider!.currentLocal == 'en' ? "ar" : 'en');
+  }
+
+
+  // validation functions
   // validate on the name if it is not empty and doesn't contain ant spacial characters
+  String? nameValidation(String name){
+    if (name.isEmpty){
+      return local!.nameCantBeEmpty;
+    }else if (RegExp(r'[!@#<>?":_`~;[\]\\|=+)(*&^%-]').hasMatch(name)){
+      return local!.invalidName;
+    }else {
+      return null;
+    }
+  }
+
   // validate on the email form
   String? emailValidation(String input) {
     if (input.isEmpty) {
@@ -24,6 +56,7 @@ class RegisterViewModel extends BaseViewModel<RegisterNavigator>{
     }
     return null;
   }
+
   // validate the password is not less than 8 chars
   String? passwordValidation(String input) {
     if (input.isEmpty) {
@@ -33,20 +66,17 @@ class RegisterViewModel extends BaseViewModel<RegisterNavigator>{
     }
     return null;
   }
-  String? nameValidation (String input){
-    if(input != null){
 
-    }else{
-      return "This Field Is Necessary";
+  // validate the password confirmation is not empty and the same as the password
+  String? passwordConfirmationValidation(String input){
+    if (input.isEmpty) {
+      return local!.passwordCantBeEmpty;
+    } else if (input != passwordController.text) {
+      return local!.passwordDoseNotMatch;
     }
+    return null;
   }
 
-  String? passwordConfirm (String input)
-  {
-    if(PasswordConfirmationController == PasswordController){
 
-    }else{
-      local!.passwordDoesntMatch;
-    }
-  }
+
 }

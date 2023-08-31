@@ -16,11 +16,14 @@
   "or" :"او",
   "googleLogin" : "تسجيل الدخول بواسطة جوجل",
   "facebookLogin" : "تسجيل الدخول بواسطة فيس بوك",
-  "name" : "الاسم",
+  "name" : "الاسم" ,
   "passwordConfirmation" : "تاكيد كلمة المرور",
-  "passwordDoesntMatch" : "كلمة المرور غير متطابقه",
-  "alreadyHaveAccount" : "لديك حساب بالفعل؟",
-  "selectPickingImageMethod" : "حدد طريقة اختيار الصورة",
-  "gallery" : "المعرض",
-  "camera" : "الكاميره"
+  "createNewAccount" : "انشاء حساب",
+  "alreadyHaveAccount" : "لديك حساب بالفعل ؟",
+  "nameCantBeEmpty": "يجب ادخال اسم",
+  "invalidName" : "يجب ادخال اسم مناسب",
+  "passwordDoseNotMatch": "كلمة المرور غير متطابقة",
+  "selectPickingImageMethod" : "اختر مكان الصورة",
+  "camera" :"الكاميرا",
+  "gallery" : "المعرض"
 }
