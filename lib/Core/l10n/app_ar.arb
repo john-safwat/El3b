@@ -12,9 +12,15 @@
   "forgetPassword" : "هل نسيت كلمة المرور ؟",
   "login" : "تسجيل الدخول",
   "doNotHaveAccount" : "ليس لديك حساب ؟",
-  "createAccount" :"انشئ واحد",
+  "createAccount" :"انشئ حساب",
   "or" :"او",
   "googleLogin" : "تسجيل الدخول بواسطة جوجل",
-  "facebookLogin" : "تسجيل الدخول بواسطة فيس بوك"
-
+  "facebookLogin" : "تسجيل الدخول بواسطة فيس بوك",
+  "name" : "الاسم",
+  "passwordConfirmation" : "تاكيد كلمة المرور",
+  "passwordDoesntMatch" : "كلمة المرور غير متطابقه",
+  "alreadyHaveAccount" : "لديك حساب بالفعل؟",
+  "selectPickingImageMethod" : "حدد طريقة اختيار الصورة",
+  "gallery" : "المعرض",
+  "camera" : "الكاميره"
 }
