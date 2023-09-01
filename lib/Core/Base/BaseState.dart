@@ -48,7 +48,7 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
   }
 
   @override
-  showFailMessage({required String message, String? posActionTitle, VoidCallback? posAction, String? negativeActionTitle, VoidCallback? negativeAction, required Color backgroundColor}) {
+  showFailMessage({required String message, String? posActionTitle, VoidCallback? posAction, String? negativeActionTitle, VoidCallback? negativeAction,}) {
     MyDialogUtils.showFailMessage(
       context: context,
       message: message,
@@ -61,7 +61,7 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
   }
 
   @override
-  showLoading({required String message, required Color backgroundColor}) {
+  showLoading({required String message,}) {
     MyDialogUtils.showLoadingDialog(
       context: context,
       message: message,
@@ -70,7 +70,7 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
   }
 
   @override
-  showQuestionMessage({required String message, String? posActionTitle, VoidCallback? posAction, String? negativeActionTitle, VoidCallback? negativeAction, required Color backgroundColor}) {
+  showQuestionMessage({required String message, String? posActionTitle, VoidCallback? posAction, String? negativeActionTitle, VoidCallback? negativeAction,}) {
     MyDialogUtils.showQuestionMessage(
       context: context,
       message: message,
@@ -83,7 +83,7 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
   }
 
   @override
-  showSuccessMessage({required String message, String? posActionTitle, VoidCallback? posAction, String? negativeActionTitle, VoidCallback? negativeAction, required Color backgroundColor}) {
+  showSuccessMessage({required String message, String? posActionTitle, VoidCallback? posAction, String? negativeActionTitle, VoidCallback? negativeAction,}) {
     MyDialogUtils.showSuccessMessage(
       context: context,
       message: message,

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 abstract class BaseNavigator {
   showLoading({
-    required String message,
-    required Color backgroundColor
+    required String message
   });
 
   showFailMessage({
@@ -11,8 +10,7 @@ abstract class BaseNavigator {
     String? posActionTitle ,
     VoidCallback? posAction,
     String? negativeActionTitle,
-    VoidCallback? negativeAction,
-    required Color backgroundColor
+    VoidCallback? negativeAction
   });
 
   showSuccessMessage({
@@ -20,8 +18,7 @@ abstract class BaseNavigator {
     String? posActionTitle ,
     VoidCallback? posAction,
     String? negativeActionTitle,
-    VoidCallback? negativeAction,
-    required Color backgroundColor
+    VoidCallback? negativeAction
   });
 
   showQuestionMessage({
@@ -29,8 +26,7 @@ abstract class BaseNavigator {
     String? posActionTitle ,
     VoidCallback? posAction,
     String? negativeActionTitle,
-    VoidCallback? negativeAction,
-    required Color backgroundColor
+    VoidCallback? negativeAction
   });
 
   goBack();

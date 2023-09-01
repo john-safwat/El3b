@@ -1,9 +1,9 @@
 import 'package:El3b/Core/Base/BaseViewModel.dart';
-import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Domain/Exception/FirebaseImagesException.dart';
 import 'package:El3b/Domain/Exception/FirebaseUserAuthException.dart';
 import 'package:El3b/Domain/Exception/TimeOutOperationsException.dart';
 import 'package:El3b/Domain/Exception/UnknownException.dart';
+import 'package:El3b/Domain/Models/User/MyUser.dart';
 import 'package:El3b/Domain/UseCase/CreateAccountUseCase.dart';
 import 'package:El3b/Presentation/UI/Register/RegisterNavigator.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +25,7 @@ class RegisterViewModel extends BaseViewModel<RegisterNavigator> {
 
   // image picker from camera
   Future<void> pickImageFromCamera() async {
+    navigator!.goBack();
     final ImagePicker picker = ImagePicker();
     // Capture a photo.
     var image = await picker.pickImage(source: ImageSource.camera);
@@ -36,6 +37,7 @@ class RegisterViewModel extends BaseViewModel<RegisterNavigator> {
 
   // image picker from gallery
   Future<void> pickImageFromGallery() async {
+    navigator!.goBack();
     final ImagePicker picker = ImagePicker();
     // Pick an image.
     var image = await picker.pickImage(source: ImageSource.gallery);
@@ -57,7 +59,7 @@ class RegisterViewModel extends BaseViewModel<RegisterNavigator> {
   }
 
   // function to go to Extra info Screen()
-  void goToExtraInfoScreen(){
+  void goToExtraInfoScreen() {
     navigator!.goToExtraInfoScreen();
   }
 
@@ -111,51 +113,53 @@ class RegisterViewModel extends BaseViewModel<RegisterNavigator> {
   Future<void> createAccount() async {
     if (formKey.currentState!.validate()) {
       navigator!.showLoading(
-          message: "Creating Account...",
-          backgroundColor:
-              themeProvider!.isDark() ? MyTheme.purple : MyTheme.offWhite);
+        message: local!.creatingAccount,
+      );
       try {
         var response = await useCase.invoke(
-            image: image,
-            name: nameController.text,
-            email: emailController.text,
-            password: passwordController.text);
+          image: image,
+          user: MyUser(
+              name: nameController.text,
+              email: emailController.text,
+              password: passwordController.text,
+              image: "",
+              phoneNumber: "",
+              bio: local!.defaultBio,
+              birthDate: DateTime.now())
+        );
         appConfigProvider!.updateUser(user: response);
         navigator!.goBack();
         navigator!.showSuccessMessage(
-            message: "Account Created Successfully",
-            backgroundColor: themeProvider!.isDark() ? MyTheme.purple : MyTheme.offWhite,
-            posActionTitle: "Ok",
-            posAction: goToExtraInfoScreen
-        );
-
+            message: local!.accountCreatedSuccessfully,
+            posActionTitle: local!.ok,
+            posAction: goToExtraInfoScreen);
       } catch (e) {
         navigator!.goBack();
         if (e is FirebaseImagesException) {
           navigator!.showFailMessage(
-              message: e.errorMessage,
-              posActionTitle: "Try Again",
-              backgroundColor: themeProvider!.isDark() ? MyTheme.purple : MyTheme.offWhite);
+            message: e.errorMessage,
+            posActionTitle: local!.tryAgain,
+          );
         } else if (e is FirebaseUserAuthException) {
           navigator!.showFailMessage(
-              message: e.errorMessage,
-              posActionTitle: "Try Again",
-              backgroundColor: themeProvider!.isDark() ? MyTheme.purple : MyTheme.offWhite);
+            message: e.errorMessage,
+            posActionTitle: local!.tryAgain,
+          );
         } else if (e is TimeOutOperationsException) {
           navigator!.showFailMessage(
-              message: e.errorMessage,
-              posActionTitle: "Try Again",
-              backgroundColor: themeProvider!.isDark() ? MyTheme.purple : MyTheme.offWhite);
+            message: e.errorMessage,
+            posActionTitle: local!.tryAgain,
+          );
         } else if (e is UnknownException) {
           navigator!.showFailMessage(
-              message: e.errorMessage,
-              posActionTitle: "Try Again",
-              backgroundColor: themeProvider!.isDark() ? MyTheme.purple : MyTheme.offWhite);
+            message: e.errorMessage,
+            posActionTitle: local!.tryAgain,
+          );
         } else {
           navigator!.showFailMessage(
-              message: e.toString(),
-              posActionTitle: "Try Again",
-              backgroundColor: themeProvider!.isDark() ? MyTheme.purple : MyTheme.offWhite);
+            message: e.toString(),
+            posActionTitle: local!.tryAgain,
+          );
         }
       }
     }
