@@ -183,14 +183,8 @@ class _RegisterViewState extends BaseState<RegisterView, RegisterViewModel>
                   const SizedBox(
                     height: 20,
                   ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      LanguageSwitch(),
-                      SizedBox(width: 20,),
-                      ThemeSwitch(),
-                    ],
-                  )
+                  const LanguageSwitch(),
+
                 ],
               ),
             ),

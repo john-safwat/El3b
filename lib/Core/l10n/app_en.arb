@@ -25,5 +25,10 @@
   "passwordDoseNotMatch": "Password Doesn't Match",
   "selectPickingImageMethod" : "Select Picking Image Method",
   "camera" :"Camera",
-  "gallery" : "Gallery"
+  "gallery" : "Gallery",
+  "defaultBio" : "I Gave You All i Had .... I Did .. I Did",
+  "creatingAccount" : "Creating Account ... ",
+  "accountCreatedSuccessfully" : "Account Created Successfully",
+  "tryAgain" : "Try Again" ,
+  "ok" : "Continue"
 }

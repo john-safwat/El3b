@@ -15,13 +15,13 @@ class _ExtraInfoViewState extends BaseState<ExtraInfoView , ExtraInfoViewModel> 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title:const Text("حمد لله علي السلامة"),
-      ),
-      body: Column(
-        children: [
-          Image.network(viewModel!.appConfigProvider!.user!.photoURL??""),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+
+          ],
+        ),
       ),
     );
   }

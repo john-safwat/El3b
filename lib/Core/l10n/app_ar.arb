@@ -25,5 +25,10 @@
   "passwordDoseNotMatch": "كلمة المرور غير متطابقة",
   "selectPickingImageMethod" : "اختر مكان الصورة",
   "camera" :"الكاميرا",
-  "gallery" : "المعرض"
+  "gallery" : "المعرض",
+  "defaultBio" : "لقد اعطيتك كل ما لدي .... لقد فعلت .. لقد فعلت",
+  "creatingAccount" : "جاري انشاء حساب",
+  "accountCreatedSuccessfully" : "تم انشاء الحساب بنجاح",
+  "tryAgain" : "حاول مجددا" ,
+  "ok" : "اكمل"
 }

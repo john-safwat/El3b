@@ -35,6 +35,7 @@ class UserRepositoryImpl implements UserRepository {
       myUser.image = image;
     }
     var user = await authRemoteDatasource.createUser(user: myUser.toDataSource());
+    myUser.password = "Private";
     await userFirebaseDatabaseRemoteDatasource.createUser(
         user: myUser.toDataSource(), uid: user.uid);
 
