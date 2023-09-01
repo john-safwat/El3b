@@ -18,8 +18,6 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
     viewModel = initViewModel();
     viewModel!.navigator = this;
     viewModel!.appConfigProvider = Provider.of<AppConfigProvider>(context , listen: false);
-    viewModel!.themeProvider = Provider.of<ThemeProvider>(context , listen: false);
-    viewModel!.localProvider = Provider.of<LocalProvider>(context , listen: false);
   }
 
   @override
@@ -33,6 +31,15 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
   }
 
   VM initViewModel();
+
+  @override
+  Widget build(BuildContext context) {
+    viewModel!.themeProvider = Provider.of<ThemeProvider>(context);
+    viewModel!.localProvider = Provider.of<LocalProvider>(context);
+    viewModel!.local = AppLocalizations.of(context)!;
+    return const SizedBox();
+  }
+
 
   @override
   goBack() {
@@ -86,6 +93,7 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
       negativeAction: negativeAction,
     );
   }
+
 
 
 }

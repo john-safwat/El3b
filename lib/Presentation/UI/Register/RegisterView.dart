@@ -1,17 +1,16 @@
 import 'package:El3b/Core/Base/BaseState.dart';
-import 'package:El3b/Core/Providers/ThemeProvider.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
-import 'package:El3b/Core/Utils/DialogUtils.dart';
 import 'package:El3b/Presentation/UI/Login/LoginView.dart';
 import 'package:El3b/Presentation/UI/Register/RegisterNavigator.dart';
 import 'package:El3b/Presentation/UI/Register/RegisterViewModel.dart';
 import 'package:El3b/Presentation/UI/Register/Widgets/BottomSheetImagePicker.dart';
 import 'package:El3b/Presentation/UI/Widgets/CustomTextFormField.dart';
+import 'package:El3b/Presentation/UI/Widgets/LanguateSwitch.dart';
+import 'package:El3b/Presentation/UI/Widgets/ThemeSwitch.dart';
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegisterView extends StatefulWidget {
   static const String routeName = 'Register';
@@ -30,8 +29,7 @@ class _RegisterViewState extends BaseState<RegisterView, RegisterViewModel>
 
   @override
   Widget build(BuildContext context) {
-    viewModel!.themeProvider = Provider.of<ThemeProvider>(context);
-    viewModel!.local = AppLocalizations.of(context)!;
+    super.build(context);
     return ChangeNotifierProvider(
       create: (context) => viewModel!,
       builder: (context, child) => Scaffold(
@@ -168,44 +166,14 @@ class _RegisterViewState extends BaseState<RegisterView, RegisterViewModel>
                 const SizedBox(
                   height: 20,
                 ),
-                AnimatedToggleSwitch.rolling(
-                  current: viewModel!.localProvider!.currentLocal,
-                  values: const ["en", "ar"],
-                  height: 40,
-                  colorBuilder: (value) => MyTheme.lightPurple,
-                  iconBuilder: (value, size, foreground) {
-                    if (value == "en") {
-                      return Flag(Flags.united_kingdom);
-                    } else {
-                      return Flag(Flags.egypt);
-                    }
-                  },
-                  onChanged: (p0) => viewModel!.changeLocal(),
-                  transitionType: ForegroundIndicatorTransitionType.fading,
-                  borderRadius: BorderRadius.circular(12),
-                  borderColor: MyTheme.lightPurple,
-                  borderWidth: 1,
-                  dif: 10,
-                ),
-                AnimatedToggleSwitch.rolling(
-                  current: viewModel!.themeProvider!.theme,
-                  values: const [ThemeMode.dark, ThemeMode.light],
-                  height: 40,
-                  colorBuilder: (value) => MyTheme.lightPurple,
-                  iconBuilder: (value, size, foreground) {
-                    if (value == ThemeMode.dark) {
-                      return const Icon(EvaIcons.moon);
-                    } else {
-                      return const Icon(EvaIcons.sun);
-                    }
-                  },
-                  onChanged: (p0) => viewModel!.changeTheme(),
-                  transitionType: ForegroundIndicatorTransitionType.fading,
-                  borderRadius: BorderRadius.circular(12),
-                  borderColor: MyTheme.lightPurple,
-                  borderWidth: 1,
-                  dif: 10,
-                ),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    LanguageSwitch(),
+                    SizedBox(width: 20,),
+                    ThemeSwitch(),
+                  ],
+                )
               ],
             ),
           ),

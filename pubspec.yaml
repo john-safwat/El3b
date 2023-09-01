@@ -48,6 +48,11 @@ dependencies:
   icons_plus: ^4.0.0
   image_picker: ^1.0.4
   firebase_core: ^2.15.1
+  firebase_auth: ^4.9.0
+  firebase_storage: ^11.2.6
+  randomstring_dart: ^0.0.4
+  flutter_image_compress: ^2.0.4
+  cloud_firestore: ^4.9.1
 
 dev_dependencies:
   flutter_test:
