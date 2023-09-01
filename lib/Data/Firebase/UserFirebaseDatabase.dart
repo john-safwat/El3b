@@ -1,6 +1,12 @@
 import 'package:El3b/Data/Models/User/UserDTO.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+// dependency injection
+UserFirebaseDatabase injectUserFirebaseDatabase(){
+  return UserFirebaseDatabase.getUserFirebaseDatabase();
+}
+
+// the object
 class UserFirebaseDatabase {
 
   UserFirebaseDatabase._();

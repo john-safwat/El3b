@@ -1,6 +1,12 @@
 import 'package:El3b/Data/Models/User/UserDTO.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+// dependency injection
+FirebaseUserAuth injectFirebaseUserAuth(){
+  return FirebaseUserAuth.getFirebaseUserAuth();
+}
+
+// the object
 class FirebaseUserAuth {
 
   FirebaseUserAuth._();
@@ -13,15 +19,15 @@ class FirebaseUserAuth {
 
   // function to create user in firebase auth
   Future<User> createUser({required UserDTO user}) async {
-    var userCredential = await _firebase
-        .createUserWithEmailAndPassword(email: user.email, password: user.name)
-        .then((userCredential) async {
-      await userCredential.user!.updateDisplayName(user.name);
-      await userCredential.user!.updatePhotoURL(user.image);
-      return userCredential.user!;
-    });
+    await _firebase.createUserWithEmailAndPassword(
+        email: user.email,
+        password: user.password).then((value) => value.user!.updatePhotoURL(user.image));
+    await updateUserDisplayName(user.name);
+    return _firebase.currentUser!;
+  }
 
-    return userCredential;
+  Future<void> updateUserDisplayName(String name)async{
+    await _firebase.currentUser!.updateDisplayName(name);
   }
 
 }

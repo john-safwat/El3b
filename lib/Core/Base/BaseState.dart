@@ -3,6 +3,7 @@ import 'package:El3b/Core/Base/BaseViewModel.dart';
 import 'package:El3b/Core/Providers/AppConfigProvider.dart';
 import 'package:El3b/Core/Providers/LocalProvider.dart';
 import 'package:El3b/Core/Providers/ThemeProvider.dart';
+import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Core/Utils/DialogUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -47,11 +48,11 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
   }
 
   @override
-  showFailMessage({required BuildContext context, required String message, String? posActionTitle, VoidCallback? posAction, String? negativeActionTitle, VoidCallback? negativeAction, required Color backgroundColor}) {
+  showFailMessage({required String message, String? posActionTitle, VoidCallback? posAction, String? negativeActionTitle, VoidCallback? negativeAction, required Color backgroundColor}) {
     MyDialogUtils.showFailMessage(
       context: context,
       message: message,
-      backgroundColor: backgroundColor,
+      backgroundColor: viewModel!.themeProvider!.isDark()?MyTheme.purple : MyTheme.offWhite,
       negativeActionTitle: negativeActionTitle,
       posActionTitle: posActionTitle,
       posAction: posAction,
@@ -60,20 +61,20 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
   }
 
   @override
-  showLoading({required BuildContext context, required String message, required Color backgroundColor}) {
+  showLoading({required String message, required Color backgroundColor}) {
     MyDialogUtils.showLoadingDialog(
       context: context,
       message: message,
-      backgroundColor: backgroundColor,
+      backgroundColor: viewModel!.themeProvider!.isDark()?MyTheme.purple : MyTheme.offWhite,
     );
   }
 
   @override
-  showQuestionMessage({required BuildContext context, required String message, String? posActionTitle, VoidCallback? posAction, String? negativeActionTitle, VoidCallback? negativeAction, required Color backgroundColor}) {
+  showQuestionMessage({required String message, String? posActionTitle, VoidCallback? posAction, String? negativeActionTitle, VoidCallback? negativeAction, required Color backgroundColor}) {
     MyDialogUtils.showQuestionMessage(
       context: context,
       message: message,
-      backgroundColor: backgroundColor,
+      backgroundColor: viewModel!.themeProvider!.isDark()?MyTheme.purple : MyTheme.offWhite,
       negativeActionTitle: negativeActionTitle,
       posActionTitle: posActionTitle,
       posAction: posAction,
@@ -82,11 +83,11 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
   }
 
   @override
-  showSuccessMessage({required BuildContext context, required String message, String? posActionTitle, VoidCallback? posAction, String? negativeActionTitle, VoidCallback? negativeAction, required Color backgroundColor}) {
+  showSuccessMessage({required String message, String? posActionTitle, VoidCallback? posAction, String? negativeActionTitle, VoidCallback? negativeAction, required Color backgroundColor}) {
     MyDialogUtils.showSuccessMessage(
       context: context,
       message: message,
-      backgroundColor: backgroundColor,
+      backgroundColor: viewModel!.themeProvider!.isDark()?MyTheme.purple : MyTheme.offWhite,
       negativeActionTitle: negativeActionTitle,
       posActionTitle: posActionTitle,
       posAction: posAction,

@@ -4,6 +4,12 @@ import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:randomstring_dart/randomstring_dart.dart';
 
+// dependency injection
+FirebaseImagesDatabase injectFirebaseImagesDatabase(){
+  return FirebaseImagesDatabase.getFirebaseImagesDatabase();
+}
+
+// the object
 class FirebaseImagesDatabase {
 
   FirebaseImagesDatabase._();
@@ -17,7 +23,7 @@ class FirebaseImagesDatabase {
   // upload image to firebase storage
   Future<String> uploadImage({required XFile file})async{
 
-    file = await compressImage(file, file.path);
+    // file = await compressImage(file, file.path);
     // upload image to firebase storage
     var snapshot = await _firebaseStorage.ref().child('images/${generateName()}').putFile(File(file.path));
     // get the image URL from firebase storage
@@ -37,17 +43,14 @@ class FirebaseImagesDatabase {
     );
   }
 
-  // compress image Size
-  Future<XFile> compressImage(XFile file, String targetPath) async {
-    var result = await FlutterImageCompress.compressAndGetFile(
-      file.path, targetPath,
-      quality: 50,
-    );
-
-    print(file.length());
-    print(result!.length());
-
-    return result;
-  }
+  // // compress image Size
+  // Future<XFile> compressImage(XFile file, String targetPath) async {
+  //   var result = await FlutterImageCompress.compressAndGetFile(
+  //     file.path, targetPath,
+  //     quality: 50,
+  //   );
+  //
+  //   return result!;
+  // }
 
 }

@@ -3,6 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class FirebaseUserAuthRemoteDatasource {
 
-  Future<User> createUser({UserDTO user});
+  Future<User> createUser({required UserDTO user});
 
 }

@@ -19,10 +19,6 @@ class LoginViewModel extends BaseViewModel<LoginNavigator>{
   void changeTheme(){
     themeProvider!.changeTheme(themeProvider!.isDark() ? ThemeMode.light : ThemeMode.dark);
   }
-  // Change Local Functions
-  void changeLocal(){
-    localProvider!.changeLocal(localProvider!.currentLocal == 'en' ? "ar" : 'en');
-  }
 
   // validation function
   // validate on the email form
