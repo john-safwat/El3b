@@ -6,8 +6,16 @@ import 'package:provider/provider.dart';
 class MyBottomSheetWidget extends StatelessWidget {
   String title ;
   String cameraTitle ;
+  Function pickImageFromCamera;
   String galleryTitle;
-  MyBottomSheetWidget({required this.title ,required this.cameraTitle , required this.galleryTitle});
+  Function pickImageFromGallery;
+  MyBottomSheetWidget({
+    required this.title ,
+    required this.cameraTitle ,
+    required this.pickImageFromCamera,
+    required this.galleryTitle,
+    required this.pickImageFromGallery,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +41,9 @@ class MyBottomSheetWidget extends StatelessWidget {
           children: [
             Expanded(
               child:ElevatedButton(
-                onPressed: (){},
+                onPressed: (){
+                  pickImageFromCamera();
+                },
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: FittedBox(child: Text(cameraTitle,)),
@@ -43,7 +53,9 @@ class MyBottomSheetWidget extends StatelessWidget {
             const SizedBox(width: 10,),
             Expanded(
               child:ElevatedButton(
-                onPressed: (){},
+                onPressed: (){
+                  pickImageFromGallery();
+                },
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: FittedBox(child: Text(galleryTitle,)),
