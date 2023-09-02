@@ -1,18 +1,16 @@
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:flutter/material.dart';
 
-class CustomTextFormField extends StatelessWidget {
+class CustomLongTextFormField extends StatelessWidget {
   String label;
   TextEditingController controller;
   TextInputType inputType;
   Function validator;
-  IconData icon;
-  CustomTextFormField(
+  CustomLongTextFormField(
       {required this.label,
         required this.controller,
         required this.inputType,
         required this.validator,
-        required this.icon
       });
 
   @override
@@ -26,11 +24,11 @@ class CustomTextFormField extends StatelessWidget {
       keyboardType: inputType,
       validator: (value) => validator(value),
       cursorHeight: 20,
+      maxLines: 5,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.all(20),
         hintText: label,
         hintStyle: textTheme.displayMedium,
-        prefixIcon: Icon(icon , color: MyTheme.lightPurple, size: 30,),
         border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
             borderSide:const BorderSide(

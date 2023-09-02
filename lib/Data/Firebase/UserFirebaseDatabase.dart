@@ -28,4 +28,9 @@ class UserFirebaseDatabase {
     await getCollectionReference().doc(uid).set(user);
   }
 
+  // function to update user data to user database in firebase fireStore
+  Future<void> updateUserData({required UserDTO user , required String uid}) async {
+    await getCollectionReference().doc(uid).update(user.toFireStore());
+  }
+
 }

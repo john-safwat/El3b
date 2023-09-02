@@ -30,5 +30,19 @@
   "creatingAccount" : "جاري انشاء حساب",
   "accountCreatedSuccessfully" : "تم انشاء الحساب بنجاح",
   "tryAgain" : "حاول مجددا" ,
-  "ok" : "اكمل"
+  "ok" : "اكمل",
+  "welcome" : "مرحبا",
+  "weNeedSomeAdditionalInfo" : "نحن الان في حاجة اللي بعض المعلومات الاضافية",
+  "birthDate" : "تاريخ الميلاد",
+  "phone" : "رقم الهاتف",
+  "enterPhoneNumber" : "يرجي ادخال رفم هاتف",
+  "enterValidMobileNumber" : "برجاء ادخال رقم هاتف صحيح",
+  "bio" : "عنك",
+  "invalidBio" : "اخبرنا نبذة عنك ليتعرف علية الاخرون اكثر",
+  "gj" : "رائع لنبداء المتعة",
+  "updatingData" : "جاز تحديث البينات",
+  "pleasePickYourBirthDate": "برجاء ادخال تاريخ ميلادك",
+  "accountUpdated": "تم تحديث البينات",
+  "pickDate" : "اختر التاريخ"
+
 }

@@ -7,6 +7,7 @@ import 'package:El3b/Presentation/UI/Login/LoginView.dart';
 import 'package:El3b/Presentation/UI/Register/RegisterNavigator.dart';
 import 'package:El3b/Presentation/UI/Register/RegisterViewModel.dart';
 import 'package:El3b/Presentation/UI/Register/Widgets/BottomSheetImagePicker.dart';
+import 'package:El3b/Presentation/UI/Widgets/CustomPasswordTextFormField.dart';
 import 'package:El3b/Presentation/UI/Widgets/CustomTextFormField.dart';
 import 'package:El3b/Presentation/UI/Widgets/LanguateSwitch.dart';
 import 'package:flutter/material.dart';

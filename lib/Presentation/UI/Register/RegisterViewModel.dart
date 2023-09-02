@@ -18,8 +18,7 @@ class RegisterViewModel extends BaseViewModel<RegisterNavigator> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  TextEditingController passwordConfirmationController =
-      TextEditingController();
+  TextEditingController passwordConfirmationController = TextEditingController();
 
   XFile? image;
 
@@ -125,7 +124,7 @@ class RegisterViewModel extends BaseViewModel<RegisterNavigator> {
               image: "",
               phoneNumber: "",
               bio: local!.defaultBio,
-              birthDate: DateTime.now())
+              birthDate: "--/--/----")
         );
         appConfigProvider!.updateUser(user: response);
         navigator!.goBack();

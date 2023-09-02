@@ -30,5 +30,18 @@
   "creatingAccount" : "Creating Account ... ",
   "accountCreatedSuccessfully" : "Account Created Successfully",
   "tryAgain" : "Try Again" ,
-  "ok" : "Continue"
+  "ok" : "Continue",
+  "welcome" : "Welcome",
+  "weNeedSomeAdditionalInfo" : "We Need Some More Additional Information",
+  "birthDate" : "Date Of Birth",
+  "phone" : "Phone Number",
+  "enterPhoneNumber" : "Please enter mobile number",
+  "enterValidMobileNumber" : "Please enter valid mobile number",
+  "bio" : "Bio",
+  "invalidBio" : "Bio Can't Be Empty",
+  "gj" : "GJ , Let’s Start !",
+  "updatingData" : "Updating Data ...",
+  "pleasePickYourBirthDate": "Please Pick Your BirthDate",
+  "accountUpdated": "Account Updated Successfully",
+  "pickDate" : "Pick Date"
 }

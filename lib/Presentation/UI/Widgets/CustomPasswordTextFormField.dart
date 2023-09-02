@@ -1,13 +1,14 @@
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:flutter/material.dart';
+import 'package:icons_plus/icons_plus.dart';
 
-class CustomTextFormField extends StatelessWidget {
+class CustomPasswordTextFormField extends StatefulWidget {
   String label;
   TextEditingController controller;
   TextInputType inputType;
   Function validator;
   IconData icon;
-  CustomTextFormField(
+  CustomPasswordTextFormField(
       {required this.label,
         required this.controller,
         required this.inputType,
@@ -16,21 +17,47 @@ class CustomTextFormField extends StatelessWidget {
       });
 
   @override
+  State<CustomPasswordTextFormField> createState() => _CustomPasswordTextFormFieldState();
+}
+
+class _CustomPasswordTextFormFieldState extends State<CustomPasswordTextFormField> {
+  bool visiabel = false;
+
+  @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
     return TextFormField(
-      controller: controller,
+      controller: widget.controller,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       style: textTheme.displayMedium,
       cursorColor: MyTheme.lightPurple,
-      keyboardType: inputType,
-      validator: (value) => validator(value),
+      keyboardType: widget.inputType,
+      validator: (value) => widget.validator(value),
       cursorHeight: 20,
+      obscureText: !visiabel,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.all(20),
-        hintText: label,
+        hintText: widget.label,
         hintStyle: textTheme.displayMedium,
-        prefixIcon: Icon(icon , color: MyTheme.lightPurple, size: 30,),
+        prefixIcon: Icon(widget.icon , color: MyTheme.lightPurple, size: 30,),
+        suffixIcon: InkWell(
+
+          overlayColor: MaterialStateProperty.all(Colors.transparent),
+          onTap: () {
+            setState(() {
+              visiabel = !visiabel;
+            });
+          },
+          child: visiabel
+              ? const Icon(
+            Iconsax.eye,
+            color: MyTheme.lightPurple,
+          )
+              : const Icon(
+            Iconsax.eye_slash,
+            color: MyTheme.lightPurple,
+          ),
+        ),
         border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
             borderSide:const BorderSide(

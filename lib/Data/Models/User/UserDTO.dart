@@ -5,7 +5,7 @@ class UserDTO {
   String password ;
   String image;
   String phoneNumber;
-  DateTime birthDate ;
+  String birthDate ;
   String bio;
 
   UserDTO({

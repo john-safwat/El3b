@@ -1,16 +1,13 @@
 import 'package:El3b/Core/Base/BaseState.dart';
-import 'package:El3b/Core/Providers/LocalProvider.dart';
-import 'package:El3b/Core/Providers/ThemeProvider.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Presentation/UI/Login/LoginNavigator.dart';
 import 'package:El3b/Presentation/UI/Login/LoginViewModel.dart';
 import 'package:El3b/Presentation/UI/Login/Widgets/DirectPlatformLogin.dart';
 import 'package:El3b/Presentation/UI/Register/RegisterView.dart';
+import 'package:El3b/Presentation/UI/Widgets/CustomPasswordTextFormField.dart';
 import 'package:El3b/Presentation/UI/Widgets/CustomTextFormField.dart';
 import 'package:El3b/Presentation/UI/Widgets/LanguateSwitch.dart';
-import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:provider/provider.dart';
 

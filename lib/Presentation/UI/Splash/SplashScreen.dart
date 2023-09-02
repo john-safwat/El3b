@@ -1,6 +1,6 @@
 import 'package:El3b/Core/Providers/ThemeProvider.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
-import 'package:El3b/Presentation/UI/Home/HomeScreen.dart';
+import 'package:El3b/Presentation/UI/Home/HomeView.dart';
 import 'package:El3b/Presentation/UI/Login/LoginView.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';

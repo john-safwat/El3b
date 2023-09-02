@@ -18,16 +18,16 @@ class FirebaseUserAuth {
   final _firebase = FirebaseAuth.instance;
 
   // function to create user in firebase auth
-  Future<User> createUser({required UserDTO user}) async {
+  Future<void> createUser({required UserDTO user}) async {
     await _firebase.createUserWithEmailAndPassword(
         email: user.email,
-        password: user.password).then((value) => value.user!.updatePhotoURL(user.image));
-    await updateUserDisplayName(user.name);
-    return _firebase.currentUser!;
+        password: user.password).then((value) => value.user!.updateDisplayName(user.name));
   }
 
-  Future<void> updateUserDisplayName(String name)async{
-    await _firebase.currentUser!.updateDisplayName(name);
+  // function to update user photo in firebase auth
+  Future<User> updateUserPhoto(String photo)async{
+    await _firebase.currentUser!.updatePhotoURL(photo);
+    return _firebase.currentUser!;
   }
 
 }

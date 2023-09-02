@@ -28,17 +28,34 @@ class UserRepositoryImpl implements UserRepository {
       required this.authRemoteDatasource,
       required this.userFirebaseDatabaseRemoteDatasource});
 
+  // function to create user
+  // 1 - create user account in firebase auth
+  // 2 - if there is no exceptions it will upload the user image to firebase storage (if user picked image)
+  // 3 - update user image in firebase auth
+  // 4 - create user in firebase database to hold all users data
   @override
   Future<User> createUser({XFile? file, required MyUser myUser}) async {
+    // create user account in firebase auth
+    await authRemoteDatasource.createUser(user: myUser.toDataSource());
+    myUser.password = "Private";
+    // if there is no exceptions it will upload the user image to firebase storage (if user picked image)
     if(file!= null){
       var image = await imagesRemoteDatasource.uploadUserProfileImage(file: file);
       myUser.image = image;
     }
-    var user = await authRemoteDatasource.createUser(user: myUser.toDataSource());
-    myUser.password = "Private";
+    // update user image in firebase auth
+    var user = await authRemoteDatasource.updatePhotoUrl(photo: myUser.image);
+    // create user in firebase database to hold all users data
     await userFirebaseDatabaseRemoteDatasource.createUser(
         user: myUser.toDataSource(), uid: user.uid);
 
     return user;
+  }
+
+  // function to update user data in firebase fireStore database
+  @override
+  Future<String> updateUserData({required MyUser myUser, required String uid}) async{
+    await userFirebaseDatabaseRemoteDatasource.updateUser(user: myUser.toDataSource(), uid: uid);
+    return "Your Data Updated Successfully";
   }
 }

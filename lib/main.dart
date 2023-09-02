@@ -10,7 +10,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
-import 'package:El3b/Presentation/UI/Home/HomeScreen.dart';
+import 'package:El3b/Presentation/UI/Home/HomeView.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
       routes: {
         SplashScreen.routeName :(_) => SplashScreen(),
         LoginView.routeName :(_) => LoginView(),
-        HomeScreen.routeName : (_) => HomeScreen(),
+        HomeView.routeName : (_) => HomeView(),
         RegisterView.routeName : (_) => RegisterView(),
         ExtraInfoView.routeName :(_) => ExtraInfoView(),
       },

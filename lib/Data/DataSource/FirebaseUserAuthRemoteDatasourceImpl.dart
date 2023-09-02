@@ -21,10 +21,27 @@ class FirebaseUserAuthRemoteDatasourceImpl implements FirebaseUserAuthRemoteData
   ErrorHandler errorHandler;
   FirebaseUserAuthRemoteDatasourceImpl ({required this.firebaseUserAuth , required this.errorHandler});
 
+  // function to create user account using firebase auth and handle any exceptions
   @override
-  Future<User> createUser({required UserDTO user}) async{
+  Future<void> createUser({required UserDTO user}) async{
     try{
-      var response = await firebaseUserAuth.createUser(user: user).timeout(const Duration(seconds: 60));
+      await firebaseUserAuth.createUser(user: user).timeout(const Duration(seconds: 60));
+    }on FirebaseAuthException catch(e){
+      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
+    }on FirebaseException catch(e){
+      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
+    }on TimeoutException catch(e){
+      throw TimeOutOperationsException(errorMessage: "User Auth Timed Out");
+    }catch(e){
+      throw UnknownException(errorMessage: "Unknown Error");
+    }
+  }
+
+  // function to update user photo URL
+  @override
+  Future<User> updatePhotoUrl({required String photo}) async{
+    try{
+      var response = await firebaseUserAuth.updateUserPhoto(photo).timeout(const Duration(seconds: 60));
       return response;
     }on FirebaseAuthException catch(e){
       throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
