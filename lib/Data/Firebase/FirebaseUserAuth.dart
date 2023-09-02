@@ -30,4 +30,10 @@ class FirebaseUserAuth {
     return _firebase.currentUser!;
   }
 
+  // sign in user with email and password to firebase auth
+  Future<User> signInUserWithEmailAndPassword({required String email , required String password}) async{
+    await _firebase.signInWithEmailAndPassword(email: email, password: password);
+    return _firebase.currentUser!;
+  }
+
 }

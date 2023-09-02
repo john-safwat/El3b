@@ -1,5 +1,7 @@
 import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
+import 'package:El3b/Domain/UseCase/SignInUserWithEmailAndPasswordUseCase.dart';
+import 'package:El3b/Presentation/UI/Home/HomeView.dart';
 import 'package:El3b/Presentation/UI/Login/LoginNavigator.dart';
 import 'package:El3b/Presentation/UI/Login/LoginViewModel.dart';
 import 'package:El3b/Presentation/UI/Login/Widgets/DirectPlatformLogin.dart';
@@ -23,7 +25,7 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
     implements LoginNavigator {
   @override
   LoginViewModel initViewModel() {
-    return LoginViewModel();
+    return LoginViewModel(singInUserWithEmailAndPasswordUseCase: injectSignInUserWithEmailAndPasswordUseCase());
   }
 
   @override
@@ -50,6 +52,7 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
                 ),
                 // Input Form
                 Form(
+                    key: viewModel!.formKey,
                     child: Column(
                       children: [
                         // Email Text From Field
@@ -92,7 +95,7 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
                         const SizedBox(height: 10,),
                         // Login Button
                         ElevatedButton(
-                            onPressed: (){},
+                            onPressed: viewModel!.signInWithEmailAndPassword,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -183,5 +186,10 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
   @override
   goToRegistrationScreen() {
     Navigator.pushReplacementNamed(context, RegisterView.routeName);
+  }
+
+  @override
+  goToHomeScreen() {
+    Navigator.pushReplacementNamed(context, HomeView.routeName);
   }
 }

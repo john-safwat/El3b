@@ -5,5 +5,5 @@ abstract class FirebaseUserAuthRemoteDatasource {
 
   Future<void> createUser({required UserDTO user});
   Future<User> updatePhotoUrl({required String photo});
-
+  Future<User> signInWithEmailAndPassword({required String email , required String password});
 }

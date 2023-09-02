@@ -43,6 +43,8 @@
   "updatingData" : "جاز تحديث البينات",
   "pleasePickYourBirthDate": "برجاء ادخال تاريخ ميلادك",
   "accountUpdated": "تم تحديث البينات",
-  "pickDate" : "اختر التاريخ"
+  "pickDate" : "اختر التاريخ",
+  "loggingYouIn" : "جاري تسجيل الدخول ... ",
+  "welcomeBack" : "اهلا بعودتك"
 
 }

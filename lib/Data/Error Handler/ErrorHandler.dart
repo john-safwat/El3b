@@ -87,6 +87,39 @@ class ErrorHandler {
     return error;
   }
 
+
+  String handleLoginError(String error){
+    switch (error) {
+      case "ERROR_WRONG_PASSWORD":
+      case "wrong-password":
+        error = "Wrong email/password combination.";
+        break;
+      case "ERROR_USER_NOT_FOUND":
+      case "user-not-found":
+        error = "No user found with this email.";
+        break;
+      case "ERROR_USER_DISABLED":
+      case "user-disabled":
+        error = "User disabled.";
+        break;
+      case "ERROR_TOO_MANY_REQUESTS":
+      case "operation-not-allowed":
+        error = "Too many requests to log into this account.";
+        break;
+      case "ERROR_OPERATION_NOT_ALLOWED":
+      case "ERROR_INVALID_EMAIL":
+      case "invalid-email":
+        error = "Email address is invalid.";
+        break;
+      default:
+        error = "Login failed. Please try again.";
+        break;
+    }
+    return error;
+  }
+
+
+
   String handleFirebaseFireStoreError(String error){
     switch (error) {
       case "ABORTED":

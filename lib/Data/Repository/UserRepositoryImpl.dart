@@ -58,4 +58,11 @@ class UserRepositoryImpl implements UserRepository {
     await userFirebaseDatabaseRemoteDatasource.updateUser(user: myUser.toDataSource(), uid: uid);
     return "Your Data Updated Successfully";
   }
+
+  // function to sign in user using email ana password 
+  @override
+  Future<User> signInWithEmailAndPassword({required String email, required String password}) async{
+    var response = await authRemoteDatasource.signInWithEmailAndPassword(email: email, password: password);
+    return response;
+  }
 }

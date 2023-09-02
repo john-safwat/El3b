@@ -43,5 +43,7 @@
   "updatingData" : "Updating Data ...",
   "pleasePickYourBirthDate": "Please Pick Your BirthDate",
   "accountUpdated": "Account Updated Successfully",
-  "pickDate" : "Pick Date"
+  "pickDate" : "Pick Date",
+  "loggingYouIn" : "Logging You In ... ",
+  "welcomeBack" : "Welcome Back"
 }

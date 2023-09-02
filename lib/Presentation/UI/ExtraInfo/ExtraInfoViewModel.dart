@@ -71,51 +71,53 @@ class ExtraInfoViewModel extends BaseViewModel<ExtraInfoNavigator> {
         posActionTitle: local!.pickDate,
         posAction: showDatePicker
       );
-    }
-    if(formKey.currentState!.validate()){
-      navigator!.showLoading(message: local!.updatingData);
-      try {
-        var response = await useCase.invoke(
-            uid: appConfigProvider!.user!.uid,
-            user: MyUser(
-                name: appConfigProvider!.user!.displayName!,
-                email: appConfigProvider!.user!.email!,
-                password: "Private",
-                image: appConfigProvider!.user!.photoURL??"",
-                phoneNumber: phoneController.text,
-                bio: bioController.text,
-                birthDate: selectedDate)
-        );
-        navigator!.goBack();
-        navigator!.showSuccessMessage(
-            message: local!.accountUpdated,
-            posActionTitle: local!.ok,
-            posAction: goToHomeScreen);
-      } catch (e) {
-        navigator!.goBack();
-        if (e is FirebaseUserAuthException) {
-          navigator!.showFailMessage(
-            message: e.errorMessage,
-            posActionTitle: local!.tryAgain,
+    }else{
+      if(formKey.currentState!.validate()){
+        navigator!.showLoading(message: local!.updatingData);
+        try {
+          await useCase.invoke(
+              uid: appConfigProvider!.user!.uid,
+              user: MyUser(
+                  name: appConfigProvider!.user!.displayName!,
+                  email: appConfigProvider!.user!.email!,
+                  password: "Private",
+                  image: appConfigProvider!.user!.photoURL??"",
+                  phoneNumber: phoneController.text,
+                  bio: bioController.text,
+                  birthDate: selectedDate)
           );
-        } else if (e is TimeOutOperationsException) {
-          navigator!.showFailMessage(
-            message: e.errorMessage,
-            posActionTitle: local!.tryAgain,
-          );
-        } else if (e is UnknownException) {
-          navigator!.showFailMessage(
-            message: e.errorMessage,
-            posActionTitle: local!.tryAgain,
-          );
-        } else {
-          navigator!.showFailMessage(
-            message: e.toString(),
-            posActionTitle: local!.tryAgain,
-          );
+          navigator!.goBack();
+          navigator!.showSuccessMessage(
+              message: local!.accountUpdated,
+              posActionTitle: local!.ok,
+              posAction: goToHomeScreen);
+        } catch (e) {
+          navigator!.goBack();
+          if (e is FirebaseUserAuthException) {
+            navigator!.showFailMessage(
+              message: e.errorMessage,
+              posActionTitle: local!.tryAgain,
+            );
+          } else if (e is TimeOutOperationsException) {
+            navigator!.showFailMessage(
+              message: e.errorMessage,
+              posActionTitle: local!.tryAgain,
+            );
+          } else if (e is UnknownException) {
+            navigator!.showFailMessage(
+              message: e.errorMessage,
+              posActionTitle: local!.tryAgain,
+            );
+          } else {
+            navigator!.showFailMessage(
+              message: e.toString(),
+              posActionTitle: local!.tryAgain,
+            );
+          }
         }
       }
     }
+
   }
 
 }

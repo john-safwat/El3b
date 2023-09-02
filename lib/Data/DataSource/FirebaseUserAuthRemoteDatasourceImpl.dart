@@ -54,4 +54,21 @@ class FirebaseUserAuthRemoteDatasourceImpl implements FirebaseUserAuthRemoteData
     }
   }
 
+  // function to sign in user using email and password to firebase auth
+  @override
+  Future<User> signInWithEmailAndPassword({required String email, required String password}) async{
+    try{
+      var response = await firebaseUserAuth.signInUserWithEmailAndPassword(email: email , password: password).timeout(const Duration(seconds: 60));
+      return response;
+    }on FirebaseAuthException catch(e){
+      throw FirebaseUserAuthException(errorMessage: errorHandler.handleLoginError( e.code));
+    }on FirebaseException catch(e){
+      throw FirebaseUserAuthException(errorMessage: errorHandler.handleLoginError( e.code));
+    }on TimeoutException catch(e){
+      throw TimeOutOperationsException(errorMessage: "User Auth Timed Out");
+    }catch(e){
+      throw UnknownException(errorMessage: "Unknown Error");
+    }
+  }
+
 }
