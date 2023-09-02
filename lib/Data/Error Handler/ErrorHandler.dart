@@ -87,7 +87,6 @@ class ErrorHandler {
     return error;
   }
 
-
   String handleFirebaseFireStoreError(String error){
     switch (error) {
       case "ABORTED":
@@ -147,6 +146,5 @@ class ErrorHandler {
     }
     return error;
   }
-
 
 }

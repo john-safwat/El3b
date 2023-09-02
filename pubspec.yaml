@@ -53,6 +53,7 @@ dependencies:
   randomstring_dart: ^0.0.4
   flutter_image_compress: ^2.0.4
   cloud_firestore: ^4.9.1
+  cached_network_image: ^3.2.3
 
 dev_dependencies:
   flutter_test:

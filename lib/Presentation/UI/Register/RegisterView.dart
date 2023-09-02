@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Domain/UseCase/CreateAccountUseCase.dart';
@@ -10,8 +9,6 @@ import 'package:El3b/Presentation/UI/Register/RegisterViewModel.dart';
 import 'package:El3b/Presentation/UI/Register/Widgets/BottomSheetImagePicker.dart';
 import 'package:El3b/Presentation/UI/Widgets/CustomTextFormField.dart';
 import 'package:El3b/Presentation/UI/Widgets/LanguateSwitch.dart';
-import 'package:El3b/Presentation/UI/Widgets/ThemeSwitch.dart';
-import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:provider/provider.dart';

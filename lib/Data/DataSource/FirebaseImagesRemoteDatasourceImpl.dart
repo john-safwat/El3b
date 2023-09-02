@@ -32,12 +32,9 @@ class FirebaseImagesRemoteDatasourceImpl
           .timeout(const Duration(seconds: 60));
       return response;
     } on FirebaseException catch (e) {
-      throw FirebaseImagesException(
-          errorMessage: errorHandler.handleFirebaseImageDatabaseExceptions(
-              error: e.code));
+      throw FirebaseImagesException(errorMessage: errorHandler.handleFirebaseImageDatabaseExceptions(error: e.code));
     } on TimeoutException catch (e) {
-      throw TimeOutOperationsException(
-          errorMessage: "Uploading Image Timed Out Try Again");
+      throw TimeOutOperationsException(errorMessage: "Uploading Image Timed Out Try Again");
     } catch (e) {
       throw UnknownException(errorMessage: "UnKnown Error");
     }
