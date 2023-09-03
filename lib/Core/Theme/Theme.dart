@@ -11,22 +11,19 @@ class MyTheme {
   static ThemeData lightTheme = ThemeData(
       // the screen background
       scaffoldBackgroundColor: offWhite,
+
       // the elevated button style in thee screen
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(lightPurple),
-              elevation: MaterialStateProperty.all(0),
-              shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              )),
-              textStyle: MaterialStateProperty.all(const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20 ,
-                  color: offWhite
-              )),
+        backgroundColor: MaterialStateProperty.all(lightPurple),
+        elevation: MaterialStateProperty.all(0),
+        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        )),
+        textStyle: MaterialStateProperty.all(const TextStyle(
+            fontWeight: FontWeight.bold, fontSize: 20, color: offWhite)),
+      )),
 
-          )
-      ),
       // all text theme in the app
       textTheme: const TextTheme(
         displaySmall: TextStyle(
@@ -41,7 +38,25 @@ class MyTheme {
           fontSize: 20,
           color: lightPurple,
         ),
-      ));
+      ),
+
+      // app bar theme
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        centerTitle: true,
+        titleTextStyle: TextStyle(
+          color: lightPurple,
+          fontSize: 16,
+          fontWeight: FontWeight.bold
+        ),
+        iconTheme: IconThemeData(color: lightPurple),
+        actionsIconTheme: IconThemeData(color: lightPurple),
+      ),
+      primaryColor: lightPurple,
+      dialogBackgroundColor: MyTheme.offWhite,
+      dividerColor: lightPurple,
+      textButtonTheme: TextButtonThemeData(style: ButtonStyle(overlayColor: MaterialStateProperty.all(Colors.transparent))));
 
   static ThemeData darkTheme = ThemeData(
       // the screen background
@@ -49,19 +64,15 @@ class MyTheme {
 
       // the elevated button style in thee screen
       elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(lightPurple),
-          elevation: MaterialStateProperty.all(0),
-          shape: MaterialStateProperty.all(RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          )),
-          textStyle: MaterialStateProperty.all(const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20 ,
-            color: offWhite
-          )),
-        )
-      ),
+          style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(lightPurple),
+        elevation: MaterialStateProperty.all(0),
+        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        )),
+        textStyle: MaterialStateProperty.all(const TextStyle(
+            fontWeight: FontWeight.bold, fontSize: 20, color: offWhite)),
+      )),
 
       // all text theme in the app
       textTheme: const TextTheme(
@@ -77,5 +88,23 @@ class MyTheme {
           fontSize: 20,
           color: offWhite,
         ),
-      ));
+      ),
+
+      // app bar theme
+      appBarTheme: const AppBarTheme(
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        titleTextStyle: TextStyle(
+          color: offWhite,
+          fontSize: 16,
+          fontWeight: FontWeight.bold
+        ),
+        iconTheme: IconThemeData(color: offWhite),
+        actionsIconTheme: IconThemeData(color: offWhite),
+      ),
+      primaryColor: offWhite,
+      dialogBackgroundColor: purple,
+      dividerColor: offWhite,
+      textButtonTheme: TextButtonThemeData(style: ButtonStyle(overlayColor: MaterialStateProperty.all(Colors.transparent))));
 }

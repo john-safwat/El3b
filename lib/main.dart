@@ -2,6 +2,7 @@ import 'package:El3b/Core/Providers/AppConfigProvider.dart';
 import 'package:El3b/Core/Providers/LocalProvider.dart';
 import 'package:El3b/Core/Providers/ThemeProvider.dart';
 import 'package:El3b/Presentation/UI/ExtraInfo/ExtraInfoView.dart';
+import 'package:El3b/Presentation/UI/ForgetPassword/ForgetPasswordView.dart';
 import 'package:El3b/Presentation/UI/Login/LoginView.dart';
 import 'package:El3b/Presentation/UI/Register/RegisterView.dart';
 import 'package:El3b/Presentation/UI/Splash/SplashScreen.dart';
@@ -53,11 +54,12 @@ class MyApp extends StatelessWidget {
       locale:Locale(localProvider.currentLocal),
       supportedLocales: AppLocalizations.supportedLocales,
       routes: {
-        SplashScreen.routeName :(_) => SplashScreen(),
-        LoginView.routeName :(_) => LoginView(),
-        HomeView.routeName : (_) => HomeView(),
-        RegisterView.routeName : (_) => RegisterView(),
-        ExtraInfoView.routeName :(_) => ExtraInfoView(),
+        SplashScreen.routeName :(_) => const SplashScreen(),
+        LoginView.routeName :(_) => const LoginView(),
+        HomeView.routeName : (_) =>const HomeView(),
+        RegisterView.routeName : (_) =>const RegisterView(),
+        ExtraInfoView.routeName :(_) => const ExtraInfoView(),
+        ForgetPasswordView.routeName :(_) =>const ForgetPasswordView()
       },
       initialRoute: SplashScreen.routeName,
       theme: MyTheme.lightTheme,

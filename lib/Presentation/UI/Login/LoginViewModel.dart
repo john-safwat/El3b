@@ -1,5 +1,4 @@
 import 'package:El3b/Core/Base/BaseViewModel.dart';
-import 'package:El3b/Domain/Exception/FirebaseImagesException.dart';
 import 'package:El3b/Domain/Exception/FirebaseUserAuthException.dart';
 import 'package:El3b/Domain/Exception/TimeOutOperationsException.dart';
 import 'package:El3b/Domain/Exception/UnknownException.dart';
@@ -24,6 +23,10 @@ class LoginViewModel extends BaseViewModel<LoginNavigator>{
   // go to home screen function
   void goToHomeScreen(){
     navigator!.goToHomeScreen();
+  }
+  // go to forget password screen
+  void goToForgetPasswordScreen(){
+    navigator!.goToForgetPasswordScreen();
   }
 
   // Change Theme Functions

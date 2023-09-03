@@ -30,7 +30,7 @@
   "creatingAccount" : "Creating Account ... ",
   "accountCreatedSuccessfully" : "Account Created Successfully",
   "tryAgain" : "Try Again" ,
-  "ok" : "Continue",
+  "continueTitle": "Continue",
   "welcome" : "Welcome",
   "weNeedSomeAdditionalInfo" : "We Need Some More Additional Information",
   "birthDate" : "Date Of Birth",
@@ -45,5 +45,9 @@
   "accountUpdated": "Account Updated Successfully",
   "pickDate" : "Pick Date",
   "loggingYouIn" : "Logging You In ... ",
-  "welcomeBack" : "Welcome Back"
+  "welcomeBack" : "Welcome Back",
+  "sendMail" : "Send Email",
+  "sendingEmail" : "Sending Email ... ",
+  "emailSentSuccessfully" : "ُReset Password Email Sent Successfully",
+  "ok" : "OK"
 }

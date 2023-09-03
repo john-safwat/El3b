@@ -7,5 +7,6 @@ abstract class UserRepository {
   Future<User> createUser({XFile? file , required MyUser myUser});
   Future<String> updateUserData({required MyUser myUser , required String uid});
   Future<User> signInWithEmailAndPassword({required String email , required String password});
+  Future<void> resetPasswordWithEmail({required String email});
 
 }

@@ -30,7 +30,7 @@
   "creatingAccount" : "جاري انشاء حساب",
   "accountCreatedSuccessfully" : "تم انشاء الحساب بنجاح",
   "tryAgain" : "حاول مجددا" ,
-  "ok" : "اكمل",
+  "continueTitle": "اكمل",
   "welcome" : "مرحبا",
   "weNeedSomeAdditionalInfo" : "نحن الان في حاجة اللي بعض المعلومات الاضافية",
   "birthDate" : "تاريخ الميلاد",
@@ -45,6 +45,9 @@
   "accountUpdated": "تم تحديث البينات",
   "pickDate" : "اختر التاريخ",
   "loggingYouIn" : "جاري تسجيل الدخول ... ",
-  "welcomeBack" : "اهلا بعودتك"
-
+  "welcomeBack" : "اهلا بعودتك",
+  "sendMail" : "ارسل الرسالة",
+  "sendingEmail" : "جار ارسال ايميل ... ",
+  "emailSentSuccessfully" : "تم ارسال ايميل اعادة ضبط كلمة المرور بنجاح",
+  "ok" : "حسنا"
 }

@@ -65,4 +65,10 @@ class UserRepositoryImpl implements UserRepository {
     var response = await authRemoteDatasource.signInWithEmailAndPassword(email: email, password: password);
     return response;
   }
+
+  // function to reset user password
+  @override
+  Future<void> resetPasswordWithEmail({required String email}) async{
+    await authRemoteDatasource.resetPasswordWithEmail(email: email);
+  }
 }

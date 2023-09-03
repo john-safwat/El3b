@@ -1,6 +1,7 @@
 import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Domain/UseCase/SignInUserWithEmailAndPasswordUseCase.dart';
+import 'package:El3b/Presentation/UI/ForgetPassword/ForgetPasswordView.dart';
 import 'package:El3b/Presentation/UI/Home/HomeView.dart';
 import 'package:El3b/Presentation/UI/Login/LoginNavigator.dart';
 import 'package:El3b/Presentation/UI/Login/LoginViewModel.dart';
@@ -78,7 +79,7 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             TextButton(
-                                onPressed: () {},
+                                onPressed: viewModel!.goToForgetPasswordScreen,
                                 child: Text(
                                   viewModel!.local!.forgetPassword,
                                   style: Theme.of(context)
@@ -138,23 +139,11 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
                 Row(
                   children: [
                     const SizedBox(width: 30),
-                    Expanded(
-                      child: Divider(
-                        thickness: 2,
-                        color: viewModel!.themeProvider!.isDark()? MyTheme.offWhite :MyTheme.lightPurple,
-                      ),
-                    ),
+                    const Expanded(child: Divider(thickness: 2,),),
                     const SizedBox(width: 15),
-                    Text(viewModel!.local!.or , style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                      color: viewModel!.themeProvider!.isDark()? MyTheme.offWhite :MyTheme.lightPurple,
-                    ),),
+                    Text(viewModel!.local!.or , style: Theme.of(context).textTheme.displayMedium),
                     const SizedBox(width: 15),
-                    Expanded(
-                      child: Divider(
-                        thickness: 2,
-                        color: viewModel!.themeProvider!.isDark()? MyTheme.offWhite :MyTheme.lightPurple,
-                      ),
-                    ),
+                    const Expanded(child: Divider(thickness: 2,),),
                     const SizedBox(width: 30),
                   ],
                 ),
@@ -191,5 +180,10 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
   @override
   goToHomeScreen() {
     Navigator.pushReplacementNamed(context, HomeView.routeName);
+  }
+
+  @override
+  goToForgetPasswordScreen() {
+    Navigator.pushNamed(context, ForgetPasswordView.routeName);
   }
 }
