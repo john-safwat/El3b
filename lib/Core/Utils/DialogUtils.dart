@@ -13,7 +13,6 @@ class MyDialogUtils {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          backgroundColor: backgroundColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
@@ -86,7 +85,6 @@ class MyDialogUtils {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          backgroundColor: backgroundColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
@@ -172,7 +170,6 @@ class MyDialogUtils {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          backgroundColor: backgroundColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
@@ -255,7 +252,6 @@ class MyDialogUtils {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          backgroundColor: backgroundColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),

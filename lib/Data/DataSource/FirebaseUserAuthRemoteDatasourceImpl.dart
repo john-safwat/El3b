@@ -71,4 +71,20 @@ class FirebaseUserAuthRemoteDatasourceImpl implements FirebaseUserAuthRemoteData
     }
   }
 
+  // function to reset User Password and handle any operation exception
+  @override
+  Future<void> resetPasswordWithEmail({required String email}) async{
+    try{
+      await firebaseUserAuth.resetPassword(email: email).timeout(const Duration(seconds: 60));
+    }on FirebaseAuthException catch(e){
+      throw FirebaseUserAuthException(errorMessage: errorHandler.handleLoginError(e.code));
+    }on TimeoutException catch(e){
+      throw TimeOutOperationsException(errorMessage: "Operation Timed Out");
+    }on FirebaseException catch(e){
+      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
+    }catch (e){
+      throw UnknownException(errorMessage: "Unknown Error");
+    }
+  }
+
 }

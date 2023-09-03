@@ -36,4 +36,8 @@ class FirebaseUserAuth {
     return _firebase.currentUser!;
   }
 
+  // function to send reset password email to the user when forget password
+  Future<void> resetPassword({required String email})async{
+    await _firebase.sendPasswordResetEmail(email: email);
+  }
 }
