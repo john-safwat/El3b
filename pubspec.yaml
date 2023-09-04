@@ -55,6 +55,7 @@ dependencies:
   cloud_firestore: ^4.9.1
   cached_network_image: ^3.2.3
   flutter_rounded_date_picker: ^3.0.4
+  google_sign_in: ^6.1.5
 
 dev_dependencies:
   flutter_test:

@@ -30,26 +30,27 @@ class UserRepositoryImpl implements UserRepository {
 
   // function to create user
   // 1 - create user account in firebase auth
+  @override
+  Future<User> createUserFireBaseAuth({required MyUser user})async{
+    var response = await authRemoteDatasource.createUser(user: user.toDataSource());
+    return response;
+  }
   // 2 - if there is no exceptions it will upload the user image to firebase storage (if user picked image)
+  @override
+  Future<String> uploadUserImage({required XFile file})async{
+    var image = await imagesRemoteDatasource.uploadUserProfileImage(file: file);
+    return image;
+  }
   // 3 - update user image in firebase auth
+  @override
+  Future<User> updateUserPhotoUrl({required String image})async{
+    var user = await authRemoteDatasource.updatePhotoUrl(photo: image);
+    return user;
+  }
   // 4 - create user in firebase database to hold all users data
   @override
-  Future<User> createUser({XFile? file, required MyUser myUser}) async {
-    // create user account in firebase auth
-    await authRemoteDatasource.createUser(user: myUser.toDataSource());
-    myUser.password = "Private";
-    // if there is no exceptions it will upload the user image to firebase storage (if user picked image)
-    if(file!= null){
-      var image = await imagesRemoteDatasource.uploadUserProfileImage(file: file);
-      myUser.image = image;
-    }
-    // update user image in firebase auth
-    var user = await authRemoteDatasource.updatePhotoUrl(photo: myUser.image);
-    // create user in firebase database to hold all users data
-    await userFirebaseDatabaseRemoteDatasource.createUser(
-        user: myUser.toDataSource(), uid: user.uid);
-
-    return user;
+  Future<void> createUserFirebaseFireStore({required String uid, required MyUser myUser}) async {
+    await userFirebaseDatabaseRemoteDatasource.createUser(user: myUser.toDataSource(), uid: uid);
   }
 
   // function to update user data in firebase fireStore database
@@ -70,5 +71,19 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<void> resetPasswordWithEmail({required String email}) async{
     await authRemoteDatasource.resetPasswordWithEmail(email: email);
+  }
+
+  // function to sign in with google
+  @override
+  Future<User> singInWithGoogle() async{
+    var response = await authRemoteDatasource.signInWithGoogle();
+    return response;
+  }
+
+  // function to check if user exist in database
+  @override
+  Future<bool> userExist({required String uid}) async{
+    var response = await userFirebaseDatabaseRemoteDatasource.userExist(uid: uid);
+    return response;
   }
 }

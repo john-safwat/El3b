@@ -1,15 +1,28 @@
 import 'package:El3b/Core/Base/BaseViewModel.dart';
 import 'package:El3b/Domain/Exception/FirebaseUserAuthException.dart';
+import 'package:El3b/Domain/Exception/FirebaseUserDatabaseException.dart';
 import 'package:El3b/Domain/Exception/TimeOutOperationsException.dart';
 import 'package:El3b/Domain/Exception/UnknownException.dart';
+import 'package:El3b/Domain/Models/User/MyUser.dart';
+import 'package:El3b/Domain/UseCase/AddUserUseCase.dart';
+import 'package:El3b/Domain/UseCase/CheckIfUserExistUseCase.dart';
 import 'package:El3b/Domain/UseCase/SignInUserWithEmailAndPasswordUseCase.dart';
+import 'package:El3b/Domain/UseCase/SignInWithGoogleUseCase.dart';
 import 'package:El3b/Presentation/UI/Login/LoginNavigator.dart';
 import 'package:flutter/material.dart';
 
 class LoginViewModel extends BaseViewModel<LoginNavigator>{
 
   SignInUserWithEmailAndPasswordUseCase singInUserWithEmailAndPasswordUseCase;
-  LoginViewModel({required this.singInUserWithEmailAndPasswordUseCase});
+  SignInWithGoogleUseCase signInWithGoogleUseCase;
+  CheckIfUserExistUseCase checkIfUserExistUseCase;
+  AddUserUseCase addUserUseCase;
+  LoginViewModel({
+    required this.singInUserWithEmailAndPasswordUseCase ,
+    required this.signInWithGoogleUseCase ,
+    required this.checkIfUserExistUseCase,
+    required this.addUserUseCase,
+  });
   
   final formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
@@ -27,6 +40,10 @@ class LoginViewModel extends BaseViewModel<LoginNavigator>{
   // go to forget password screen
   void goToForgetPasswordScreen(){
     navigator!.goToForgetPasswordScreen();
+  }
+  // go to Extra infoScreen function
+  void goToExtraInfoScreen(){
+    navigator!.goToExtraInfoScreen();
   }
 
   // Change Theme Functions
@@ -101,8 +118,84 @@ class LoginViewModel extends BaseViewModel<LoginNavigator>{
     }
   }
 
+
   // login with google
-  void loginWithGoogle(){}
+  // in this function login with google if user doesn't exist it will create a new user in firebase auth
+  void loginWithGoogle()async{
+    navigator!.showLoading(message: local!.loggingYouIn);
+    try{
+      // sing user in using google sign in
+      var response = await signInWithGoogleUseCase.invoke();
+      // update Provider
+      appConfigProvider!.updateUser(user: response);
+      try{
+        // check if user exist in data base to make sure that we have the user info
+        var exist = await checkIfUserExistUseCase.invoke(uid: response.uid);
+        // if exist navigate to home screen else add user data to database
+        if(exist) {
+          navigator!.goBack();
+          navigator!.showSuccessMessage(
+              message: local!.welcomeBack,
+              posActionTitle: local!.ok,
+              posAction: goToHomeScreen
+          );
+        }else {
+          try{
+            // add user data to database
+            await addUserUseCase.invoke(uid: response.uid,
+                myUser: MyUser(
+                  name: response.displayName!,
+                  email: response.email!,
+                  password: "Private",
+                  image: response.photoURL??"",
+                  phoneNumber: "",
+                  bio: local!.defaultBio,
+                  birthDate: "--/--/----"
+                )
+            );
+            navigator!.goBack();
+            navigator!.showSuccessMessage(
+                message: local!.welcomeBack,
+                posActionTitle: local!.ok,
+                posAction: goToExtraInfoScreen
+            );
+          }catch(e){
+            throw FirebaseUserDatabaseException(errorMessage: local!.tryAgain);
+          }
+        }
+      }catch(e){
+        throw FirebaseUserDatabaseException(errorMessage: local!.tryAgain);
+      }
+    }catch(e){
+      navigator!.goBack();
+      if (e is FirebaseUserAuthException) {
+        navigator!.showFailMessage(
+          message: e.errorMessage,
+          posActionTitle: local!.tryAgain,
+        );
+      } else if (e is TimeOutOperationsException) {
+        navigator!.showFailMessage(
+          message: e.errorMessage,
+          posActionTitle: local!.tryAgain,
+        );
+      } else if (e is UnknownException) {
+        navigator!.showFailMessage(
+          message: e.errorMessage,
+          posActionTitle: local!.tryAgain,
+        );
+      } else if (e is FirebaseUserDatabaseException) {
+        navigator!.showFailMessage(
+          message: e.errorMessage,
+          posActionTitle: local!.tryAgain,
+        );
+      } else {
+        navigator!.showFailMessage(
+          message: e.toString(),
+          posActionTitle: local!.tryAgain,
+        );
+      }
+    }
+  }
 
   // login with facebook
   void loginWithFacebook(){}
