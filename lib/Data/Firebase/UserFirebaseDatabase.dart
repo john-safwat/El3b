@@ -33,4 +33,10 @@ class UserFirebaseDatabase {
     await getCollectionReference().doc(uid).update(user.toFireStore());
   }
 
+  // function to check if user Exist in database
+  Future<bool> userExist({required String uid})async{
+    var doc  = await getCollectionReference().doc(uid).get();
+    return doc.exists;
+  }
+
 }

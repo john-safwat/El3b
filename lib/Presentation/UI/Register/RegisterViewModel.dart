@@ -1,6 +1,7 @@
 import 'package:El3b/Core/Base/BaseViewModel.dart';
 import 'package:El3b/Domain/Exception/FirebaseImagesException.dart';
 import 'package:El3b/Domain/Exception/FirebaseUserAuthException.dart';
+import 'package:El3b/Domain/Exception/FirebaseUserDatabaseException.dart';
 import 'package:El3b/Domain/Exception/TimeOutOperationsException.dart';
 import 'package:El3b/Domain/Exception/UnknownException.dart';
 import 'package:El3b/Domain/Models/User/MyUser.dart';
@@ -116,7 +117,7 @@ class RegisterViewModel extends BaseViewModel<RegisterNavigator> {
       );
       try {
         var response = await useCase.invoke(
-          image: image,
+          file: image,
           user: MyUser(
               name: nameController.text,
               email: emailController.text,
@@ -150,6 +151,11 @@ class RegisterViewModel extends BaseViewModel<RegisterNavigator> {
             posActionTitle: local!.tryAgain,
           );
         } else if (e is UnknownException) {
+          navigator!.showFailMessage(
+            message: e.errorMessage,
+            posActionTitle: local!.tryAgain,
+          );
+        }else if (e is FirebaseUserDatabaseException) {
           navigator!.showFailMessage(
             message: e.errorMessage,
             posActionTitle: local!.tryAgain,

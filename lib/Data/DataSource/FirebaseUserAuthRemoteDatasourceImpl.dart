@@ -23,9 +23,10 @@ class FirebaseUserAuthRemoteDatasourceImpl implements FirebaseUserAuthRemoteData
 
   // function to create user account using firebase auth and handle any exceptions
   @override
-  Future<void> createUser({required UserDTO user}) async{
+  Future<User> createUser({required UserDTO user}) async{
     try{
-      await firebaseUserAuth.createUser(user: user).timeout(const Duration(seconds: 60));
+      var response = await firebaseUserAuth.createUser(user: user).timeout(const Duration(seconds: 60));
+      return response;
     }on FirebaseAuthException catch(e){
       throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
     }on FirebaseException catch(e){
@@ -86,5 +87,24 @@ class FirebaseUserAuthRemoteDatasourceImpl implements FirebaseUserAuthRemoteData
       throw UnknownException(errorMessage: "Unknown Error");
     }
   }
+
+  // function to reset User Password and handle any operation exception
+  @override
+  Future<User> signInWithGoogle() async{
+    try{
+      var response = await firebaseUserAuth.signInWithGoogle().timeout(const Duration(seconds: 180));
+      return response;
+    }on FirebaseAuthException catch(e){
+      throw FirebaseUserAuthException(errorMessage: errorHandler.handleLoginError(e.code));
+    }on TimeoutException catch(e){
+      throw TimeOutOperationsException(errorMessage: "Operation Timed Out");
+    }on FirebaseException catch(e){
+      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
+    }catch (e){
+      throw UnknownException(errorMessage: "Unknown Error");
+    }
+  }
+
+
 
 }

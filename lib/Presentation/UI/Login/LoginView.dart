@@ -1,6 +1,10 @@
 import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
+import 'package:El3b/Domain/UseCase/AddUserUseCase.dart';
+import 'package:El3b/Domain/UseCase/CheckIfUserExistUseCase.dart';
 import 'package:El3b/Domain/UseCase/SignInUserWithEmailAndPasswordUseCase.dart';
+import 'package:El3b/Domain/UseCase/SignInWithGoogleUseCase.dart';
+import 'package:El3b/Presentation/UI/ExtraInfo/ExtraInfoView.dart';
 import 'package:El3b/Presentation/UI/ForgetPassword/ForgetPasswordView.dart';
 import 'package:El3b/Presentation/UI/Home/HomeView.dart';
 import 'package:El3b/Presentation/UI/Login/LoginNavigator.dart';
@@ -26,7 +30,12 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
     implements LoginNavigator {
   @override
   LoginViewModel initViewModel() {
-    return LoginViewModel(singInUserWithEmailAndPasswordUseCase: injectSignInUserWithEmailAndPasswordUseCase());
+    return LoginViewModel(
+      singInUserWithEmailAndPasswordUseCase: injectSignInUserWithEmailAndPasswordUseCase(),
+      signInWithGoogleUseCase: injectSignInWithGoogleUseCase(),
+      checkIfUserExistUseCase: injectCheckIfUserExistUseCase(),
+      addUserUseCase: injectAddUserUseCase()
+    );
   }
 
   @override
@@ -34,7 +43,7 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
     super.build(context);
     return ChangeNotifierProvider(
       create: (context) => viewModel!,
-      child:Scaffold(
+      child: Scaffold(
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -64,7 +73,9 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
                           validator: viewModel!.emailValidation,
                           icon: EvaIcons.email,
                         ),
-                        const SizedBox(height: 20,),
+                        const SizedBox(
+                          height: 20,
+                        ),
                         // Password Text From Field
                         CustomPasswordTextFormField(
                           controller: viewModel!.passwordController,
@@ -73,7 +84,9 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
                           validator: viewModel!.passwordValidation,
                           icon: EvaIcons.lock,
                         ),
-                        const SizedBox(height: 10,),
+                        const SizedBox(
+                          height: 10,
+                        ),
                         // Forget Password Text Button
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -86,14 +99,18 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
                                       .textTheme
                                       .displayMedium!
                                       .copyWith(
-                                      color:viewModel!.themeProvider!.isDark()?MyTheme.offWhite:MyTheme.lightPurple,
-                                      fontStyle: FontStyle.italic,
-                                      fontWeight: FontWeight.w500
-                                  ),
+                                          color:
+                                              viewModel!.themeProvider!.isDark()
+                                                  ? MyTheme.offWhite
+                                                  : MyTheme.lightPurple,
+                                          fontStyle: FontStyle.italic,
+                                          fontWeight: FontWeight.w500),
                                 ))
                           ],
                         ),
-                        const SizedBox(height: 10,),
+                        const SizedBox(
+                          height: 10,
+                        ),
                         // Login Button
                         ElevatedButton(
                             onPressed: viewModel!.signInWithEmailAndPassword,
@@ -101,21 +118,28 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Padding(
-                                  padding:const EdgeInsets.all(10),
+                                  padding: const EdgeInsets.all(10),
                                   child: Text(viewModel!.local!.login),
                                 ),
                               ],
-                            )
+                            )),
+                        const SizedBox(
+                          height: 10,
                         ),
-                        const SizedBox(height: 10,),
                         // Create Account Button
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(viewModel!.local!.doNotHaveAccount ,
-                              style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                                  color: viewModel!.themeProvider!.isDark()? MyTheme.offWhite : MyTheme.darkPurple
-                              ),),
+                            Text(
+                              viewModel!.local!.doNotHaveAccount,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displayMedium!
+                                  .copyWith(
+                                      color: viewModel!.themeProvider!.isDark()
+                                          ? MyTheme.offWhite
+                                          : MyTheme.darkPurple),
+                            ),
                             TextButton(
                                 onPressed: viewModel!.goToRegistrationScreen,
                                 child: Text(
@@ -124,26 +148,35 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
                                       .textTheme
                                       .displayMedium!
                                       .copyWith(
-                                    fontWeight: FontWeight.w500,
-                                    color:MyTheme.lightPurple,
-                                  ),
-                                )
-                            )
+                                        fontWeight: FontWeight.w500,
+                                        color: MyTheme.lightPurple,
+                                      ),
+                                ))
                           ],
                         ),
                       ],
-                    )
+                    )),
+                const SizedBox(
+                  height: 10,
                 ),
-                const SizedBox(height: 10,),
                 // or divider
                 Row(
                   children: [
                     const SizedBox(width: 30),
-                    const Expanded(child: Divider(thickness: 2,),),
+                    const Expanded(
+                      child: Divider(
+                        thickness: 2,
+                      ),
+                    ),
                     const SizedBox(width: 15),
-                    Text(viewModel!.local!.or , style: Theme.of(context).textTheme.displayMedium),
+                    Text(viewModel!.local!.or,
+                        style: Theme.of(context).textTheme.displayMedium),
                     const SizedBox(width: 15),
-                    const Expanded(child: Divider(thickness: 2,),),
+                    const Expanded(
+                      child: Divider(
+                        thickness: 2,
+                      ),
+                    ),
                     const SizedBox(width: 30),
                   ],
                 ),
@@ -185,5 +218,10 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
   @override
   goToForgetPasswordScreen() {
     Navigator.pushNamed(context, ForgetPasswordView.routeName);
+  }
+
+  @override
+  goToExtraInfoScreen() {
+    Navigator.pushReplacementNamed(context, ExtraInfoView.routeName);
   }
 }

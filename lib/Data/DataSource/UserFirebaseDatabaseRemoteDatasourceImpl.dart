@@ -5,6 +5,7 @@ import 'package:El3b/Data/Firebase/UserFirebaseDatabase.dart';
 import 'package:El3b/Data/Models/User/UserDTO.dart';
 import 'package:El3b/Domain/DataSource/UserFirebaseDatabaseRemoteDatasource.dart';
 import 'package:El3b/Domain/Exception/FirebaseUserAuthException.dart';
+import 'package:El3b/Domain/Exception/FirebaseUserDatabaseException.dart';
 import 'package:El3b/Domain/Exception/TimeOutOperationsException.dart';
 import 'package:El3b/Domain/Exception/UnknownException.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -30,7 +31,7 @@ class UserFirebaseDatabaseRemoteDatasourceImpl implements UserFirebaseDatabaseRe
     }on FirebaseAuthException catch(e){
       throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
     }on FirebaseException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseFireStoreError(e.code));
+      throw FirebaseUserDatabaseException(errorMessage: errorHandler.handleFirebaseFireStoreError(e.code));
     }on TimeoutException catch(e){
       throw TimeOutOperationsException(errorMessage: "User Auth Timed Out");
     }catch(e){
@@ -46,9 +47,25 @@ class UserFirebaseDatabaseRemoteDatasourceImpl implements UserFirebaseDatabaseRe
     }on FirebaseAuthException catch(e){
       throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
     }on FirebaseException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseFireStoreError(e.code));
+      throw FirebaseUserDatabaseException(errorMessage: errorHandler.handleFirebaseFireStoreError(e.code));
     }on TimeoutException catch(e){
       throw TimeOutOperationsException(errorMessage: "User Auth Timed Out");
+    }catch(e){
+      throw UnknownException(errorMessage: "Unknown Error");
+    }
+  }
+
+
+  // function to check if user exists in database or not
+  @override
+  Future<bool> userExist({required String uid})async {
+    try {
+      var response = await userFirebaseDatabase.userExist(uid: uid);
+      return response;
+    }on FirebaseException catch(e){
+      throw FirebaseUserDatabaseException(errorMessage: errorHandler.handleFirebaseFireStoreError(e.code));
+    }on TimeoutException {
+      throw TimeOutOperationsException(errorMessage: "Operation Timed Out");
     }catch(e){
       throw UnknownException(errorMessage: "Unknown Error");
     }
