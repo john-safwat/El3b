@@ -47,6 +47,7 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
       create: (context) => viewModel!,
       child: Scaffold(
         body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
