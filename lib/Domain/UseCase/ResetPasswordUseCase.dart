@@ -1,7 +1,7 @@
-// dependency injection
 import 'package:El3b/Data/Repository/UserRepositoryImpl.dart';
 import 'package:El3b/Domain/Repository/UserRepository.dart';
 
+// dependency injection
 ResetPasswordUseCase injectResetPasswordUseCase(){
   return ResetPasswordUseCase(repository: injectUserRepo());
 }

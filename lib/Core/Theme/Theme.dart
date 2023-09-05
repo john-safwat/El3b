@@ -39,7 +39,7 @@ class MyTheme {
           color: lightPurple,
         ),
       ),
-
+      progressIndicatorTheme:const ProgressIndicatorThemeData(color: lightPurple),
       // app bar theme
       appBarTheme: const AppBarTheme(
         backgroundColor: Colors.transparent,
@@ -89,6 +89,8 @@ class MyTheme {
           color: offWhite,
         ),
       ),
+
+      progressIndicatorTheme:const ProgressIndicatorThemeData(color: offWhite),
 
       // app bar theme
       appBarTheme: const AppBarTheme(

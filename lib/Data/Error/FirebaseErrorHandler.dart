@@ -1,6 +1,6 @@
 // dependency injection
 FirebaseErrorHandler injectFirebaseErrorHandler() {
-  return FirebaseErrorHandler.getErrorHandler();
+  return FirebaseErrorHandler.getInstance();
 }
 
 // the object
@@ -8,7 +8,7 @@ class FirebaseErrorHandler {
 
   FirebaseErrorHandler._();
   static FirebaseErrorHandler? instance;
-  static getErrorHandler(){
+  static getInstance(){
     return instance??= FirebaseErrorHandler._();
   }
 

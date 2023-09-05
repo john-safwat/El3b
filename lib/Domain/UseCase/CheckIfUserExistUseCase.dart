@@ -1,6 +1,7 @@
 import 'package:El3b/Data/Repository/UserRepositoryImpl.dart';
 import 'package:El3b/Domain/Repository/UserRepository.dart';
 
+// dependency injection
 CheckIfUserExistUseCase injectCheckIfUserExistUseCase(){
   return CheckIfUserExistUseCase(repository: injectUserRepo());
 }

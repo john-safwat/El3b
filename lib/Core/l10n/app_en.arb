@@ -64,5 +64,7 @@
   "next" : "Next",
   "back" : "Back",
   "loading" : "Loading ... ",
-  "someThingWentWrong" : "Some Thing Went Wrong"
+  "someThingWentWrong" : "Some Thing Went Wrong",
+  "operationTimedOut" : "This Operation Timed Out",
+  "checkYourInternetConnection" : "Check Your Internet Connection"
 }
