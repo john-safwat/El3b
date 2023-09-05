@@ -64,6 +64,8 @@
   "next" : "التالي",
   "back" : "رجوع",
   "loading" : "جار التحميل ... ",
-  "someThingWentWrong" : "حدث خطاء ما"
+  "someThingWentWrong" : "حدث خطاء ما",
+  "operationTimedOut" : "انتهت مهلة هذه العملية",
+  "checkYourInternetConnection" : "برجاء التحقق من الاتصال بالانترنت الخاص بك"
 
 }

@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 // dependency injection
 UserFirebaseDatabase injectUserFirebaseDatabase(){
-  return UserFirebaseDatabase.getUserFirebaseDatabase();
+  return UserFirebaseDatabase.getInstance();
 }
 
 // the object
@@ -11,7 +11,7 @@ class UserFirebaseDatabase {
 
   UserFirebaseDatabase._();
   static UserFirebaseDatabase? instance;
-  static getUserFirebaseDatabase(){
+  static getInstance(){
     return instance ??= UserFirebaseDatabase._();
   }
 

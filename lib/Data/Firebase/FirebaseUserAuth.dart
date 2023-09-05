@@ -5,7 +5,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 // dependency injection
 FirebaseUserAuth injectFirebaseUserAuth(){
-  return FirebaseUserAuth.getFirebaseUserAuth();
+  return FirebaseUserAuth.getInstance();
 }
 
 // the object
@@ -13,7 +13,7 @@ class FirebaseUserAuth {
 
   FirebaseUserAuth._();
   static FirebaseUserAuth? instance;
-  static getFirebaseUserAuth(){
+  static getInstance(){
     return instance ??= FirebaseUserAuth._();
   }
 

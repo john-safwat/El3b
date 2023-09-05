@@ -6,7 +6,7 @@ import 'package:randomstring_dart/randomstring_dart.dart';
 
 // dependency injection
 FirebaseImagesDatabase injectFirebaseImagesDatabase(){
-  return FirebaseImagesDatabase.getFirebaseImagesDatabase();
+  return FirebaseImagesDatabase.getInstance();
 }
 
 // the object
@@ -14,7 +14,7 @@ class FirebaseImagesDatabase {
 
   FirebaseImagesDatabase._();
   static FirebaseImagesDatabase? instance;
-  static getFirebaseImagesDatabase(){
+  static getInstance(){
     return instance ??= FirebaseImagesDatabase._();
   }
 
