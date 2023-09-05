@@ -56,6 +56,8 @@ dependencies:
   cached_network_image: ^3.2.3
   flutter_rounded_date_picker: ^3.0.4
   google_sign_in: ^6.1.5
+  flutter_facebook_auth: ^6.0.1
+  introduction_screen: ^3.1.11
 
 dev_dependencies:
   flutter_test:

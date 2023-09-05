@@ -77,12 +77,12 @@ class ExtraInfoViewModel extends BaseViewModel<ExtraInfoNavigator> {
         navigator!.showLoading(message: local!.updatingData);
         try {
           await useCase.invoke(
-              uid: appConfigProvider!.user!.uid,
+              uid: appConfigProvider!.getUser()!.uid,
               user: MyUser(
-                  name: appConfigProvider!.user!.displayName!,
-                  email: appConfigProvider!.user!.email!,
+                  name: appConfigProvider!.getUser()!.displayName!,
+                  email: appConfigProvider!.getUser()!.email!,
                   password: "Private",
-                  image: appConfigProvider!.user!.photoURL??"",
+                  image: appConfigProvider!.getUser()!.photoURL??"",
                   phoneNumber: phoneController.text,
                   bio: bioController.text,
                   birthDate: selectedDate)

@@ -1,14 +1,15 @@
-
-ErrorHandler injectErrorHandler() {
-  return ErrorHandler.getErrorHandler();
+// dependency injection
+FirebaseErrorHandler injectFirebaseErrorHandler() {
+  return FirebaseErrorHandler.getErrorHandler();
 }
 
-class ErrorHandler {
+// the object
+class FirebaseErrorHandler {
 
-  ErrorHandler._();
-  static ErrorHandler? instance;
+  FirebaseErrorHandler._();
+  static FirebaseErrorHandler? instance;
   static getErrorHandler(){
-    return instance??= ErrorHandler._();
+    return instance??= FirebaseErrorHandler._();
   }
 
   String handleFirebaseImageDatabaseExceptions({required String error}) {
@@ -87,7 +88,6 @@ class ErrorHandler {
     return error;
   }
 
-
   String handleLoginError(String error){
     switch (error) {
       case "ERROR_WRONG_PASSWORD":
@@ -117,7 +117,6 @@ class ErrorHandler {
     }
     return error;
   }
-
 
   String handleFirebaseFireStoreError(String error){
     switch (error) {

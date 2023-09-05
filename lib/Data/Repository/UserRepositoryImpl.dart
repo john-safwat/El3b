@@ -73,6 +73,13 @@ class UserRepositoryImpl implements UserRepository {
     await authRemoteDatasource.resetPasswordWithEmail(email: email);
   }
 
+  // function to check if user exist in database
+  @override
+  Future<bool> userExist({required String uid}) async{
+    var response = await userFirebaseDatabaseRemoteDatasource.userExist(uid: uid);
+    return response;
+  }
+
   // function to sign in with google
   @override
   Future<User> singInWithGoogle() async{
@@ -80,10 +87,10 @@ class UserRepositoryImpl implements UserRepository {
     return response;
   }
 
-  // function to check if user exist in database
+  // function to sign in with facebook
   @override
-  Future<bool> userExist({required String uid}) async{
-    var response = await userFirebaseDatabaseRemoteDatasource.userExist(uid: uid);
+  Future<User> signInWithFacebook() async{
+    var response = await authRemoteDatasource.signInWithFacebook();
     return response;
   }
 }

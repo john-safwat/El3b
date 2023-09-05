@@ -3,6 +3,7 @@ import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Domain/UseCase/AddUserUseCase.dart';
 import 'package:El3b/Domain/UseCase/CheckIfUserExistUseCase.dart';
 import 'package:El3b/Domain/UseCase/SignInUserWithEmailAndPasswordUseCase.dart';
+import 'package:El3b/Domain/UseCase/SignInWithFacebookUseCase.dart';
 import 'package:El3b/Domain/UseCase/SignInWithGoogleUseCase.dart';
 import 'package:El3b/Presentation/UI/ExtraInfo/ExtraInfoView.dart';
 import 'package:El3b/Presentation/UI/ForgetPassword/ForgetPasswordView.dart';
@@ -13,7 +14,7 @@ import 'package:El3b/Presentation/UI/Login/Widgets/DirectPlatformLogin.dart';
 import 'package:El3b/Presentation/UI/Register/RegisterView.dart';
 import 'package:El3b/Presentation/UI/Widgets/CustomPasswordTextFormField.dart';
 import 'package:El3b/Presentation/UI/Widgets/CustomTextFormField.dart';
-import 'package:El3b/Presentation/UI/Widgets/LanguateSwitch.dart';
+import 'package:El3b/Presentation/UI/Widgets/LanguageSwitch.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +35,8 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
       singInUserWithEmailAndPasswordUseCase: injectSignInUserWithEmailAndPasswordUseCase(),
       signInWithGoogleUseCase: injectSignInWithGoogleUseCase(),
       checkIfUserExistUseCase: injectCheckIfUserExistUseCase(),
-      addUserUseCase: injectAddUserUseCase()
+      addUserUseCase: injectAddUserUseCase(),
+      signInWithFacebookUseCase: injectSignInWithFacebookUseCase()
     );
   }
 

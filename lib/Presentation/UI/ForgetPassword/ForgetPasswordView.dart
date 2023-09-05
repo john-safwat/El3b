@@ -3,7 +3,7 @@ import 'package:El3b/Domain/UseCase/ResetPasswordUseCase.dart';
 import 'package:El3b/Presentation/UI/ForgetPassword/ForgetPasswordNavigator.dart';
 import 'package:El3b/Presentation/UI/ForgetPassword/ForgetPasswordViewModel.dart';
 import 'package:El3b/Presentation/UI/Widgets/CustomTextFormField.dart';
-import 'package:El3b/Presentation/UI/Widgets/LanguateSwitch.dart';
+import 'package:El3b/Presentation/UI/Widgets/LanguageSwitch.dart';
 import 'package:El3b/Presentation/UI/Widgets/ThemeSwitch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

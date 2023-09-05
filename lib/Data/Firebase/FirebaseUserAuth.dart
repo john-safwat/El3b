@@ -1,5 +1,6 @@
 import 'package:El3b/Data/Models/User/UserDTO.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 // dependency injection
@@ -52,15 +53,22 @@ class FirebaseUserAuth {
   // login the user using google account
   Future<User> signInWithGoogle()async {
     await GoogleSignIn().signOut();
-    final GoogleSignInAccount? googleSignInAccount = await GoogleSignIn()
-        .signIn();
-    final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount!
-        .authentication;
+    final GoogleSignInAccount? googleSignInAccount = await GoogleSignIn().signIn();
+    final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount!.authentication;
     final user = GoogleAuthProvider.credential(
       accessToken: googleSignInAuthentication.accessToken,
       idToken: googleSignInAuthentication.idToken,
     );
     await _firebase.signInWithCredential(user);
+    return _firebase.currentUser!;
+  }
+
+  // login user with facebook
+  Future<User> signInWithFacebook()async{
+    // await FacebookAuth.instance.logOut();
+    final LoginResult loginResult = await FacebookAuth.instance.login();
+    final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+    await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
     return _firebase.currentUser!;
   }
 

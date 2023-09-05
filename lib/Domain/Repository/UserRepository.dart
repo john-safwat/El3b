@@ -11,6 +11,7 @@ abstract class UserRepository {
   Future<String> updateUserData({required MyUser myUser , required String uid});
   Future<User> signInWithEmailAndPassword({required String email , required String password});
   Future<void> resetPasswordWithEmail({required String email});
-  Future<User> singInWithGoogle();
   Future<bool> userExist({required String uid});
+  Future<User> singInWithGoogle();
+  Future<User> signInWithFacebook();
 }
