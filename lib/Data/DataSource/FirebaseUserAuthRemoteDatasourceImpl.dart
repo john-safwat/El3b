@@ -101,7 +101,7 @@ class FirebaseUserAuthRemoteDatasourceImpl implements FirebaseUserAuthRemoteData
     }on FirebaseException catch(e){
       throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
     }catch (e){
-      throw UnknownException(errorMessage: "Unknown Error");
+      throw UnknownException(errorMessage: e.toString());
     }
   }
 
