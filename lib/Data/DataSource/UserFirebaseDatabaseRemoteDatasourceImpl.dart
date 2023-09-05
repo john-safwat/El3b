@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:El3b/Data/Error%20Handler/ErrorHandler.dart';
+import 'package:El3b/Data/Error/FirebaseErrorHandler.dart';
 import 'package:El3b/Data/Firebase/UserFirebaseDatabase.dart';
 import 'package:El3b/Data/Models/User/UserDTO.dart';
 import 'package:El3b/Domain/DataSource/UserFirebaseDatabaseRemoteDatasource.dart';
@@ -14,13 +14,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 // dependency injection
 UserFirebaseDatabaseRemoteDatasource getUserFirebaseDatabaseRemoteDatasource() {
   return UserFirebaseDatabaseRemoteDatasourceImpl(
-      userFirebaseDatabase: injectUserFirebaseDatabase(), errorHandler: injectErrorHandler());
+      userFirebaseDatabase: injectUserFirebaseDatabase(), errorHandler: injectFirebaseErrorHandler());
 }
 
 class UserFirebaseDatabaseRemoteDatasourceImpl implements UserFirebaseDatabaseRemoteDatasource{
 
   UserFirebaseDatabase userFirebaseDatabase ;
-  ErrorHandler errorHandler;
+  FirebaseErrorHandler errorHandler;
   UserFirebaseDatabaseRemoteDatasourceImpl({required this.userFirebaseDatabase , required this.errorHandler});
 
   // create new user if user collection in firebase fireStore

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:El3b/Data/Error%20Handler/ErrorHandler.dart';
+import 'package:El3b/Data/Error/FirebaseErrorHandler.dart';
 import 'package:El3b/Data/Firebase/FirebaseImagesDatabase.dart';
 import 'package:El3b/Domain/DataSource/FirebaseImagesRemoteDatasource.dart';
 import 'package:El3b/Domain/Exception/FirebaseImagesException.dart';
@@ -13,14 +13,14 @@ import 'package:flutter_image_compress/flutter_image_compress.dart';
 // dependency injection
 FirebaseImagesRemoteDatasource getFirebaseImagesRemoteDatasource() {
   return FirebaseImagesRemoteDatasourceImpl(
-      database: injectFirebaseImagesDatabase(), errorHandler: injectErrorHandler());
+      database: injectFirebaseImagesDatabase(), errorHandler: injectFirebaseErrorHandler());
 }
 
 // the object
 class FirebaseImagesRemoteDatasourceImpl
     implements FirebaseImagesRemoteDatasource {
   FirebaseImagesDatabase database;
-  ErrorHandler errorHandler;
+  FirebaseErrorHandler errorHandler;
   FirebaseImagesRemoteDatasourceImpl(
       {required this.database, required this.errorHandler});
 

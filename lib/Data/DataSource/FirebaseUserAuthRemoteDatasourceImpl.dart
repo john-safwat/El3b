@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:El3b/Data/Error%20Handler/ErrorHandler.dart';
+import 'package:El3b/Data/Error/FirebaseErrorHandler.dart';
 import 'package:El3b/Data/Firebase/FirebaseUserAuth.dart';
 import 'package:El3b/Data/Models/User/UserDTO.dart';
 import 'package:El3b/Domain/DataSource/FirebaseUserAuthRemoteDatasource.dart';
@@ -11,14 +11,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 // dependency injection
 FirebaseUserAuthRemoteDatasource getFirebaseUserAuthRemoteDatasource() {
   return FirebaseUserAuthRemoteDatasourceImpl(
-      firebaseUserAuth: injectFirebaseUserAuth(), errorHandler: injectErrorHandler());
+      firebaseUserAuth: injectFirebaseUserAuth(), errorHandler: injectFirebaseErrorHandler());
 }
 
 // the object
 class FirebaseUserAuthRemoteDatasourceImpl implements FirebaseUserAuthRemoteDatasource {
 
   FirebaseUserAuth firebaseUserAuth;
-  ErrorHandler errorHandler;
+  FirebaseErrorHandler errorHandler;
   FirebaseUserAuthRemoteDatasourceImpl ({required this.firebaseUserAuth , required this.errorHandler});
 
   // function to create user account using firebase auth and handle any exceptions
@@ -88,7 +88,7 @@ class FirebaseUserAuthRemoteDatasourceImpl implements FirebaseUserAuthRemoteData
     }
   }
 
-  // function to reset User Password and handle any operation exception
+  // function to sign user in using google auth
   @override
   Future<User> signInWithGoogle() async{
     try{
@@ -102,6 +102,23 @@ class FirebaseUserAuthRemoteDatasourceImpl implements FirebaseUserAuthRemoteData
       throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
     }catch (e){
       throw UnknownException(errorMessage: "Unknown Error");
+    }
+  }
+
+  // function to sign the user in using facebook
+  @override
+  Future<User> signInWithFacebook() async{
+    try{
+      var response = await firebaseUserAuth.signInWithFacebook().timeout(const Duration(seconds: 180));
+      return response;
+    }on FirebaseAuthException catch(e){
+      throw FirebaseUserAuthException(errorMessage: errorHandler.handleLoginError(e.code));
+    }on TimeoutException catch(e){
+      throw TimeOutOperationsException(errorMessage: "Operation Timed Out");
+    }on FirebaseException catch(e){
+      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
+    }catch (e){
+      throw UnknownException(errorMessage: e.toString());
     }
   }
 

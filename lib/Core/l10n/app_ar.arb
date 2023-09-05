@@ -49,5 +49,21 @@
   "sendMail" : "ارسل الرسالة",
   "sendingEmail" : "جار ارسال ايميل ... ",
   "emailSentSuccessfully" : "تم ارسال ايميل اعادة ضبط كلمة المرور بنجاح",
-  "ok" : "حسنا"
+  "ok" : "حسنا",
+  "yourLanguage"  : "لغتك ؟",
+  "welcomeToEl3b" : "مرحبًا بك في El3b، نحن متحمسون جدًا لوجودك في مجتمعنا",
+  "gamingNights" : "ليالي الألعاب",
+  "letUsHelpYou" : "اسمح لنا بمساعدتك في اختيار ما ستلعبه الليلة من بين أكثر من 500000 لعبة فيديو",
+  "youAreNotAlone" : "انت لست وحدك",
+  "chatWithOtherPlayers" : "قم بالتحدث مع لاعبين آخرين مهتمين بألعابك المفضلة",
+  "giveaway" : "هدايا",
+  "everyDayWeHaveGiveaways" : "كل يوم لدينا هدايا لك، لا تفوتها",
+  "whoAreYou" : "من أنت ؟",
+  "letUsKnowWhoYouAre" : "أخبرنا من أنت، قم بالتسجيل أو تسجيل الدخول إلى حسابك الآن",
+  "finish" : "انتهي",
+  "next" : "التالي",
+  "back" : "رجوع",
+  "loading" : "جار التحميل ... ",
+  "someThingWentWrong" : "حدث خطاء ما"
+
 }

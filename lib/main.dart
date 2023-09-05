@@ -3,9 +3,11 @@ import 'package:El3b/Core/Providers/LocalProvider.dart';
 import 'package:El3b/Core/Providers/ThemeProvider.dart';
 import 'package:El3b/Presentation/UI/ExtraInfo/ExtraInfoView.dart';
 import 'package:El3b/Presentation/UI/ForgetPassword/ForgetPasswordView.dart';
+import 'package:El3b/Presentation/UI/Intro/IntroView.dart';
 import 'package:El3b/Presentation/UI/Login/LoginView.dart';
 import 'package:El3b/Presentation/UI/Register/RegisterView.dart';
 import 'package:El3b/Presentation/UI/Splash/SplashScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
@@ -17,11 +19,20 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 void main()async{
+  // block the code building for the loading of data
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   WidgetsFlutterBinding.ensureInitialized();
+
+  // call shared pref to get some value
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  var firstTime = prefs.getBool("firstTime");
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  // validate on current user
+  var user = FirebaseAuth.instance.currentUser;
   runApp(
       MultiProvider(
         providers: [
@@ -29,12 +40,16 @@ void main()async{
           ChangeNotifierProvider(create: (context) => LocalProvider(),),
           ChangeNotifierProvider(create: (context) => AppConfigProvider(),)
         ],
-        child: MyApp()
+        child: MyApp(firstTime: firstTime?? true, user: user,)
       )
   );
 }
 
 class MyApp extends StatelessWidget {
+  bool firstTime;
+  User? user;
+  MyApp({required this.firstTime , this.user});
+
   late ThemeProvider themeProvider ;
   late LocalProvider localProvider ;
   @override
@@ -43,6 +58,12 @@ class MyApp extends StatelessWidget {
     localProvider = Provider.of<LocalProvider>(context);
     setTheme();
     setLocal();
+
+    if(user != null){
+      var provider = Provider.of<AppConfigProvider>(context , listen: false);
+      provider.updateUserWithoutNotifyListeners(user: user!);
+    }
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       localizationsDelegates:const [
@@ -54,12 +75,13 @@ class MyApp extends StatelessWidget {
       locale:Locale(localProvider.currentLocal),
       supportedLocales: AppLocalizations.supportedLocales,
       routes: {
-        SplashScreen.routeName :(_) => const SplashScreen(),
-        LoginView.routeName :(_) => const LoginView(),
-        HomeView.routeName : (_) =>const HomeView(),
-        RegisterView.routeName : (_) =>const RegisterView(),
-        ExtraInfoView.routeName :(_) => const ExtraInfoView(),
-        ForgetPasswordView.routeName :(_) =>const ForgetPasswordView()
+        SplashScreen.routeName : (_) => SplashScreen(firstTime: firstTime , user: user),
+        IntroView.routeName : (_) => const IntroView(),
+        LoginView.routeName : (_) => const LoginView(),
+        HomeView.routeName : (_) => const HomeView(),
+        RegisterView.routeName : (_) => const RegisterView(),
+        ExtraInfoView.routeName : (_) => const ExtraInfoView(),
+        ForgetPasswordView.routeName : (_) => const ForgetPasswordView()
       },
       initialRoute: SplashScreen.routeName,
       theme: MyTheme.lightTheme,
@@ -79,4 +101,5 @@ class MyApp extends StatelessWidget {
     var local = prefs.getString("local");
     localProvider.changeLocal(local??="en");
   }
+
 }

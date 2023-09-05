@@ -56,7 +56,7 @@ class _ExtraInfoViewState extends BaseState<ExtraInfoView , ExtraInfoViewModel> 
                             ]),
                         child: Column(
                           children: [
-                            viewModel!.appConfigProvider!.user!.photoURL == null?
+                            viewModel!.appConfigProvider!.getUser()!.photoURL == null?
                             Image.asset(
                               viewModel!.themeProvider!.isDark()
                                   ? "Assets/Images/DarkLogo2.png"
@@ -66,7 +66,7 @@ class _ExtraInfoViewState extends BaseState<ExtraInfoView , ExtraInfoViewModel> 
                               height: 200,
                               decoration: BoxDecoration(
                                   image: DecorationImage(
-                                    image: NetworkImage(viewModel!.appConfigProvider!.user!.photoURL!),
+                                    image: NetworkImage(viewModel!.appConfigProvider!.getUser()!.photoURL!),
                                     fit: BoxFit.cover,
                                   ),
                                   borderRadius: BorderRadius.circular(20)
@@ -80,7 +80,7 @@ class _ExtraInfoViewState extends BaseState<ExtraInfoView , ExtraInfoViewModel> 
                   const SizedBox(height: 20,),
                   // welcome message
                   Text(
-                    "${viewModel!.local!.welcome} ${viewModel!.appConfigProvider!.user!.displayName!.split(" ")[0]}",
+                    "${viewModel!.local!.welcome} ${viewModel!.appConfigProvider!.getUser()!.displayName!.split(" ")[0]}",
                     style: Theme.of(context).textTheme.displayLarge!.copyWith(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 20,),

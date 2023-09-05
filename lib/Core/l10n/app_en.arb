@@ -49,5 +49,20 @@
   "sendMail" : "Send Email",
   "sendingEmail" : "Sending Email ... ",
   "emailSentSuccessfully" : "ُReset Password Email Sent Successfully",
-  "ok" : "OK"
+  "ok" : "OK",
+  "yourLanguage"  : "Your Language ?",
+  "welcomeToEl3b" : "Welcome To El3b , We are So Excited To Have You In Our Community",
+  "gamingNights" : "Gaming Nights",
+  "letUsHelpYou" : "Let Us Help You To Pick What To Play Tonight From 500,000+ Video Game",
+  "youAreNotAlone" : "You Are Not Alone",
+  "chatWithOtherPlayers" : "Chat With Other Players Who Interests In You Favorite Games",
+  "giveaway" : "Giveaway",
+  "everyDayWeHaveGiveaways" : "Every Day We Have Giveaways for You , Don't Miss it",
+  "whoAreYou" : "Who Are You ?",
+  "letUsKnowWhoYouAre" : "Let Us know Who You Are , Register or Login To Your Account Now",
+  "finish" : "Done",
+  "next" : "Next",
+  "back" : "Back",
+  "loading" : "Loading ... ",
+  "someThingWentWrong" : "Some Thing Went Wrong"
 }
