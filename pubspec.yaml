@@ -60,6 +60,7 @@ dependencies:
   introduction_screen: ^3.1.11
   salomon_bottom_bar: ^3.3.2
   dio: ^5.3.2
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:

@@ -1,13 +1,13 @@
-// dependency injection
-
+import 'package:El3b/Core/Base/BaseAPIAssets.dart';
 import 'package:El3b/Data/Models/Games/GiveawayGames/GiveawayGamesDTO.dart';
 
+// dependency injection
 GiveawayGamesApiAssets injectGiveawayGamesApiAssets(){
   return GiveawayGamesApiAssets.getInstance();
 }
 
 // the object code
-class GiveawayGamesApiAssets {
+class GiveawayGamesApiAssets extends BaseAPIAssets{
 
   // singleton object
   GiveawayGamesApiAssets._();
@@ -16,7 +16,8 @@ class GiveawayGamesApiAssets {
     return _instance??=GiveawayGamesApiAssets._();
   }
 
-  String basUrl = "www.gamerpower.com";
+
+  String baseURL = "www.gamerpower.com";
   String giveawayRoute = "/api/giveaways";
 
 }
