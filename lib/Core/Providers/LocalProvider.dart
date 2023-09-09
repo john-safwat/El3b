@@ -2,20 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalProvider extends ChangeNotifier {
-  String currentLocal = "en";
+  String _currentLocal = "en";
 
   Future<void> changeLocal(String newLocal)async{
 
-    if(newLocal == currentLocal) {return;}
+    if(newLocal == _currentLocal) {return;}
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    currentLocal = newLocal;
-    prefs.setString("local", currentLocal);
+    _currentLocal = newLocal;
+    prefs.setString("local", _currentLocal);
     notifyListeners();
   }
 
   bool isEn(){
-    return currentLocal == "en";
+    return _currentLocal == "en";
+  }
+
+  String getLocal(){
+    return _currentLocal;
   }
 
 }

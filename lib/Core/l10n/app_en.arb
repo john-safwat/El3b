@@ -66,5 +66,14 @@
   "loading" : "Loading ... ",
   "someThingWentWrong" : "Some Thing Went Wrong",
   "operationTimedOut" : "This Operation Timed Out",
-  "checkYourInternetConnection" : "Check Your Internet Connection"
+  "checkYourInternetConnection" : "Check Your Internet Connection",
+  "whatAreYouSearchingFor" : "What Are You Searching For ",
+  "home" : "Home",
+  "chat" : "Chat",
+  "explore" : "Explore",
+  "favorite" : "Favorite",
+  "profile" : "Profile",
+  "endDate" : "End Date : ",
+  "worth" : "Worth : ",
+  "urlLaunchingError" : "Error Launching This URL"
 }

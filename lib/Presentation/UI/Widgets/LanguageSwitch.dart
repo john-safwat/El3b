@@ -12,7 +12,7 @@ class LanguageSwitch extends StatelessWidget {
   Widget build(BuildContext context) {
     var localProvider = Provider.of<LocalProvider>(context);
     return AnimatedToggleSwitch.rolling(
-      current: localProvider.currentLocal,
+      current: localProvider.getLocal(),
       values: const ["en", "ar"],
       height: 40,
       colorBuilder: (value) => MyTheme.lightPurple,
@@ -23,7 +23,7 @@ class LanguageSwitch extends StatelessWidget {
           return Flag(Flags.egypt);
         }
       },
-      onChanged: (p0) => localProvider.currentLocal == "en"? localProvider.changeLocal("ar"):localProvider.changeLocal("en"),
+      onChanged: (p0) => localProvider.isEn()? localProvider.changeLocal("ar"):localProvider.changeLocal("en"),
       transitionType: ForegroundIndicatorTransitionType.fading,
       borderRadius: BorderRadius.circular(12),
       borderColor: MyTheme.lightPurple,

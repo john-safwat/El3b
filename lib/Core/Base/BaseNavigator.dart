@@ -31,4 +31,13 @@ abstract class BaseNavigator {
 
   goBack();
 
+  showErrorNotification({required String message});
+  showSuccessNotification({required String message});
+  showCustomNotification({
+    required IconData iconData,
+    required String message ,
+    required Color background ,
+    required double height
+  });
+
 }

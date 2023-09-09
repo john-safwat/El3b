@@ -72,7 +72,7 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      locale:Locale(localProvider.currentLocal),
+      locale:Locale(localProvider.getLocal()),
       supportedLocales: AppLocalizations.supportedLocales,
       routes: {
         SplashScreen.routeName : (_) => SplashScreen(firstTime: firstTime , user: user),
@@ -86,7 +86,7 @@ class MyApp extends StatelessWidget {
       initialRoute: SplashScreen.routeName,
       theme: MyTheme.lightTheme,
       darkTheme: MyTheme.darkTheme,
-      themeMode: themeProvider.theme,
+      themeMode: themeProvider.getTheme(),
     );
   }
 
