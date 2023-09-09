@@ -28,6 +28,7 @@ class _HomeViewState extends BaseState<HomeView , HomeViewModel> implements Home
       create: (context) => viewModel!,
       child: Consumer<HomeViewModel>(
         builder:(context, value, child) => Scaffold(
+          extendBody: true,
           body: viewModel!.tabs[viewModel!.currentIndex],
           bottomNavigationBar: ClipRRect(
             borderRadius:const BorderRadius.only(
@@ -37,27 +38,27 @@ class _HomeViewState extends BaseState<HomeView , HomeViewModel> implements Home
             child: SalomonBottomBar(
               items: [
                 SalomonBottomBarItem(
-                  title: const Text("Home"),
+                  title: Text(viewModel!.local!.home),
                   icon:const Icon(Bootstrap.house),
                   activeIcon:const Icon(Bootstrap.house_fill)
                 ),
                 SalomonBottomBarItem(
-                  title: const Text("Chat"),
+                  title: Text(viewModel!.local!.chat),
                   icon:const Icon(Bootstrap.chat_left_text),
                   activeIcon:const Icon(Bootstrap.chat_left_text_fill)
                 ),
                 SalomonBottomBarItem(
-                  title:const Text("Explore"),
+                  title: Text(viewModel!.local!.explore),
                   icon:const Icon(Bootstrap.compass),
                   activeIcon:const Icon(Bootstrap.compass_fill),
                 ),
                 SalomonBottomBarItem(
-                  title:const Text("Favorite"),
+                  title: Text(viewModel!.local!.favorite),
                   icon:const Icon(Bootstrap.heart),
                   activeIcon:const Icon(Bootstrap.heart_fill),
                 ),
                 SalomonBottomBarItem(
-                  title:const Text("Profile"),
+                  title: Text(viewModel!.local!.profile),
                   icon:const Icon(Bootstrap.person),
                   activeIcon:const Icon(Bootstrap.person_fill),
                 ),

@@ -56,7 +56,7 @@
   "letUsHelpYou" : "اسمح لنا بمساعدتك في اختيار ما ستلعبه الليلة من بين أكثر من 500000 لعبة فيديو",
   "youAreNotAlone" : "انت لست وحدك",
   "chatWithOtherPlayers" : "قم بالتحدث مع لاعبين آخرين مهتمين بألعابك المفضلة",
-  "giveaway" : "هدايا",
+  "giveaway" : "هدية",
   "everyDayWeHaveGiveaways" : "كل يوم لدينا هدايا لك، لا تفوتها",
   "whoAreYou" : "من أنت ؟",
   "letUsKnowWhoYouAre" : "أخبرنا من أنت، قم بالتسجيل أو تسجيل الدخول إلى حسابك الآن",
@@ -66,6 +66,14 @@
   "loading" : "جار التحميل ... ",
   "someThingWentWrong" : "حدث خطاء ما",
   "operationTimedOut" : "انتهت مهلة هذه العملية",
-  "checkYourInternetConnection" : "برجاء التحقق من الاتصال بالانترنت الخاص بك"
-
+  "checkYourInternetConnection" : "برجاء التحقق من الاتصال بالانترنت الخاص بك",
+  "whatAreYouSearchingFor" : "ما الذي تبحث عنة يا ",
+  "home" : "الرئيسية",
+  "chat" : "الدردشة",
+  "explore" : "استكشاف",
+  "favorite" : "المفضلة",
+  "profile" : "الملف ",
+  "endDate" : "تاريخ الانتهاء : ",
+  "worth" : "السعر : ",
+  "urlLaunchingError" : "حدث خطاء اثناء فتح الرابط"
 }

@@ -12,7 +12,7 @@ class ThemeSwitch extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Provider.of<ThemeProvider>(context);
     return AnimatedToggleSwitch.rolling(
-      current: theme.theme,
+      current: theme.getTheme(),
       values: const [ThemeMode.dark, ThemeMode.light],
       height: 40,
       colorBuilder: (value) => MyTheme.lightPurple,
