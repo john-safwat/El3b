@@ -22,6 +22,7 @@ class FreeToPlayGame {
   String? publisher;
   String? developer;
   String? releaseDate;
+  String? icon;
   String? freetogameProfileUrl;
 
 }

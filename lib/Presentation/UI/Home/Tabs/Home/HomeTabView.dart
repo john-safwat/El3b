@@ -4,8 +4,9 @@ import 'package:El3b/Domain/UseCase/GetAllGiveGamesUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetFreeToPlayGamesUseCase.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/HomeTabNavigator.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/HomeTabViewModel.dart';
-import 'package:El3b/Presentation/UI/Home/Tabs/Home/Widgets/FreeToPLayGamesList.dart';
-import 'package:El3b/Presentation/UI/Home/Tabs/Home/Widgets/GivaawayList.dart';
+import 'package:El3b/Presentation/UI/Home/Tabs/Home/Widgets/FreeToPlayGamesHoldWidget.dart';
+import 'package:El3b/Presentation/UI/Home/Tabs/Home/Widgets/FreeToPlayGamesList.dart';
+import 'package:El3b/Presentation/UI/Home/Tabs/Home/Widgets/GivaawayGamesList.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/Widgets/GiveawayGamesHoldWidget.dart';
 import 'package:El3b/Presentation/UI/Widgets/CustomSearchBar.dart';
 import 'package:El3b/Presentation/UI/Widgets/ErrorMessageWidget.dart';
@@ -56,7 +57,7 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel> impleme
                 ListView(
                   children: [
                     const SizedBox(height: 80,),
-                    GiveawayList(
+                    GiveawayGamesList(
                       games: value.listGiveawayGames,
                       selectGame: value.selectGiveawayGame,
                       unselectGame: value.unselectGiveawayGame,
@@ -76,7 +77,8 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel> impleme
                   ],
                 ),
                 const SafeArea(child: CustomSearchBarButton()),
-                viewModel!.giveawayGameSelected ?GiveawayGamesHoldWidget(game: value.giveawaySelectedGame,) : const SizedBox()
+                viewModel!.giveawayGameSelected ?GiveawayGamesHoldWidget(game: value.giveawaySelectedGame,) : const SizedBox(),
+                viewModel!.freeToPlayGameSelected ?FreeToPlayGamesHoldWidget(game: value.freeToPlayGameSelectedGame,) : const SizedBox()
               ],
             );
           }

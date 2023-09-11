@@ -65,7 +65,7 @@ class _HomeViewState extends BaseState<HomeView , HomeViewModel> implements Home
               ],
               currentIndex: viewModel!.currentIndex,
               onTap: (selectedIndex) => viewModel!.changeSelectedIndex(selectedIndex),
-              backgroundColor: MyTheme.lightPurple,
+              backgroundColor: viewModel!.themeProvider!.isDark()?MyTheme.purple : MyTheme.lightPurple,
               margin: const EdgeInsets.all(10),
               itemShape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15)

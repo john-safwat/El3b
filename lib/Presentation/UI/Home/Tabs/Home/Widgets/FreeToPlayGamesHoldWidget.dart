@@ -1,19 +1,18 @@
 import 'package:El3b/Core/Providers/LocalProvider.dart';
 import 'package:El3b/Core/Providers/ThemeProvider.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
-import 'package:El3b/Domain/Models/Games/GiveawayGames/GiveawayGame.dart';
+import 'package:El3b/Domain/Models/Games/FreeToPlayGame/FreeToPlayGame.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loading_animations/loading_animations.dart';
 import 'package:provider/provider.dart';
-import 'package:super_banners/super_banners.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
-class GiveawayGamesHoldWidget extends StatelessWidget {
-  GiveawayGame game;
-  GiveawayGamesHoldWidget({required this.game});
+class FreeToPlayGamesHoldWidget extends StatelessWidget {
+  FreeToPlayGame game;
+  FreeToPlayGamesHoldWidget({required this.game});
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +51,17 @@ class GiveawayGamesHoldWidget extends StatelessWidget {
                               topLeft: Radius.circular(15),
                               topRight: Radius.circular(15)),
                           child: CachedNetworkImage(
-                            imageUrl: game.image ?? "",
-                            imageBuilder: (context, imageProvider) => Image.network(
-                              game.image!,
+                            imageUrl: game.thumbnail ?? "",
+                            imageBuilder: (context, imageProvider) =>
+                                Image.network(
+                              game.thumbnail!,
+                              width: double.infinity,
+                              fit: BoxFit.cover,
                             ),
                             errorWidget: (context, url, error) => Image.asset(
                               "Assets/Images/errorImage.png",
+                              width: double.infinity,
+                              fit: BoxFit.cover,
                             ),
                             placeholder: (context, url) => Center(
                                 child: LoadingBouncingGrid.circle(
@@ -66,65 +70,56 @@ class GiveawayGamesHoldWidget extends StatelessWidget {
                                   : MyTheme.lightPurple,
                             )),
                           )),
-                      // the giveaway title
-                      Positioned(
-                        top: 0,
-                        right: localProvider.isEn()? 0 : null,
-                        left: localProvider.isEn() ? null : 0,
-                        child: CornerBanner(
-                          bannerColor: MyTheme.lightPurple,
-                          bannerPosition:localProvider.isEn()? CornerBannerPosition.topRight :CornerBannerPosition.topLeft,
-                          elevation: 0,
-                          child: Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: Text(local.giveaway , style: Theme.of(context).textTheme.displayMedium!.copyWith(color: MyTheme.offWhite),),
-                          ),
-                        ),
-                      )
                     ],
                   ),
                   // the content
                   Container(
-                    padding:const EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
-                        color: themeProvider.isDark()?MyTheme.purple : MyTheme.offWhite,
+                        color: themeProvider.isDark()
+                            ? MyTheme.purple
+                            : MyTheme.offWhite,
                         borderRadius: const BorderRadius.only(
-                          bottomRight: Radius.circular(15),
-                          bottomLeft: Radius.circular(15)
-                        )
-                    ),
+                            bottomRight: Radius.circular(15),
+                            bottomLeft: Radius.circular(15))),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // game title
-                        Text(
-                          game.title??"Title Not Found",
-                          textAlign: TextAlign.start,
-                          style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                            fontWeight: FontWeight.bold
-                          ),
+                        // game title and available platform
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                game.title ?? "Title Not Found",
+                                textAlign: TextAlign.start,
+                                maxLines: 4,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displayLarge!
+                                    .copyWith(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            const SizedBox(width: 10,),
+                            SvgPicture.asset(
+                              game.icon!,
+                              color: themeProvider.isDark()
+                                  ? MyTheme.offWhite
+                                  : MyTheme.lightPurple,
+                              width: 30,
+                              fit: BoxFit.cover,
+                            ),
+                          ],
                         ),
-                        const SizedBox(height: 10,),
-                        // the end date
-                        Text(
-                          "${local.endDate} ${game.endDate??"--/--/----"}",
-                          textAlign: TextAlign.start,
-                          style: Theme.of(context).textTheme.displayMedium
-                        ),
-                        // the end date
-                        Text(
-                          "${local.worth} ${game.worth??"--/--/----"}",
-                          textAlign: TextAlign.start,
-                          style: Theme.of(context).textTheme.displayMedium
-                        ),
-                        const SizedBox(height: 10,),
-                        // instructions
-                        Text(
-                          game.instructions??"Title Not Found",
-                          textAlign: TextAlign.start,
-                          style: Theme.of(context).textTheme.displaySmall
-                        ),
+                        const SizedBox(height: 15,),
+                        // Description
+                        Text(game.shortDescription ?? "Title Not Found",
+                            textAlign: TextAlign.start,
+                            style: Theme.of(context).textTheme.displayMedium),
+                        const SizedBox(height: 15,),
 
+                        // the game genre
+                        Text("It's a ${game.genre ?? "Title Not Found"} Game",
+                            style: Theme.of(context).textTheme.displayMedium),
                       ],
                     ),
                   )
