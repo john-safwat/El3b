@@ -1,6 +1,6 @@
 import 'package:El3b/Data/DataSource/GiveawayGamesRemoteDataSourceImpl.dart';
 import 'package:El3b/Domain/DataSource/GiveawayGamesRemoteDataSource.dart';
-import 'package:El3b/Domain/Models/Games/GiveawayGames/GiveawayGames.dart';
+import 'package:El3b/Domain/Models/Games/GiveawayGames/GiveawayGame.dart';
 import 'package:El3b/Domain/Repository/GiveawayGamesRepository.dart';
 
 // dependency injection
@@ -16,7 +16,7 @@ class GiveawayGamesRepositoryImpl implements GiveawayGamesRepository {
 
   // function to load giveaway game from api throw data source
   @override
-  Future<List<GiveawayGames>?> getAllGames() async{
+  Future<List<GiveawayGame>?> getAllGames() async{
     var response = await remoteDataSource.getAllGames();
     return response;
   }

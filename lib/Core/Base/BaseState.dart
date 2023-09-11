@@ -41,6 +41,7 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
     viewModel!.themeProvider = Provider.of<ThemeProvider>(context);
     viewModel!.localProvider = Provider.of<LocalProvider>(context);
     viewModel!.local = AppLocalizations.of(context)!;
+    viewModel!.mediaQuery = MediaQuery.of(context).size;
     return const SizedBox();
   }
 
@@ -108,7 +109,7 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
       displayCloseButton: false,
       progressIndicatorBackground: Colors.transparent,
       showProgressIndicator: false,
-      width: double.infinity,
+      width: viewModel!.mediaQuery!.width,
       radius: 15,
       height: 50,
     ).show(context);
@@ -124,7 +125,7 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
       displayCloseButton: false,
       progressIndicatorBackground: Colors.transparent,
       showProgressIndicator: false,
-      width: double.infinity,
+      width: viewModel!.mediaQuery!.width,
       radius: 15,
       height: 50,
     ).show(context);
@@ -145,7 +146,7 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
       displayCloseButton: false,
       progressIndicatorBackground: Colors.transparent,
       showProgressIndicator: false,
-      width: double.infinity,
+      width: viewModel!.mediaQuery!.width,
       radius: 15,
       height: height,
     ).show(context);

@@ -1,17 +1,17 @@
 import 'package:dio/dio.dart';
 
 // dependency injection
-GiveawayGamesApiErrorHandler injectGiveawayGamesApiErrorHandler(){
-  return GiveawayGamesApiErrorHandler.getInstance();
+DioErrorHandler injectDioErrorHandler(){
+  return DioErrorHandler.getInstance();
 }
 
-class GiveawayGamesApiErrorHandler {
+class DioErrorHandler {
 
   // singleton object
-  GiveawayGamesApiErrorHandler._();
-  static GiveawayGamesApiErrorHandler? _instance;
-  static GiveawayGamesApiErrorHandler getInstance(){
-    return _instance??= GiveawayGamesApiErrorHandler._();
+  DioErrorHandler._();
+  static DioErrorHandler? _instance;
+  static DioErrorHandler getInstance(){
+    return _instance??= DioErrorHandler._();
   }
 
   // function to handle dio exceptions

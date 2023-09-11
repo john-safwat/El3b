@@ -1,8 +1,10 @@
 import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Domain/UseCase/GetAllGiveGamesUseCase.dart';
+import 'package:El3b/Domain/UseCase/GetFreeToPlayGamesUseCase.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/HomeTabNavigator.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/HomeTabViewModel.dart';
+import 'package:El3b/Presentation/UI/Home/Tabs/Home/Widgets/FreeToPLayGamesList.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/Widgets/GivaawayList.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/Widgets/GiveawayGamesHoldWidget.dart';
 import 'package:El3b/Presentation/UI/Widgets/CustomSearchBar.dart';
@@ -57,17 +59,24 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel> impleme
                     GiveawayList(
                       games: value.listGiveawayGames,
                       selectGame: value.selectGiveawayGame,
-                      unselectGame: value.unselectGame,
+                      unselectGame: value.unselectGiveawayGame,
                       urlLauncher: value.openURL,
+                    ),
+                    const SizedBox(height:30,),
+                    FreeToPlayGamesList(
+                      games: value.listFreeToPLayGames,
+                      selectGame: value.selectFreeToPlayGame,
+                      unselectGame: value.unselectFreeToPlayGame,
+                      urlLauncher: value.openURL
                     ),
                     const SizedBox(height: 20,),
                     const ThemeSwitch(),
                     const SizedBox(height: 20,),
-                    const LanguageSwitch()
+                    const LanguageSwitch(),
                   ],
                 ),
                 const SafeArea(child: CustomSearchBarButton()),
-                viewModel!.giveawayGameSelected ?GiveawayGamesHoldWidget(game: value.giveawaySelectedGames,) : const SizedBox()
+                viewModel!.giveawayGameSelected ?GiveawayGamesHoldWidget(game: value.giveawaySelectedGame,) : const SizedBox()
               ],
             );
           }
@@ -78,6 +87,9 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel> impleme
 
   @override
   HomeTabViewModel initViewModel() {
-    return HomeTabViewModel(getAllGiveGamesUseCase: injectGetAllGiveGamesUseCase());
+    return HomeTabViewModel(
+      getAllGiveGamesUseCase: injectGetAllGiveGamesUseCase(),
+      getFreeToPlayGamesUseCase: injectGetFreeToPlayGamesUseCase()
+    );
   }
 }

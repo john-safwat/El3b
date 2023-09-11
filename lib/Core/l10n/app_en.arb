@@ -75,5 +75,6 @@
   "profile" : "Profile",
   "endDate" : "End Date : ",
   "worth" : "Worth : ",
-  "urlLaunchingError" : "Error Launching This URL"
+  "urlLaunchingError" : "Error Launching This URL",
+  "weHopeThatYouLoveIt" : "We Hope That You Love It"
 }
