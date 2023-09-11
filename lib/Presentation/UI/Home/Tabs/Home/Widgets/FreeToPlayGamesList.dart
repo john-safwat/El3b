@@ -1,5 +1,5 @@
 import 'package:El3b/Domain/Models/Games/FreeToPlayGame/FreeToPlayGame.dart';
-import 'package:El3b/Presentation/UI/Home/Tabs/Home/Widgets/FreeToPlayGameWidget.dart';
+import 'package:El3b/Presentation/UI/Home/Tabs/Home/Widgets/FreeToPlayGamesWidget.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 

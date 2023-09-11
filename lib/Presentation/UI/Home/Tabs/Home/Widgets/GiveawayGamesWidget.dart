@@ -9,13 +9,13 @@ import 'package:provider/provider.dart';
 import 'package:super_banners/super_banners.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class GiveawayGameWidget extends StatelessWidget {
+class GiveawayGamesWidget extends StatelessWidget {
 
   GiveawayGame game;
   Function selectGame ;
   Function unselectGame ;
   Function urlLauncher;
-  GiveawayGameWidget({required this.game , required this.selectGame , required this.unselectGame  , required this.urlLauncher});
+  GiveawayGamesWidget({required this.game , required this.selectGame , required this.unselectGame  , required this.urlLauncher});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class GiveawayGameWidget extends StatelessWidget {
     AppLocalizations local = AppLocalizations.of(context)!;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      padding: const EdgeInsets.symmetric(horizontal: 5.0),
       child: GestureDetector(
         onTap: () => urlLauncher(game.openGiveawayUrl),
         onLongPress: () => selectGame(game),

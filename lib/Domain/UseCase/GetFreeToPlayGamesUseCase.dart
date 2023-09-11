@@ -15,7 +15,20 @@ class GetFreeToPlayGamesUseCase {
 
   Future<List<FreeToPlayGame>> invoke()async{
     var response = await repository.getGames();
-    return response!;
+    response = changePlatformToIcon(response!);
+    return response;
+  }
+
+  // change the platform name to Icon
+  List<FreeToPlayGame> changePlatformToIcon(List<FreeToPlayGame> games){
+    for(int i = 0 ; i < games.length ; i++){
+      if (games[i].platform == 'PC (Windows)'){
+        games[i].icon = "Assets/SVG/windows.svg";
+      }else {
+        games[i].icon = "Assets/SVG/browser.svg";
+      }
+    }
+    return games;
   }
 
 }

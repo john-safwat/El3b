@@ -6,7 +6,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animations/loading_animations.dart';
 import 'package:provider/provider.dart';
-import 'package:super_banners/super_banners.dart';
 
 class FreeToPlayGameWidget extends StatelessWidget {
   FreeToPlayGame game;
@@ -70,7 +69,6 @@ class FreeToPlayGameWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Expanded(
-                        flex: 2,
                         child: Text(
                           game.title!,
                           style: Theme.of(context).textTheme.displayLarge!.copyWith(
@@ -82,7 +80,7 @@ class FreeToPlayGameWidget extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      const Expanded(flex : 3, child: SizedBox())
+                      const Expanded( child: SizedBox())
                     ],
                   ),
                 )
