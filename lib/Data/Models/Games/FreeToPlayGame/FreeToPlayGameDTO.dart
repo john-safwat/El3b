@@ -57,17 +57,12 @@ class FreeToPlayGameDTO {
 
   FreeToPlayGame toDomain(){
     return FreeToPlayGame(
-        id : id ,
         title : title ,
         thumbnail : thumbnail ,
         shortDescription : shortDescription ,
         gameUrl : gameUrl ,
         genre : genre ,
         platform : platform ,
-        publisher : publisher ,
-        developer : developer ,
-        releaseDate : releaseDate ,
-        freetogameProfileUrl : freetogameProfileUrl
     );
   }
 

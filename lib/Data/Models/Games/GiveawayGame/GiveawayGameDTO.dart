@@ -77,22 +77,13 @@ class GiveawayGameDTO {
 
   GiveawayGame toDomain(){
     return GiveawayGame(
-        id : id ,
         title : title ,
         worth : worth ,
-        thumbnail : thumbnail ,
         image : image ,
-        description : description ,
         instructions : instructions ,
         openGiveawayUrl : openGiveawayUrl ,
-        publishedDate : publishedDate ,
-        type : type ,
         platforms : platforms ,
         endDate : endDate ,
-        users : users ,
-        status : status ,
-        gamerpowerUrl : gamerpowerUrl ,
-        openGiveaway : openGiveaway ,
     );
   }
 

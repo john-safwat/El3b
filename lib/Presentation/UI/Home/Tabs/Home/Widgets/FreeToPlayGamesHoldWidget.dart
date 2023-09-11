@@ -1,4 +1,3 @@
-import 'package:El3b/Core/Providers/LocalProvider.dart';
 import 'package:El3b/Core/Providers/ThemeProvider.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Domain/Models/Games/FreeToPlayGame/FreeToPlayGame.dart';
@@ -8,7 +7,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loading_animations/loading_animations.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FreeToPlayGamesHoldWidget extends StatelessWidget {
   FreeToPlayGame game;
@@ -17,8 +15,6 @@ class FreeToPlayGamesHoldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
-    LocalProvider localProvider = Provider.of<LocalProvider>(context);
-    AppLocalizations local = AppLocalizations.of(context)!;
     return Animate(
       autoPlay: true,
       child: Stack(
@@ -35,7 +31,7 @@ class FreeToPlayGamesHoldWidget extends StatelessWidget {
           ),
           // the game details
           Animate(
-            effects: const [ScaleEffect(duration: Duration(milliseconds: 100))],
+            effects: const [ScaleEffect(duration: Duration(milliseconds: 200))],
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
