@@ -2,6 +2,7 @@ import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Domain/UseCase/GetAllGiveGamesUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetFreeToPlayGamesUseCase.dart';
+import 'package:El3b/Domain/UseCase/GetRAWGGeneralGamesUseCase.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/HomeTabNavigator.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/HomeTabViewModel.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/Widgets/FreeToPlayGamesHoldWidget.dart';
@@ -12,10 +13,7 @@ import 'package:El3b/Presentation/UI/Widgets/CustomSearchBar.dart';
 import 'package:El3b/Presentation/UI/Widgets/ErrorMessageWidget.dart';
 import 'package:El3b/Presentation/UI/Widgets/LanguageSwitch.dart';
 import 'package:El3b/Presentation/UI/Widgets/ThemeSwitch.dart';
-import 'package:elegant_notification/elegant_notification.dart';
-import 'package:elegant_notification/resources/arrays.dart';
 import 'package:flutter/material.dart';
-import 'package:icons_plus/icons_plus.dart';
 import 'package:loading_animations/loading_animations.dart';
 import 'package:provider/provider.dart';
 
@@ -63,7 +61,7 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel> impleme
                       unselectGame: value.unselectGiveawayGame,
                       urlLauncher: value.openURL,
                     ),
-                    const SizedBox(height:30,),
+                    const SizedBox(height:20,),
                     FreeToPlayGamesList(
                       games: value.listFreeToPLayGames,
                       selectGame: value.selectFreeToPlayGame,
@@ -71,6 +69,8 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel> impleme
                       urlLauncher: value.openURL
                     ),
                     const SizedBox(height: 20,),
+                    for(int i = 0 ; i < value.listRAWGGames.length ; i++)
+                      Image.network(value.listRAWGGames[i].backgroundImage??""),
                     const ThemeSwitch(),
                     const SizedBox(height: 20,),
                     const LanguageSwitch(),
@@ -91,7 +91,8 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel> impleme
   HomeTabViewModel initViewModel() {
     return HomeTabViewModel(
       getAllGiveGamesUseCase: injectGetAllGiveGamesUseCase(),
-      getFreeToPlayGamesUseCase: injectGetFreeToPlayGamesUseCase()
+      getFreeToPlayGamesUseCase: injectGetFreeToPlayGamesUseCase(),
+      getRAWGGeneralGamesUseCase: injectGetRAWGGeneralGamesUseCase()
     );
   }
 }
