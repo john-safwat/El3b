@@ -1,3 +1,1 @@
-abstract class BaseAPIAssets{
-
-}
+abstract class BaseAPIAssets{}

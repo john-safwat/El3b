@@ -1,5 +1,5 @@
-class GiveawayGames {
-  GiveawayGames({
+class GiveawayGame {
+  GiveawayGame({
       this.id,
       this.title, 
       this.worth, 

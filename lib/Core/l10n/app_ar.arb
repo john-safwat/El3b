@@ -75,5 +75,7 @@
   "profile" : "الملف ",
   "endDate" : "تاريخ الانتهاء : ",
   "worth" : "السعر : ",
-  "urlLaunchingError" : "حدث خطاء اثناء فتح الرابط"
+  "urlLaunchingError" : "حدث خطاء اثناء فتح الرابط",
+  "weHopeThatYouLoveIt" : "نامل ان تكون اعجبتك اللعبة"
+
 }

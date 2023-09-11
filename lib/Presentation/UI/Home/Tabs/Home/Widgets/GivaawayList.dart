@@ -1,9 +1,9 @@
-import 'package:El3b/Domain/Models/Games/GiveawayGames/GiveawayGames.dart';
+import 'package:El3b/Domain/Models/Games/GiveawayGames/GiveawayGame.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/Widgets/GiveawayGameWidget.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 class GiveawayList extends StatelessWidget {
-  List<GiveawayGames> games ;
+  List<GiveawayGame> games ;
   Function selectGame ;
   Function unselectGame ;
   Function urlLauncher ;

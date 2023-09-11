@@ -1,7 +1,7 @@
 import 'package:El3b/Core/Providers/LocalProvider.dart';
 import 'package:El3b/Core/Providers/ThemeProvider.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
-import 'package:El3b/Domain/Models/Games/GiveawayGames/GiveawayGames.dart';
+import 'package:El3b/Domain/Models/Games/GiveawayGames/GiveawayGame.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animations/loading_animations.dart';
@@ -11,7 +11,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GiveawayGameWidget extends StatelessWidget {
 
-  GiveawayGames game;
+  GiveawayGame game;
   Function selectGame ;
   Function unselectGame ;
   Function urlLauncher;

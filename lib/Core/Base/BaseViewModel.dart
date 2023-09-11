@@ -14,5 +14,6 @@ class BaseViewModel<N extends BaseNavigator> extends ChangeNotifier {
   LocalProvider? localProvider;
   AppConfigProvider? appConfigProvider ;
   AppLocalizations? local ;
+  Size? mediaQuery;
 
 }

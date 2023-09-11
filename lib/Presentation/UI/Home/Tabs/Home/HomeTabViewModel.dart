@@ -4,24 +4,29 @@ import 'package:El3b/Domain/Exception/InternetConnectionException.dart';
 import 'package:El3b/Domain/Exception/TimeOutOperationsException.dart';
 import 'package:El3b/Domain/Exception/URLLauncherException.dart';
 import 'package:El3b/Domain/Exception/UnknownException.dart';
-import 'package:El3b/Domain/Models/Games/GiveawayGames/GiveawayGames.dart';
+import 'package:El3b/Domain/Models/Games/FreeToPlayGame/FreeToPlayGame.dart';
+import 'package:El3b/Domain/Models/Games/GiveawayGames/GiveawayGame.dart';
 import 'package:El3b/Domain/UseCase/GetAllGiveGamesUseCase.dart';
+import 'package:El3b/Domain/UseCase/GetFreeToPlayGamesUseCase.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/HomeTabNavigator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeTabViewModel extends BaseViewModel <HomeTabNavigator>{
 
   GetAllGiveGamesUseCase getAllGiveGamesUseCase ;
-  HomeTabViewModel({required this.getAllGiveGamesUseCase});
+  GetFreeToPlayGamesUseCase getFreeToPlayGamesUseCase;
+  HomeTabViewModel({required this.getAllGiveGamesUseCase , required this.getFreeToPlayGamesUseCase});
 
   // error message and list of games
   String? errorMessage ;
-  List<GiveawayGames> listGiveawayGames= [];
+  List<GiveawayGame> listGiveawayGames= [];
+  List<FreeToPlayGame> listFreeToPLayGames = [];
 
   // games selected flags
   bool giveawayGameSelected = false;
-  late GiveawayGames giveawaySelectedGames ;
+  late GiveawayGame giveawaySelectedGame ;
   bool freeToPlayGameSelected = false;
+  late FreeToPlayGame freeToPlayGameSelectedGame ;
   bool gameSelected = false;
 
   // function to call games apis using use case
@@ -31,7 +36,7 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator>{
     notifyListeners();
     try {
       listGiveawayGames = await getAllGiveGamesUseCase.invoke();
-      giveawaySelectedGames = listGiveawayGames[0];
+      listFreeToPLayGames = await getFreeToPlayGamesUseCase.invoke();
     }catch(e){
       if (e is DioServerException) {
         errorMessage = e.errorMessage;
@@ -54,11 +59,8 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator>{
     Uri uri = Uri.parse(url);
     try{
       // check if the uri can be launched then it will launch else it will throw and show notification
-      if (await canLaunchUrl(uri)){
-        await launchUrl(
-          uri,
-          mode: LaunchMode.inAppWebView
-        );
+      if (await launchUrl(uri, mode: LaunchMode.inAppWebView)){
+        navigator!.showSuccessNotification(message: local!.weHopeThatYouLoveIt);
       }else {
         throw URLLauncherException(errorMessage: local!.urlLaunchingError);
       }
@@ -71,14 +73,26 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator>{
 
   // change state functions
   // select game
-  selectGiveawayGame( GiveawayGames game){
+  selectGiveawayGame( GiveawayGame game){
     giveawayGameSelected = true;
-    giveawaySelectedGames = game;
+    giveawaySelectedGame = game;
     notifyListeners();
   }
   // unselect game
-  unselectGame(){
+  unselectGiveawayGame(){
     giveawayGameSelected = false;
+    notifyListeners();
+  }
+
+  // select game
+  selectFreeToPlayGame( FreeToPlayGame game){
+    freeToPlayGameSelected = true;
+    freeToPlayGameSelectedGame = game;
+    notifyListeners();
+  }
+  // unselect game
+  unselectFreeToPlayGame(){
+    freeToPlayGameSelected = false;
     notifyListeners();
   }
 

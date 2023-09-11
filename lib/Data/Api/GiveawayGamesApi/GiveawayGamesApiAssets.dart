@@ -1,5 +1,4 @@
 import 'package:El3b/Core/Base/BaseAPIAssets.dart';
-import 'package:El3b/Data/Models/Games/GiveawayGames/GiveawayGamesDTO.dart';
 
 // dependency injection
 GiveawayGamesApiAssets injectGiveawayGamesApiAssets(){

@@ -1,36 +1,35 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:El3b/Data/Api/GiveawayGamesApi/GiveawayGamesApi.dart';
+import 'package:El3b/Data/Api/FreeToPlayGamesApi/FreeToPlayGamesApi.dart';
 import 'package:El3b/Data/Error/DioErrorHandler.dart';
-import 'package:El3b/Domain/DataSource/GiveawayGamesRemoteDataSource.dart';
+import 'package:El3b/Domain/DataSource/FreeToPlayGamesRemoteDataSource.dart';
 import 'package:El3b/Domain/Exception/DioServerException.dart';
 import 'package:El3b/Domain/Exception/InternetConnectionException.dart';
 import 'package:El3b/Domain/Exception/TimeOutOperationsException.dart';
 import 'package:El3b/Domain/Exception/UnknownException.dart';
-import 'package:El3b/Domain/Models/Games/GiveawayGames/GiveawayGame.dart';
+import 'package:El3b/Domain/Models/Games/FreeToPlayGame/FreeToPlayGame.dart';
 import 'package:dio/dio.dart';
 
-GiveawayGamesRemoteDataSource injectGiveawayGamesRemoteDataSource() {
-  return GiveawayGamesRemoteDataSourceImpl(
-    api: injectGiveawayGamesApi(),
+// dependency injection
+FreeToPlayGamesRemoteDataSource injectFreeToPlayGamesRemoteDataSource(){
+  return FreeToPlayGamesRemoteDataSourceImpl(
+    api: injectFreeToPlayGamesApi(),
     errorHandler: injectDioErrorHandler()
   );
 }
 
-// the object
-class GiveawayGamesRemoteDataSourceImpl implements GiveawayGamesRemoteDataSource {
 
-  GiveawayGamesApi api ;
+class FreeToPlayGamesRemoteDataSourceImpl implements FreeToPlayGamesRemoteDataSource {
+
+  FreeToPlayGamesApi api;
   DioErrorHandler errorHandler;
+  FreeToPlayGamesRemoteDataSourceImpl({required this.api , required this.errorHandler});
 
-  GiveawayGamesRemoteDataSourceImpl({required this.api  , required this.errorHandler});
-
-  // function to load giveaway game from api and handle any remote data source calling exception
   @override
-  Future<List<GiveawayGame>?> getAllGames() async{
+  Future<List<FreeToPlayGame>?> getGames()async {
     try {
-      var response = await api.getAllGames().timeout(const Duration(seconds: 60));
+      var response = await api.getGames().timeout(const Duration(seconds: 60));
       return response!.map((e) => e.toDomain()).toList();
     }on DioException catch (e){
       throw DioServerException(errorMessage: errorHandler.dioExceptionHandler(e.type));

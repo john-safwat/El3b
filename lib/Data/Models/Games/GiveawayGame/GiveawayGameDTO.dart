@@ -1,7 +1,7 @@
-import 'package:El3b/Domain/Models/Games/GiveawayGames/GiveawayGames.dart';
+import 'package:El3b/Domain/Models/Games/GiveawayGames/GiveawayGame.dart';
 
-class GiveawayGamesDTO {
-  GiveawayGamesDTO({
+class GiveawayGameDTO {
+  GiveawayGameDTO({
       this.id, 
       this.title, 
       this.worth, 
@@ -19,7 +19,7 @@ class GiveawayGamesDTO {
       this.gamerpowerUrl,
       this.openGiveaway,});
 
-  GiveawayGamesDTO.fromJson(dynamic json) {
+  GiveawayGameDTO.fromJson(dynamic json) {
     id = json['id'];
     title = json['title'];
     worth = json['worth'];
@@ -75,8 +75,8 @@ class GiveawayGamesDTO {
     return map;
   }
 
-  GiveawayGames toDomain(){
-    return GiveawayGames(
+  GiveawayGame toDomain(){
+    return GiveawayGame(
         id : id ,
         title : title ,
         worth : worth ,
