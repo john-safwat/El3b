@@ -1,8 +1,8 @@
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Core/Utils/NegativeActionButton.dart';
 import 'package:El3b/Core/Utils/PosActionButton.dart';
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:icons_plus/icons_plus.dart';
 
 class MyDialogUtils {
   static Future<void> showLoadingDialog({
@@ -188,7 +188,7 @@ class MyDialogUtils {
                         color: Colors.green,
                         borderRadius: BorderRadius.circular(100)),
                     child:const Icon(
-                      EvaIcons.checkmarkCircle,
+                      EvaIcons.checkmark_circle,
                       color: Colors.white,
                       size: 60,
                     ),
@@ -270,7 +270,7 @@ class MyDialogUtils {
                         color: MyTheme.lightPurple,
                         borderRadius: BorderRadius.circular(100)),
                     child:const Icon(
-                      EvaIcons.questionMark,
+                      EvaIcons.question_mark,
                       color: Colors.white,
                       size: 60,
                     ),

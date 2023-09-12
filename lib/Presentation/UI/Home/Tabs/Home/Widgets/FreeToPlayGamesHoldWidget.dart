@@ -5,7 +5,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:loading_animations/loading_animations.dart';
 import 'package:provider/provider.dart';
 
 class FreeToPlayGamesHoldWidget extends StatelessWidget {
@@ -59,12 +58,11 @@ class FreeToPlayGamesHoldWidget extends StatelessWidget {
                               width: double.infinity,
                               fit: BoxFit.cover,
                             ),
-                            placeholder: (context, url) => Center(
-                                child: LoadingBouncingGrid.circle(
-                              backgroundColor: themeProvider.isDark()
-                                  ? MyTheme.offWhite
-                                  : MyTheme.lightPurple,
-                            )),
+                            placeholder: (context, url) =>Image.asset(
+                              "Assets/Images/loadingImage.png",
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
                           )),
                     ],
                   ),

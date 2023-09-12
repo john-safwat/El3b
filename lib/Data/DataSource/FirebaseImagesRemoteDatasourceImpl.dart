@@ -7,7 +7,7 @@ import 'package:El3b/Domain/Exception/FirebaseImagesException.dart';
 import 'package:El3b/Domain/Exception/TimeOutOperationsException.dart';
 import 'package:El3b/Domain/Exception/UnknownException.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:image_picker/image_picker.dart';
 
 
 // dependency injection

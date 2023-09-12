@@ -1,5 +1,4 @@
 import 'package:El3b/Core/Base/BaseState.dart';
-import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Domain/UseCase/GetAllGiveGamesUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetFreeToPlayGamesUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetRAWGGeneralGamesUseCase.dart';
@@ -15,7 +14,6 @@ import 'package:El3b/Presentation/UI/Widgets/GameWidget.dart';
 import 'package:El3b/Presentation/UI/Widgets/LanguageSwitch.dart';
 import 'package:El3b/Presentation/UI/Widgets/ThemeSwitch.dart';
 import 'package:flutter/material.dart';
-import 'package:loading_animations/loading_animations.dart';
 import 'package:provider/provider.dart';
 
 class HomeTabView extends StatefulWidget {
@@ -37,69 +35,60 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel> impleme
     return ChangeNotifierProvider(
       create: (context) => viewModel!,
       child: Consumer<HomeTabViewModel>(
-        builder: (context, value, child) {
-          if (value.errorMessage != null) {
-            return ErrorMessageWidget(
-              errorMessage: value.errorMessage!,
-              fixErrorFunction: viewModel!.getGames,
-            );
-          } else if (value.listGiveawayGames.isEmpty) {
-            return Center(
-                child: LoadingBouncingGrid.circle(
-              backgroundColor: viewModel!.themeProvider!.isDark()
-                  ? MyTheme.offWhite
-                  : MyTheme.lightPurple,
-            ));
-          } else {
-            return Stack(
-              children: [
-                SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 105,),
-                      GiveawayGamesList(
-                        games: value.listGiveawayGames,
-                        selectGame: value.selectGiveawayGame,
-                        unselectGame: value.unselectGiveawayGame,
-                        urlLauncher: value.openURL,
-                      ),
-                      const SizedBox(height:20,),
-                      FreeToPlayGamesList(
-                          games: value.listFreeToPLayGames,
-                          selectGame: value.selectFreeToPlayGame,
-                          unselectGame: value.unselectFreeToPlayGame,
-                          urlLauncher: value.openURL
-                      ),
-                      const SizedBox(height: 20,),
-                      for(int i = 0 ; i <= value.listRAWGGames.length ; i++)
-                        i!= value.listRAWGGames.length?
-                        GameWidget(
-                            game: value.listRAWGGames[i],
-                            selectGame: value.selectRAWGGame,
-                            unselectGame: value.unselectRAWGGame
-                        ):
-                        Center(
-                            child: LoadingBouncingGrid.circle(
-                              backgroundColor: viewModel!.themeProvider!.isDark()
-                                  ? MyTheme.offWhite
-                                  : MyTheme.lightPurple,
-                            )),
+          builder: (context, value, child) {
+            if (value.errorMessage != null) {
+              return ErrorMessageWidget(
+                errorMessage: value.errorMessage!,
+                fixErrorFunction: viewModel!.getGames,
+              );
+            } else if (value.listGiveawayGames.isEmpty) {
+              return const Center(child:CircularProgressIndicator());
+            } else {
+              return Stack(
+                children: [
+                  SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 105,),
+                        GiveawayGamesList(
+                          games: value.listGiveawayGames,
+                          selectGame: value.selectGiveawayGame,
+                          unselectGame: value.unselectGiveawayGame,
+                          urlLauncher: value.openURL,
+                        ),
+                        const SizedBox(height:20,),
+                        FreeToPlayGamesList(
+                            games: value.listFreeToPLayGames,
+                            selectGame: value.selectFreeToPlayGame,
+                            unselectGame: value.unselectFreeToPlayGame,
+                            urlLauncher: value.openURL
+                        ),
+                        const SizedBox(height: 20,),
+                        for(int i = 0 ; i <= value.listRAWGGames.length ; i++)
+                          i!= value.listRAWGGames.length?
+                          GameWidget(
+                              game: value.listRAWGGames[i],
+                              selectGame: value.selectRAWGGame,
+                              unselectGame: value.unselectRAWGGame
+                          ):
+                          const Center(child:CircularProgressIndicator()),
 
-                      const ThemeSwitch(),
-                      const SizedBox(height: 20,),
-                      const LanguageSwitch(),
-                      const SizedBox(height: 105,),
-                    ],
+                        const ThemeSwitch(),
+                        const SizedBox(height: 20,),
+                        const LanguageSwitch(),
+                        const SizedBox(height: 105,),
+                      ],
+                    ),
                   ),
-                ),
-                const SafeArea(child: CustomSearchBarButton()),
-                viewModel!.giveawayGameSelected ?GiveawayGamesHoldWidget(game: value.giveawaySelectedGame,) : const SizedBox(),
-                viewModel!.freeToPlayGameSelected ?FreeToPlayGamesHoldWidget(game: value.freeToPlayGameSelectedGame,) : const SizedBox()
-              ],
-            );
-          }
-        },
-      ),
+                  const SafeArea(child: CustomSearchBarButton()),
+                  viewModel!.giveawayGameSelected ?GiveawayGamesHoldWidget(game: value.giveawaySelectedGame,) : const SizedBox(),
+                  viewModel!.freeToPlayGameSelected ?FreeToPlayGamesHoldWidget(game: value.freeToPlayGameSelectedGame,) : const SizedBox()
+                ],
+              );
+            }
+          },
+        ),
     );
   }
 
