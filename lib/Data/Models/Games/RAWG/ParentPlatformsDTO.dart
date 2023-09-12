@@ -1,5 +1,5 @@
 import 'package:El3b/Data/Models/Games/RAWG/PlatformDTO.dart';
-import 'package:El3b/Domain/Models/Games/RAWG/ParentPlatforms.dart';
+
 
 class ParentPlatformsDTO {
   PlatformDTO? platform;
@@ -20,7 +20,4 @@ class ParentPlatformsDTO {
     return data;
   }
 
-  ParentPlatforms toDomain(){
-    return ParentPlatforms(platform: platform?.toDomain());
-  }
 }

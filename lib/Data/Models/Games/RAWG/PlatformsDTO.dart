@@ -1,6 +1,5 @@
 import 'package:El3b/Data/Models/Games/RAWG/PlatformDTO.dart';
 import 'package:El3b/Data/Models/Games/RAWG/RequirementsEnDTO.dart';
-import 'package:El3b/Domain/Models/Games/RAWG/Platforms.dart';
 
 class PlatformsDTO {
   PlatformDTO? platform;
@@ -42,13 +41,5 @@ class PlatformsDTO {
     return data;
   }
 
-  Platforms toDomain(){
-    return Platforms(
-        platform : platform?.toDomain(),
-        releasedAt : releasedAt,
-        requirementsEn : requirementsEn?.toDomain(),
-        requirementsRu : requirementsRu?.toDomain(),
-    );
-  }
 
 }

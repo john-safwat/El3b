@@ -76,5 +76,7 @@
   "endDate" : "End Date : ",
   "worth" : "Worth : ",
   "urlLaunchingError" : "Error Launching This URL",
-  "weHopeThatYouLoveIt" : "We Hope That You Love It"
+  "weHopeThatYouLoveIt" : "We Hope That You Love It",
+  "recommendedGames" : "Recommended Games",
+  "releaseDate" : "Release Date"
 }

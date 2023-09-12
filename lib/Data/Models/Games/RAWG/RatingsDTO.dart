@@ -1,4 +1,3 @@
-import 'package:El3b/Domain/Models/Games/RAWG/Ratings.dart';
 
 class RatingsDTO {
   num? id;
@@ -24,12 +23,4 @@ class RatingsDTO {
     return data;
   }
 
-  Ratings toDomain(){
-    return Ratings(
-        id : id,
-        title : title,
-        count : count,
-        percent : percent,
-    );
-  }
 }

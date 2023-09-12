@@ -7,6 +7,9 @@ class MyTheme {
   static const Color darkPurple = Color(0xFF16132A);
   static const Color lightPurple = Color(0xFF5E53B8);
   static const Color grayPurple = Color(0xFF8F8AB8);
+  static const Color green = Color(0xFF85CC36);
+  static const Color yellow = Color(0xFFF9A541);
+  static const Color red = Color(0xFFF73645);
 
   static ThemeData lightTheme = ThemeData(
       // the screen background

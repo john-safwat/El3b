@@ -1,4 +1,4 @@
-import 'package:El3b/Domain/Models/Games/RAWG/Platform.dart';
+
 
 class PlatformDTO {
   num? id;
@@ -44,16 +44,4 @@ class PlatformDTO {
     return data;
   }
 
-  Platform toDomain(){
-    return Platform(
-        id : id ,
-        name : name ,
-        slug : slug ,
-        image : image ,
-        yearEnd : yearEnd ,
-        yearStart : yearStart ,
-        gamesCount : gamesCount ,
-        imageBackground : imageBackground ,
-    );
-  }
 }

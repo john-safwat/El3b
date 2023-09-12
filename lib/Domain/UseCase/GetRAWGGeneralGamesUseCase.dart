@@ -15,9 +15,51 @@ class GetRAWGGeneralGamesUseCase {
   RAWGGamesRepository repository;
   GetRAWGGeneralGamesUseCase({required this.repository});
 
+
+  // load games from api
   Future<List<RAWGGame>> invoke() async {
     var response = await repository.getGeneralGames();
-    return response!;
+    response = addStoresIcons(response!);
+    return response;
+  }
+
+  // add stores icons
+  List<RAWGGame> addStoresIcons(List<RAWGGame> games){
+    for(int i = 0; i< games.length ; i++){
+      for(int j = 0 ; j < games[i].stores!.length ; j++){
+        switch (games[i].stores![j].store!.name){
+          case "Steam" :
+            games[i].icons.add("Assets/SVG/steam.svg");
+          break;
+          case "PlayStation Store" :
+            games[i].icons.add("Assets/SVG/playstation.svg");
+          break;
+          case "Xbox Store" :
+            games[i].icons.add("Assets/SVG/xbox.svg");
+          break;
+          case "App Store" :
+            games[i].icons.add("Assets/SVG/app-store.svg");
+          break;
+          case "GOG" :
+            games[i].icons.add("Assets/SVG/gog-dot-com.svg");
+          break;
+          case "Nintendo Store" :
+            games[i].icons.add("Assets/SVG/nintendo-switch.svg");
+          break;
+          case "Google Play" :
+            games[i].icons.add("Assets/SVG/google-play-store.svg");
+          break;
+          case "itch.io" :
+            games[i].icons.add("Assets/SVG/itch-io.svg");
+          break;
+          case "Epic Games" :
+            games[i].icons.add("Assets/SVG/epic-games.svg");
+          break;
+        }
+      }
+    }
+    return games;
+
   }
 
 }
