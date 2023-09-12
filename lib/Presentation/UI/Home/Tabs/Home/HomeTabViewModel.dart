@@ -106,4 +106,16 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator>{
     notifyListeners();
   }
 
+  // select game
+  selectRAWGGame( RAWGGame game){
+    rawgGameSelected = true;
+    rawgGameSelectedGame = game;
+    notifyListeners();
+  }
+  // unselect game
+  unselectRAWGGame(){
+    rawgGameSelected = false;
+    notifyListeners();
+  }
+
 }

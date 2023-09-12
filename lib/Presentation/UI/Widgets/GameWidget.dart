@@ -1,56 +1,63 @@
 import 'package:El3b/Core/Providers/LocalProvider.dart';
 import 'package:El3b/Core/Providers/ThemeProvider.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
-import 'package:El3b/Domain/Models/Games/FreeToPlayGame/FreeToPlayGame.dart';
+import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animations/loading_animations.dart';
 import 'package:provider/provider.dart';
 
-class FreeToPlayGameWidget extends StatelessWidget {
-  FreeToPlayGame game;
+class GameWidget extends StatelessWidget {
+  RAWGGame game;
   Function selectGame ;
   Function unselectGame ;
-  Function urlLauncher;
 
-  FreeToPlayGameWidget({required this.game , required this.selectGame , required this.unselectGame , required this.urlLauncher});
+  GameWidget({
+    required this.game ,
+    required this.selectGame ,
+    required this.unselectGame
+  });
 
   @override
   Widget build(BuildContext context) {
     LocalProvider localProvider = Provider.of<LocalProvider>(context);
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
-    return  Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5.0),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0 , vertical: 10),
       child: GestureDetector(
-        onTap: () => urlLauncher(game.gameUrl),
         onLongPress: () => selectGame(game),
         onLongPressEnd: (details) =>  unselectGame(),
         child: Stack(
           children: [
-            // the backGround Image
             ClipRRect(
                 borderRadius: BorderRadius.circular(15),
-                child: CachedNetworkImage(
-                  imageUrl: game.thumbnail!??"",
-                  imageBuilder: (context, imageProvider) => Image.network(
-                    game.thumbnail! ,
-                    fit: BoxFit.cover ,
-                    width: double.infinity,
-                  ),
-                  errorWidget: (context, url, error) =>  Image.asset(
-                    "Assets/Images/errorImage.png" ,
-                    fit: BoxFit.cover ,
-                    width: double.infinity,
-                  ),
-                  placeholder: (context, url) => Stack(
-                    children: [
-                      Image.asset("Assets/Images/loadingImage.png" , width: double.infinity, fit: BoxFit.cover,),
-                      Center(child: LoadingBouncingGrid.circle(
-                        backgroundColor: MyTheme.lightPurple,
-                      )),
-                    ],
-                  ),
-                )
+                child: Image.asset("Assets/Images/loadingImage.png" , width: double.infinity, fit: BoxFit.cover,)),
+            // the backGround Image
+            Positioned.fill(
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: CachedNetworkImage(
+                    imageUrl: game.backgroundImage!??"",
+                    imageBuilder: (context, imageProvider) => Image.network(
+                      game.backgroundImage! ,
+                      fit: BoxFit.cover ,
+                      width: double.infinity,
+                    ),
+                    errorWidget: (context, url, error) =>  Image.asset(
+                      "Assets/Images/errorImage.png" ,
+                      fit: BoxFit.cover ,
+                      width: double.infinity,
+                    ),
+                    placeholder: (context, url) => Stack(
+                      children: [
+                        Image.asset("Assets/Images/loadingImage.png" , width: double.infinity, fit: BoxFit.cover,),
+                        Center(child: LoadingBouncingGrid.circle(
+                          backgroundColor: MyTheme.lightPurple,
+                        )),
+                      ],
+                    ),
+                  )
+              ),
             ),
             // the overlay color and the game title
             Positioned.fill(
@@ -75,7 +82,7 @@ class FreeToPlayGameWidget extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          game.title!,
+                          game.name!,
                           style: Theme.of(context).textTheme.displayLarge!.copyWith(
                             color: MyTheme.offWhite,
                             fontSize: 22,

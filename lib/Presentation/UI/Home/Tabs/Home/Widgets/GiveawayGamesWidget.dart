@@ -48,9 +48,14 @@ class GiveawayGamesWidget extends StatelessWidget {
                   width: double.infinity,
                   height: 170,
                 ),
-                placeholder: (context, url) => Center(child: LoadingBouncingGrid.circle(
-                  backgroundColor: themeProvider.isDark() ? MyTheme.offWhite : MyTheme.lightPurple,
-                )),
+                placeholder: (context, url) => Stack(
+                  children: [
+                    Image.asset("Assets/Images/loadingImage.png" , width: double.infinity, fit: BoxFit.cover,),
+                    Center(child: LoadingBouncingGrid.circle(
+                      backgroundColor: MyTheme.lightPurple,
+                    )),
+                  ],
+                ),
               )
             ),
             // the overlay color and the game title
