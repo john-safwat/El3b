@@ -1,4 +1,3 @@
-import 'package:El3b/Domain/Models/Games/RAWG/Tags.dart';
 
 class TagsDTO {
   num? id;
@@ -36,14 +35,4 @@ class TagsDTO {
     return data;
   }
 
-  Tags toDomain(){
-    return Tags(
-        id : id,
-        name : name,
-        slug : slug,
-        language : language,
-        gamesCount : gamesCount,
-        imageBackground : imageBackground,
-    );
-  }
 }

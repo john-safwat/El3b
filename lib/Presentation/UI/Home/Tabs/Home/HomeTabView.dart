@@ -10,6 +10,7 @@ import 'package:El3b/Presentation/UI/Home/Tabs/Home/Widgets/GivaawayGamesList.da
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/Widgets/GiveawayGamesHoldWidget.dart';
 import 'package:El3b/Presentation/UI/Widgets/CustomSearchBar.dart';
 import 'package:El3b/Presentation/UI/Widgets/ErrorMessageWidget.dart';
+import 'package:El3b/Presentation/UI/Widgets/GameHoldWidget.dart';
 import 'package:El3b/Presentation/UI/Widgets/GameWidget.dart';
 import 'package:El3b/Presentation/UI/Widgets/LanguageSwitch.dart';
 import 'package:El3b/Presentation/UI/Widgets/ThemeSwitch.dart';
@@ -50,29 +51,37 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel> impleme
                     physics: const BouncingScrollPhysics(),
                     child: Column(
                       children: [
-                        const SizedBox(height: 105,),
+                        const SizedBox(height: 110,),
                         GiveawayGamesList(
                           games: value.listGiveawayGames,
                           selectGame: value.selectGiveawayGame,
                           unselectGame: value.unselectGiveawayGame,
                           urlLauncher: value.openURL,
                         ),
-                        const SizedBox(height:20,),
+                        const SizedBox(height:30,),
                         FreeToPlayGamesList(
                             games: value.listFreeToPLayGames,
                             selectGame: value.selectFreeToPlayGame,
                             unselectGame: value.unselectFreeToPlayGame,
                             urlLauncher: value.openURL
                         ),
-                        const SizedBox(height: 20,),
-                        for(int i = 0 ; i <= value.listRAWGGames.length ; i++)
-                          i!= value.listRAWGGames.length?
+                        const SizedBox(height: 30,),
+                        Row(
+                          children: [
+                            const SizedBox(width: 20,),
+                            Text(
+                              value.local!.recommendedGames,
+                              style: Theme.of(context).textTheme.displayMedium,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10,),
+                        for(int i = 0 ; i < value.listRAWGGames.length ; i++)
                           GameWidget(
                               game: value.listRAWGGames[i],
                               selectGame: value.selectRAWGGame,
                               unselectGame: value.unselectRAWGGame
-                          ):
-                          const Center(child:CircularProgressIndicator()),
+                          ),
 
                         const ThemeSwitch(),
                         const SizedBox(height: 20,),
@@ -83,7 +92,8 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel> impleme
                   ),
                   const SafeArea(child: CustomSearchBarButton()),
                   viewModel!.giveawayGameSelected ?GiveawayGamesHoldWidget(game: value.giveawaySelectedGame,) : const SizedBox(),
-                  viewModel!.freeToPlayGameSelected ?FreeToPlayGamesHoldWidget(game: value.freeToPlayGameSelectedGame,) : const SizedBox()
+                  viewModel!.freeToPlayGameSelected ?FreeToPlayGamesHoldWidget(game: value.freeToPlayGameSelectedGame,) : const SizedBox(),
+                  viewModel!.rawgGameSelected ?GameHoldWidget( game : value.rawgGameSelectedGame,) : const SizedBox()
                 ],
               );
             }

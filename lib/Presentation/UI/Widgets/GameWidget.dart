@@ -1,9 +1,9 @@
 import 'package:El3b/Core/Providers/LocalProvider.dart';
-import 'package:El3b/Core/Providers/ThemeProvider.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class GameWidget extends StatelessWidget {
@@ -63,7 +63,7 @@ class GameWidget extends StatelessWidget {
                       gradient:  LinearGradient(
                           colors:const [
                             MyTheme.lightPurple,
-                            Colors.transparent
+                            Colors.transparent,
                           ],
                           begin: localProvider.isEn()? Alignment.topLeft : Alignment.topRight,
                           end: localProvider.isEn()? Alignment.bottomRight : Alignment.bottomLeft
@@ -92,6 +92,20 @@ class GameWidget extends StatelessWidget {
                   ),
                 )
             ),
+            // is in wish list badge
+            Positioned(
+              bottom: 20 ,
+              right: localProvider.isEn() ? 20 : null,
+              left: localProvider.isEn() ? null : 20,
+              child: Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: MyTheme.lightPurple,
+                ),
+                child: SvgPicture.asset(game.inWishList!? "Assets/SVG/liked.svg": "Assets/SVG/notLiked.svg" , color: MyTheme.offWhite, width: 30,),
+              )
+            )
           ],
         ),
       ),

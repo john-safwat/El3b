@@ -1,6 +1,4 @@
 
-import 'package:El3b/Domain/Models/Games/RAWG/RequirementsEn.dart';
-
 class RequirementsEnDTO {
   String? minimum;
   String? recommended;
@@ -17,12 +15,5 @@ class RequirementsEnDTO {
     data['minimum'] = minimum;
     data['recommended'] = recommended;
     return data;
-  }
-
-  RequirementsEn toDomain(){
-    return RequirementsEn(
-        minimum : minimum,
-        recommended : recommended,
-    );
   }
 }

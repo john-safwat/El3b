@@ -1,5 +1,3 @@
-import 'package:El3b/Domain/Models/Games/RAWG/AddedByStatus.dart';
-
 class AddedByStatusDTO {
   num? yet;
   num? owned;
@@ -34,16 +32,5 @@ class AddedByStatusDTO {
     data['dropped'] = dropped;
     data['playing'] = playing;
     return data;
-  }
-
-  AddedByStatus toDomain(){
-    return AddedByStatus(
-        yet : yet ,
-        owned : owned ,
-        beaten : beaten ,
-        toplay : toplay ,
-        dropped : dropped ,
-        playing : playing ,
-    );
   }
 }

@@ -76,6 +76,7 @@
   "endDate" : "تاريخ الانتهاء : ",
   "worth" : "السعر : ",
   "urlLaunchingError" : "حدث خطاء اثناء فتح الرابط",
-  "weHopeThatYouLoveIt" : "نامل ان تكون اعجبتك اللعبة"
-
+  "weHopeThatYouLoveIt" : "نامل ان تكون اعجبتك اللعبة",
+  "recommendedGames" : "ترشيحات الالعاب",
+  "releaseDate" : "تاريخ الاصدار"
 }
