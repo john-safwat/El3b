@@ -2,7 +2,7 @@ import 'package:El3b/Data/Repository/UserRepositoryImpl.dart';
 import 'package:El3b/Domain/Models/User/MyUser.dart';
 import 'package:El3b/Domain/Repository/UserRepository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:image_picker/image_picker.dart';
 
 // dependency injection
 CreateAccountUseCase injectCreateAccountUseCase() {

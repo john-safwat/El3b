@@ -4,7 +4,6 @@ import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:loading_animations/loading_animations.dart';
 import 'package:provider/provider.dart';
 
 class GameWidget extends StatelessWidget {
@@ -21,7 +20,6 @@ class GameWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     LocalProvider localProvider = Provider.of<LocalProvider>(context);
-    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0 , vertical: 10),
       child: GestureDetector(
@@ -48,13 +46,10 @@ class GameWidget extends StatelessWidget {
                       fit: BoxFit.cover ,
                       width: double.infinity,
                     ),
-                    placeholder: (context, url) => Stack(
-                      children: [
-                        Image.asset("Assets/Images/loadingImage.png" , width: double.infinity, fit: BoxFit.cover,),
-                        Center(child: LoadingBouncingGrid.circle(
-                          backgroundColor: MyTheme.lightPurple,
-                        )),
-                      ],
+                    placeholder: (context, url) => Image.asset(
+                      "Assets/Images/loadingImage.png",
+                      width: double.infinity,
+                      fit: BoxFit.cover,
                     ),
                   )
               ),

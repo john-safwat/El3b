@@ -8,7 +8,6 @@ import 'package:El3b/Domain/Models/User/MyUser.dart';
 import 'package:El3b/Domain/UseCase/CreateAccountUseCase.dart';
 import 'package:El3b/Presentation/UI/Register/RegisterNavigator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_picker/image_picker.dart';
 
 class RegisterViewModel extends BaseViewModel<RegisterNavigator> {

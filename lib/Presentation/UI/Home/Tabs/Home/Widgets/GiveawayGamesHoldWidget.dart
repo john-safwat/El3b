@@ -6,7 +6,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:loading_animations/loading_animations.dart';
 import 'package:provider/provider.dart';
 import 'package:super_banners/super_banners.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -60,12 +59,11 @@ class GiveawayGamesHoldWidget extends StatelessWidget {
                             errorWidget: (context, url, error) => Image.asset(
                               "Assets/Images/errorImage.png",
                             ),
-                            placeholder: (context, url) => Center(
-                                child: LoadingBouncingGrid.circle(
-                              backgroundColor: themeProvider.isDark()
-                                  ? MyTheme.offWhite
-                                  : MyTheme.lightPurple,
-                            )),
+                            placeholder: (context, url) => Image.asset(
+                              "Assets/Images/loadingImage.png",
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
                           )),
                       // the giveaway title
                       Positioned(
@@ -121,12 +119,6 @@ class GiveawayGamesHoldWidget extends StatelessWidget {
                         Text("${local.endDate} ${game.endDate ?? "--/--/----"}",
                             textAlign: TextAlign.start,
                             style: Theme.of(context).textTheme.displayMedium),
-                        // // the end date
-                        // Text(
-                        //   "${local.worth} ${game.worth??"--/--/----"}",
-                        //   textAlign: TextAlign.start,
-                        //   style: Theme.of(context).textTheme.displayMedium
-                        // ),
                         const SizedBox(
                           height: 10,
                         ),

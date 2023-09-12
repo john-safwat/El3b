@@ -1,13 +1,11 @@
 import 'package:El3b/Core/Providers/LocalProvider.dart';
-import 'package:El3b/Core/Providers/ThemeProvider.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Domain/Models/Games/GiveawayGames/GiveawayGame.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:loading_animations/loading_animations.dart';
 import 'package:provider/provider.dart';
-import 'package:super_banners/super_banners.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:super_banners/super_banners.dart';
 
 class GiveawayGamesWidget extends StatelessWidget {
 
@@ -20,7 +18,6 @@ class GiveawayGamesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     LocalProvider localProvider = Provider.of<LocalProvider>(context);
-    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     AppLocalizations local = AppLocalizations.of(context)!;
 
     return Padding(
@@ -31,6 +28,9 @@ class GiveawayGamesWidget extends StatelessWidget {
         onLongPressEnd: (details) =>  unselectGame(),
         child: Stack(
           children: [
+            ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: Image.asset("Assets/Images/loadingImage.png" , width: double.infinity, fit: BoxFit.cover,)),
             // the backGround Image
             ClipRRect(
               borderRadius: BorderRadius.circular(15),
@@ -48,13 +48,10 @@ class GiveawayGamesWidget extends StatelessWidget {
                   width: double.infinity,
                   height: 170,
                 ),
-                placeholder: (context, url) => Stack(
-                  children: [
-                    Image.asset("Assets/Images/loadingImage.png" , width: double.infinity, fit: BoxFit.cover,),
-                    Center(child: LoadingBouncingGrid.circle(
-                      backgroundColor: MyTheme.lightPurple,
-                    )),
-                  ],
+                placeholder: (context, url) => Image.asset(
+                  "Assets/Images/loadingImage.png",
+                  width: double.infinity,
+                  fit: BoxFit.cover,
                 ),
               )
             ),
