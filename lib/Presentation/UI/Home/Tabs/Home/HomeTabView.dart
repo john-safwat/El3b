@@ -75,7 +75,6 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel> impleme
                             ),
                           ],
                         ),
-                        const SizedBox(height: 10,),
                         for(int i = 0 ; i < value.listRAWGGames.length ; i++)
                           GameWidget(
                               game: value.listRAWGGames[i],

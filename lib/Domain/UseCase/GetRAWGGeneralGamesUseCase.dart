@@ -20,6 +20,7 @@ class GetRAWGGeneralGamesUseCase {
   Future<List<RAWGGame>> invoke() async {
     var response = await repository.getGeneralGames();
     response = addStoresIcons(response!);
+    response = noNullValue(response);
     return response;
   }
 
@@ -61,5 +62,20 @@ class GetRAWGGeneralGamesUseCase {
     return games;
 
   }
+
+  List<RAWGGame> noNullValue(List<RAWGGame> games) {
+    for(int i = 0; i< games.length ; i++){
+      if(games[i].metacritic == null){
+        games[i].metacritic = 0;
+      }
+
+      if(games[i].rating == null){
+        games[i].rating = 0;
+      }
+    }
+
+    return games;
+  }
+
 
 }
