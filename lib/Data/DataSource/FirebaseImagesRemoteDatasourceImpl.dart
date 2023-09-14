@@ -24,6 +24,8 @@ class FirebaseImagesRemoteDatasourceImpl
   FirebaseImagesRemoteDatasourceImpl(
       {required this.database, required this.errorHandler});
 
+
+  // function to upload user image to firebase fireStore
   @override
   Future<String> uploadUserProfileImage({required XFile file}) async {
     try {

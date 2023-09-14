@@ -1,6 +1,7 @@
 import 'package:El3b/Core/Providers/AppConfigProvider.dart';
 import 'package:El3b/Core/Providers/LocalProvider.dart';
 import 'package:El3b/Core/Providers/ThemeProvider.dart';
+import 'package:El3b/Data/SQL/LocalDatabase.dart';
 import 'package:El3b/Presentation/UI/ExtraInfo/ExtraInfoView.dart';
 import 'package:El3b/Presentation/UI/ForgetPassword/ForgetPasswordView.dart';
 import 'package:El3b/Presentation/UI/Intro/IntroView.dart';
@@ -22,7 +23,6 @@ void main()async{
   // block the code building for the loading of data
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   WidgetsFlutterBinding.ensureInitialized();
-
   // call shared pref to get some value
   SharedPreferences prefs = await SharedPreferences.getInstance();
   var firstTime = prefs.getBool("firstTime");
@@ -46,6 +46,7 @@ void main()async{
 }
 
 class MyApp extends StatelessWidget {
+  LocalDatabase database =injectLocalDatabase();
   bool firstTime;
   User? user;
   MyApp({required this.firstTime , this.user});

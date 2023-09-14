@@ -18,7 +18,7 @@ class CustomSearchBarButton extends StatelessWidget {
       onTap: (){},
       overlayColor: MaterialStateProperty.all(Colors.transparent),
       child: Container(
-        margin:const EdgeInsets.all(10),
+        margin:const EdgeInsets.all(15),
         padding:const EdgeInsets.all(10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),

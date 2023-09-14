@@ -28,7 +28,7 @@ class GetRAWGGeneralGamesUseCase {
   List<RAWGGame> addStoresIcons(List<RAWGGame> games){
     for(int i = 0; i< games.length ; i++){
       for(int j = 0 ; j < games[i].stores!.length ; j++){
-        switch (games[i].stores![j].store!.name){
+        switch (games[i].stores![j].name){
           case "Steam" :
             games[i].icons.add("Assets/SVG/steam.svg");
           break;
@@ -63,6 +63,7 @@ class GetRAWGGeneralGamesUseCase {
 
   }
 
+  // make sure thant no null value is passed
   List<RAWGGame> noNullValue(List<RAWGGame> games) {
     for(int i = 0; i< games.length ; i++){
       if(games[i].metacritic == null){

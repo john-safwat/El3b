@@ -26,6 +26,7 @@ class FreeToPlayGamesRemoteDataSourceImpl implements FreeToPlayGamesRemoteDataSo
   DioErrorHandler errorHandler;
   FreeToPlayGamesRemoteDataSourceImpl({required this.api , required this.errorHandler});
 
+  // function to get the free to play games from The Api
   @override
   Future<List<FreeToPlayGame>?> getGames()async {
     try {

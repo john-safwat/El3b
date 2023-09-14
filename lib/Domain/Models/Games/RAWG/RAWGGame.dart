@@ -1,7 +1,7 @@
 
 import 'package:El3b/Domain/Models/Games/RAWG/Genres.dart';
 import 'package:El3b/Domain/Models/Games/RAWG/ShortScreenshots.dart';
-import 'package:El3b/Domain/Models/Games/RAWG/Stores.dart';
+import 'package:El3b/Domain/Models/Games/RAWG/Store.dart';
 
 class RAWGGame {
   num? id;
@@ -11,7 +11,7 @@ class RAWGGame {
   num? rating;
   num? metacritic;
   List<Genres>? genres;
-  List<Stores>? stores;
+  List<Store>? stores;
   List<ShortScreenshots>? shortScreenshots;
   bool? inWishList = false;
   List<String> icons = [];

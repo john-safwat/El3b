@@ -41,15 +41,4 @@ class FirebaseImagesDatabase {
         specials: "_"
     );
   }
-
-  // // compress image Size
-  // Future<XFile> compressImage(XFile file, String targetPath) async {
-  //   var result = await FlutterImageCompress.compressAndGetFile(
-  //     file.path, targetPath,
-  //     quality: 50,
-  //   );
-  //
-  //   return result!;
-  // }
-
 }
