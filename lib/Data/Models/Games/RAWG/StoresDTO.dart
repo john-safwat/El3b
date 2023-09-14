@@ -1,5 +1,4 @@
 import 'package:El3b/Data/Models/Games/RAWG/StoreDTO.dart';
-import 'package:El3b/Domain/Models/Games/RAWG/Stores.dart';
 
 class StoresDTO {
   num? id;
@@ -21,10 +20,4 @@ class StoresDTO {
     return data;
   }
 
-  Stores toDomain(){
-    return Stores(
-      id: id ,
-      store: store?.toDomain()
-    );
-  }
 }

@@ -30,16 +30,23 @@ class FreeToPlayGameWidget extends StatelessWidget {
           children: [
             ClipRRect(
                 borderRadius: BorderRadius.circular(15),
-                child: Image.asset("Assets/Images/loadingImage.png" , width: double.infinity, fit: BoxFit.cover,)),
+                child: Image.asset(
+                  "Assets/Images/loadingImage.png",
+                  width: double.infinity,
+                  height: double.infinity,
+                  fit: BoxFit.cover,
+                )),
             // the backGround Image
             ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: CachedNetworkImage(
-                  imageUrl: game.thumbnail?? "",
+                  imageUrl: game.thumbnail ?? "",
                   imageBuilder: (context, imageProvider) => Image.network(
                     game.thumbnail!,
                     fit: BoxFit.cover,
+                    height: double.infinity,
                     width: double.infinity,
+
                   ),
                   errorWidget: (context, url, error) => Image.asset(
                     "Assets/Images/errorImage.png",
@@ -77,7 +84,7 @@ class FreeToPlayGameWidget extends StatelessWidget {
                       game.title!,
                       style: Theme.of(context).textTheme.displayLarge!.copyWith(
                             color: MyTheme.offWhite,
-                            fontSize: 22,
+                            fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                       maxLines: 4,

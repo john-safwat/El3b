@@ -205,7 +205,7 @@ class RAWGGameDTO {
         rating : rating ,
         metacritic : metacritic ,
         genres : genres?.map((e) => e.toDomain()).toList() ,
-        stores : stores?.map((e) => e.toDomain()).toList() ,
+        stores : stores?.map((e) => e.store!.toDomain()).toList() ,
         shortScreenshots : shortScreenshots?.map((e) => e.toDomain()).toList(),
     );
   }

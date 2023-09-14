@@ -61,15 +61,15 @@ dependencies:
   carousel_slider: ^4.2.1
   banner_carousel: ^1.2.1
   super_banners: ^0.0.1
-  loading_animations: ^2.2.0
   flutter_animate: ^4.2.0+1
   url_launcher: ^6.1.14
   elegant_notification: ^1.11.0
+  sqflite: ^2.3.0
+  path: ^1.8.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your

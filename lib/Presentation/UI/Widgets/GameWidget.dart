@@ -80,7 +80,7 @@ class GameWidget extends StatelessWidget {
                           game.name!,
                           style: Theme.of(context).textTheme.displayLarge!.copyWith(
                             color: MyTheme.offWhite,
-                            fontSize: 22,
+                            fontSize: 26,
                             fontWeight: FontWeight.bold,
                           ),
                           maxLines: 4,

@@ -82,7 +82,7 @@ class GiveawayGamesWidget extends StatelessWidget {
                         game.title!,
                         style: Theme.of(context).textTheme.displayLarge!.copyWith(
                           color: MyTheme.offWhite,
-                          fontSize: 22,
+                          fontSize: 26,
                           fontWeight: FontWeight.bold,
                         ),
                         maxLines: 4,
