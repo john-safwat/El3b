@@ -20,9 +20,7 @@ class ForgetPasswordView extends StatefulWidget {
 class _ForgetPasswordViewState extends BaseState <ForgetPasswordView , ForgetPasswordViewModel> implements ForgetPasswordNavigator{
   @override
   Widget build(BuildContext context) {
-    if(viewModel!.themeProvider == null){
-      super.build(context);
-    }
+    super.build(context);
     return Scaffold(
       appBar:  AppBar(
         title: Text(viewModel!.local!.forgetPassword),

@@ -17,7 +17,7 @@ class RAWGGamesAPI extends BaseAPIManager<RAWGGamesAPIAssets> {
 
   Future<RAWGGamesResponseDTO?> getGeneralGames() async {
     // prepare the url
-    Uri uri = Uri.https(apiAssets.baseURL, apiAssets.gamesRoute, {"key": apiAssets.apiKey, "page_size": "100"});
+    Uri uri = Uri.https(apiAssets.baseURL, apiAssets.gamesRoute, {"key": apiAssets.apiKey, "page_size": "20"});
     // make api request
     var response = await dio.getUri(uri);
     // return the data

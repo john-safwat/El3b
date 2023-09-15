@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:El3b/Core/Base/BaseViewModel.dart';
 import 'package:El3b/Domain/Exception/DioServerException.dart';
 import 'package:El3b/Domain/Exception/InternetConnectionException.dart';
@@ -14,17 +16,20 @@ import 'package:El3b/Domain/UseCase/GetFreeToPlayGamesUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetRAWGGeneralGamesUseCase.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/HomeTabNavigator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class HomeTabViewModel extends BaseViewModel <HomeTabNavigator>{
+class HomeTabViewModel extends BaseViewModel <HomeTabNavigator> {
 
-  GetAllGiveGamesUseCase getAllGiveGamesUseCase ;
+  GetAllGiveGamesUseCase getAllGiveGamesUseCase;
+
   GetFreeToPlayGamesUseCase getFreeToPlayGamesUseCase;
   GetRAWGGeneralGamesUseCase getRAWGGeneralGamesUseCase;
   AddGameToWishListUseCase addGameToWishListUseCase;
   DeleteGameFromWishListUseCase deleteGameFromWishListUseCase;
+
   HomeTabViewModel({
-    required this.getAllGiveGamesUseCase ,
+    required this.getAllGiveGamesUseCase,
     required this.getFreeToPlayGamesUseCase,
     required this.getRAWGGeneralGamesUseCase,
     required this.addGameToWishListUseCase,
@@ -32,29 +37,33 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator>{
   });
 
   // error message and list of games
-  String? errorMessage ;
-  List<GiveawayGame> listGiveawayGames= [];
+  String? errorMessage;
+
+  List<GiveawayGame> listGiveawayGames = [];
   List<FreeToPlayGame> listFreeToPLayGames = [];
   List<RAWGGame> listRAWGGames = [];
 
   // games selected flags
   bool giveawayGameSelected = false;
-  late GiveawayGame giveawaySelectedGame ;
+  late GiveawayGame giveawaySelectedGame;
+
   bool freeToPlayGameSelected = false;
-  late FreeToPlayGame freeToPlayGameSelectedGame ;
+  late FreeToPlayGame freeToPlayGameSelectedGame;
+
   bool rawgGameSelected = false;
-  late RAWGGame rawgGameSelectedGame ;
+  late RAWGGame rawgGameSelectedGame;
 
   // function to call games apis using use case
-  void getGames()async{
-    errorMessage = null ;
+  void getGames() async {
+    errorMessage = null;
     listGiveawayGames = [];
     notifyListeners();
     try {
       listGiveawayGames = await getAllGiveGamesUseCase.invoke();
       listFreeToPLayGames = await getFreeToPlayGamesUseCase.invoke();
-      listRAWGGames = await getRAWGGeneralGamesUseCase.invoke(uid: appConfigProvider!.getUser()!.uid);
-    }catch(e){
+      listRAWGGames = await getRAWGGeneralGamesUseCase.invoke(
+          uid: appConfigProvider!.getUser()!.uid);
+    } catch (e) {
       if (e is DioServerException) {
         errorMessage = e.errorMessage;
       } else if (e is TimeOutOperationsException) {
@@ -63,7 +72,7 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator>{
         errorMessage = local!.checkYourInternetConnection;
       } else if (e is UnknownException) {
         errorMessage = e.errorMessage;
-      } else{
+      } else {
         errorMessage = e.toString();
       }
     }
@@ -71,18 +80,18 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator>{
   }
 
   // openGameURL
-  openURL(String url)async{
+  openURL(String url) async {
     // parse the url string to uri
     Uri uri = Uri.parse(url);
-    try{
+    try {
       // check if the uri can be launched then it will launch else it will throw and show notification
-      if (await launchUrl(uri, mode: LaunchMode.inAppWebView)){
+      if (await launchUrl(uri, mode: LaunchMode.inAppWebView)) {
         navigator!.showSuccessNotification(message: local!.weHopeThatYouLoveIt);
-      }else {
+      } else {
         throw URLLauncherException(errorMessage: local!.urlLaunchingError);
       }
-    }catch(e){
-      if(e is URLLauncherException){
+    } catch (e) {
+      if (e is URLLauncherException) {
         navigator!.showErrorNotification(message: e.errorMessage);
       }
     }
@@ -92,24 +101,29 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator>{
   // function to add game to wishlist
   Future<void> editGameWishListState(RAWGGame game) async {
     try {
-      if(!game.inWishList!){
+      if (!game.inWishList!) {
         game.inWishList = true;
-        var response = await addGameToWishListUseCase.invoke(game: game, uid: appConfigProvider!.getUser()!.uid);
-        if(response != 0){
-          navigator!.showSuccessNotification(message: local!.gameAddedToWishList);
-        }else {
+        var response = await addGameToWishListUseCase.invoke(
+            game: game, uid: appConfigProvider!.getUser()!.uid);
+        if (response != 0) {
+          navigator!.showSuccessNotification(
+              message: local!.gameAddedToWishList);
+        } else {
           navigator!.showErrorNotification(message: local!.someThingWentWrong);
         }
-      }else{
+      } else {
         game.inWishList = false;
-        var response = await deleteGameFromWishListUseCase.invoke(game: int.parse(game.id!.toString()), uid: appConfigProvider!.getUser()!.uid);
-        if(response != 0){
-          navigator!.showSuccessNotification(message: local!.gameDeletedFromWishList);
-        }else {
+        var response = await deleteGameFromWishListUseCase.invoke(
+            game: int.parse(game.id!.toString()),
+            uid: appConfigProvider!.getUser()!.uid);
+        if (response != 0) {
+          navigator!.showSuccessNotification(
+              message: local!.gameDeletedFromWishList);
+        } else {
           navigator!.showErrorNotification(message: local!.someThingWentWrong);
         }
       }
-    }catch (e){
+    } catch (e) {
       debugPrint(e.toString());
     }
     notifyListeners();
@@ -117,37 +131,40 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator>{
 
   // change state functions
   // select game
-  selectGiveawayGame( GiveawayGame game){
+  selectGiveawayGame(GiveawayGame game) {
     giveawayGameSelected = true;
     giveawaySelectedGame = game;
     notifyListeners();
   }
+
   // unselect game
-  unselectGiveawayGame(){
+  unselectGiveawayGame() {
     giveawayGameSelected = false;
     notifyListeners();
   }
 
   // select game
-  selectFreeToPlayGame( FreeToPlayGame game){
+  selectFreeToPlayGame(FreeToPlayGame game) {
     freeToPlayGameSelected = true;
     freeToPlayGameSelectedGame = game;
     notifyListeners();
   }
+
   // unselect game
-  unselectFreeToPlayGame(){
+  unselectFreeToPlayGame() {
     freeToPlayGameSelected = false;
     notifyListeners();
   }
 
   // select game
-  selectRAWGGame( RAWGGame game){
+  selectRAWGGame(RAWGGame game) {
     rawgGameSelected = true;
     rawgGameSelectedGame = game;
     notifyListeners();
   }
+
   // unselect game
-  unselectRAWGGame(){
+  unselectRAWGGame() {
     rawgGameSelected = false;
     notifyListeners();
   }

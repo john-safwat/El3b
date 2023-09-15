@@ -33,9 +33,7 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
 
   @override
   Widget build(BuildContext context) {
-    if(viewModel!.themeProvider == null){
-      super.build(context);
-    }
+    super.build(context);
     return ChangeNotifierProvider(
       create: (context) => viewModel!,
       child: Consumer<HomeTabViewModel>(
@@ -50,50 +48,52 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
           } else {
             return Stack(
               children: [
-                ListView(
-                  children: [
-                    const SizedBox(
-                      height: 110,
-                    ),
-                    GiveawayGamesList(
-                      games: value.listGiveawayGames,
-                      selectGame: value.selectGiveawayGame,
-                      unselectGame: value.unselectGiveawayGame,
-                      urlLauncher: value.openURL,
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    FreeToPlayGamesList(
-                        games: value.listFreeToPLayGames,
-                        selectGame: value.selectFreeToPlayGame,
-                        unselectGame: value.unselectFreeToPlayGame,
-                        urlLauncher: value.openURL),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Row(
-                      children: [
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Text(
-                          value.local!.recommendedGames,
-                          style: Theme.of(context).textTheme.displayMedium,
-                        ),
-                      ],
-                    ),
-                    for (int i = 0; i < value.listRAWGGames.length; i++)
-                      GameWidget(
-                        game: value.listRAWGGames[i],
-                        selectGame: value.selectRAWGGame,
-                        unselectGame: value.unselectRAWGGame,
-                        editWishListState: value.editGameWishListState,
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 110,
                       ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                  ],
+                      GiveawayGamesList(
+                        games: value.listGiveawayGames,
+                        selectGame: value.selectGiveawayGame,
+                        unselectGame: value.unselectGiveawayGame,
+                        urlLauncher: value.openURL,
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      FreeToPlayGamesList(
+                          games: value.listFreeToPLayGames,
+                          selectGame: value.selectFreeToPlayGame,
+                          unselectGame: value.unselectFreeToPlayGame,
+                          urlLauncher: value.openURL),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Row(
+                        children: [
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            value.local!.recommendedGames,
+                            style: Theme.of(context).textTheme.displayMedium,
+                          ),
+                        ],
+                      ),
+                      for (int i = 0; i < value.listRAWGGames.length; i++)
+                        GameWidget(
+                          game: value.listRAWGGames[i],
+                          selectGame: value.selectRAWGGame,
+                          unselectGame: value.unselectRAWGGame,
+                          editWishListState: value.editGameWishListState,
+                        ),
+                      const SizedBox(
+                        height: 80,
+                      ),
+                    ],
+                  ),
                 ),
                 const SafeArea(child: CustomSearchBarButton()),
                 viewModel!.giveawayGameSelected
