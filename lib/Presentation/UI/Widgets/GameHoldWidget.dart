@@ -52,8 +52,8 @@ class GameHoldWidget extends StatelessWidget {
                             child: CachedNetworkImage(
                               imageUrl: game.backgroundImage ?? "",
                               imageBuilder: (context, imageProvider) =>
-                                  Image.network(
-                                game.backgroundImage!,
+                                  Image(
+                                image: imageProvider,
                                 width: double.infinity,
 
                                 fit: BoxFit.cover,

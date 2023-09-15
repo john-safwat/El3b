@@ -23,7 +23,9 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends BaseState<HomeView , HomeViewModel> implements HomeNavigator {
   @override
   Widget build(BuildContext context) {
-    super.build(context);
+    if(viewModel!.themeProvider == null){
+      super.build(context);
+    }
     return ChangeNotifierProvider(
       create: (context) => viewModel!,
       child: Consumer<HomeViewModel>(
