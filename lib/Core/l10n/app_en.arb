@@ -78,5 +78,7 @@
   "urlLaunchingError" : "Error Launching This URL",
   "weHopeThatYouLoveIt" : "We Hope That You Love It",
   "recommendedGames" : "Recommended Games",
-  "releaseDate" : "Release Date"
+  "releaseDate" : "Release Date",
+  "gameAddedToWishList" : "Game Added To Favorite Successfully",
+  "gameDeletedFromWishList" : "Game Removed From Favorite Successfully"
 }

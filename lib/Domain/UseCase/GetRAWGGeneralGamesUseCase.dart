@@ -17,10 +17,12 @@ class GetRAWGGeneralGamesUseCase {
 
 
   // load games from api
-  Future<List<RAWGGame>> invoke() async {
+  Future<List<RAWGGame>> invoke({required String uid}) async {
     var response = await repository.getGeneralGames();
+    var favorite = await repository.loadGamesFromWishList(uid: uid);
     response = addStoresIcons(response!);
     response = noNullValue(response);
+    response = wishListGames(response , favorite!);
     return response;
   }
 
@@ -78,5 +80,16 @@ class GetRAWGGeneralGamesUseCase {
     return games;
   }
 
+  // validate on wish list value set the games in wish list  the inWishlist value to true
+  List<RAWGGame> wishListGames(List<RAWGGame> games , List<RAWGGame> favorite){
+    for (int i = 0 ; i<games.length ; i++){
+      for (int j =0 ; j<favorite.length ; j++){
+        if(games[i].id! == favorite[j].id){
+          games[i].inWishList = true;
+        }
+      }
+    }
+    return games;
+  }
 
 }

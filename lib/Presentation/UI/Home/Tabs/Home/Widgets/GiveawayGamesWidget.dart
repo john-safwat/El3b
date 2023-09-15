@@ -36,8 +36,7 @@ class GiveawayGamesWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
               child: CachedNetworkImage(
                 imageUrl: game.image!??"",
-                imageBuilder: (context, imageProvider) => Image.network(
-                  game.image! ,
+                imageBuilder: (context, imageProvider) => Image(image: imageProvider,
                   fit: BoxFit.cover ,
                   width: double.infinity,
                   height: 170,

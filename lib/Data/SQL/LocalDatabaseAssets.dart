@@ -82,6 +82,7 @@ class LocalDatabaseAssets {
 
   String favoriteRAWGGamesTable = '''
         CREATE TABLE `favoriteRAWGGamesTable` (  
+          `uid` text null ,
           `id` INTEGER  null,
           `name` text  null,
           `released` text  null,
@@ -93,6 +94,7 @@ class LocalDatabaseAssets {
 
   String favoriteRAWGGamesGenresTable = '''
           CREATE TABLE `favoriteRAWGGamesGenresTable` (
+            `uid` text null ,
             `gameID` INTEGER null ,  
             `id` INTEGER null ,
             `name` text null  ,
@@ -104,6 +106,7 @@ class LocalDatabaseAssets {
 
   String favoriteRAWGGamesStoresTable = '''
           CREATE TABLE `favoriteRAWGGamesStoresTable` (
+            `uid` text null ,
             `gameID` INTEGER null ,  
             `id` INTEGER null ,
             `name` text null ,
@@ -116,6 +119,7 @@ class LocalDatabaseAssets {
 
   String favoriteRAWGGamesScreenShotsTable = '''
           CREATE TABLE `favoriteRAWGGamesScreenShotsTable` (
+            `uid` text null ,
             `gameID` INTEGER null ,  
             `id` INTEGER null ,
             `image` text null

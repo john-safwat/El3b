@@ -10,11 +10,13 @@ class GameWidget extends StatelessWidget {
   RAWGGame game;
   Function selectGame ;
   Function unselectGame ;
+  Function editWishListState;
 
   GameWidget({
     required this.game ,
     required this.selectGame ,
-    required this.unselectGame
+    required this.unselectGame,
+    required this.editWishListState
   });
 
   @override
@@ -97,13 +99,17 @@ class GameWidget extends StatelessWidget {
               bottom: 20 ,
               right: localProvider.isEn() ? 20 : null,
               left: localProvider.isEn() ? null : 20,
-              child: Container(
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: MyTheme.lightPurple,
+              child: InkWell(
+                onTap: () => editWishListState(game),
+                borderRadius: BorderRadius.circular(10),
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: MyTheme.lightPurple,
+                  ),
+                  child: SvgPicture.asset(game.inWishList!? "Assets/SVG/liked.svg": "Assets/SVG/notLiked.svg" , color: MyTheme.offWhite, width: 30,),
                 ),
-                child: SvgPicture.asset(game.inWishList!? "Assets/SVG/liked.svg": "Assets/SVG/notLiked.svg" , color: MyTheme.offWhite, width: 30,),
               )
             )
           ],
