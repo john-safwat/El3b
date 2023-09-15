@@ -2,6 +2,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:El3b/Core/Providers/ThemeProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class ErrorMessageWidget extends StatelessWidget {
@@ -18,7 +19,7 @@ class ErrorMessageWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.asset("Assets/SVG/ErrorImage${theme.isDark()?"":"2"}.svg"),
+          Lottie.asset("Assets/Animations/errorImage.json" ,width: double.infinity ,fit: BoxFit.cover ),
           const SizedBox(height: 10,),
           Text(errorMessage , style: Theme.of(context).textTheme.displayMedium,),
           const SizedBox(height: 10,),

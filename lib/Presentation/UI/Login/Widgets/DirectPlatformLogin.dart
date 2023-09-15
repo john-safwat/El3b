@@ -9,13 +9,15 @@ class DirectPlatformLogin extends StatelessWidget {
   String darkImage;
   String lightImage;
   String title;
+  bool loading;
   Function login;
 
   DirectPlatformLogin(
       {required this.darkImage,
       required this.lightImage,
       required this.title,
-      required this.login});
+      required this.login,
+        required this.loading});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,10 @@ class DirectPlatformLogin extends StatelessWidget {
                     topRight: local.isEn()?const Radius.circular(0) : const Radius.circular(10),
                     bottomRight: local.isEn()?const Radius.circular(0) :const Radius.circular(10)
                   )),
-              child: SvgPicture.asset(
+              child:loading? SizedBox(
+                height: 25,
+                  child: CircularProgressIndicator(
+                    color: theme.isDark()? MyTheme.lightPurple : MyTheme.offWhite,)): SvgPicture.asset(
                 theme.isDark() ? darkImage : lightImage,
               ),
             ),

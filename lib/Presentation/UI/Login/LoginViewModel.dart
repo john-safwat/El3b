@@ -31,6 +31,9 @@ class LoginViewModel extends BaseViewModel<LoginNavigator>{
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  bool googleLogin = false ;
+  bool facebookLogin = false ;
+
   // navigation Functions
   // function to navigate to registration screen
   void goToRegistrationScreen(){
@@ -125,7 +128,8 @@ class LoginViewModel extends BaseViewModel<LoginNavigator>{
   // login with google
   // in this function login with google if user doesn't exist it will create a new user in firebase auth
   void loginWithGoogle()async{
-    navigator!.showLoading(message: local!.loggingYouIn);
+    googleLogin = true ;
+    notifyListeners();
     try{
       // sing user in using google sign in
       var response = await signInWithGoogleUseCase.invoke();
@@ -136,7 +140,6 @@ class LoginViewModel extends BaseViewModel<LoginNavigator>{
         var exist = await checkIfUserExistUseCase.invoke(uid: response.uid);
         // if exist navigate to home screen else add user data to database
         if(exist) {
-          navigator!.goBack();
           navigator!.showSuccessMessage(
               message: local!.welcomeBack,
               posActionTitle: local!.ok,
@@ -156,7 +159,6 @@ class LoginViewModel extends BaseViewModel<LoginNavigator>{
                   birthDate: "--/--/----"
                 )
             );
-            navigator!.goBack();
             navigator!.showSuccessMessage(
                 message: local!.welcomeBack,
                 posActionTitle: local!.ok,
@@ -170,7 +172,8 @@ class LoginViewModel extends BaseViewModel<LoginNavigator>{
         throw FirebaseUserDatabaseException(errorMessage: local!.tryAgain);
       }
     }catch(e){
-      navigator!.goBack();
+      googleLogin = false;
+      notifyListeners();
       if (e is FirebaseUserAuthException) {
         navigator!.showFailMessage(
           message: e.errorMessage,
