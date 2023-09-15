@@ -46,7 +46,6 @@ void main()async{
 }
 
 class MyApp extends StatelessWidget {
-  LocalDatabase database =injectLocalDatabase();
   bool firstTime;
   User? user;
   MyApp({required this.firstTime , this.user});

@@ -28,7 +28,7 @@ class SplashScreen extends StatelessWidget {
               : Image.asset("Assets/Images/LightLogo.png" , fit: BoxFit.cover,),
         ),
       ),
-      nextScreen: firstTime?const IntroView() : user != null? const LoginView() :const HomeView(),
+      nextScreen: firstTime?const IntroView() : user == null? const LoginView() :const HomeView(),
       duration: 2000,
       backgroundColor: themeProvider.isDark()? MyTheme.darkPurple : MyTheme.offWhite,
       splashIconSize: double.infinity,

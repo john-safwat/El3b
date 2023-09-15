@@ -3,6 +3,7 @@ import 'package:El3b/Core/Utils/NegativeActionButton.dart';
 import 'package:El3b/Core/Utils/PosActionButton.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:lottie/lottie.dart';
 
 class MyDialogUtils {
   static Future<void> showLoadingDialog({
@@ -96,16 +97,18 @@ class MyDialogUtils {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    margin: const EdgeInsets.all(20),
-                    padding:const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
+                  Expanded(
+                    child: Container(
+                      padding:const EdgeInsets.all(20),
+                      margin: const EdgeInsets.only(bottom: 20),
+                      decoration:const BoxDecoration(
                         color: Colors.red,
-                        borderRadius: BorderRadius.circular(1000)),
-                    child: const Icon(
-                      Icons.error_outline,
-                      color: Colors.white,
-                      size: 60,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(20),
+                          topLeft: Radius.circular(20),
+                        )
+                      ),
+                      child: Center(child: Lottie.asset("Assets/Animations/error.json" ,width: 120 ,fit: BoxFit.cover )),
                     ),
                   ),
                 ],
@@ -181,16 +184,18 @@ class MyDialogUtils {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    margin:const EdgeInsets.all(20),
-                    padding:const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(100)),
-                    child:const Icon(
-                      EvaIcons.checkmark_circle,
-                      color: Colors.white,
-                      size: 60,
+                  Expanded(
+                    child: Container(
+                      padding:const EdgeInsets.all(20),
+                      margin:const EdgeInsets.only(bottom: 20),
+                        decoration:const BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(20),
+                              topLeft: Radius.circular(20),
+                            )
+                        ),
+                      child: Center(child: Lottie.asset("Assets/Animations/check.json" ,width: 120 ,fit: BoxFit.cover ))
                     ),
                   ),
                 ],
@@ -263,16 +268,18 @@ class MyDialogUtils {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    margin:const EdgeInsets.all(20),
-                    padding:const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                        color: MyTheme.lightPurple,
-                        borderRadius: BorderRadius.circular(100)),
-                    child:const Icon(
-                      EvaIcons.question_mark,
-                      color: Colors.white,
-                      size: 60,
+                  Expanded(
+                    child: Container(
+                        padding:const EdgeInsets.all(20),
+                        margin:const EdgeInsets.only(bottom: 20),
+                        decoration:const BoxDecoration(
+                            color: Colors.teal,
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(20),
+                              topLeft: Radius.circular(20),
+                            )
+                        ),
+                        child: Center(child: Lottie.asset("Assets/Animations/info.json" ,width: 120 ,fit: BoxFit.cover ))
                     ),
                   ),
                 ],

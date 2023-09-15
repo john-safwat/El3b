@@ -66,6 +66,7 @@ dependencies:
   elegant_notification: ^1.11.0
   sqflite: ^2.3.0
   path: ^1.8.3
+  lottie: ^2.6.0
 
 dev_dependencies:
   flutter_test:
@@ -92,6 +93,7 @@ flutter:
   assets:
     - Assets/Images/
     - Assets/SVG/
+    - Assets/Animations/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

@@ -7,6 +7,7 @@ import 'package:El3b/Presentation/UI/Widgets/LanguageSwitch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:lottie/lottie.dart';
 
 class IntroView extends StatefulWidget {
   static const String routeName = "Intro";
@@ -42,7 +43,7 @@ class _IntroViewState extends BaseState<IntroView , IntroViewModel> implements I
               title: viewModel!.local!.yourLanguage,
               // title: "Welcome",
               bodyWidget: const LanguageSwitch(),
-              image: SvgPicture.asset("Assets/SVG/Intro0.svg")
+              image: Lottie.asset("Assets/Animations/language.json")
           ) ,
           // Welcome Message
           PageViewModel(
@@ -63,7 +64,8 @@ class _IntroViewState extends BaseState<IntroView , IntroViewModel> implements I
             title: viewModel!.local!.welcome,
             // title: "Welcome",
             body: viewModel!.local!.welcomeToEl3b,
-            image: SvgPicture.asset("Assets/SVG/Intro1.svg")
+            image: Lottie.asset("Assets/Animations/hello.json")
+
           ) ,
           // Gaming Nights
           PageViewModel(
@@ -84,7 +86,7 @@ class _IntroViewState extends BaseState<IntroView , IntroViewModel> implements I
               title: viewModel!.local!.gamingNights,
               // title: "Welcome",
               body: viewModel!.local!.letUsHelpYou,
-              image: SvgPicture.asset("Assets/SVG/Intro2.svg")
+              image: Lottie.asset("Assets/Animations/gaming.json")
           ) ,
           // You Are Not Alone
           PageViewModel(
@@ -105,7 +107,7 @@ class _IntroViewState extends BaseState<IntroView , IntroViewModel> implements I
               title: viewModel!.local!.youAreNotAlone,
               // title: "Welcome",
               body: viewModel!.local!.chatWithOtherPlayers,
-              image: SvgPicture.asset("Assets/SVG/Intro3.svg")
+              image: Lottie.asset("Assets/Animations/chat.json")
           ) ,
           // Giveaway
           PageViewModel(
@@ -126,7 +128,7 @@ class _IntroViewState extends BaseState<IntroView , IntroViewModel> implements I
               title: viewModel!.local!.giveaway,
               // title: "Welcome",
               body: viewModel!.local!.everyDayWeHaveGiveaways,
-              image: SvgPicture.asset("Assets/SVG/Intro4.svg")
+              image: Lottie.asset("Assets/Animations/giveaway.json")
           ) ,
           // Who Are You
           PageViewModel(
@@ -147,7 +149,7 @@ class _IntroViewState extends BaseState<IntroView , IntroViewModel> implements I
               title: viewModel!.local!.whoAreYou,
               // title: "Welcome",
               body: viewModel!.local!.letUsKnowWhoYouAre,
-              image: SvgPicture.asset("Assets/SVG/Intro5.svg" )
+              image: Lottie.asset("Assets/Animations/login.json")
           ) ,
         ],
         done: Text(viewModel!.local!.finish),
