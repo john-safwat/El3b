@@ -1,4 +1,5 @@
 import 'package:El3b/Data/SQL/LocalDatabaseAssets.dart';
+import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -54,7 +55,7 @@ class LocalDatabase {
     debugPrint("Database Created");
   }
 
-  Future<void> addGameToWishList(
+  Future<int> addGame(
       {required String gameSQL,
       required String genresSQL,
       required String storesSQL,
@@ -62,10 +63,11 @@ class LocalDatabase {
     await _db!.rawInsert(gameSQL);
     await _db!.rawInsert(genresSQL);
     await _db!.rawInsert(storesSQL);
-    await _db!.rawInsert(screenShotsSQL);
+    var response = await _db!.rawInsert(screenShotsSQL);
+    return response;
   }
 
-  Future<int> deleteGameFromWishList(
+  Future<int> deleteGame(
       {required String gameSQL,
     required String genresSQL,
     required String storesSQL,
@@ -75,5 +77,17 @@ class LocalDatabase {
     await _db!.rawDelete(storesSQL);
     var response = await _db!.rawDelete(screenShotsSQL);
     return response;
+  }
+
+  Future<List<List<Map<String , dynamic>>>> getGames({required String gameSQL,
+    required String genresSQL,
+    required String storesSQL,
+    required String screenShotsSQL})async{
+    var games = await _db!.rawQuery(gameSQL);
+    var genres = await _db!.rawQuery(genresSQL);
+    var stores = await _db!.rawQuery(storesSQL);
+    var screenShots = await _db!.rawQuery(screenShotsSQL);
+
+    return [games , genres,stores,screenShots];
   }
 }

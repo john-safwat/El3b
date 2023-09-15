@@ -1,4 +1,6 @@
 import 'package:El3b/Core/Base/BaseState.dart';
+import 'package:El3b/Domain/UseCase/AddGameToWishListUseCase.dart';
+import 'package:El3b/Domain/UseCase/DeleteGameFromWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetAllGiveGamesUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetFreeToPlayGamesUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetRAWGGeneralGamesUseCase.dart';
@@ -6,7 +8,7 @@ import 'package:El3b/Presentation/UI/Home/Tabs/Home/HomeTabNavigator.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/HomeTabViewModel.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/Widgets/FreeToPlayGamesHoldWidget.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/Widgets/FreeToPlayGamesList.dart';
-import 'package:El3b/Presentation/UI/Home/Tabs/Home/Widgets/GivaawayGamesList.dart';
+import 'package:El3b/Presentation/UI/Home/Tabs/Home/Widgets/GiveawayGamesList.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/Widgets/GiveawayGamesHoldWidget.dart';
 import 'package:El3b/Presentation/UI/Widgets/CustomSearchBar.dart';
 import 'package:El3b/Presentation/UI/Widgets/ErrorMessageWidget.dart';
@@ -79,13 +81,10 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel> impleme
                           GameWidget(
                               game: value.listRAWGGames[i],
                               selectGame: value.selectRAWGGame,
-                              unselectGame: value.unselectRAWGGame
+                              unselectGame: value.unselectRAWGGame,
+                              editWishListState: value.editGameWishListState,
                           ),
-
-                        const ThemeSwitch(),
-                        const SizedBox(height: 20,),
-                        const LanguageSwitch(),
-                        const SizedBox(height: 105,),
+                        const SizedBox(height: 80,),
                       ],
                     ),
                   ),
@@ -106,7 +105,9 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel> impleme
     return HomeTabViewModel(
       getAllGiveGamesUseCase: injectGetAllGiveGamesUseCase(),
       getFreeToPlayGamesUseCase: injectGetFreeToPlayGamesUseCase(),
-      getRAWGGeneralGamesUseCase: injectGetRAWGGeneralGamesUseCase()
+      getRAWGGeneralGamesUseCase: injectGetRAWGGeneralGamesUseCase(),
+      addGameToWishListUseCase: injectAddGameToWishListUseCase(),
+      deleteGameFromWishListUseCase: injectDeleteGameFromWishListUseCase()
     );
   }
 }

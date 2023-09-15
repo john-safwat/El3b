@@ -7,10 +7,13 @@ import 'package:El3b/Domain/Exception/UnknownException.dart';
 import 'package:El3b/Domain/Models/Games/FreeToPlayGame/FreeToPlayGame.dart';
 import 'package:El3b/Domain/Models/Games/GiveawayGames/GiveawayGame.dart';
 import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
+import 'package:El3b/Domain/UseCase/AddGameToWishListUseCase.dart';
+import 'package:El3b/Domain/UseCase/DeleteGameFromWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetAllGiveGamesUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetFreeToPlayGamesUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetRAWGGeneralGamesUseCase.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/HomeTabNavigator.dart';
+import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeTabViewModel extends BaseViewModel <HomeTabNavigator>{
@@ -18,10 +21,14 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator>{
   GetAllGiveGamesUseCase getAllGiveGamesUseCase ;
   GetFreeToPlayGamesUseCase getFreeToPlayGamesUseCase;
   GetRAWGGeneralGamesUseCase getRAWGGeneralGamesUseCase;
+  AddGameToWishListUseCase addGameToWishListUseCase;
+  DeleteGameFromWishListUseCase deleteGameFromWishListUseCase;
   HomeTabViewModel({
     required this.getAllGiveGamesUseCase ,
     required this.getFreeToPlayGamesUseCase,
-    required this.getRAWGGeneralGamesUseCase
+    required this.getRAWGGeneralGamesUseCase,
+    required this.addGameToWishListUseCase,
+    required this.deleteGameFromWishListUseCase
   });
 
   // error message and list of games
@@ -46,7 +53,7 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator>{
     try {
       listGiveawayGames = await getAllGiveGamesUseCase.invoke();
       listFreeToPLayGames = await getFreeToPlayGamesUseCase.invoke();
-      listRAWGGames = await getRAWGGeneralGamesUseCase.invoke();
+      listRAWGGames = await getRAWGGeneralGamesUseCase.invoke(uid: appConfigProvider!.getUser()!.uid);
     }catch(e){
       if (e is DioServerException) {
         errorMessage = e.errorMessage;
@@ -79,6 +86,33 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator>{
         navigator!.showErrorNotification(message: e.errorMessage);
       }
     }
+  }
+
+
+  // function to add game to wishlist
+  Future<void> editGameWishListState(RAWGGame game) async {
+    try {
+      if(!game.inWishList!){
+        game.inWishList = true;
+        var response = await addGameToWishListUseCase.invoke(game: game, uid: appConfigProvider!.getUser()!.uid);
+        if(response != 0){
+          navigator!.showSuccessNotification(message: local!.gameAddedToWishList);
+        }else {
+          navigator!.showErrorNotification(message: local!.someThingWentWrong);
+        }
+      }else{
+        game.inWishList = false;
+        var response = await deleteGameFromWishListUseCase.invoke(game: int.parse(game.id!.toString()), uid: appConfigProvider!.getUser()!.uid);
+        if(response != 0){
+          navigator!.showSuccessNotification(message: local!.gameDeletedFromWishList);
+        }else {
+          navigator!.showErrorNotification(message: local!.someThingWentWrong);
+        }
+      }
+    }catch (e){
+      debugPrint(e.toString());
+    }
+    notifyListeners();
   }
 
   // change state functions

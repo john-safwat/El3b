@@ -52,10 +52,7 @@ class GiveawayGamesHoldWidget extends StatelessWidget {
                               topRight: Radius.circular(15)),
                           child: CachedNetworkImage(
                             imageUrl: game.image ?? "",
-                            imageBuilder: (context, imageProvider) =>
-                                Image.network(
-                              game.image!,
-                            ),
+                            imageBuilder: (context, imageProvider) => Image(image: imageProvider),
                             errorWidget: (context, url, error) => Image.asset(
                               "Assets/Images/errorImage.png",
                             ),

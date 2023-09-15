@@ -47,9 +47,7 @@ class FreeToPlayGamesHoldWidget extends StatelessWidget {
                               topRight: Radius.circular(15)),
                           child: CachedNetworkImage(
                             imageUrl: game.thumbnail ?? "",
-                            imageBuilder: (context, imageProvider) =>
-                                Image.network(
-                              game.thumbnail!,
+                            imageBuilder: (context, imageProvider) => Image(image: imageProvider,
                               width: double.infinity,
                               fit: BoxFit.cover,
                             ),

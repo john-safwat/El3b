@@ -78,5 +78,7 @@
   "urlLaunchingError" : "حدث خطاء اثناء فتح الرابط",
   "weHopeThatYouLoveIt" : "نامل ان تكون اعجبتك اللعبة",
   "recommendedGames" : "ترشيحات الالعاب",
-  "releaseDate" : "تاريخ الاصدار"
+  "releaseDate" : "تاريخ الاصدار",
+  "gameAddedToWishList" : "تم اضافة اللعبة اللي المفضلة بنجاح",
+  "gameDeletedFromWishList" : "تم ازالة اللعبة من المفضلة بنجاح"
 }

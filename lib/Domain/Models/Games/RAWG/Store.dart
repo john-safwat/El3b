@@ -1,5 +1,6 @@
 
 class Store {
+  num? gameID;
   num? id;
   String? name;
   String? slug;
@@ -8,7 +9,8 @@ class Store {
   String? imageBackground;
 
   Store(
-      { this.id,
+      { this.gameID,
+        this.id,
         this.name,
         this.slug,
         this.domain,
