@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GameHoldWidget extends StatelessWidget {
   RAWGGame game;
@@ -44,18 +43,8 @@ class GameHoldWidget extends StatelessWidget {
                   // the image
                   Stack(
                     children: [
-                      ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(15),
-                            topRight: Radius.circular(15)),
-                        child: Image.asset(
-                          "Assets/Images/loadingImage.png",
-                          width: double.infinity,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
                       // the image
-                      Positioned.fill(
+                      Positioned(
                         child: ClipRRect(
                             borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(15),
@@ -66,16 +55,20 @@ class GameHoldWidget extends StatelessWidget {
                                   Image.network(
                                 game.backgroundImage!,
                                 width: double.infinity,
-                                height: double.infinity,
+
                                 fit: BoxFit.cover,
                               ),
                               errorWidget: (context, url, error) => Image.asset(
                                 "Assets/Images/errorImage.png",
                               ),
-                              placeholder: (context, url) => Image.asset(
-                                "Assets/Images/loadingImage.png",
+                              placeholder: (context, url) => Container(
                                 width: double.infinity,
-                                fit: BoxFit.cover,
+                                height: 170,
+                                decoration: BoxDecoration(
+                                    color: MyTheme.lightPurple,
+                                    borderRadius: BorderRadius.circular(15)
+                                ),
+                                child:const Center(child: CircularProgressIndicator(color: MyTheme.offWhite,),),
                               ),
                             )),
                       ),
