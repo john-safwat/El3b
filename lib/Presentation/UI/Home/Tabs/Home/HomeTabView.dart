@@ -50,7 +50,6 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel> impleme
               return Stack(
                 children: [
                   SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
                     child: Column(
                       children: [
                         const SizedBox(height: 110,),

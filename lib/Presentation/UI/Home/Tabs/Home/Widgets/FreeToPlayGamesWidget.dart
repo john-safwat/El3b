@@ -28,14 +28,6 @@ class FreeToPlayGameWidget extends StatelessWidget {
         onLongPressEnd: (details) => unselectGame(),
         child: Stack(
           children: [
-            ClipRRect(
-                borderRadius: BorderRadius.circular(15),
-                child: Image.asset(
-                  "Assets/Images/loadingImage.png",
-                  width: double.infinity,
-                  height: double.infinity,
-                  fit: BoxFit.cover,
-                )),
             // the backGround Image
             ClipRRect(
                 borderRadius: BorderRadius.circular(15),
@@ -52,10 +44,14 @@ class FreeToPlayGameWidget extends StatelessWidget {
                     fit: BoxFit.cover,
                     width: double.infinity,
                   ),
-                  placeholder: (context, url) => Image.asset(
-                    "Assets/Images/loadingImage.png",
+                  placeholder: (context, url) => Container(
                     width: double.infinity,
-                    fit: BoxFit.cover,
+                    height: 170,
+                    decoration: BoxDecoration(
+                        color: MyTheme.lightPurple,
+                        borderRadius: BorderRadius.circular(15)
+                    ),
+                    child:const Center(child: CircularProgressIndicator(color: MyTheme.offWhite,),),
                   ),
                 )),
             // the overlay color and the game title

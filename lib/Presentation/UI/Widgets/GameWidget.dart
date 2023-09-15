@@ -29,9 +29,15 @@ class GameWidget extends StatelessWidget {
         onLongPressEnd: (details) =>  unselectGame(),
         child: Stack(
           children: [
-            ClipRRect(
-                borderRadius: BorderRadius.circular(15),
-                child: Image.asset("Assets/Images/loadingImage.png" , width: double.infinity, fit: BoxFit.cover,)),
+            Container(
+              width: double.infinity,
+              height: 200,
+              decoration: BoxDecoration(
+                  color: MyTheme.lightPurple,
+                  borderRadius: BorderRadius.circular(15)
+              ),
+              child:const Center(child: CircularProgressIndicator(color: MyTheme.offWhite,),),
+            ),
             // the backGround Image
             Positioned.fill(
               child: ClipRRect(
@@ -48,10 +54,14 @@ class GameWidget extends StatelessWidget {
                       fit: BoxFit.cover ,
                       width: double.infinity,
                     ),
-                    placeholder: (context, url) => Image.asset(
-                      "Assets/Images/loadingImage.png",
+                    placeholder: (context, url) => Container(
                       width: double.infinity,
-                      fit: BoxFit.cover,
+                      height: 200,
+                      decoration: BoxDecoration(
+                          color: MyTheme.lightPurple,
+                          borderRadius: BorderRadius.circular(15)
+                      ),
+                      child:const Center(child: CircularProgressIndicator(color: MyTheme.offWhite,),),
                     ),
                   )
               ),

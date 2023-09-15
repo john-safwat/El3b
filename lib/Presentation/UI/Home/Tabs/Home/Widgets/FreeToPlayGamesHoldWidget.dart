@@ -56,10 +56,14 @@ class FreeToPlayGamesHoldWidget extends StatelessWidget {
                               width: double.infinity,
                               fit: BoxFit.cover,
                             ),
-                            placeholder: (context, url) =>Image.asset(
-                              "Assets/Images/loadingImage.png",
+                            placeholder: (context, url) => Container(
                               width: double.infinity,
-                              fit: BoxFit.cover,
+                              height: 170,
+                              decoration: BoxDecoration(
+                                  color: MyTheme.lightPurple,
+                                  borderRadius: BorderRadius.circular(15)
+                              ),
+                              child:const Center(child: CircularProgressIndicator(color: MyTheme.offWhite,),),
                             ),
                           )),
                     ],

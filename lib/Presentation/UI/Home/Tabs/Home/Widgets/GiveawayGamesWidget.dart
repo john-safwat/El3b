@@ -28,9 +28,6 @@ class GiveawayGamesWidget extends StatelessWidget {
         onLongPressEnd: (details) =>  unselectGame(),
         child: Stack(
           children: [
-            ClipRRect(
-                borderRadius: BorderRadius.circular(15),
-                child: Image.asset("Assets/Images/loadingImage.png" , width: double.infinity, fit: BoxFit.cover,)),
             // the backGround Image
             ClipRRect(
               borderRadius: BorderRadius.circular(15),
@@ -47,10 +44,14 @@ class GiveawayGamesWidget extends StatelessWidget {
                   width: double.infinity,
                   height: 170,
                 ),
-                placeholder: (context, url) => Image.asset(
-                  "Assets/Images/loadingImage.png",
+                placeholder: (context, url) => Container(
                   width: double.infinity,
-                  fit: BoxFit.cover,
+                  height: 170,
+                  decoration: BoxDecoration(
+                    color: MyTheme.lightPurple,
+                    borderRadius: BorderRadius.circular(15)
+                  ),
+                  child:const Center(child: CircularProgressIndicator(color: MyTheme.offWhite,),),
                 ),
               )
             ),
