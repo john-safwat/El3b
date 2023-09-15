@@ -42,9 +42,7 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
 
   @override
   Widget build(BuildContext context) {
-    if(viewModel!.themeProvider == null){
-      super.build(context);
-    }
+    super.build(context);
     return ChangeNotifierProvider(
       create: (context) => viewModel!,
       child: Consumer<LoginViewModel>(

@@ -31,9 +31,7 @@ class _RegisterViewState extends BaseState<RegisterView, RegisterViewModel>
 
   @override
   Widget build(BuildContext context) {
-    if(viewModel!.themeProvider == null){
-      super.build(context);
-    }
+    super.build(context);
     return ChangeNotifierProvider(
       create: (context) => viewModel!,
       builder: (context, child) => Consumer<RegisterViewModel>(
