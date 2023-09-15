@@ -23,7 +23,9 @@ class _ExtraInfoViewState extends BaseState<ExtraInfoView , ExtraInfoViewModel> 
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
+    if(viewModel!.themeProvider == null){
+      super.build(context);
+    }
     return Scaffold(
       body: ChangeNotifierProvider(
         create: (context) => viewModel!,

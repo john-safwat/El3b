@@ -36,7 +36,6 @@ class GameWidget extends StatelessWidget {
                   color: MyTheme.lightPurple,
                   borderRadius: BorderRadius.circular(15)
               ),
-              child:const Center(child: CircularProgressIndicator(color: MyTheme.offWhite,),),
             ),
             // the backGround Image
             Positioned.fill(
@@ -44,8 +43,8 @@ class GameWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15),
                   child: CachedNetworkImage(
                     imageUrl: game.backgroundImage!??"",
-                    imageBuilder: (context, imageProvider) => Image.network(
-                      game.backgroundImage! ,
+                    imageBuilder: (context, imageProvider) => Image(
+                      image: imageProvider,
                       fit: BoxFit.cover ,
                       width: double.infinity,
                     ),

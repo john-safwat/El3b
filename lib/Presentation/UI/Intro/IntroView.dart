@@ -20,7 +20,9 @@ class IntroView extends StatefulWidget {
 class _IntroViewState extends BaseState<IntroView , IntroViewModel> implements IntroNavigator{
   @override
   Widget build(BuildContext context) {
-    super.build(context);
+    if(viewModel!.themeProvider == null){
+      super.build(context);
+    }
     return Scaffold(
       body: IntroductionScreen(
         pages: [
