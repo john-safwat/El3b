@@ -15,6 +15,7 @@ import 'package:El3b/Presentation/UI/Widgets/ErrorMessageWidget.dart';
 import 'package:El3b/Presentation/UI/Widgets/GameHoldWidget.dart';
 import 'package:El3b/Presentation/UI/Widgets/GameWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class HomeTabView extends StatefulWidget {
@@ -29,6 +30,7 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
   void initState() {
     super.initState();
     viewModel!.getGames();
+    viewModel!.getGeneralGames();
   }
 
   @override
@@ -41,7 +43,10 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
           if (value.errorMessage != null) {
             return ErrorMessageWidget(
               errorMessage: value.errorMessage!,
-              fixErrorFunction: viewModel!.getGames,
+              fixErrorFunction: (){
+                viewModel!.getGeneralGames();
+                viewModel!.getGeneralGames();
+              },
             );
           } else if (value.listGiveawayGames.isEmpty) {
             return const Center(child: CircularProgressIndicator());
@@ -82,13 +87,41 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
                           ),
                         ],
                       ),
-                      for (int i = 0; i < value.listRAWGGames.length; i++)
-                        GameWidget(
-                          game: value.listRAWGGames[i],
-                          selectGame: value.selectRAWGGame,
-                          unselectGame: value.unselectRAWGGame,
-                          editWishListState: value.editGameWishListState,
-                        ),
+                      Consumer<HomeTabViewModel>(
+                          builder: (context, value, child) {
+                            if(value.rawgErrorMessage != null){
+                              return Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Column(
+                                  children: [
+                                    Center(child: Lottie.asset("Assets/Animations/error.json" ,width: 120 ,fit: BoxFit.cover )),
+                                    const SizedBox(height: 20,),
+                                    Text(
+                                      viewModel!.local!.someThingWentWrong,
+                                      style: Theme.of(context).textTheme.displayMedium,
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }else if (value.listRAWGGames.isEmpty){
+                              return const Padding(
+                                padding:  EdgeInsets.all(80.0),
+                                child:  Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                              );
+                            }else {
+                              return Column(
+                                children: value.listRAWGGames.map((e) =>  GameWidget(
+                                  game: e,
+                                  selectGame: value.selectRAWGGame,
+                                  unselectGame: value.unselectRAWGGame,
+                                  editWishListState: value.editGameWishListState,
+                                ),).toList(),
+                              );
+                            }
+                          },
+                      ),
                       const SizedBox(
                         height: 80,
                       ),

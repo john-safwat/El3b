@@ -4,7 +4,6 @@ import 'package:El3b/Data/Cache/LocalCache.dart';
 import 'package:El3b/Data/Models/Games/FreeToPlayGame/FreeToPlayGameDTO.dart';
 import 'package:El3b/Data/Models/Games/GiveawayGame/GiveawayGameDTO.dart';
 import 'package:El3b/Data/Models/Games/RAWG/RAWGGameDTO.dart';
-import 'package:El3b/Data/Models/Games/RAWG/RAWGGamesResponseDTO.dart';
 import 'package:El3b/Domain/DataSource/CacheDataLocalDataSource.dart';
 import 'package:El3b/Domain/Exception/CacheException.dart';
 import 'package:El3b/Domain/Models/Games/FreeToPlayGame/FreeToPlayGame.dart';

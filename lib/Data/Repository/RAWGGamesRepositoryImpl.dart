@@ -39,6 +39,8 @@ class RAWGGamesRepositoryImpl implements RAWGGamesRepository {
   // it the cache is outDated or has not stored is call the api
   @override
   Future<List<RAWGGame>?> getGeneralGames() async {
+    var response = await remoteDataSource.getGeneralGames();
+    return response;
     // get last update time for the data in cache
     var lastUpdate =  await localDataSource.getLastUpdatedDate(key: "GeneralGames");
     // if user first time open the app this value will be null
