@@ -100,6 +100,16 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
                                       viewModel!.local!.someThingWentWrong,
                                       style: Theme.of(context).textTheme.displayMedium,
                                     ),
+                                    const SizedBox(height: 20,),
+                                    ElevatedButton(
+                                      onPressed: (){
+                                        value.getGeneralGames();
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 20.0 , vertical: 10),
+                                        child: Text(value.local!.tryAgain),
+                                      )
+                                    )
                                   ],
                                 ),
                               );
