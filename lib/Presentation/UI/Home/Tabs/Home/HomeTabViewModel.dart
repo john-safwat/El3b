@@ -36,6 +36,7 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator> {
 
   // error message and list of games
   String? errorMessage;
+  String? rawgErrorMessage;
 
   List<GiveawayGame> listGiveawayGames = [];
   List<FreeToPlayGame> listFreeToPLayGames = [];
@@ -55,12 +56,12 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator> {
   void getGames() async {
     errorMessage = null;
     listGiveawayGames = [];
+    listFreeToPLayGames = [];
     notifyListeners();
     try {
       listGiveawayGames = await getAllGiveGamesUseCase.invoke();
       listFreeToPLayGames = await getFreeToPlayGamesUseCase.invoke();
-      listRAWGGames = await getRAWGGeneralGamesUseCase.invoke(
-          uid: appConfigProvider!.getUser()!.uid);
+      notifyListeners();
     } catch (e) {
       if (e is DioServerException) {
         errorMessage = e.errorMessage;
@@ -74,8 +75,31 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator> {
         errorMessage = e.toString();
       }
     }
+  }
+
+  void getGeneralGames()async{
+    rawgErrorMessage = null;
+    listRAWGGames = [];
+    notifyListeners();
+    try {
+      listRAWGGames = await getRAWGGeneralGamesUseCase.invoke(uid: appConfigProvider!.getUser()!.uid);
+      notifyListeners();
+    } catch (e) {
+      if (e is DioServerException) {
+        rawgErrorMessage = e.errorMessage;
+      } else if (e is TimeOutOperationsException) {
+        rawgErrorMessage = local!.operationTimedOut;
+      } else if (e is InternetConnectionException) {
+        rawgErrorMessage = local!.checkYourInternetConnection;
+      } else if (e is UnknownException) {
+        rawgErrorMessage = e.errorMessage;
+      } else {
+        rawgErrorMessage = e.toString();
+      }
+    }
     notifyListeners();
   }
+
 
   // openGameURL
   openURL(String url) async {
