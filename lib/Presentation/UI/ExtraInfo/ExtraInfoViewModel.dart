@@ -1,5 +1,4 @@
 import 'package:El3b/Core/Base/BaseViewModel.dart';
-import 'package:El3b/Domain/Exception/FirebaseImagesException.dart';
 import 'package:El3b/Domain/Exception/FirebaseUserAuthException.dart';
 import 'package:El3b/Domain/Exception/FirebaseUserDatabaseException.dart';
 import 'package:El3b/Domain/Exception/TimeOutOperationsException.dart';

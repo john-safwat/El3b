@@ -1,14 +1,10 @@
 import 'package:El3b/Core/Base/BaseState.dart';
-import 'package:El3b/Core/Providers/LocalProvider.dart';
-import 'package:El3b/Core/Providers/ThemeProvider.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Presentation/UI/Home/HomeNavigator.dart';
 import 'package:El3b/Presentation/UI/Home/HomeViewModel.dart';
-import 'package:El3b/Presentation/UI/Widgets/ThemeSwitch.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class HomeView extends StatefulWidget {

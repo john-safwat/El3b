@@ -1,3 +1,5 @@
+import 'package:El3b/Data/Models/Games/GiveawayGame/GiveawayGameDTO.dart';
+
 class GiveawayGame {
   GiveawayGame({
       this.title, 
@@ -17,5 +19,16 @@ class GiveawayGame {
   String? endDate;
   List<String> icons = [];
 
+  GiveawayGameDTO toData(){
+    return GiveawayGameDTO(
+        title : title,
+        worth : worth,
+        image : image,
+        instructions : instructions,
+        openGiveawayUrl : openGiveawayUrl,
+        platforms : platforms,
+        endDate : endDate,
+    );
+  }
 
 }
