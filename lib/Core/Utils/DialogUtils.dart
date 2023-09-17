@@ -2,7 +2,6 @@ import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Core/Utils/NegativeActionButton.dart';
 import 'package:El3b/Core/Utils/PosActionButton.dart';
 import 'package:flutter/material.dart';
-import 'package:icons_plus/icons_plus.dart';
 import 'package:lottie/lottie.dart';
 
 class MyDialogUtils {

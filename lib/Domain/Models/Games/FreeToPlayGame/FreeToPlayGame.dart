@@ -1,3 +1,5 @@
+import 'package:El3b/Data/Models/Games/FreeToPlayGame/FreeToPlayGameDTO.dart';
+
 class FreeToPlayGame {
   FreeToPlayGame({
       this.title, 
@@ -14,5 +16,16 @@ class FreeToPlayGame {
   String? genre;
   String? platform;
   String? icon;
+
+  FreeToPlayGameDTO toData(){
+    return FreeToPlayGameDTO(
+        title : title,
+        thumbnail : thumbnail,
+        shortDescription : shortDescription,
+        gameUrl : gameUrl,
+        genre : genre,
+        platform : platform,
+    );
+  }
 
 }

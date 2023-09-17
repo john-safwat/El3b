@@ -1,4 +1,7 @@
 
+import 'package:El3b/Data/Models/Games/RAWG/StoreDTO.dart';
+import 'package:El3b/Data/Models/Games/RAWG/StoresDTO.dart';
+
 class Store {
   num? gameID;
   num? id;
@@ -16,5 +19,17 @@ class Store {
         this.domain,
         this.gamesCount,
         this.imageBackground});
+
+
+  StoreDTO toData(){
+    return StoreDTO(
+        id : id,
+        name : name,
+        slug : slug,
+        domain : domain,
+        gamesCount : gamesCount,
+        imageBackground : imageBackground,
+    );
+  }
 
 }

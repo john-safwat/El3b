@@ -1,5 +1,4 @@
 import 'package:El3b/Data/SQL/LocalDatabaseAssets.dart';
-import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';

@@ -1,7 +1,6 @@
 import 'package:El3b/Core/Providers/AppConfigProvider.dart';
 import 'package:El3b/Core/Providers/LocalProvider.dart';
 import 'package:El3b/Core/Providers/ThemeProvider.dart';
-import 'package:El3b/Data/SQL/LocalDatabase.dart';
 import 'package:El3b/Presentation/UI/ExtraInfo/ExtraInfoView.dart';
 import 'package:El3b/Presentation/UI/ForgetPassword/ForgetPasswordView.dart';
 import 'package:El3b/Presentation/UI/Intro/IntroView.dart';

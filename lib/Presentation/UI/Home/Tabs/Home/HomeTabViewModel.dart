@@ -1,4 +1,3 @@
-import 'dart:typed_data';
 
 import 'package:El3b/Core/Base/BaseViewModel.dart';
 import 'package:El3b/Domain/Exception/DioServerException.dart';
@@ -16,7 +15,6 @@ import 'package:El3b/Domain/UseCase/GetFreeToPlayGamesUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetRAWGGeneralGamesUseCase.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/HomeTabNavigator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeTabViewModel extends BaseViewModel <HomeTabNavigator> {
