@@ -1,0 +1,1569 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "El3b::Core::Base::BaseAPIAssets.dart::BaseAPIAssets" {
+}
+
+abstract class "El3b::Core::Base::BaseAPIManager.dart::BaseAPIManager" {
+  +A apiAssets
+  +Dio dio
+}
+
+"El3b::Core::Base::BaseAPIManager.dart::BaseAPIManager" o-- "dio::src::dio.dart::Dio"
+
+abstract class "El3b::Core::Base::BaseNavigator.dart::BaseNavigator" {
+  +dynamic showLoading()
+  +dynamic showFailMessage()
+  +dynamic showSuccessMessage()
+  +dynamic showQuestionMessage()
+  +dynamic goBack()
+  +dynamic showErrorNotification()
+  +dynamic showSuccessNotification()
+  +dynamic showCustomNotification()
+}
+
+abstract class "El3b::Core::Base::BaseState.dart::BaseState" {
+  +VM? viewModel
+  +void initState()
+  +void dispose()
+  +VM initViewModel()
+  +Widget build()
+  +dynamic goBack()
+  +dynamic showFailMessage()
+  +dynamic showLoading()
+  +dynamic showQuestionMessage()
+  +dynamic showSuccessMessage()
+  +dynamic showSuccessNotification()
+  +dynamic showErrorNotification()
+  +dynamic showCustomNotification()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "El3b::Core::Base::BaseState.dart::BaseState"
+"El3b::Core::Base::BaseNavigator.dart::BaseNavigator" <|-- "El3b::Core::Base::BaseState.dart::BaseState"
+
+class "El3b::Core::Base::BaseViewModel.dart::BaseViewModel" {
+  +N? navigator
+  +ThemeProvider? themeProvider
+  +LocalProvider? localProvider
+  +AppConfigProvider? appConfigProvider
+  +AppLocalizations? local
+  +Size? mediaQuery
+}
+
+"El3b::Core::Base::BaseViewModel.dart::BaseViewModel" o-- "El3b::Core::Providers::ThemeProvider.dart::ThemeProvider"
+"El3b::Core::Base::BaseViewModel.dart::BaseViewModel" o-- "El3b::Core::Providers::LocalProvider.dart::LocalProvider"
+"El3b::Core::Base::BaseViewModel.dart::BaseViewModel" o-- "El3b::Core::Providers::AppConfigProvider.dart::AppConfigProvider"
+"El3b::Core::Base::BaseViewModel.dart::BaseViewModel" o-- "flutter_gen::gen_l10n::app_localizations.dart::AppLocalizations"
+"El3b::Core::Base::BaseViewModel.dart::BaseViewModel" o-- "dart::ui::Size"
+"flutter::src::foundation::change_notifier.dart::ChangeNotifier" <|-- "El3b::Core::Base::BaseViewModel.dart::BaseViewModel"
+
+class "El3b::Core::Providers::AppConfigProvider.dart::AppConfigProvider" {
+  -User? _user
+  +void updateUser()
+  +void updateUserWithoutNotifyListeners()
+  +User? getUser()
+}
+
+"El3b::Core::Providers::AppConfigProvider.dart::AppConfigProvider" o-- "firebase_auth::firebase_auth.dart::User"
+"flutter::src::foundation::change_notifier.dart::ChangeNotifier" <|-- "El3b::Core::Providers::AppConfigProvider.dart::AppConfigProvider"
+
+class "El3b::Core::Providers::LocalProvider.dart::LocalProvider" {
+  -String _currentLocal
+  +dynamic changeLocal()
+  +bool isEn()
+  +String getLocal()
+}
+
+"flutter::src::foundation::change_notifier.dart::ChangeNotifier" <|-- "El3b::Core::Providers::LocalProvider.dart::LocalProvider"
+
+class "El3b::Core::Providers::ThemeProvider.dart::ThemeProvider" {
+  -ThemeMode _theme
+  +dynamic changeTheme()
+  +bool isDark()
+  +ThemeMode getTheme()
+}
+
+"El3b::Core::Providers::ThemeProvider.dart::ThemeProvider" o-- "flutter::src::material::app.dart::ThemeMode"
+"flutter::src::foundation::change_notifier.dart::ChangeNotifier" <|-- "El3b::Core::Providers::ThemeProvider.dart::ThemeProvider"
+
+class "El3b::Core::Theme::Theme.dart::MyTheme" {
+  {static} +Color purple
+  {static} +Color offWhite
+  {static} +Color white
+  {static} +Color darkPurple
+  {static} +Color lightPurple
+  {static} +Color grayPurple
+  {static} +Color green
+  {static} +Color yellow
+  {static} +Color red
+  {static} +ThemeData lightTheme
+  {static} +ThemeData darkTheme
+}
+
+"El3b::Core::Theme::Theme.dart::MyTheme" o-- "dart::ui::Color"
+"El3b::Core::Theme::Theme.dart::MyTheme" o-- "flutter::src::material::theme_data.dart::ThemeData"
+
+class "El3b::Core::Utils::DialogUtils.dart::MyDialogUtils" {
+  {static} +dynamic showLoadingDialog()
+  {static} +dynamic hideDialog()
+  {static} +dynamic showFailMessage()
+  {static} +dynamic showSuccessMessage()
+  {static} +dynamic showQuestionMessage()
+}
+
+class "El3b::Core::Utils::NegativeActionButton.dart::NegativeActionButton" {
+  +void Function()? negativeAction
+  +String negativeActionTitle
+  +Widget build()
+}
+
+"El3b::Core::Utils::NegativeActionButton.dart::NegativeActionButton" o-- "dart::ui::void Function()"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "El3b::Core::Utils::NegativeActionButton.dart::NegativeActionButton"
+
+class "El3b::Core::Utils::PosActionButton.dart::PosActionButton" {
+  +void Function()? posAction
+  +String posActionTitle
+  +Widget build()
+}
+
+"El3b::Core::Utils::PosActionButton.dart::PosActionButton" o-- "dart::ui::void Function()"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "El3b::Core::Utils::PosActionButton.dart::PosActionButton"
+
+class "El3b::Data::Api::FreeToPlayGamesApi::FreeToPlayGamesApi.dart::FreeToPlayGamesApi" {
+  {static} -FreeToPlayGamesApi? _instance
+  {static} +FreeToPlayGamesApi getInstance()
+  +dynamic getGames()
+}
+
+"El3b::Data::Api::FreeToPlayGamesApi::FreeToPlayGamesApi.dart::FreeToPlayGamesApi" o-- "El3b::Data::Api::FreeToPlayGamesApi::FreeToPlayGamesApi.dart::FreeToPlayGamesApi"
+"El3b::Core::Base::BaseAPIManager.dart::BaseAPIManager" <|-- "El3b::Data::Api::FreeToPlayGamesApi::FreeToPlayGamesApi.dart::FreeToPlayGamesApi"
+
+class "El3b::Data::Api::FreeToPlayGamesApi::FreeToPlayGamesApiAssets.dart::FreeToPlayGamesApiAssets" {
+  {static} -FreeToPlayGamesApiAssets? _instance
+  +String baseURL
+  +String freeToPlayGamesRoute
+  {static} +FreeToPlayGamesApiAssets getFreeToPlayGamesApiAssets()
+}
+
+"El3b::Data::Api::FreeToPlayGamesApi::FreeToPlayGamesApiAssets.dart::FreeToPlayGamesApiAssets" o-- "El3b::Data::Api::FreeToPlayGamesApi::FreeToPlayGamesApiAssets.dart::FreeToPlayGamesApiAssets"
+"El3b::Core::Base::BaseAPIAssets.dart::BaseAPIAssets" <|-- "El3b::Data::Api::FreeToPlayGamesApi::FreeToPlayGamesApiAssets.dart::FreeToPlayGamesApiAssets"
+
+class "El3b::Data::Api::GiveawayGamesApi::GiveawayGamesApi.dart::GiveawayGamesApi" {
+  {static} -GiveawayGamesApi? _instance
+  {static} +GiveawayGamesApi getInstance()
+  +dynamic getAllGames()
+}
+
+"El3b::Data::Api::GiveawayGamesApi::GiveawayGamesApi.dart::GiveawayGamesApi" o-- "El3b::Data::Api::GiveawayGamesApi::GiveawayGamesApi.dart::GiveawayGamesApi"
+"El3b::Core::Base::BaseAPIManager.dart::BaseAPIManager" <|-- "El3b::Data::Api::GiveawayGamesApi::GiveawayGamesApi.dart::GiveawayGamesApi"
+
+class "El3b::Data::Api::GiveawayGamesApi::GiveawayGamesApiAssets.dart::GiveawayGamesApiAssets" {
+  {static} -GiveawayGamesApiAssets? _instance
+  +String baseURL
+  +String giveawayRoute
+  {static} +dynamic getInstance()
+}
+
+"El3b::Data::Api::GiveawayGamesApi::GiveawayGamesApiAssets.dart::GiveawayGamesApiAssets" o-- "El3b::Data::Api::GiveawayGamesApi::GiveawayGamesApiAssets.dart::GiveawayGamesApiAssets"
+"El3b::Core::Base::BaseAPIAssets.dart::BaseAPIAssets" <|-- "El3b::Data::Api::GiveawayGamesApi::GiveawayGamesApiAssets.dart::GiveawayGamesApiAssets"
+
+class "El3b::Data::Api::RAWGGamesAPI::RAWGGamesAPI.dart::RAWGGamesAPI" {
+  {static} -RAWGGamesAPI? _instance
+  {static} +RAWGGamesAPI getInstance()
+  +dynamic getGeneralGames()
+}
+
+"El3b::Data::Api::RAWGGamesAPI::RAWGGamesAPI.dart::RAWGGamesAPI" o-- "El3b::Data::Api::RAWGGamesAPI::RAWGGamesAPI.dart::RAWGGamesAPI"
+"El3b::Core::Base::BaseAPIManager.dart::BaseAPIManager" <|-- "El3b::Data::Api::RAWGGamesAPI::RAWGGamesAPI.dart::RAWGGamesAPI"
+
+class "El3b::Data::Api::RAWGGamesAPI::RAWGGamesAPIAssets.dart::RAWGGamesAPIAssets" {
+  {static} -RAWGGamesAPIAssets? _instance
+  +String baseURL
+  +String gamesRoute
+  +String apiKey
+  {static} +RAWGGamesAPIAssets getInstance()
+}
+
+"El3b::Data::Api::RAWGGamesAPI::RAWGGamesAPIAssets.dart::RAWGGamesAPIAssets" o-- "El3b::Data::Api::RAWGGamesAPI::RAWGGamesAPIAssets.dart::RAWGGamesAPIAssets"
+"El3b::Core::Base::BaseAPIAssets.dart::BaseAPIAssets" <|-- "El3b::Data::Api::RAWGGamesAPI::RAWGGamesAPIAssets.dart::RAWGGamesAPIAssets"
+
+class "El3b::Data::Cache::LocalCache.dart::LocalCache" {
+  {static} -LocalCache? _instance
+  -SharedPreferences? _preferences
+  {static} +LocalCache getInstance()
+  +dynamic getSharedPref()
+  +dynamic cacheData()
+  +dynamic lastUpdatedDate()
+  +dynamic loadData()
+}
+
+"El3b::Data::Cache::LocalCache.dart::LocalCache" o-- "El3b::Data::Cache::LocalCache.dart::LocalCache"
+"El3b::Data::Cache::LocalCache.dart::LocalCache" o-- "shared_preferences::shared_preferences.dart::SharedPreferences"
+
+class "El3b::Data::DataSource::CacheDataLocalDataSourceImpl.dart::CacheDataLocalDataSourceImpl" {
+  +LocalCache cache
+  +dynamic getLastUpdatedDate()
+  +dynamic cacheData()
+  +dynamic getGiveawayGames()
+  +dynamic getFreeToPlayGames()
+  +dynamic getGeneralGames()
+}
+
+"El3b::Data::DataSource::CacheDataLocalDataSourceImpl.dart::CacheDataLocalDataSourceImpl" o-- "El3b::Data::Cache::LocalCache.dart::LocalCache"
+"El3b::Domain::DataSource::CacheDataLocalDataSource.dart::CacheDataLocalDataSource" <|-- "El3b::Data::DataSource::CacheDataLocalDataSourceImpl.dart::CacheDataLocalDataSourceImpl"
+
+class "El3b::Data::DataSource::FirebaseImagesRemoteDatasourceImpl.dart::FirebaseImagesRemoteDatasourceImpl" {
+  +FirebaseImagesDatabase database
+  +FirebaseErrorHandler errorHandler
+  +dynamic uploadUserProfileImage()
+}
+
+"El3b::Data::DataSource::FirebaseImagesRemoteDatasourceImpl.dart::FirebaseImagesRemoteDatasourceImpl" o-- "El3b::Data::Firebase::FirebaseImagesDatabase.dart::FirebaseImagesDatabase"
+"El3b::Data::DataSource::FirebaseImagesRemoteDatasourceImpl.dart::FirebaseImagesRemoteDatasourceImpl" o-- "El3b::Data::Error::FirebaseErrorHandler.dart::FirebaseErrorHandler"
+"El3b::Domain::DataSource::FirebaseImagesRemoteDatasource.dart::FirebaseImagesRemoteDatasource" <|-- "El3b::Data::DataSource::FirebaseImagesRemoteDatasourceImpl.dart::FirebaseImagesRemoteDatasourceImpl"
+
+class "El3b::Data::DataSource::FirebaseUserAuthRemoteDatasourceImpl.dart::FirebaseUserAuthRemoteDatasourceImpl" {
+  +FirebaseUserAuth firebaseUserAuth
+  +FirebaseErrorHandler errorHandler
+  +dynamic createUser()
+  +dynamic updatePhotoUrl()
+  +dynamic signInWithEmailAndPassword()
+  +dynamic resetPasswordWithEmail()
+  +dynamic signInWithGoogle()
+  +dynamic signInWithFacebook()
+}
+
+"El3b::Data::DataSource::FirebaseUserAuthRemoteDatasourceImpl.dart::FirebaseUserAuthRemoteDatasourceImpl" o-- "El3b::Data::Firebase::FirebaseUserAuth.dart::FirebaseUserAuth"
+"El3b::Data::DataSource::FirebaseUserAuthRemoteDatasourceImpl.dart::FirebaseUserAuthRemoteDatasourceImpl" o-- "El3b::Data::Error::FirebaseErrorHandler.dart::FirebaseErrorHandler"
+"El3b::Domain::DataSource::FirebaseUserAuthRemoteDatasource.dart::FirebaseUserAuthRemoteDatasource" <|-- "El3b::Data::DataSource::FirebaseUserAuthRemoteDatasourceImpl.dart::FirebaseUserAuthRemoteDatasourceImpl"
+
+class "El3b::Data::DataSource::FreeToPlayGamesRemoteDataSourceImpl.dart::FreeToPlayGamesRemoteDataSourceImpl" {
+  +FreeToPlayGamesApi api
+  +DioErrorHandler errorHandler
+  +dynamic getGames()
+}
+
+"El3b::Data::DataSource::FreeToPlayGamesRemoteDataSourceImpl.dart::FreeToPlayGamesRemoteDataSourceImpl" o-- "El3b::Data::Api::FreeToPlayGamesApi::FreeToPlayGamesApi.dart::FreeToPlayGamesApi"
+"El3b::Data::DataSource::FreeToPlayGamesRemoteDataSourceImpl.dart::FreeToPlayGamesRemoteDataSourceImpl" o-- "El3b::Data::Error::DioErrorHandler.dart::DioErrorHandler"
+"El3b::Domain::DataSource::FreeToPlayGamesRemoteDataSource.dart::FreeToPlayGamesRemoteDataSource" <|-- "El3b::Data::DataSource::FreeToPlayGamesRemoteDataSourceImpl.dart::FreeToPlayGamesRemoteDataSourceImpl"
+
+class "El3b::Data::DataSource::GiveawayGamesRemoteDataSourceImpl.dart::GiveawayGamesRemoteDataSourceImpl" {
+  +GiveawayGamesApi api
+  +DioErrorHandler errorHandler
+  +dynamic getAllGames()
+}
+
+"El3b::Data::DataSource::GiveawayGamesRemoteDataSourceImpl.dart::GiveawayGamesRemoteDataSourceImpl" o-- "El3b::Data::Api::GiveawayGamesApi::GiveawayGamesApi.dart::GiveawayGamesApi"
+"El3b::Data::DataSource::GiveawayGamesRemoteDataSourceImpl.dart::GiveawayGamesRemoteDataSourceImpl" o-- "El3b::Data::Error::DioErrorHandler.dart::DioErrorHandler"
+"El3b::Domain::DataSource::GiveawayGamesRemoteDataSource.dart::GiveawayGamesRemoteDataSource" <|-- "El3b::Data::DataSource::GiveawayGamesRemoteDataSourceImpl.dart::GiveawayGamesRemoteDataSourceImpl"
+
+class "El3b::Data::DataSource::RAWGGamesRemoteDataSourceImpl.dart::RAWGGamesRemoteDataSourceImpl" {
+  +RAWGGamesAPI api
+  +DioErrorHandler errorHandler
+  +dynamic getGeneralGames()
+}
+
+"El3b::Data::DataSource::RAWGGamesRemoteDataSourceImpl.dart::RAWGGamesRemoteDataSourceImpl" o-- "El3b::Data::Api::RAWGGamesAPI::RAWGGamesAPI.dart::RAWGGamesAPI"
+"El3b::Data::DataSource::RAWGGamesRemoteDataSourceImpl.dart::RAWGGamesRemoteDataSourceImpl" o-- "El3b::Data::Error::DioErrorHandler.dart::DioErrorHandler"
+"El3b::Domain::DataSource::RAWGGamesRemoteDataSource.dart::RAWGGamesRemoteDataSource" <|-- "El3b::Data::DataSource::RAWGGamesRemoteDataSourceImpl.dart::RAWGGamesRemoteDataSourceImpl"
+
+class "El3b::Data::DataSource::UserFirebaseDatabaseRemoteDatasourceImpl.dart::UserFirebaseDatabaseRemoteDatasourceImpl" {
+  +UserFirebaseDatabase userFirebaseDatabase
+  +FirebaseErrorHandler errorHandler
+  +dynamic createUser()
+  +dynamic updateUser()
+  +dynamic userExist()
+}
+
+"El3b::Data::DataSource::UserFirebaseDatabaseRemoteDatasourceImpl.dart::UserFirebaseDatabaseRemoteDatasourceImpl" o-- "El3b::Data::Firebase::UserFirebaseDatabase.dart::UserFirebaseDatabase"
+"El3b::Data::DataSource::UserFirebaseDatabaseRemoteDatasourceImpl.dart::UserFirebaseDatabaseRemoteDatasourceImpl" o-- "El3b::Data::Error::FirebaseErrorHandler.dart::FirebaseErrorHandler"
+"El3b::Domain::DataSource::UserFirebaseDatabaseRemoteDatasource.dart::UserFirebaseDatabaseRemoteDatasource" <|-- "El3b::Data::DataSource::UserFirebaseDatabaseRemoteDatasourceImpl.dart::UserFirebaseDatabaseRemoteDatasourceImpl"
+
+class "El3b::Data::DataSource::WishListLocalDataSourceImpl.dart::WishListLocalDataSourceImpl" {
+  +LocalDatabase database
+  +dynamic addGameToWishList()
+  +dynamic deleteGameFromWishList()
+  +dynamic loadGamesFromWishList()
+}
+
+"El3b::Data::DataSource::WishListLocalDataSourceImpl.dart::WishListLocalDataSourceImpl" o-- "El3b::Data::SQL::LocalDatabase.dart::LocalDatabase"
+"El3b::Domain::DataSource::WishListLocalDataSource.dart::WishListLocalDataSource" <|-- "El3b::Data::DataSource::WishListLocalDataSourceImpl.dart::WishListLocalDataSourceImpl"
+
+class "El3b::Data::Error::DioErrorHandler.dart::DioErrorHandler" {
+  {static} -DioErrorHandler? _instance
+  {static} +DioErrorHandler getInstance()
+  +String dioExceptionHandler()
+}
+
+"El3b::Data::Error::DioErrorHandler.dart::DioErrorHandler" o-- "El3b::Data::Error::DioErrorHandler.dart::DioErrorHandler"
+
+class "El3b::Data::Error::FirebaseErrorHandler.dart::FirebaseErrorHandler" {
+  {static} +FirebaseErrorHandler? instance
+  {static} +dynamic getInstance()
+  +String handleFirebaseImageDatabaseExceptions()
+  +String handleFirebaseAuthException()
+  +String handleLoginError()
+  +String handleFirebaseFireStoreError()
+}
+
+"El3b::Data::Error::FirebaseErrorHandler.dart::FirebaseErrorHandler" o-- "El3b::Data::Error::FirebaseErrorHandler.dart::FirebaseErrorHandler"
+
+class "El3b::Data::Firebase::FirebaseImagesDatabase.dart::FirebaseImagesDatabase" {
+  {static} +FirebaseImagesDatabase? instance
+  -FirebaseStorage _firebaseStorage
+  {static} +dynamic getInstance()
+  +dynamic uploadImage()
+  +String generateName()
+}
+
+"El3b::Data::Firebase::FirebaseImagesDatabase.dart::FirebaseImagesDatabase" o-- "El3b::Data::Firebase::FirebaseImagesDatabase.dart::FirebaseImagesDatabase"
+"El3b::Data::Firebase::FirebaseImagesDatabase.dart::FirebaseImagesDatabase" o-- "firebase_storage::firebase_storage.dart::FirebaseStorage"
+
+class "El3b::Data::Firebase::FirebaseUserAuth.dart::FirebaseUserAuth" {
+  {static} +FirebaseUserAuth? instance
+  -FirebaseAuth _firebase
+  {static} +dynamic getInstance()
+  +dynamic createUser()
+  +dynamic updateUserPhoto()
+  +dynamic updateUserDisplayName()
+  +dynamic signInUserWithEmailAndPassword()
+  +dynamic resetPassword()
+  +dynamic signInWithGoogle()
+  +dynamic signInWithFacebook()
+}
+
+"El3b::Data::Firebase::FirebaseUserAuth.dart::FirebaseUserAuth" o-- "El3b::Data::Firebase::FirebaseUserAuth.dart::FirebaseUserAuth"
+"El3b::Data::Firebase::FirebaseUserAuth.dart::FirebaseUserAuth" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+
+class "El3b::Data::Firebase::UserFirebaseDatabase.dart::UserFirebaseDatabase" {
+  {static} +UserFirebaseDatabase? instance
+  {static} +dynamic getInstance()
+  +CollectionReference<UserDTO> getCollectionReference()
+  +dynamic createUser()
+  +dynamic updateUserData()
+  +dynamic userExist()
+}
+
+"El3b::Data::Firebase::UserFirebaseDatabase.dart::UserFirebaseDatabase" o-- "El3b::Data::Firebase::UserFirebaseDatabase.dart::UserFirebaseDatabase"
+
+class "El3b::Data::Models::Games::FreeToPlayGame::FreeToPlayGameDTO.dart::FreeToPlayGameDTO" {
+  +num? id
+  +String? title
+  +String? thumbnail
+  +String? shortDescription
+  +String? gameUrl
+  +String? genre
+  +String? platform
+  +String? publisher
+  +String? developer
+  +String? releaseDate
+  +String? freetogameProfileUrl
+  +Map<String, dynamic> toJson()
+  +FreeToPlayGame toDomain()
+}
+
+class "El3b::Data::Models::Games::GiveawayGame::GiveawayGameDTO.dart::GiveawayGameDTO" {
+  +num? id
+  +String? title
+  +String? worth
+  +String? thumbnail
+  +String? image
+  +String? description
+  +String? instructions
+  +String? openGiveawayUrl
+  +String? publishedDate
+  +String? type
+  +String? platforms
+  +String? endDate
+  +num? users
+  +String? status
+  +String? gamerpowerUrl
+  +String? openGiveaway
+  +Map<String, dynamic> toJson()
+  +GiveawayGame toDomain()
+}
+
+class "El3b::Data::Models::Games::RAWG::AddedByStatusDTO.dart::AddedByStatusDTO" {
+  +num? yet
+  +num? owned
+  +num? beaten
+  +num? toplay
+  +num? dropped
+  +num? playing
+  +Map<String, dynamic> toJson()
+}
+
+class "El3b::Data::Models::Games::RAWG::FiltersDTO.dart::FiltersDTO" {
+  +List<YearsDTO>? years
+  +Map<String, dynamic> toJson()
+}
+
+class "El3b::Data::Models::Games::RAWG::GenresDTO.dart::GenresDTO" {
+  +num? id
+  +String? name
+  +String? slug
+  +num? gamesCount
+  +String? imageBackground
+  +Map<String, dynamic> toJson()
+  +Genres toDomain()
+}
+
+class "El3b::Data::Models::Games::RAWG::ParentPlatformsDTO.dart::ParentPlatformsDTO" {
+  +PlatformDTO? platform
+  +Map<String, dynamic> toJson()
+}
+
+"El3b::Data::Models::Games::RAWG::ParentPlatformsDTO.dart::ParentPlatformsDTO" o-- "El3b::Data::Models::Games::RAWG::PlatformDTO.dart::PlatformDTO"
+
+class "El3b::Data::Models::Games::RAWG::PlatformDTO.dart::PlatformDTO" {
+  +num? id
+  +String? name
+  +String? slug
+  +String? image
+  +String? yearEnd
+  +num? yearStart
+  +num? gamesCount
+  +String? imageBackground
+  +Map<String, dynamic> toJson()
+}
+
+class "El3b::Data::Models::Games::RAWG::PlatformsDTO.dart::PlatformsDTO" {
+  +PlatformDTO? platform
+  +String? releasedAt
+  +RequirementsEnDTO? requirementsEn
+  +RequirementsEnDTO? requirementsRu
+  +Map<String, dynamic> toJson()
+}
+
+"El3b::Data::Models::Games::RAWG::PlatformsDTO.dart::PlatformsDTO" o-- "El3b::Data::Models::Games::RAWG::PlatformDTO.dart::PlatformDTO"
+"El3b::Data::Models::Games::RAWG::PlatformsDTO.dart::PlatformsDTO" o-- "El3b::Data::Models::Games::RAWG::RequirementsEnDTO.dart::RequirementsEnDTO"
+
+class "El3b::Data::Models::Games::RAWG::RatingsDTO.dart::RatingsDTO" {
+  +num? id
+  +String? title
+  +num? count
+  +num? percent
+  +Map<String, dynamic> toJson()
+}
+
+class "El3b::Data::Models::Games::RAWG::RAWGGameDTO.dart::RAWGGameDTO" {
+  +num? id
+  +String? slug
+  +String? name
+  +String? released
+  +bool? tba
+  +String? backgroundImage
+  +num? rating
+  +num? ratingTop
+  +List<RatingsDTO>? ratings
+  +num? ratingsCount
+  +num? reviewsTextCount
+  +num? added
+  +AddedByStatusDTO? addedByStatus
+  +num? metacritic
+  +num? playtime
+  +num? suggestionsCount
+  +String? updated
+  +String? userGame
+  +num? reviewsCount
+  +String? saturatedColor
+  +String? dominantColor
+  +List<PlatformsDTO>? platforms
+  +List<ParentPlatformsDTO>? parentPlatforms
+  +List<GenresDTO>? genres
+  +List<StoresDTO>? stores
+  +String? clip
+  +List<TagsDTO>? tags
+  +PlatformDTO? esrbRating
+  +List<ShortScreenshotsDTO>? shortScreenshots
+  +Map<String, dynamic> toJson()
+  +RAWGGame toDomain()
+}
+
+"El3b::Data::Models::Games::RAWG::RAWGGameDTO.dart::RAWGGameDTO" o-- "El3b::Data::Models::Games::RAWG::AddedByStatusDTO.dart::AddedByStatusDTO"
+"El3b::Data::Models::Games::RAWG::RAWGGameDTO.dart::RAWGGameDTO" o-- "El3b::Data::Models::Games::RAWG::PlatformDTO.dart::PlatformDTO"
+
+class "El3b::Data::Models::Games::RAWG::RAWGGamesResponseDTO.dart::RAWGGamesResponseDTO" {
+  +num? count
+  +String? next
+  +String? previous
+  +List<RAWGGameDTO>? results
+  +String? seoTitle
+  +String? seoDescription
+  +String? seoKeywords
+  +String? seoH1
+  +bool? noindex
+  +bool? nofollow
+  +String? description
+  +FiltersDTO? filters
+  +List<String>? nofollowCollections
+  +Map<String, dynamic> toJson()
+}
+
+"El3b::Data::Models::Games::RAWG::RAWGGamesResponseDTO.dart::RAWGGamesResponseDTO" o-- "El3b::Data::Models::Games::RAWG::FiltersDTO.dart::FiltersDTO"
+
+class "El3b::Data::Models::Games::RAWG::RequirementsEnDTO.dart::RequirementsEnDTO" {
+  +String? minimum
+  +String? recommended
+  +Map<String, dynamic> toJson()
+}
+
+class "El3b::Data::Models::Games::RAWG::ShortScreenshotsDTO.dart::ShortScreenshotsDTO" {
+  +num? id
+  +String? image
+  +Map<String, dynamic> toJson()
+  +ShortScreenshots toDomain()
+}
+
+class "El3b::Data::Models::Games::RAWG::StoreDTO.dart::StoreDTO" {
+  +num? id
+  +String? name
+  +String? slug
+  +String? domain
+  +num? gamesCount
+  +String? imageBackground
+  +Map<String, dynamic> toJson()
+  +Store toDomain()
+}
+
+class "El3b::Data::Models::Games::RAWG::StoresDTO.dart::StoresDTO" {
+  +num? id
+  +StoreDTO? store
+  +Map<String, dynamic> toJson()
+}
+
+"El3b::Data::Models::Games::RAWG::StoresDTO.dart::StoresDTO" o-- "El3b::Data::Models::Games::RAWG::StoreDTO.dart::StoreDTO"
+
+class "El3b::Data::Models::Games::RAWG::TagsDTO.dart::TagsDTO" {
+  +num? id
+  +String? name
+  +String? slug
+  +String? language
+  +num? gamesCount
+  +String? imageBackground
+  +Map<String, dynamic> toJson()
+}
+
+class "El3b::Data::Models::Games::RAWG::YearsDTO.dart::YearsDTO" {
+  +num? from
+  +num? to
+  +String? filter
+  +num? decade
+  +List<YearsDTO>? years
+  +bool? nofollow
+  +num? count
+  +Map<String, dynamic> toJson()
+}
+
+class "El3b::Data::Models::User::UserDTO.dart::UserDTO" {
+  +String name
+  +String email
+  +String password
+  +String image
+  +String phoneNumber
+  +String birthDate
+  +String bio
+  +Map<String, dynamic> toFireStore()
+}
+
+class "El3b::Data::Repository::FreeToPlayGamesRepositoryImpl.dart::FreeToPlayGamesRepositoryImpl" {
+  +FreeToPlayGamesRemoteDataSource remoteDataSource
+  +CacheDataLocalDataSource localDataSource
+  +dynamic getGames()
+}
+
+"El3b::Data::Repository::FreeToPlayGamesRepositoryImpl.dart::FreeToPlayGamesRepositoryImpl" o-- "El3b::Domain::DataSource::FreeToPlayGamesRemoteDataSource.dart::FreeToPlayGamesRemoteDataSource"
+"El3b::Data::Repository::FreeToPlayGamesRepositoryImpl.dart::FreeToPlayGamesRepositoryImpl" o-- "El3b::Domain::DataSource::CacheDataLocalDataSource.dart::CacheDataLocalDataSource"
+"El3b::Domain::Repository::FreeToPlayGamesRepository.dart::FreeToPlayGamesRepository" <|-- "El3b::Data::Repository::FreeToPlayGamesRepositoryImpl.dart::FreeToPlayGamesRepositoryImpl"
+
+class "El3b::Data::Repository::GiveawayGamesRepositoryImpl.dart::GiveawayGamesRepositoryImpl" {
+  +GiveawayGamesRemoteDataSource remoteDataSource
+  +CacheDataLocalDataSource localDataSource
+  +dynamic getAllGames()
+}
+
+"El3b::Data::Repository::GiveawayGamesRepositoryImpl.dart::GiveawayGamesRepositoryImpl" o-- "El3b::Domain::DataSource::GiveawayGamesRemoteDataSource.dart::GiveawayGamesRemoteDataSource"
+"El3b::Data::Repository::GiveawayGamesRepositoryImpl.dart::GiveawayGamesRepositoryImpl" o-- "El3b::Domain::DataSource::CacheDataLocalDataSource.dart::CacheDataLocalDataSource"
+"El3b::Domain::Repository::GiveawayGamesRepository.dart::GiveawayGamesRepository" <|-- "El3b::Data::Repository::GiveawayGamesRepositoryImpl.dart::GiveawayGamesRepositoryImpl"
+
+class "El3b::Data::Repository::RAWGGamesRepositoryImpl.dart::RAWGGamesRepositoryImpl" {
+  +RAWGGamesRemoteDataSource remoteDataSource
+  +CacheDataLocalDataSource localDataSource
+  +WishListLocalDataSource wishListLocalDataSource
+  +dynamic getGeneralGames()
+  +dynamic addGameToWishList()
+  +dynamic deleteGameFromWishList()
+  +dynamic loadGamesFromWishList()
+}
+
+"El3b::Data::Repository::RAWGGamesRepositoryImpl.dart::RAWGGamesRepositoryImpl" o-- "El3b::Domain::DataSource::RAWGGamesRemoteDataSource.dart::RAWGGamesRemoteDataSource"
+"El3b::Data::Repository::RAWGGamesRepositoryImpl.dart::RAWGGamesRepositoryImpl" o-- "El3b::Domain::DataSource::CacheDataLocalDataSource.dart::CacheDataLocalDataSource"
+"El3b::Data::Repository::RAWGGamesRepositoryImpl.dart::RAWGGamesRepositoryImpl" o-- "El3b::Domain::DataSource::WishListLocalDataSource.dart::WishListLocalDataSource"
+"El3b::Domain::Repository::RAWGGamesRepository.dart::RAWGGamesRepository" <|-- "El3b::Data::Repository::RAWGGamesRepositoryImpl.dart::RAWGGamesRepositoryImpl"
+
+class "El3b::Data::Repository::UserRepositoryImpl.dart::UserRepositoryImpl" {
+  +FirebaseImagesRemoteDatasource imagesRemoteDatasource
+  +FirebaseUserAuthRemoteDatasource authRemoteDatasource
+  +UserFirebaseDatabaseRemoteDatasource userFirebaseDatabaseRemoteDatasource
+  +dynamic createUserFireBaseAuth()
+  +dynamic uploadUserImage()
+  +dynamic updateUserPhotoUrl()
+  +dynamic createUserFirebaseFireStore()
+  +dynamic updateUserData()
+  +dynamic signInWithEmailAndPassword()
+  +dynamic resetPasswordWithEmail()
+  +dynamic userExist()
+  +dynamic singInWithGoogle()
+  +dynamic signInWithFacebook()
+}
+
+"El3b::Data::Repository::UserRepositoryImpl.dart::UserRepositoryImpl" o-- "El3b::Domain::DataSource::FirebaseImagesRemoteDatasource.dart::FirebaseImagesRemoteDatasource"
+"El3b::Data::Repository::UserRepositoryImpl.dart::UserRepositoryImpl" o-- "El3b::Domain::DataSource::FirebaseUserAuthRemoteDatasource.dart::FirebaseUserAuthRemoteDatasource"
+"El3b::Data::Repository::UserRepositoryImpl.dart::UserRepositoryImpl" o-- "El3b::Domain::DataSource::UserFirebaseDatabaseRemoteDatasource.dart::UserFirebaseDatabaseRemoteDatasource"
+"El3b::Domain::Repository::UserRepository.dart::UserRepository" <|-- "El3b::Data::Repository::UserRepositoryImpl.dart::UserRepositoryImpl"
+
+class "El3b::Data::SQL::LocalDatabase.dart::LocalDatabase" {
+  -Database? _db
+  +LocalDatabaseAssets assets
+  {static} -LocalDatabase? _instance
+  {static} +LocalDatabase getInstance()
+  +dynamic getDB()
+  -dynamic _initiateDB()
+  -dynamic _onCreate()
+  +dynamic addGame()
+  +dynamic deleteGame()
+  +dynamic getGames()
+}
+
+"El3b::Data::SQL::LocalDatabase.dart::LocalDatabase" o-- "sqflite_common::sqlite_api.dart::Database"
+"El3b::Data::SQL::LocalDatabase.dart::LocalDatabase" o-- "El3b::Data::SQL::LocalDatabaseAssets.dart::LocalDatabaseAssets"
+"El3b::Data::SQL::LocalDatabase.dart::LocalDatabase" o-- "El3b::Data::SQL::LocalDatabase.dart::LocalDatabase"
+
+class "El3b::Data::SQL::LocalDatabaseAssets.dart::LocalDatabaseAssets" {
+  {static} -LocalDatabaseAssets? _instance
+  +String giveawayGamesTable
+  +String freeToPlayGamesTable
+  +String rawgGamesTable
+  +String rawgGamesGenresTable
+  +String rawgGamesStoresTable
+  +String rawgGamesScreenShotsTable
+  +String favoriteRAWGGamesTable
+  +String favoriteRAWGGamesGenresTable
+  +String favoriteRAWGGamesStoresTable
+  +String favoriteRAWGGamesScreenShotsTable
+  {static} +LocalDatabaseAssets getInstance()
+}
+
+"El3b::Data::SQL::LocalDatabaseAssets.dart::LocalDatabaseAssets" o-- "El3b::Data::SQL::LocalDatabaseAssets.dart::LocalDatabaseAssets"
+
+abstract class "El3b::Domain::DataSource::CacheDataLocalDataSource.dart::CacheDataLocalDataSource" {
+  +dynamic getLastUpdatedDate()
+  +dynamic cacheData()
+  +dynamic getGiveawayGames()
+  +dynamic getFreeToPlayGames()
+  +dynamic getGeneralGames()
+}
+
+abstract class "El3b::Domain::DataSource::FirebaseImagesRemoteDatasource.dart::FirebaseImagesRemoteDatasource" {
+  +dynamic uploadUserProfileImage()
+}
+
+abstract class "El3b::Domain::DataSource::FirebaseUserAuthRemoteDatasource.dart::FirebaseUserAuthRemoteDatasource" {
+  +dynamic createUser()
+  +dynamic updatePhotoUrl()
+  +dynamic signInWithEmailAndPassword()
+  +dynamic resetPasswordWithEmail()
+  +dynamic signInWithGoogle()
+  +dynamic signInWithFacebook()
+}
+
+abstract class "El3b::Domain::DataSource::FreeToPlayGamesRemoteDataSource.dart::FreeToPlayGamesRemoteDataSource" {
+  +dynamic getGames()
+}
+
+abstract class "El3b::Domain::DataSource::GiveawayGamesRemoteDataSource.dart::GiveawayGamesRemoteDataSource" {
+  +dynamic getAllGames()
+}
+
+abstract class "El3b::Domain::DataSource::RAWGGamesRemoteDataSource.dart::RAWGGamesRemoteDataSource" {
+  +dynamic getGeneralGames()
+}
+
+abstract class "El3b::Domain::DataSource::UserFirebaseDatabaseRemoteDatasource.dart::UserFirebaseDatabaseRemoteDatasource" {
+  +dynamic createUser()
+  +dynamic updateUser()
+  +dynamic userExist()
+}
+
+abstract class "El3b::Domain::DataSource::WishListLocalDataSource.dart::WishListLocalDataSource" {
+  +dynamic addGameToWishList()
+  +dynamic deleteGameFromWishList()
+  +dynamic loadGamesFromWishList()
+}
+
+class "El3b::Domain::Exception::CacheException.dart::CacheException" {
+  +String errorMessage
+}
+
+"dart::core::Exception" <|-- "El3b::Domain::Exception::CacheException.dart::CacheException"
+
+class "El3b::Domain::Exception::DioServerException.dart::DioServerException" {
+  +String errorMessage
+}
+
+"dart::core::Exception" <|-- "El3b::Domain::Exception::DioServerException.dart::DioServerException"
+
+class "El3b::Domain::Exception::FirebaseImagesException.dart::FirebaseImagesException" {
+  +String errorMessage
+}
+
+"dart::core::Exception" <|-- "El3b::Domain::Exception::FirebaseImagesException.dart::FirebaseImagesException"
+
+class "El3b::Domain::Exception::FirebaseUserAuthException.dart::FirebaseUserAuthException" {
+  +String errorMessage
+}
+
+"dart::core::Exception" <|-- "El3b::Domain::Exception::FirebaseUserAuthException.dart::FirebaseUserAuthException"
+
+class "El3b::Domain::Exception::FirebaseUserDatabaseException.dart::FirebaseUserDatabaseException" {
+  +String errorMessage
+}
+
+"dart::core::Exception" <|-- "El3b::Domain::Exception::FirebaseUserDatabaseException.dart::FirebaseUserDatabaseException"
+
+class "El3b::Domain::Exception::InternetConnectionException.dart::InternetConnectionException" {
+  +String errorMessage
+}
+
+"dart::core::Exception" <|-- "El3b::Domain::Exception::InternetConnectionException.dart::InternetConnectionException"
+
+class "El3b::Domain::Exception::PermissionDeniedException.dart::PermissionDeniedException" {
+  +String errorMessage
+}
+
+"dart::core::Exception" <|-- "El3b::Domain::Exception::PermissionDeniedException.dart::PermissionDeniedException"
+
+class "El3b::Domain::Exception::TimeOutOperationsException.dart::TimeOutOperationsException" {
+  +String errorMessage
+}
+
+"dart::core::Exception" <|-- "El3b::Domain::Exception::TimeOutOperationsException.dart::TimeOutOperationsException"
+
+class "El3b::Domain::Exception::UnknownException.dart::UnknownException" {
+  +String errorMessage
+}
+
+"dart::core::Exception" <|-- "El3b::Domain::Exception::UnknownException.dart::UnknownException"
+
+class "El3b::Domain::Exception::URLLauncherException.dart::URLLauncherException" {
+  +String errorMessage
+}
+
+"dart::core::Exception" <|-- "El3b::Domain::Exception::URLLauncherException.dart::URLLauncherException"
+
+class "El3b::Domain::Models::Games::FreeToPlayGame::FreeToPlayGame.dart::FreeToPlayGame" {
+  +String? title
+  +String? thumbnail
+  +String? shortDescription
+  +String? gameUrl
+  +String? genre
+  +String? platform
+  +String? icon
+  +FreeToPlayGameDTO toData()
+}
+
+class "El3b::Domain::Models::Games::GiveawayGames::GiveawayGame.dart::GiveawayGame" {
+  +String? title
+  +String? worth
+  +String? image
+  +String? instructions
+  +String? openGiveawayUrl
+  +String? platforms
+  +String? endDate
+  +List<String> icons
+  +GiveawayGameDTO toData()
+}
+
+class "El3b::Domain::Models::Games::RAWG::Genres.dart::Genres" {
+  +num? gameID
+  +num? id
+  +String? name
+  +String? slug
+  +num? gamesCount
+  +String? imageBackground
+  +GenresDTO toData()
+}
+
+class "El3b::Domain::Models::Games::RAWG::RAWGGame.dart::RAWGGame" {
+  +num? id
+  +String? name
+  +String? released
+  +String? backgroundImage
+  +num? rating
+  +num? metacritic
+  +List<Genres>? genres
+  +List<Store>? stores
+  +List<ShortScreenshots>? shortScreenshots
+  +bool? inWishList
+  +List<String> icons
+  +RAWGGameDTO toData()
+}
+
+class "El3b::Domain::Models::Games::RAWG::ShortScreenshots.dart::ShortScreenshots" {
+  +num? gameID
+  +num? id
+  +String? image
+  +ShortScreenshotsDTO toData()
+}
+
+class "El3b::Domain::Models::Games::RAWG::Store.dart::Store" {
+  +num? gameID
+  +num? id
+  +String? name
+  +String? slug
+  +String? domain
+  +num? gamesCount
+  +String? imageBackground
+  +StoreDTO toData()
+}
+
+class "El3b::Domain::Models::User::MyUser.dart::MyUser" {
+  +String name
+  +String email
+  +String password
+  +String image
+  +String phoneNumber
+  +String birthDate
+  +String bio
+  +UserDTO toDataSource()
+}
+
+abstract class "El3b::Domain::Repository::FreeToPlayGamesRepository.dart::FreeToPlayGamesRepository" {
+  +dynamic getGames()
+}
+
+abstract class "El3b::Domain::Repository::GiveawayGamesRepository.dart::GiveawayGamesRepository" {
+  +dynamic getAllGames()
+}
+
+abstract class "El3b::Domain::Repository::RAWGGamesRepository.dart::RAWGGamesRepository" {
+  +dynamic getGeneralGames()
+  +dynamic addGameToWishList()
+  +dynamic deleteGameFromWishList()
+  +dynamic loadGamesFromWishList()
+}
+
+abstract class "El3b::Domain::Repository::UserRepository.dart::UserRepository" {
+  +dynamic createUserFirebaseFireStore()
+  +dynamic createUserFireBaseAuth()
+  +dynamic uploadUserImage()
+  +dynamic updateUserPhotoUrl()
+  +dynamic updateUserData()
+  +dynamic signInWithEmailAndPassword()
+  +dynamic resetPasswordWithEmail()
+  +dynamic userExist()
+  +dynamic singInWithGoogle()
+  +dynamic signInWithFacebook()
+}
+
+class "El3b::Domain::UseCase::AddGameToWishListUseCase.dart::AddGameToWishListUseCase" {
+  +RAWGGamesRepository repository
+  +dynamic invoke()
+}
+
+"El3b::Domain::UseCase::AddGameToWishListUseCase.dart::AddGameToWishListUseCase" o-- "El3b::Domain::Repository::RAWGGamesRepository.dart::RAWGGamesRepository"
+
+class "El3b::Domain::UseCase::AddUserUseCase.dart::AddUserUseCase" {
+  +UserRepository repository
+  +dynamic invoke()
+}
+
+"El3b::Domain::UseCase::AddUserUseCase.dart::AddUserUseCase" o-- "El3b::Domain::Repository::UserRepository.dart::UserRepository"
+
+class "El3b::Domain::UseCase::CheckIfUserExistUseCase.dart::CheckIfUserExistUseCase" {
+  +UserRepository repository
+  +dynamic invoke()
+}
+
+"El3b::Domain::UseCase::CheckIfUserExistUseCase.dart::CheckIfUserExistUseCase" o-- "El3b::Domain::Repository::UserRepository.dart::UserRepository"
+
+class "El3b::Domain::UseCase::CreateAccountUseCase.dart::CreateAccountUseCase" {
+  +UserRepository repository
+  +dynamic invoke()
+}
+
+"El3b::Domain::UseCase::CreateAccountUseCase.dart::CreateAccountUseCase" o-- "El3b::Domain::Repository::UserRepository.dart::UserRepository"
+
+class "El3b::Domain::UseCase::DeleteGameFromWishListUseCase.dart::DeleteGameFromWishListUseCase" {
+  +RAWGGamesRepository repository
+  +dynamic invoke()
+}
+
+"El3b::Domain::UseCase::DeleteGameFromWishListUseCase.dart::DeleteGameFromWishListUseCase" o-- "El3b::Domain::Repository::RAWGGamesRepository.dart::RAWGGamesRepository"
+
+class "El3b::Domain::UseCase::GetAllGiveGamesUseCase.dart::GetAllGiveGamesUseCase" {
+  +GiveawayGamesRepository repository
+  +dynamic invoke()
+  +List<GiveawayGame> addGamesIcons()
+}
+
+"El3b::Domain::UseCase::GetAllGiveGamesUseCase.dart::GetAllGiveGamesUseCase" o-- "El3b::Domain::Repository::GiveawayGamesRepository.dart::GiveawayGamesRepository"
+
+class "El3b::Domain::UseCase::GetFreeToPlayGamesUseCase.dart::GetFreeToPlayGamesUseCase" {
+  +FreeToPlayGamesRepository repository
+  +dynamic invoke()
+  +List<FreeToPlayGame> changePlatformToIcon()
+}
+
+"El3b::Domain::UseCase::GetFreeToPlayGamesUseCase.dart::GetFreeToPlayGamesUseCase" o-- "El3b::Domain::Repository::FreeToPlayGamesRepository.dart::FreeToPlayGamesRepository"
+
+class "El3b::Domain::UseCase::GetRAWGGeneralGamesUseCase.dart::GetRAWGGeneralGamesUseCase" {
+  +RAWGGamesRepository repository
+  +dynamic invoke()
+  +List<RAWGGame> addStoresIcons()
+  +List<RAWGGame> noNullValue()
+  +List<RAWGGame> wishListGames()
+}
+
+"El3b::Domain::UseCase::GetRAWGGeneralGamesUseCase.dart::GetRAWGGeneralGamesUseCase" o-- "El3b::Domain::Repository::RAWGGamesRepository.dart::RAWGGamesRepository"
+
+class "El3b::Domain::UseCase::ResetPasswordUseCase.dart::ResetPasswordUseCase" {
+  +UserRepository repository
+  +dynamic invoke()
+}
+
+"El3b::Domain::UseCase::ResetPasswordUseCase.dart::ResetPasswordUseCase" o-- "El3b::Domain::Repository::UserRepository.dart::UserRepository"
+
+class "El3b::Domain::UseCase::SignInUserWithEmailAndPasswordUseCase.dart::SignInUserWithEmailAndPasswordUseCase" {
+  +UserRepository repository
+  +dynamic invoke()
+}
+
+"El3b::Domain::UseCase::SignInUserWithEmailAndPasswordUseCase.dart::SignInUserWithEmailAndPasswordUseCase" o-- "El3b::Domain::Repository::UserRepository.dart::UserRepository"
+
+class "El3b::Domain::UseCase::SignInWithFacebookUseCase.dart::SignInWithFacebookUseCase" {
+  +UserRepository repository
+  +dynamic invoke()
+}
+
+"El3b::Domain::UseCase::SignInWithFacebookUseCase.dart::SignInWithFacebookUseCase" o-- "El3b::Domain::Repository::UserRepository.dart::UserRepository"
+
+class "El3b::Domain::UseCase::SignInWithGoogleUseCase.dart::SignInWithGoogleUseCase" {
+  +UserRepository repository
+  +dynamic invoke()
+}
+
+"El3b::Domain::UseCase::SignInWithGoogleUseCase.dart::SignInWithGoogleUseCase" o-- "El3b::Domain::Repository::UserRepository.dart::UserRepository"
+
+class "El3b::Domain::UseCase::UpdateUserDataUseCase.dart::UpdateUserDataUseCase" {
+  +UserRepository repository
+  +dynamic invoke()
+}
+
+"El3b::Domain::UseCase::UpdateUserDataUseCase.dart::UpdateUserDataUseCase" o-- "El3b::Domain::Repository::UserRepository.dart::UserRepository"
+
+class "El3b::firebase_options.dart::DefaultFirebaseOptions" {
+  {static} +FirebaseOptions web
+  {static} +FirebaseOptions android
+  {static} +FirebaseOptions ios
+  {static} +FirebaseOptions macos
+  {static} +FirebaseOptions currentPlatform
+}
+
+"El3b::firebase_options.dart::DefaultFirebaseOptions" o-- "firebase_core_platform_interface::firebase_core_platform_interface.dart::FirebaseOptions"
+
+class "El3b::main.dart::MyApp" {
+  +bool firstTime
+  +User? user
+  +ThemeProvider themeProvider
+  +LocalProvider localProvider
+  +Widget build()
+  +dynamic setTheme()
+  +dynamic setLocal()
+}
+
+"El3b::main.dart::MyApp" o-- "firebase_auth::firebase_auth.dart::User"
+"El3b::main.dart::MyApp" o-- "El3b::Core::Providers::ThemeProvider.dart::ThemeProvider"
+"El3b::main.dart::MyApp" o-- "El3b::Core::Providers::LocalProvider.dart::LocalProvider"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "El3b::main.dart::MyApp"
+
+abstract class "El3b::Presentation::UI::ExtraInfo::ExtraInfoNavigator.dart::ExtraInfoNavigator" {
+  +dynamic showCustomDatePicker()
+  +dynamic goToHomeScreen()
+}
+
+"El3b::Core::Base::BaseNavigator.dart::BaseNavigator" <|-- "El3b::Presentation::UI::ExtraInfo::ExtraInfoNavigator.dart::ExtraInfoNavigator"
+
+class "El3b::Presentation::UI::ExtraInfo::ExtraInfoView.dart::ExtraInfoView" {
+  {static} +String routeName
+  +State<ExtraInfoView> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "El3b::Presentation::UI::ExtraInfo::ExtraInfoView.dart::ExtraInfoView"
+
+class "El3b::Presentation::UI::ExtraInfo::ExtraInfoView.dart::_ExtraInfoViewState" {
+  +Widget build()
+  +ExtraInfoViewModel initViewModel()
+  +dynamic showCustomDatePicker()
+  +dynamic goToHomeScreen()
+}
+
+"El3b::Core::Base::BaseState.dart::BaseState" <|-- "El3b::Presentation::UI::ExtraInfo::ExtraInfoView.dart::_ExtraInfoViewState"
+"El3b::Presentation::UI::ExtraInfo::ExtraInfoNavigator.dart::ExtraInfoNavigator" <|-- "El3b::Presentation::UI::ExtraInfo::ExtraInfoView.dart::_ExtraInfoViewState"
+
+class "El3b::Presentation::UI::ExtraInfo::ExtraInfoViewModel.dart::ExtraInfoViewModel" {
+  +UpdateUserDataUseCase useCase
+  +GlobalKey<FormState> formKey
+  +TextEditingController phoneController
+  +TextEditingController bioController
+  +DateTime birthDate
+  +String selectedDate
+  +dynamic showDatePicker()
+  +dynamic goToHomeScreen()
+  +String? phoneValidation()
+  +String? bioValidation()
+  +dynamic changeDate()
+  +dynamic updateUserData()
+}
+
+"El3b::Presentation::UI::ExtraInfo::ExtraInfoViewModel.dart::ExtraInfoViewModel" o-- "El3b::Domain::UseCase::UpdateUserDataUseCase.dart::UpdateUserDataUseCase"
+"El3b::Presentation::UI::ExtraInfo::ExtraInfoViewModel.dart::ExtraInfoViewModel" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"El3b::Presentation::UI::ExtraInfo::ExtraInfoViewModel.dart::ExtraInfoViewModel" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"El3b::Core::Base::BaseViewModel.dart::BaseViewModel" <|-- "El3b::Presentation::UI::ExtraInfo::ExtraInfoViewModel.dart::ExtraInfoViewModel"
+
+abstract class "El3b::Presentation::UI::ForgetPassword::ForgetPasswordNavigator.dart::ForgetPasswordNavigator" {
+}
+
+"El3b::Core::Base::BaseNavigator.dart::BaseNavigator" <|-- "El3b::Presentation::UI::ForgetPassword::ForgetPasswordNavigator.dart::ForgetPasswordNavigator"
+
+class "El3b::Presentation::UI::ForgetPassword::ForgetPasswordView.dart::ForgetPasswordView" {
+  {static} +String routeName
+  +State<ForgetPasswordView> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "El3b::Presentation::UI::ForgetPassword::ForgetPasswordView.dart::ForgetPasswordView"
+
+class "El3b::Presentation::UI::ForgetPassword::ForgetPasswordView.dart::_ForgetPasswordViewState" {
+  +Widget build()
+  +ForgetPasswordViewModel initViewModel()
+}
+
+"El3b::Core::Base::BaseState.dart::BaseState" <|-- "El3b::Presentation::UI::ForgetPassword::ForgetPasswordView.dart::_ForgetPasswordViewState"
+"El3b::Presentation::UI::ForgetPassword::ForgetPasswordNavigator.dart::ForgetPasswordNavigator" <|-- "El3b::Presentation::UI::ForgetPassword::ForgetPasswordView.dart::_ForgetPasswordViewState"
+
+class "El3b::Presentation::UI::ForgetPassword::ForgetPasswordViewModel.dart::ForgetPasswordViewModel" {
+  +ResetPasswordUseCase useCase
+  +GlobalKey<FormState> formKey
+  +TextEditingController emailController
+  +dynamic goToLoginScreen()
+  +String? emailValidation()
+  +dynamic resetPassword()
+}
+
+"El3b::Presentation::UI::ForgetPassword::ForgetPasswordViewModel.dart::ForgetPasswordViewModel" o-- "El3b::Domain::UseCase::ResetPasswordUseCase.dart::ResetPasswordUseCase"
+"El3b::Presentation::UI::ForgetPassword::ForgetPasswordViewModel.dart::ForgetPasswordViewModel" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"El3b::Presentation::UI::ForgetPassword::ForgetPasswordViewModel.dart::ForgetPasswordViewModel" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"El3b::Core::Base::BaseViewModel.dart::BaseViewModel" <|-- "El3b::Presentation::UI::ForgetPassword::ForgetPasswordViewModel.dart::ForgetPasswordViewModel"
+
+abstract class "El3b::Presentation::UI::Home::HomeNavigator.dart::HomeNavigator" {
+}
+
+"El3b::Core::Base::BaseNavigator.dart::BaseNavigator" <|-- "El3b::Presentation::UI::Home::HomeNavigator.dart::HomeNavigator"
+
+class "El3b::Presentation::UI::Home::HomeView.dart::HomeView" {
+  {static} +String routeName
+  +State<HomeView> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "El3b::Presentation::UI::Home::HomeView.dart::HomeView"
+
+class "El3b::Presentation::UI::Home::HomeView.dart::_HomeViewState" {
+  +Widget build()
+  +HomeViewModel initViewModel()
+}
+
+"El3b::Core::Base::BaseState.dart::BaseState" <|-- "El3b::Presentation::UI::Home::HomeView.dart::_HomeViewState"
+"El3b::Presentation::UI::Home::HomeNavigator.dart::HomeNavigator" <|-- "El3b::Presentation::UI::Home::HomeView.dart::_HomeViewState"
+
+class "El3b::Presentation::UI::Home::HomeViewModel.dart::HomeViewModel" {
+  +int currentIndex
+  +List<Widget> tabs
+  +dynamic changeSelectedIndex()
+}
+
+"El3b::Core::Base::BaseViewModel.dart::BaseViewModel" <|-- "El3b::Presentation::UI::Home::HomeViewModel.dart::HomeViewModel"
+
+abstract class "El3b::Presentation::UI::Home::Tabs::Chat::ChatTabNavigator.dart::ChatTabNavigator" {
+}
+
+"El3b::Core::Base::BaseNavigator.dart::BaseNavigator" <|-- "El3b::Presentation::UI::Home::Tabs::Chat::ChatTabNavigator.dart::ChatTabNavigator"
+
+class "El3b::Presentation::UI::Home::Tabs::Chat::ChatTabView.dart::ChatTabView" {
+  +State<ChatTabView> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "El3b::Presentation::UI::Home::Tabs::Chat::ChatTabView.dart::ChatTabView"
+
+class "El3b::Presentation::UI::Home::Tabs::Chat::ChatTabView.dart::_ChatTabViewState" {
+  +Widget build()
+  +ChatTabViewModel initViewModel()
+}
+
+"El3b::Core::Base::BaseState.dart::BaseState" <|-- "El3b::Presentation::UI::Home::Tabs::Chat::ChatTabView.dart::_ChatTabViewState"
+"El3b::Presentation::UI::Home::Tabs::Chat::ChatTabNavigator.dart::ChatTabNavigator" <|-- "El3b::Presentation::UI::Home::Tabs::Chat::ChatTabView.dart::_ChatTabViewState"
+
+class "El3b::Presentation::UI::Home::Tabs::Chat::ChatTabViewModel.dart::ChatTabViewModel" {
+}
+
+"El3b::Core::Base::BaseViewModel.dart::BaseViewModel" <|-- "El3b::Presentation::UI::Home::Tabs::Chat::ChatTabViewModel.dart::ChatTabViewModel"
+
+abstract class "El3b::Presentation::UI::Home::Tabs::Explore::ExploreTabNavigator.dart::ExploreTabNavigator" {
+}
+
+"El3b::Core::Base::BaseNavigator.dart::BaseNavigator" <|-- "El3b::Presentation::UI::Home::Tabs::Explore::ExploreTabNavigator.dart::ExploreTabNavigator"
+
+class "El3b::Presentation::UI::Home::Tabs::Explore::ExploreTabView.dart::ExploreTabView" {
+  +State<ExploreTabView> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "El3b::Presentation::UI::Home::Tabs::Explore::ExploreTabView.dart::ExploreTabView"
+
+class "El3b::Presentation::UI::Home::Tabs::Explore::ExploreTabView.dart::_ExploreTabViewState" {
+  +Widget build()
+  +ExploreTabViewModel initViewModel()
+}
+
+"El3b::Core::Base::BaseState.dart::BaseState" <|-- "El3b::Presentation::UI::Home::Tabs::Explore::ExploreTabView.dart::_ExploreTabViewState"
+"El3b::Presentation::UI::Home::Tabs::Explore::ExploreTabNavigator.dart::ExploreTabNavigator" <|-- "El3b::Presentation::UI::Home::Tabs::Explore::ExploreTabView.dart::_ExploreTabViewState"
+
+class "El3b::Presentation::UI::Home::Tabs::Explore::ExploreTabViewModel.dart::ExploreTabViewModel" {
+}
+
+"El3b::Core::Base::BaseViewModel.dart::BaseViewModel" <|-- "El3b::Presentation::UI::Home::Tabs::Explore::ExploreTabViewModel.dart::ExploreTabViewModel"
+
+abstract class "El3b::Presentation::UI::Home::Tabs::Favorite::FavoriteTabNavigator.dart::FavoriteTabNavigator" {
+}
+
+"El3b::Core::Base::BaseNavigator.dart::BaseNavigator" <|-- "El3b::Presentation::UI::Home::Tabs::Favorite::FavoriteTabNavigator.dart::FavoriteTabNavigator"
+
+class "El3b::Presentation::UI::Home::Tabs::Favorite::FavoriteTabView.dart::FavoriteTabView" {
+  +State<FavoriteTabView> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "El3b::Presentation::UI::Home::Tabs::Favorite::FavoriteTabView.dart::FavoriteTabView"
+
+class "El3b::Presentation::UI::Home::Tabs::Favorite::FavoriteTabView.dart::_FavoriteTabViewState" {
+  +Widget build()
+  +FavoriteTabViewModel initViewModel()
+}
+
+"El3b::Core::Base::BaseState.dart::BaseState" <|-- "El3b::Presentation::UI::Home::Tabs::Favorite::FavoriteTabView.dart::_FavoriteTabViewState"
+"El3b::Presentation::UI::Home::Tabs::Favorite::FavoriteTabNavigator.dart::FavoriteTabNavigator" <|-- "El3b::Presentation::UI::Home::Tabs::Favorite::FavoriteTabView.dart::_FavoriteTabViewState"
+
+class "El3b::Presentation::UI::Home::Tabs::Favorite::FavoriteTabViewModel.dart::FavoriteTabViewModel" {
+}
+
+"El3b::Core::Base::BaseViewModel.dart::BaseViewModel" <|-- "El3b::Presentation::UI::Home::Tabs::Favorite::FavoriteTabViewModel.dart::FavoriteTabViewModel"
+
+abstract class "El3b::Presentation::UI::Home::Tabs::Home::HomeTabNavigator.dart::HomeTabNavigator" {
+}
+
+"El3b::Core::Base::BaseNavigator.dart::BaseNavigator" <|-- "El3b::Presentation::UI::Home::Tabs::Home::HomeTabNavigator.dart::HomeTabNavigator"
+
+class "El3b::Presentation::UI::Home::Tabs::Home::HomeTabView.dart::HomeTabView" {
+  +State<HomeTabView> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "El3b::Presentation::UI::Home::Tabs::Home::HomeTabView.dart::HomeTabView"
+
+class "El3b::Presentation::UI::Home::Tabs::Home::HomeTabView.dart::_HomeTabViewState" {
+  +void initState()
+  +Widget build()
+  +HomeTabViewModel initViewModel()
+}
+
+"El3b::Core::Base::BaseState.dart::BaseState" <|-- "El3b::Presentation::UI::Home::Tabs::Home::HomeTabView.dart::_HomeTabViewState"
+"El3b::Presentation::UI::Home::Tabs::Home::HomeTabNavigator.dart::HomeTabNavigator" <|-- "El3b::Presentation::UI::Home::Tabs::Home::HomeTabView.dart::_HomeTabViewState"
+
+class "El3b::Presentation::UI::Home::Tabs::Home::HomeTabViewModel.dart::HomeTabViewModel" {
+  +GetAllGiveGamesUseCase getAllGiveGamesUseCase
+  +GetFreeToPlayGamesUseCase getFreeToPlayGamesUseCase
+  +GetRAWGGeneralGamesUseCase getRAWGGeneralGamesUseCase
+  +AddGameToWishListUseCase addGameToWishListUseCase
+  +DeleteGameFromWishListUseCase deleteGameFromWishListUseCase
+  +String? errorMessage
+  +String? rawgErrorMessage
+  +List<GiveawayGame> listGiveawayGames
+  +List<FreeToPlayGame> listFreeToPLayGames
+  +List<RAWGGame> listRAWGGames
+  +bool giveawayGameSelected
+  +GiveawayGame giveawaySelectedGame
+  +bool freeToPlayGameSelected
+  +FreeToPlayGame freeToPlayGameSelectedGame
+  +bool rawgGameSelected
+  +RAWGGame rawgGameSelectedGame
+  +void getGames()
+  +void getGeneralGames()
+  +dynamic openURL()
+  +dynamic editGameWishListState()
+  +dynamic selectGiveawayGame()
+  +dynamic unselectGiveawayGame()
+  +dynamic selectFreeToPlayGame()
+  +dynamic unselectFreeToPlayGame()
+  +dynamic selectRAWGGame()
+  +dynamic unselectRAWGGame()
+}
+
+"El3b::Presentation::UI::Home::Tabs::Home::HomeTabViewModel.dart::HomeTabViewModel" o-- "El3b::Domain::UseCase::GetAllGiveGamesUseCase.dart::GetAllGiveGamesUseCase"
+"El3b::Presentation::UI::Home::Tabs::Home::HomeTabViewModel.dart::HomeTabViewModel" o-- "El3b::Domain::UseCase::GetFreeToPlayGamesUseCase.dart::GetFreeToPlayGamesUseCase"
+"El3b::Presentation::UI::Home::Tabs::Home::HomeTabViewModel.dart::HomeTabViewModel" o-- "El3b::Domain::UseCase::GetRAWGGeneralGamesUseCase.dart::GetRAWGGeneralGamesUseCase"
+"El3b::Presentation::UI::Home::Tabs::Home::HomeTabViewModel.dart::HomeTabViewModel" o-- "El3b::Domain::UseCase::AddGameToWishListUseCase.dart::AddGameToWishListUseCase"
+"El3b::Presentation::UI::Home::Tabs::Home::HomeTabViewModel.dart::HomeTabViewModel" o-- "El3b::Domain::UseCase::DeleteGameFromWishListUseCase.dart::DeleteGameFromWishListUseCase"
+"El3b::Presentation::UI::Home::Tabs::Home::HomeTabViewModel.dart::HomeTabViewModel" o-- "El3b::Domain::Models::Games::GiveawayGames::GiveawayGame.dart::GiveawayGame"
+"El3b::Presentation::UI::Home::Tabs::Home::HomeTabViewModel.dart::HomeTabViewModel" o-- "El3b::Domain::Models::Games::FreeToPlayGame::FreeToPlayGame.dart::FreeToPlayGame"
+"El3b::Presentation::UI::Home::Tabs::Home::HomeTabViewModel.dart::HomeTabViewModel" o-- "El3b::Domain::Models::Games::RAWG::RAWGGame.dart::RAWGGame"
+"El3b::Core::Base::BaseViewModel.dart::BaseViewModel" <|-- "El3b::Presentation::UI::Home::Tabs::Home::HomeTabViewModel.dart::HomeTabViewModel"
+
+class "El3b::Presentation::UI::Home::Tabs::Home::Widgets::FreeToPlayGamesHoldWidget.dart::FreeToPlayGamesHoldWidget" {
+  +FreeToPlayGame game
+  +Widget build()
+}
+
+"El3b::Presentation::UI::Home::Tabs::Home::Widgets::FreeToPlayGamesHoldWidget.dart::FreeToPlayGamesHoldWidget" o-- "El3b::Domain::Models::Games::FreeToPlayGame::FreeToPlayGame.dart::FreeToPlayGame"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "El3b::Presentation::UI::Home::Tabs::Home::Widgets::FreeToPlayGamesHoldWidget.dart::FreeToPlayGamesHoldWidget"
+
+class "El3b::Presentation::UI::Home::Tabs::Home::Widgets::FreeToPlayGamesList.dart::FreeToPlayGamesList" {
+  +List<FreeToPlayGame> games
+  +Function selectGame
+  +Function unselectGame
+  +Function urlLauncher
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "El3b::Presentation::UI::Home::Tabs::Home::Widgets::FreeToPlayGamesList.dart::FreeToPlayGamesList"
+
+class "El3b::Presentation::UI::Home::Tabs::Home::Widgets::FreeToPlayGamesWidget.dart::FreeToPlayGameWidget" {
+  +FreeToPlayGame game
+  +Function selectGame
+  +Function unselectGame
+  +Function urlLauncher
+  +Widget build()
+}
+
+"El3b::Presentation::UI::Home::Tabs::Home::Widgets::FreeToPlayGamesWidget.dart::FreeToPlayGameWidget" o-- "El3b::Domain::Models::Games::FreeToPlayGame::FreeToPlayGame.dart::FreeToPlayGame"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "El3b::Presentation::UI::Home::Tabs::Home::Widgets::FreeToPlayGamesWidget.dart::FreeToPlayGameWidget"
+
+class "El3b::Presentation::UI::Home::Tabs::Home::Widgets::GiveawayGamesHoldWidget.dart::GiveawayGamesHoldWidget" {
+  +GiveawayGame game
+  +Widget build()
+}
+
+"El3b::Presentation::UI::Home::Tabs::Home::Widgets::GiveawayGamesHoldWidget.dart::GiveawayGamesHoldWidget" o-- "El3b::Domain::Models::Games::GiveawayGames::GiveawayGame.dart::GiveawayGame"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "El3b::Presentation::UI::Home::Tabs::Home::Widgets::GiveawayGamesHoldWidget.dart::GiveawayGamesHoldWidget"
+
+class "El3b::Presentation::UI::Home::Tabs::Home::Widgets::GiveawayGamesList.dart::GiveawayGamesList" {
+  +List<GiveawayGame> games
+  +Function selectGame
+  +Function unselectGame
+  +Function urlLauncher
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "El3b::Presentation::UI::Home::Tabs::Home::Widgets::GiveawayGamesList.dart::GiveawayGamesList"
+
+class "El3b::Presentation::UI::Home::Tabs::Home::Widgets::GiveawayGamesWidget.dart::GiveawayGamesWidget" {
+  +GiveawayGame game
+  +Function selectGame
+  +Function unselectGame
+  +Function urlLauncher
+  +Widget build()
+}
+
+"El3b::Presentation::UI::Home::Tabs::Home::Widgets::GiveawayGamesWidget.dart::GiveawayGamesWidget" o-- "El3b::Domain::Models::Games::GiveawayGames::GiveawayGame.dart::GiveawayGame"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "El3b::Presentation::UI::Home::Tabs::Home::Widgets::GiveawayGamesWidget.dart::GiveawayGamesWidget"
+
+abstract class "El3b::Presentation::UI::Home::Tabs::Profile::ProfileTabNavigator.dart::ProfileTabNavigator" {
+}
+
+"El3b::Core::Base::BaseNavigator.dart::BaseNavigator" <|-- "El3b::Presentation::UI::Home::Tabs::Profile::ProfileTabNavigator.dart::ProfileTabNavigator"
+
+class "El3b::Presentation::UI::Home::Tabs::Profile::ProfileTabView.dart::ProfileTabView" {
+  +State<ProfileTabView> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "El3b::Presentation::UI::Home::Tabs::Profile::ProfileTabView.dart::ProfileTabView"
+
+class "El3b::Presentation::UI::Home::Tabs::Profile::ProfileTabView.dart::_ProfileTabViewState" {
+  +Widget build()
+  +ProfileTabViewModel initViewModel()
+}
+
+"El3b::Core::Base::BaseState.dart::BaseState" <|-- "El3b::Presentation::UI::Home::Tabs::Profile::ProfileTabView.dart::_ProfileTabViewState"
+"El3b::Presentation::UI::Home::Tabs::Profile::ProfileTabNavigator.dart::ProfileTabNavigator" <|-- "El3b::Presentation::UI::Home::Tabs::Profile::ProfileTabView.dart::_ProfileTabViewState"
+
+class "El3b::Presentation::UI::Home::Tabs::Profile::ProfileTabViewModel.dart::ProfileTabViewModel" {
+}
+
+"El3b::Core::Base::BaseViewModel.dart::BaseViewModel" <|-- "El3b::Presentation::UI::Home::Tabs::Profile::ProfileTabViewModel.dart::ProfileTabViewModel"
+
+abstract class "El3b::Presentation::UI::Intro::IntroNavigator.dart::IntroNavigator" {
+  +dynamic goToLoginScreen()
+}
+
+"El3b::Core::Base::BaseNavigator.dart::BaseNavigator" <|-- "El3b::Presentation::UI::Intro::IntroNavigator.dart::IntroNavigator"
+
+class "El3b::Presentation::UI::Intro::IntroView.dart::IntroView" {
+  {static} +String routeName
+  +State<IntroView> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "El3b::Presentation::UI::Intro::IntroView.dart::IntroView"
+
+class "El3b::Presentation::UI::Intro::IntroView.dart::_IntroViewState" {
+  +Widget build()
+  +IntroViewModel initViewModel()
+  +dynamic goToLoginScreen()
+}
+
+"El3b::Core::Base::BaseState.dart::BaseState" <|-- "El3b::Presentation::UI::Intro::IntroView.dart::_IntroViewState"
+"El3b::Presentation::UI::Intro::IntroNavigator.dart::IntroNavigator" <|-- "El3b::Presentation::UI::Intro::IntroView.dart::_IntroViewState"
+
+class "El3b::Presentation::UI::Intro::IntroViewModel.dart::IntroViewModel" {
+  +dynamic onDonePress()
+}
+
+"El3b::Core::Base::BaseViewModel.dart::BaseViewModel" <|-- "El3b::Presentation::UI::Intro::IntroViewModel.dart::IntroViewModel"
+
+abstract class "El3b::Presentation::UI::Login::LoginNavigator.dart::LoginNavigator" {
+  +dynamic goToRegistrationScreen()
+  +dynamic goToHomeScreen()
+  +dynamic goToForgetPasswordScreen()
+  +dynamic goToExtraInfoScreen()
+}
+
+"El3b::Core::Base::BaseNavigator.dart::BaseNavigator" <|-- "El3b::Presentation::UI::Login::LoginNavigator.dart::LoginNavigator"
+
+class "El3b::Presentation::UI::Login::LoginView.dart::LoginView" {
+  {static} +String routeName
+  +State<LoginView> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "El3b::Presentation::UI::Login::LoginView.dart::LoginView"
+
+class "El3b::Presentation::UI::Login::LoginView.dart::_LoginViewState" {
+  +LoginViewModel initViewModel()
+  +Widget build()
+  +dynamic goToRegistrationScreen()
+  +dynamic goToHomeScreen()
+  +dynamic goToForgetPasswordScreen()
+  +dynamic goToExtraInfoScreen()
+}
+
+"El3b::Core::Base::BaseState.dart::BaseState" <|-- "El3b::Presentation::UI::Login::LoginView.dart::_LoginViewState"
+"El3b::Presentation::UI::Login::LoginNavigator.dart::LoginNavigator" <|-- "El3b::Presentation::UI::Login::LoginView.dart::_LoginViewState"
+
+class "El3b::Presentation::UI::Login::LoginViewModel.dart::LoginViewModel" {
+  +SignInUserWithEmailAndPasswordUseCase singInUserWithEmailAndPasswordUseCase
+  +CheckIfUserExistUseCase checkIfUserExistUseCase
+  +AddUserUseCase addUserUseCase
+  +SignInWithGoogleUseCase signInWithGoogleUseCase
+  +SignInWithFacebookUseCase signInWithFacebookUseCase
+  +GlobalKey<FormState> formKey
+  +TextEditingController emailController
+  +TextEditingController passwordController
+  +bool googleLogin
+  +bool facebookLogin
+  +void goToRegistrationScreen()
+  +void goToHomeScreen()
+  +void goToForgetPasswordScreen()
+  +void goToExtraInfoScreen()
+  +void changeTheme()
+  +String? emailValidation()
+  +String? passwordValidation()
+  +dynamic signInWithEmailAndPassword()
+  +void loginWithGoogle()
+  +void loginWithFacebook()
+}
+
+"El3b::Presentation::UI::Login::LoginViewModel.dart::LoginViewModel" o-- "El3b::Domain::UseCase::SignInUserWithEmailAndPasswordUseCase.dart::SignInUserWithEmailAndPasswordUseCase"
+"El3b::Presentation::UI::Login::LoginViewModel.dart::LoginViewModel" o-- "El3b::Domain::UseCase::CheckIfUserExistUseCase.dart::CheckIfUserExistUseCase"
+"El3b::Presentation::UI::Login::LoginViewModel.dart::LoginViewModel" o-- "El3b::Domain::UseCase::AddUserUseCase.dart::AddUserUseCase"
+"El3b::Presentation::UI::Login::LoginViewModel.dart::LoginViewModel" o-- "El3b::Domain::UseCase::SignInWithGoogleUseCase.dart::SignInWithGoogleUseCase"
+"El3b::Presentation::UI::Login::LoginViewModel.dart::LoginViewModel" o-- "El3b::Domain::UseCase::SignInWithFacebookUseCase.dart::SignInWithFacebookUseCase"
+"El3b::Presentation::UI::Login::LoginViewModel.dart::LoginViewModel" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"El3b::Presentation::UI::Login::LoginViewModel.dart::LoginViewModel" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"El3b::Core::Base::BaseViewModel.dart::BaseViewModel" <|-- "El3b::Presentation::UI::Login::LoginViewModel.dart::LoginViewModel"
+
+class "El3b::Presentation::UI::Login::Widgets::DirectPlatformLogin.dart::DirectPlatformLogin" {
+  +String darkImage
+  +String lightImage
+  +String title
+  +bool loading
+  +Function login
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "El3b::Presentation::UI::Login::Widgets::DirectPlatformLogin.dart::DirectPlatformLogin"
+
+abstract class "El3b::Presentation::UI::Register::RegisterNavigator.dart::RegisterNavigator" {
+  +dynamic showMyModalBottomSheetWidget()
+  +dynamic goToLoginScreen()
+  +dynamic goToExtraInfoScreen()
+}
+
+"El3b::Core::Base::BaseNavigator.dart::BaseNavigator" <|-- "El3b::Presentation::UI::Register::RegisterNavigator.dart::RegisterNavigator"
+
+class "El3b::Presentation::UI::Register::RegisterView.dart::RegisterView" {
+  {static} +String routeName
+  +State<RegisterView> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "El3b::Presentation::UI::Register::RegisterView.dart::RegisterView"
+
+class "El3b::Presentation::UI::Register::RegisterView.dart::_RegisterViewState" {
+  +RegisterViewModel initViewModel()
+  +Widget build()
+  +dynamic showMyModalBottomSheetWidget()
+  +dynamic goToLoginScreen()
+  +dynamic goToExtraInfoScreen()
+}
+
+"El3b::Core::Base::BaseState.dart::BaseState" <|-- "El3b::Presentation::UI::Register::RegisterView.dart::_RegisterViewState"
+"El3b::Presentation::UI::Register::RegisterNavigator.dart::RegisterNavigator" <|-- "El3b::Presentation::UI::Register::RegisterView.dart::_RegisterViewState"
+
+class "El3b::Presentation::UI::Register::RegisterViewModel.dart::RegisterViewModel" {
+  +CreateAccountUseCase useCase
+  +GlobalKey<FormState> formKey
+  +TextEditingController nameController
+  +TextEditingController emailController
+  +TextEditingController passwordController
+  +TextEditingController passwordConfirmationController
+  +XFile? image
+  +dynamic pickImageFromCamera()
+  +dynamic pickImageFromGallery()
+  +void goToLoginScreen()
+  +void showMyModalBottomSheet()
+  +void goToExtraInfoScreen()
+  +String? nameValidation()
+  +String? emailValidation()
+  +String? passwordValidation()
+  +String? passwordConfirmationValidation()
+  +dynamic createAccount()
+}
+
+"El3b::Presentation::UI::Register::RegisterViewModel.dart::RegisterViewModel" o-- "El3b::Domain::UseCase::CreateAccountUseCase.dart::CreateAccountUseCase"
+"El3b::Presentation::UI::Register::RegisterViewModel.dart::RegisterViewModel" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"El3b::Presentation::UI::Register::RegisterViewModel.dart::RegisterViewModel" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"El3b::Presentation::UI::Register::RegisterViewModel.dart::RegisterViewModel" o-- "cross_file::src::types::interface.dart::XFile"
+"El3b::Core::Base::BaseViewModel.dart::BaseViewModel" <|-- "El3b::Presentation::UI::Register::RegisterViewModel.dart::RegisterViewModel"
+
+class "El3b::Presentation::UI::Register::Widgets::BottomSheetImagePicker.dart::MyBottomSheetWidget" {
+  +String title
+  +String cameraTitle
+  +Function pickImageFromCamera
+  +String galleryTitle
+  +Function pickImageFromGallery
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "El3b::Presentation::UI::Register::Widgets::BottomSheetImagePicker.dart::MyBottomSheetWidget"
+
+class "El3b::Presentation::UI::Splash::SplashScreen.dart::SplashScreen" {
+  {static} +String routeName
+  +bool firstTime
+  +User? user
+  +Widget build()
+}
+
+"El3b::Presentation::UI::Splash::SplashScreen.dart::SplashScreen" o-- "firebase_auth::firebase_auth.dart::User"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "El3b::Presentation::UI::Splash::SplashScreen.dart::SplashScreen"
+
+class "El3b::Presentation::UI::Widgets::CustomLongTextFormField.dart::CustomLongTextFormField" {
+  +String label
+  +TextEditingController controller
+  +TextInputType inputType
+  +Function validator
+  +Widget build()
+}
+
+"El3b::Presentation::UI::Widgets::CustomLongTextFormField.dart::CustomLongTextFormField" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"El3b::Presentation::UI::Widgets::CustomLongTextFormField.dart::CustomLongTextFormField" o-- "flutter::src::services::text_input.dart::TextInputType"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "El3b::Presentation::UI::Widgets::CustomLongTextFormField.dart::CustomLongTextFormField"
+
+class "El3b::Presentation::UI::Widgets::CustomPasswordTextFormField.dart::CustomPasswordTextFormField" {
+  +String label
+  +TextEditingController controller
+  +TextInputType inputType
+  +Function validator
+  +IconData icon
+  +State<CustomPasswordTextFormField> createState()
+}
+
+"El3b::Presentation::UI::Widgets::CustomPasswordTextFormField.dart::CustomPasswordTextFormField" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"El3b::Presentation::UI::Widgets::CustomPasswordTextFormField.dart::CustomPasswordTextFormField" o-- "flutter::src::services::text_input.dart::TextInputType"
+"El3b::Presentation::UI::Widgets::CustomPasswordTextFormField.dart::CustomPasswordTextFormField" o-- "flutter::src::widgets::icon_data.dart::IconData"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "El3b::Presentation::UI::Widgets::CustomPasswordTextFormField.dart::CustomPasswordTextFormField"
+
+class "El3b::Presentation::UI::Widgets::CustomPasswordTextFormField.dart::_CustomPasswordTextFormFieldState" {
+  +bool visiabel
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "El3b::Presentation::UI::Widgets::CustomPasswordTextFormField.dart::_CustomPasswordTextFormFieldState"
+
+class "El3b::Presentation::UI::Widgets::CustomSearchBar.dart::CustomSearchBarButton" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "El3b::Presentation::UI::Widgets::CustomSearchBar.dart::CustomSearchBarButton"
+
+class "El3b::Presentation::UI::Widgets::CustomTextFormField.dart::CustomTextFormField" {
+  +String label
+  +TextEditingController controller
+  +TextInputType inputType
+  +Function validator
+  +IconData icon
+  +Widget build()
+}
+
+"El3b::Presentation::UI::Widgets::CustomTextFormField.dart::CustomTextFormField" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"El3b::Presentation::UI::Widgets::CustomTextFormField.dart::CustomTextFormField" o-- "flutter::src::services::text_input.dart::TextInputType"
+"El3b::Presentation::UI::Widgets::CustomTextFormField.dart::CustomTextFormField" o-- "flutter::src::widgets::icon_data.dart::IconData"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "El3b::Presentation::UI::Widgets::CustomTextFormField.dart::CustomTextFormField"
+
+class "El3b::Presentation::UI::Widgets::ErrorMessageWidget.dart::ErrorMessageWidget" {
+  +String errorMessage
+  +Function fixErrorFunction
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "El3b::Presentation::UI::Widgets::ErrorMessageWidget.dart::ErrorMessageWidget"
+
+class "El3b::Presentation::UI::Widgets::GameHoldWidget.dart::GameHoldWidget" {
+  +RAWGGame game
+  +Widget build()
+}
+
+"El3b::Presentation::UI::Widgets::GameHoldWidget.dart::GameHoldWidget" o-- "El3b::Domain::Models::Games::RAWG::RAWGGame.dart::RAWGGame"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "El3b::Presentation::UI::Widgets::GameHoldWidget.dart::GameHoldWidget"
+
+class "El3b::Presentation::UI::Widgets::GameWidget.dart::GameWidget" {
+  +RAWGGame game
+  +Function selectGame
+  +Function unselectGame
+  +Function editWishListState
+  +Widget build()
+}
+
+"El3b::Presentation::UI::Widgets::GameWidget.dart::GameWidget" o-- "El3b::Domain::Models::Games::RAWG::RAWGGame.dart::RAWGGame"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "El3b::Presentation::UI::Widgets::GameWidget.dart::GameWidget"
+
+class "El3b::Presentation::UI::Widgets::LanguageSwitch.dart::LanguageSwitch" {
+
+class "El3b::Presentation::UI::Widgets::ThemeSwitch.dart::ThemeSwitch" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "El3b::Presentation::UI::Widgets::ThemeSwitch.dart::ThemeSwitch"
+
+@enduml

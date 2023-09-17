@@ -24,7 +24,10 @@ class ErrorMessageWidget extends StatelessWidget {
           const SizedBox(height: 10,),
           ElevatedButton(
             onPressed: () => fixErrorFunction(),
-            child: Text(local.tryAgain),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0 , vertical: 10),
+              child: Text(local.tryAgain),
+            ),
           ),
         ],
       ),

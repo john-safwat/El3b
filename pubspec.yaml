@@ -59,7 +59,6 @@ dependencies:
   salomon_bottom_bar: ^3.3.2
   dio: ^5.3.2
   carousel_slider: ^4.2.1
-  banner_carousel: ^1.2.1
   super_banners: ^0.0.1
   flutter_animate: ^4.2.0+1
   url_launcher: ^6.1.14

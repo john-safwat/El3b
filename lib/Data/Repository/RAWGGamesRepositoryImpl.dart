@@ -9,6 +9,10 @@ import 'package:El3b/Data/DataSource/WishListLocalDataSourceImpl.dart';
 import 'package:El3b/Domain/DataSource/CacheDataLocalDataSource.dart';
 import 'package:El3b/Domain/DataSource/RAWGGamesRemoteDataSource.dart';
 import 'package:El3b/Domain/DataSource/WishListLocalDataSource.dart';
+import 'package:El3b/Domain/Exception/DioServerException.dart';
+import 'package:El3b/Domain/Exception/InternetConnectionException.dart';
+import 'package:El3b/Domain/Exception/TimeOutOperationsException.dart';
+import 'package:El3b/Domain/Exception/UnknownException.dart';
 import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
 import 'package:El3b/Domain/Repository/RAWGGamesRepository.dart';
 
@@ -39,27 +43,48 @@ class RAWGGamesRepositoryImpl implements RAWGGamesRepository {
   // it the cache is outDated or has not stored is call the api
   @override
   Future<List<RAWGGame>?> getGeneralGames() async {
-    var response = await remoteDataSource.getGeneralGames();
-    return response;
-    // get last update time for the data in cache
-    var lastUpdate =  await localDataSource.getLastUpdatedDate(key: "GeneralGames");
-    // if user first time open the app this value will be null
-    if(lastUpdate != null ){
-      // if the data is valid is return the data from the cache else it call the api
-      if(!lastUpdate.isBefore(DateTime.now().dateOnly(DateTime.now()))){
-        var response = await localDataSource.getGeneralGames();
-        return response;
-      }else {
-        var response = await remoteDataSource.getGeneralGames();
-        var data = jsonEncode(response!.map((e) => e.toData().toJson()).toList());
-        await localDataSource.cacheData(data: data, key: "GeneralGames");
-        return response;
-      }
-    }else {
+    try{
       var response = await remoteDataSource.getGeneralGames();
       var data = jsonEncode(response!.map((e) => e.toData().toJson()).toList());
       await localDataSource.cacheData(data: data, key: "GeneralGames");
       return response;
+    }catch (e){
+      // get last update time for the data in cache
+      // if user first time open the app this value will be null
+      var lastUpdate =  await localDataSource.getLastUpdatedDate(key: "GeneralGames");
+      if(lastUpdate != null ){
+        // if the data is valid is return the data from the cache else it call the api
+        try{
+          var response = await localDataSource.getGeneralGames();
+          return response;
+        }catch(e){
+          if (e is DioServerException ){
+            throw DioServerException(errorMessage: e.errorMessage);
+          }
+          else if (e is TimeOutOperationsException ){
+            throw TimeOutOperationsException(errorMessage: "Loading Data Timed Out Refresh To Reload");
+          }
+          else if (e is InternetConnectionException ){
+            throw InternetConnectionException(errorMessage: "Check Your Internet Connection");
+          }
+          else {
+            throw UnknownException(errorMessage: e.toString());
+          }
+        }
+      }else {
+        if (e is DioServerException ){
+          throw DioServerException(errorMessage: e.errorMessage);
+        }
+        else if (e is TimeOutOperationsException ){
+          throw TimeOutOperationsException(errorMessage: "Loading Data Timed Out Refresh To Reload");
+        }
+        else if (e is InternetConnectionException ){
+          throw InternetConnectionException(errorMessage: "Check Your Internet Connection");
+        }
+        else {
+          throw UnknownException(errorMessage: e.toString());
+        }
+      }
     }
   }
 
