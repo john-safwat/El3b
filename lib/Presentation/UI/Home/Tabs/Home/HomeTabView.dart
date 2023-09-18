@@ -44,7 +44,7 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
             return ErrorMessageWidget(
               errorMessage: value.errorMessage!,
               fixErrorFunction: (){
-                viewModel!.getGeneralGames();
+                viewModel!.getGames();
                 viewModel!.getGeneralGames();
               },
             );
