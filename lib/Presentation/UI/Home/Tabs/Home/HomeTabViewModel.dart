@@ -96,8 +96,8 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator> {
       } else {
         rawgErrorMessage = e.toString();
       }
+      notifyListeners();
     }
-    notifyListeners();
   }
 
 
@@ -190,5 +190,12 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator> {
     rawgGameSelected = false;
     notifyListeners();
   }
+
+
+  // function to navigate to the search screen
+  goToHomeSearchScreen(){
+    navigator!.goToSearchScreen();
+  }
+
 
 }

@@ -23,4 +23,18 @@ class RAWGGamesAPI extends BaseAPIManager<RAWGGamesAPIAssets> {
     // return the data
     return RAWGGamesResponseDTO.fromJson(response.data);
   }
+
+  Future<RAWGGamesResponseDTO?> searchForGame({required String query})async {
+    // prepare the url
+    Uri uri = Uri.https(apiAssets.baseURL, apiAssets.gamesRoute, {
+      "key": apiAssets.apiKey,
+      "page_size": "20",
+      "search" : query
+    });
+    // make api request
+    var response = await dio.getUri(uri);
+    // return the data
+    return RAWGGamesResponseDTO.fromJson(response.data);
+  }
+
 }

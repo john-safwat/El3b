@@ -50,7 +50,6 @@ class RAWGGamesResponseDTO {
     description = json['description'];
     filters =
     json['filters'] != null ?  FiltersDTO.fromJson(json['filters']) : null;
-    nofollowCollections = json['nofollow_collections'].cast<String>();
   }
 
   Map<String, dynamic> toJson() {
