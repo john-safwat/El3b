@@ -41,4 +41,21 @@ class RAWGGamesRemoteDataSourceImpl implements RAWGGamesRemoteDataSource {
     }
   }
 
+  // function to load data for games search from RAWG api
+  @override
+  Future<List<RAWGGame>?> searchForGame({required String query})async {
+    try {
+      var response = await api.searchForGame(query: query).timeout(const Duration(seconds: 60));
+      return response?.results?.map((e) => e.toDomain()).toList();
+    }on DioException catch (e){
+      throw DioServerException(errorMessage: errorHandler.dioExceptionHandler(e.type));
+    }on TimeoutException {
+      throw TimeOutOperationsException(errorMessage: "Loading Data Timed Out Refresh To Reload");
+    }on IOException catch(e){
+      throw InternetConnectionException(errorMessage: "Check Your Internet Connection");
+    }catch (e){
+      throw UnknownException(errorMessage: e.toString());
+    }
+  }
+
 }

@@ -1,30 +1,30 @@
-
 import 'package:El3b/Data/Repository/RAWGGamesRepositoryImpl.dart';
 import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
 import 'package:El3b/Domain/Repository/RAWGGamesRepository.dart';
 
 
 // dependency injection
-GetRAWGGeneralGamesUseCase injectGetRAWGGeneralGamesUseCase() {
-  return GetRAWGGeneralGamesUseCase(repository: injectRAWGGamesRepository());
+SearchFromGameFromServerUseCase injectSearchFromGameFromServerUseCase(){
+  return SearchFromGameFromServerUseCase(repository: injectRAWGGamesRepository());
 }
 
 
-class GetRAWGGeneralGamesUseCase {
+class SearchFromGameFromServerUseCase {
 
   RAWGGamesRepository repository;
-  GetRAWGGeneralGamesUseCase({required this.repository});
+  SearchFromGameFromServerUseCase({required this.repository});
 
 
-  // load games from api
-  Future<List<RAWGGame>> invoke({required String uid}) async {
-    var response = await repository.getGeneralGames();
+  Future<List<RAWGGame>> invoke({required String query , required String uid})async {
+    var response = await repository.searchForGame(query: query);
     var favorite = await repository.loadGamesFromWishList(uid: uid);
     response = addStoresIcons(response!);
     response = noNullValue(response);
     response = wishListGames(response , favorite!);
-    return response;
+    return response??[];
   }
+
+
 
   // add stores icons
   List<RAWGGame> addStoresIcons(List<RAWGGame> games){

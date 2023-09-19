@@ -42,7 +42,7 @@ class GameWidget extends StatelessWidget {
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
                   child: CachedNetworkImage(
-                    imageUrl: game.backgroundImage!??"",
+                    imageUrl: game.backgroundImage??"",
                     imageBuilder: (context, imageProvider) => Image(
                       image: imageProvider,
                       fit: BoxFit.cover ,

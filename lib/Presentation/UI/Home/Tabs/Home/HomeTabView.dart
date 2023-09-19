@@ -4,13 +4,14 @@ import 'package:El3b/Domain/UseCase/DeleteGameFromWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetAllGiveGamesUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetFreeToPlayGamesUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetRAWGGeneralGamesUseCase.dart';
+import 'package:El3b/Presentation/UI/GamesSearch/GameSearchView.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/HomeTabNavigator.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/HomeTabViewModel.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/Widgets/FreeToPlayGamesHoldWidget.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/Widgets/FreeToPlayGamesList.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/Widgets/GiveawayGamesList.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/Widgets/GiveawayGamesHoldWidget.dart';
-import 'package:El3b/Presentation/UI/Widgets/CustomSearchBar.dart';
+import 'package:El3b/Presentation/UI/Widgets/CustomSearchBarButton.dart';
 import 'package:El3b/Presentation/UI/Widgets/ErrorMessageWidget.dart';
 import 'package:El3b/Presentation/UI/Widgets/GameHoldWidget.dart';
 import 'package:El3b/Presentation/UI/Widgets/GameWidget.dart';
@@ -138,7 +139,7 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
                     ],
                   ),
                 ),
-                const SafeArea(child: CustomSearchBarButton()),
+                SafeArea(child: CustomSearchBarButton(navigation: value.goToHomeSearchScreen,)),
                 viewModel!.giveawayGameSelected
                     ? GiveawayGamesHoldWidget(
                         game: value.giveawaySelectedGame,
@@ -168,5 +169,10 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
         getRAWGGeneralGamesUseCase: injectGetRAWGGeneralGamesUseCase(),
         addGameToWishListUseCase: injectAddGameToWishListUseCase(),
         deleteGameFromWishListUseCase: injectDeleteGameFromWishListUseCase());
+  }
+
+  @override
+  goToSearchScreen() {
+    Navigator.pushNamed(context, GameSearchView.routeName);
   }
 }

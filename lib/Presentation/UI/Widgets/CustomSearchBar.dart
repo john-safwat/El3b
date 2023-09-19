@@ -1,47 +1,68 @@
-import 'package:El3b/Core/Providers/AppConfigProvider.dart';
+
 import 'package:El3b/Core/Providers/ThemeProvider.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class CustomSearchBarButton extends StatelessWidget {
-  const CustomSearchBarButton({super.key});
+class CustomSearchBar extends StatelessWidget {
+  String label;
+  Function onChangeFunction;
+  CustomSearchBar({required this.label, required this.onChangeFunction});
 
   @override
   Widget build(BuildContext context) {
-    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
-    AppConfigProvider configProvider = Provider.of<AppConfigProvider>(context);
-    AppLocalizations local = AppLocalizations.of(context)!;
-    return InkWell(
-      onTap: (){},
-      overlayColor: MaterialStateProperty.all(Colors.transparent),
-      child: Container(
-        margin:const EdgeInsets.all(15),
-        padding:const EdgeInsets.all(10),
-        decoration: BoxDecoration(
+    var textTheme = Theme.of(context).textTheme;
+    var themeProvider = Provider.of<ThemeProvider>(context);
+    return TextField(
+      onChanged: (value) {
+        print(value);
+        onChangeFunction(value);
+        } ,
+      style: textTheme.displayMedium,
+      cursorColor: MyTheme.lightPurple,
+      keyboardType: TextInputType.text,
+      cursorHeight: 20,
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.all(20),
+        hintText: label,
+        filled: true,
+        fillColor: themeProvider.isDark()?MyTheme.purple: MyTheme.offWhite,
+        hintStyle: Theme.of(context).textTheme.displayMedium!.copyWith(
+            color: themeProvider.isDark()? MyTheme.grayPurple : MyTheme.lightPurple
+        ),
+        prefixIcon : Icon(BoxIcons.bx_search_alt , size: 30, color: themeProvider.isDark()?MyTheme.grayPurple : MyTheme.lightPurple,),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide:const BorderSide(
+              width: 2,
+              color: MyTheme.lightPurple,
+            )),
+        enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
-          border: Border.all(width: 2 ,color: MyTheme.lightPurple),
-          color: themeProvider.isDark()?MyTheme.purple :MyTheme.offWhite
+          borderSide:const BorderSide(
+            width: 2,
+            color: MyTheme.lightPurple,
+          ),
         ),
-        child: Row(
-          children: [
-            Icon(BoxIcons.bx_search_alt , size: 30, color: themeProvider.isDark()?MyTheme.grayPurple : MyTheme.lightPurple,),
-            const SizedBox(width: 10,),
-            Expanded(
-              child: Text(
-                "${local.whatAreYouSearchingFor} ${configProvider.getUser()!.displayName!.split(" ")[0]}",
-                style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                  color: themeProvider.isDark()?MyTheme.grayPurple : MyTheme.lightPurple,
-                  fontSize: 16,
-                ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-            )
-          ],
-        ),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: const BorderSide(
+              width: 2,
+              color: MyTheme.lightPurple,
+            )),
+        errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: const BorderSide(
+              width: 2,
+              color: Colors.red,
+            )),
+        focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: const BorderSide(
+              width: 2,
+              color: Colors.red,
+            )),
       ),
     );
   }

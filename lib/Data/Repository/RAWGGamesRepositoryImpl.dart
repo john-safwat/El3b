@@ -88,6 +88,7 @@ class RAWGGamesRepositoryImpl implements RAWGGamesRepository {
     }
   }
 
+  // function to add
   @override
   Future<int> addGameToWishList({required RAWGGame game, required String uid}) async{
     var response = await wishListLocalDataSource.addGameToWishList(game: game, uid: uid);
@@ -104,6 +105,12 @@ class RAWGGamesRepositoryImpl implements RAWGGamesRepository {
   Future<List<RAWGGame>?> loadGamesFromWishList({required String uid}) async{
     var response = await wishListLocalDataSource.loadGamesFromWishList(uid: uid);
     return response!;
+  }
+
+  @override
+  Future<List<RAWGGame>?> searchForGame({required String query}) async{
+    var response = await remoteDataSource.searchForGame(query: query);
+    return response ;
   }
 
 }
