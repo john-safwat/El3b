@@ -39,124 +39,136 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
     super.build(context);
     return ChangeNotifierProvider(
       create: (context) => viewModel!,
-      child: Consumer<HomeTabViewModel>(
-        builder: (context, value, child) {
-          if (value.errorMessage != null) {
-            return ErrorMessageWidget(
-              errorMessage: value.errorMessage!,
-              fixErrorFunction: (){
-                viewModel!.getGames();
-                viewModel!.getGeneralGames();
-              },
-            );
-          } else if (value.listGiveawayGames.isEmpty) {
-            return const Center(child: CircularProgressIndicator());
-          } else {
-            return Stack(
-              children: [
-                SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      const SizedBox(
-                        height: 110,
-                      ),
-                      GiveawayGamesList(
-                        games: value.listGiveawayGames,
-                        selectGame: value.selectGiveawayGame,
-                        unselectGame: value.unselectGiveawayGame,
-                        urlLauncher: value.openURL,
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      FreeToPlayGamesList(
-                          games: value.listFreeToPLayGames,
-                          selectGame: value.selectFreeToPlayGame,
-                          unselectGame: value.unselectFreeToPlayGame,
-                          urlLauncher: value.openURL),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Row(
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          toolbarHeight: 80,
+          titleSpacing: 10,
+          centerTitle: true,
+          leadingWidth: 0,
+          title: SafeArea(child: CustomSearchBarButton(navigation: viewModel!.goToHomeSearchScreen,)),
+        ),
+        body: Consumer<HomeTabViewModel>(
+          builder: (context, value, child) {
+            if (value.errorMessage != null) {
+              return ErrorMessageWidget(
+                errorMessage: value.errorMessage!,
+                fixErrorFunction: (){
+                  viewModel!.getGames();
+                  viewModel!.getGeneralGames();
+                },
+              );
+            } else if (value.listGiveawayGames.isEmpty) {
+              return const Center(child: CircularProgressIndicator());
+            } else {
+              return Stack(
+                children: [
+                  ScrollConfiguration(
+                    behavior: const ScrollBehavior().copyWith(overscroll: false),
+                    child: SingleChildScrollView(
+                      child: Column(
                         children: [
                           const SizedBox(
-                            width: 20,
+                            height: 120,
                           ),
-                          Text(
-                            value.local!.recommendedGames,
-                            style: Theme.of(context).textTheme.displayMedium,
+                          GiveawayGamesList(
+                            games: value.listGiveawayGames,
+                            selectGame: value.selectGiveawayGame,
+                            unselectGame: value.unselectGiveawayGame,
+                            urlLauncher: value.openURL,
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          FreeToPlayGamesList(
+                              games: value.listFreeToPLayGames,
+                              selectGame: value.selectFreeToPlayGame,
+                              unselectGame: value.unselectFreeToPlayGame,
+                              urlLauncher: value.openURL),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          Row(
+                            children: [
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              Text(
+                                value.local!.recommendedGames,
+                                style: Theme.of(context).textTheme.displayMedium,
+                              ),
+                            ],
+                          ),
+                          Consumer<HomeTabViewModel>(
+                              builder: (context, value, child) {
+                                if(value.rawgErrorMessage != null){
+                                  return Padding(
+                                    padding: const EdgeInsets.all(20.0),
+                                    child: Column(
+                                      children: [
+                                        Center(child: Lottie.asset("Assets/Animations/error.json" ,width: 120 ,fit: BoxFit.cover )),
+                                        const SizedBox(height: 20,),
+                                        Text(
+                                          viewModel!.local!.someThingWentWrong,
+                                          style: Theme.of(context).textTheme.displayMedium,
+                                        ),
+                                        const SizedBox(height: 20,),
+                                        ElevatedButton(
+                                          onPressed: (){
+                                            value.getGeneralGames();
+                                          },
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(horizontal: 20.0 , vertical: 10),
+                                            child: Text(value.local!.tryAgain),
+                                          )
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                }else if (value.listRAWGGames.isEmpty){
+                                  return const Padding(
+                                    padding:  EdgeInsets.all(80.0),
+                                    child:  Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                  );
+                                }else {
+                                  return Column(
+                                    children: value.listRAWGGames.map((e) =>  GameWidget(
+                                      game: e,
+                                      selectGame: value.selectRAWGGame,
+                                      unselectGame: value.unselectRAWGGame,
+                                      editWishListState: value.editGameWishListState,
+                                    ),).toList(),
+                                  );
+                                }
+                              },
+                          ),
+                          const SizedBox(
+                            height: 80,
                           ),
                         ],
                       ),
-                      Consumer<HomeTabViewModel>(
-                          builder: (context, value, child) {
-                            if(value.rawgErrorMessage != null){
-                              return Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: Column(
-                                  children: [
-                                    Center(child: Lottie.asset("Assets/Animations/error.json" ,width: 120 ,fit: BoxFit.cover )),
-                                    const SizedBox(height: 20,),
-                                    Text(
-                                      viewModel!.local!.someThingWentWrong,
-                                      style: Theme.of(context).textTheme.displayMedium,
-                                    ),
-                                    const SizedBox(height: 20,),
-                                    ElevatedButton(
-                                      onPressed: (){
-                                        value.getGeneralGames();
-                                      },
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 20.0 , vertical: 10),
-                                        child: Text(value.local!.tryAgain),
-                                      )
-                                    )
-                                  ],
-                                ),
-                              );
-                            }else if (value.listRAWGGames.isEmpty){
-                              return const Padding(
-                                padding:  EdgeInsets.all(80.0),
-                                child:  Center(
-                                  child: CircularProgressIndicator(),
-                                ),
-                              );
-                            }else {
-                              return Column(
-                                children: value.listRAWGGames.map((e) =>  GameWidget(
-                                  game: e,
-                                  selectGame: value.selectRAWGGame,
-                                  unselectGame: value.unselectRAWGGame,
-                                  editWishListState: value.editGameWishListState,
-                                ),).toList(),
-                              );
-                            }
-                          },
-                      ),
-                      const SizedBox(
-                        height: 80,
-                      ),
-                    ],
+                    ),
                   ),
-                ),
-                SafeArea(child: CustomSearchBarButton(navigation: value.goToHomeSearchScreen,)),
-                viewModel!.giveawayGameSelected
-                    ? GiveawayGamesHoldWidget(
-                        game: value.giveawaySelectedGame,
-                      )
-                    : viewModel!.freeToPlayGameSelected
-                        ? FreeToPlayGamesHoldWidget(
-                            game: value.freeToPlayGameSelectedGame,
-                          )
-                        : viewModel!.rawgGameSelected
-                            ? GameHoldWidget(
-                                game: value.rawgGameSelectedGame,
-                              )
-                            : const SizedBox()
-              ],
-            );
-          }
-        },
+                  viewModel!.giveawayGameSelected
+                      ? GiveawayGamesHoldWidget(
+                          game: value.giveawaySelectedGame,
+                        )
+                      : viewModel!.freeToPlayGameSelected
+                          ? FreeToPlayGamesHoldWidget(
+                              game: value.freeToPlayGameSelectedGame,
+                            )
+                          : viewModel!.rawgGameSelected
+                              ? GameHoldWidget(
+                                  game: value.rawgGameSelectedGame,
+                                )
+                              : const SizedBox()
+                ],
+              );
+            }
+          },
+        ),
       ),
     );
   }

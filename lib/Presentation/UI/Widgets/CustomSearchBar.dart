@@ -16,7 +16,6 @@ class CustomSearchBar extends StatelessWidget {
     var themeProvider = Provider.of<ThemeProvider>(context);
     return TextField(
       onChanged: (value) {
-        print(value);
         onChangeFunction(value);
         } ,
       style: textTheme.displayMedium,
