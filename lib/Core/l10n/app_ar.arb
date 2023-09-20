@@ -80,5 +80,6 @@
   "recommendedGames" : "ترشيحات الالعاب",
   "releaseDate" : "تاريخ الاصدار",
   "gameAddedToWishList" : "تم اضافة اللعبة اللي المفضلة بنجاح",
-  "gameDeletedFromWishList" : "تم ازالة اللعبة من المفضلة بنجاح"
+  "gameDeletedFromWishList" : "تم ازالة اللعبة من المفضلة بنجاح",
+  "noGamesInWishList" : "لا يوجد العاب في المفضلة"
 }

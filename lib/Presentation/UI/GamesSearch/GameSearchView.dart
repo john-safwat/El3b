@@ -29,6 +29,8 @@ class _GameSearchViewState
     return ChangeNotifierProvider(
       create: (context) => viewModel!,
       child: Scaffold(
+        extendBodyBehindAppBar: true,
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           toolbarHeight: 85,
           title: CustomSearchBar(
@@ -39,7 +41,7 @@ class _GameSearchViewState
                     .split(" ")[0],
             onChangeFunction: viewModel!.search,
           ),
-          titleSpacing: 5,
+          titleSpacing: 10,
         ),
         body: Consumer<GameSearchViewModel>(
           builder: (context, value, child) {

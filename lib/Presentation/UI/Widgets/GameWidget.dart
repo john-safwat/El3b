@@ -27,6 +27,7 @@ class GameWidget extends StatelessWidget {
       child: GestureDetector(
         onLongPress: () => selectGame(game),
         onLongPressEnd: (details) =>  unselectGame(),
+        onDoubleTap: () => editWishListState(game),
         child: Stack(
           children: [
             Container(
