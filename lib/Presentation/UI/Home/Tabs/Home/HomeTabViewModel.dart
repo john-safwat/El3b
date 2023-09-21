@@ -12,6 +12,7 @@ import 'package:El3b/Domain/UseCase/AddGameToWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/DeleteGameFromWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetAllGiveGamesUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetFreeToPlayGamesUseCase.dart';
+import 'package:El3b/Domain/UseCase/GetGiveawayGamesFromServerUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetRAWGGeneralGamesUseCase.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Home/HomeTabNavigator.dart';
 import 'package:flutter/material.dart';
@@ -25,13 +26,14 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator> {
   GetRAWGGeneralGamesUseCase getRAWGGeneralGamesUseCase;
   AddGameToWishListUseCase addGameToWishListUseCase;
   DeleteGameFromWishListUseCase deleteGameFromWishListUseCase;
-
+  GetGiveawayGamesFromServerUseCase gamesFromServerUseCase;
   HomeTabViewModel({
     required this.getAllGiveGamesUseCase,
     required this.getFreeToPlayGamesUseCase,
     required this.getRAWGGeneralGamesUseCase,
     required this.addGameToWishListUseCase,
-    required this.deleteGameFromWishListUseCase
+    required this.deleteGameFromWishListUseCase,
+    required this.gamesFromServerUseCase
   });
 
   // error message and list of games
@@ -147,6 +149,17 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator> {
       debugPrint(e.toString());
     }
     notifyListeners();
+  }
+
+
+  // function to load data from server for new updates
+  Future<void> loadNewGame()async {
+    try{
+      listGiveawayGames = await gamesFromServerUseCase.invoke();
+      notifyListeners();
+    }catch(e){
+      debugPrint(e.toString());
+    }
   }
 
   // change state functions

@@ -1,30 +1,74 @@
-import 'package:El3b/Core/Providers/ThemeProvider.dart';
+
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Domain/Models/Genres/Genre.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class TabButton extends StatelessWidget {
   Genre genre;
-  bool isSelected;
-  TabButton({required this.genre, required this.isSelected});
+  Function goToSearchScreen;
+  TabButton({required this.genre , required this.goToSearchScreen});
   @override
   Widget build(BuildContext context) {
-    return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: MyTheme.lightPurple,
-          image: DecorationImage(
-            image: NetworkImage(genre.imageBackground??''),
-            fit: BoxFit.cover,
-            opacity: isSelected?0 : 0.3
+    return InkWell(
+      onTap: () {
+        goToSearchScreen(genre.id.toString());
+      },
+      child: Stack(
+        children: [
+          // background image
+          ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: Stack(
+              children: [
+                // image
+                CachedNetworkImage(
+                  imageUrl: genre.imageBackground??'',
+                  imageBuilder: (context, imageProvider) => Image(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: double.infinity,
+                  ),
+                  errorWidget: (context, url, error) =>  Image.asset(
+                    "Assets/Images/errorImage.png" ,
+                    fit: BoxFit.cover ,
+                    width: double.infinity,
+                    height: 170,
+                  ),
+                  placeholder: (context, url) => Container(
+                    width: double.infinity,
+                    height: 170,
+                    decoration: BoxDecoration(
+                        color: MyTheme.lightPurple,
+                        borderRadius: BorderRadius.circular(15)
+                    ),
+                    child:const Center(child: CircularProgressIndicator(color: MyTheme.offWhite,),),
+                  ),
+                )
+              ],
+            ),
+          ),
+          // title
+          Container(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: BoxDecoration(
+                color: MyTheme.lightPurple.withOpacity(0.65),
+                borderRadius: BorderRadius.circular(15)
+            ),
+            child: Center(
+              child: Text(
+                genre.name??"No Name",
+                style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                    fontWeight: FontWeight.bold
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
           )
-        ),
-        child: Text(
-          genre.name??"No Name",
-          style: Theme.of(context).textTheme.displayMedium!.copyWith(color:MyTheme.offWhite),
-        )
+        ],
+      ),
     );
   }
 }
