@@ -4,11 +4,13 @@ import 'package:El3b/Data/Cache/LocalCache.dart';
 import 'package:El3b/Data/Models/Games/FreeToPlayGame/FreeToPlayGameDTO.dart';
 import 'package:El3b/Data/Models/Games/GiveawayGame/GiveawayGameDTO.dart';
 import 'package:El3b/Data/Models/Games/RAWG/RAWGGameDTO.dart';
+import 'package:El3b/Data/Models/Genres/GenreDTO.dart';
 import 'package:El3b/Domain/DataSource/CacheDataLocalDataSource.dart';
 import 'package:El3b/Domain/Exception/CacheException.dart';
 import 'package:El3b/Domain/Models/Games/FreeToPlayGame/FreeToPlayGame.dart';
 import 'package:El3b/Domain/Models/Games/GiveawayGames/GiveawayGame.dart';
 import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
+import 'package:El3b/Domain/Models/Genres/Genre.dart';
 
 
 // dependency injection
@@ -63,6 +65,11 @@ class CacheDataLocalDataSourceImpl implements CacheDataLocalDataSource {
 
   }
 
-
+  @override
+  Future<List<Genre>?> getGenresList() async{
+    var response = await cache.loadData(key: "Genre");
+    var games = jsonDecode(response!) as List<dynamic>;
+    return games.map((e) => GenreDTO.fromJson(e).toDomain()).toList();
+  }
 
 }

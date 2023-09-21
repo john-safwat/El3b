@@ -5,6 +5,7 @@ import 'package:El3b/Core/Providers/LocalProvider.dart';
 import 'package:El3b/Core/Providers/ThemeProvider.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Core/Utils/DialogUtils.dart';
+import 'package:El3b/Presentation/UI/GamesSearch/GameSearchView.dart';
 import 'package:elegant_notification/elegant_notification.dart';
 import 'package:elegant_notification/resources/arrays.dart';
 import 'package:flutter/material.dart';
@@ -152,5 +153,9 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
     ).show(context);
   }
 
+  @override
+  goToSearchScreen() {
+    Navigator.pushNamed(context, GameSearchView.routeName);
+  }
 
 }

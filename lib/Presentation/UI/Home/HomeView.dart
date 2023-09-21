@@ -25,6 +25,7 @@ class _HomeViewState extends BaseState<HomeView , HomeViewModel> implements Home
       child: Consumer<HomeViewModel>(
         builder:(context, value, child) => Scaffold(
           extendBody: true,
+          resizeToAvoidBottomInset: false,
           body: viewModel!.tabs[viewModel!.currentIndex],
           bottomNavigationBar: ClipRRect(
             borderRadius:const BorderRadius.only(

@@ -42,11 +42,11 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
-          toolbarHeight: 80,
+          toolbarHeight: 85,
           titleSpacing: 10,
           centerTitle: true,
           leadingWidth: 0,
-          title: SafeArea(child: CustomSearchBarButton(navigation: viewModel!.goToHomeSearchScreen,)),
+          title: CustomSearchBarButton(navigation: viewModel!.goToSearchScreen,),
         ),
         body: Consumer<HomeTabViewModel>(
           builder: (context, value, child) {
@@ -59,7 +59,20 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
                 },
               );
             } else if (value.listGiveawayGames.isEmpty) {
-              return const Center(child: CircularProgressIndicator());
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(30.0),
+                    child: value.themeProvider!.isDark()
+                        ? Lottie.asset("Assets/Animations/loading2.json",
+                        width: 150, height: 120)
+                        : Lottie.asset("Assets/Animations/loading3.json",
+                        width: 300, height: 300),
+                  ),
+                ],
+              );
             } else {
               return Stack(
                 children: [
@@ -126,11 +139,13 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
                                     ),
                                   );
                                 }else if (value.listRAWGGames.isEmpty){
-                                  return const Padding(
-                                    padding:  EdgeInsets.all(80.0),
-                                    child:  Center(
-                                      child: CircularProgressIndicator(),
-                                    ),
+                                  return  Padding(
+                                    padding: const EdgeInsets.all(80.0),
+                                    child: value.themeProvider!.isDark()
+                                      ? Lottie.asset("Assets/Animations/loading2.json",
+                                      width: 150, height: 120)
+                                      : Lottie.asset("Assets/Animations/loading3.json",
+                                      width: 300, height: 300),
                                   );
                                 }else {
                                   return Column(

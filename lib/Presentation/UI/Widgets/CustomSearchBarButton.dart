@@ -21,7 +21,7 @@ class CustomSearchBarButton extends StatelessWidget {
       },
       overlayColor: MaterialStateProperty.all(Colors.transparent),
       child: Container(
-        padding:const EdgeInsets.all(10),
+        padding:const EdgeInsets.symmetric(vertical: 12 , horizontal: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           border: Border.all(width: 2 ,color: MyTheme.lightPurple),
@@ -33,7 +33,7 @@ class CustomSearchBarButton extends StatelessWidget {
             const SizedBox(width: 10,),
             Expanded(
               child: Text(
-                "${local.whatAreYouSearchingFor} ${configProvider.getUser()!.displayName!.split(" ")[0]}",
+                "${local.whatAreYouSearchingFor}${configProvider.getUser()!.displayName!.split(" ")[0]}",
                 style: Theme.of(context).textTheme.displayMedium!.copyWith(
                   color: themeProvider.isDark()?MyTheme.grayPurple : MyTheme.lightPurple,
                   fontSize: 16,

@@ -15,8 +15,6 @@ class FavoriteTabViewModel extends BaseViewModel <FavoriteTabNavigator> {
     required this.deleteGameFromWishListUseCase
   });
 
-  bool rawgGameSelected = false;
-  late RAWGGame rawgGameSelectedGame;
 
   String? errorMessage;
   List<RAWGGame> allGames= [];
@@ -47,19 +45,6 @@ class FavoriteTabViewModel extends BaseViewModel <FavoriteTabNavigator> {
     return copy;
   }
 
-
-  // select game
-  selectRAWGGame(RAWGGame game) {
-    rawgGameSelected = true;
-    rawgGameSelectedGame = game;
-    notifyListeners();
-  }
-
-  // unselect game
-  unselectRAWGGame() {
-    rawgGameSelected = false;
-    notifyListeners();
-  }
 
   // function to delete game from wish list
   deleteGame(RAWGGame game) async{

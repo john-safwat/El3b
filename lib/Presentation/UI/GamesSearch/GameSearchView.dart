@@ -39,7 +39,7 @@ class _GameSearchViewState
                     .getUser()!
                     .displayName!
                     .split(" ")[0],
-            onChangeFunction: viewModel!.search,
+            onSubmit: viewModel!.search,
           ),
           titleSpacing: 10,
         ),

@@ -7,17 +7,21 @@ import 'package:provider/provider.dart';
 
 class CustomSearchBar extends StatelessWidget {
   String label;
-  Function onChangeFunction;
-  CustomSearchBar({required this.label, required this.onChangeFunction});
+  Function? onChangeFunction;
+  Function? onSubmit;
+  CustomSearchBar({required this.label, this.onChangeFunction , this.onSubmit});
 
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
     var themeProvider = Provider.of<ThemeProvider>(context);
     return TextField(
-      onChanged: (value) {
-        onChangeFunction(value);
-        } ,
+      onSubmitted: (value) {
+        onSubmit != null ? onSubmit!(value) : {};
+      },
+      onChanged: (value){
+        onChangeFunction != null ? onChangeFunction!(value) : {};
+      },
       style: textTheme.displayMedium,
       cursorColor: MyTheme.lightPurple,
       keyboardType: TextInputType.text,

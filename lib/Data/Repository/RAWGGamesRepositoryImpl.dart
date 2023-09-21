@@ -1,8 +1,6 @@
 
 import 'dart:convert';
 
-import 'package:El3b/Core/Extension/DateOnlyExtinsion.dart';
-import 'package:El3b/Data/Cache/LocalCache.dart';
 import 'package:El3b/Data/DataSource/CacheDataLocalDataSourceImpl.dart';
 import 'package:El3b/Data/DataSource/RAWGGamesRemoteDataSourceImpl.dart';
 import 'package:El3b/Data/DataSource/WishListLocalDataSourceImpl.dart';
@@ -111,6 +109,12 @@ class RAWGGamesRepositoryImpl implements RAWGGamesRepository {
   Future<List<RAWGGame>?> searchForGame({required String query}) async{
     var response = await remoteDataSource.searchForGame(query: query);
     return response ;
+  }
+
+  @override
+  Future<(num? , List<RAWGGame>?)> getGamesByGenre({required String genre, required int pageNumber}) async{
+   var (count , response) = await remoteDataSource.getGamesByGenre(genre: genre, pageNumber: pageNumber);
+   return (count , response);
   }
 
 }
