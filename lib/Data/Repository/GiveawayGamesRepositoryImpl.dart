@@ -52,4 +52,14 @@ class GiveawayGamesRepositoryImpl implements GiveawayGamesRepository {
     }
   }
 
+  // function to load data from server on refresh
+  @override
+  Future<List<GiveawayGame>?> getDataFromServer() async{
+    var response = await remoteDataSource.getAllGames();
+    var data = jsonEncode(response!.map((e) => e.toData().toJson()).toList());
+    await localDataSource.cacheData(data: data, key: "GiveawayGames");
+    return response;
+  }
+
+
 }
