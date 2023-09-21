@@ -49,9 +49,6 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator> {
   bool freeToPlayGameSelected = false;
   late FreeToPlayGame freeToPlayGameSelectedGame;
 
-  bool rawgGameSelected = false;
-  late RAWGGame rawgGameSelectedGame;
-
   // function to call games apis using use case
   void getGames() async {
     errorMessage = null;
@@ -75,6 +72,7 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator> {
         errorMessage = e.toString();
       }
     }
+    notifyListeners();
   }
 
   void getGeneralGames()async{
@@ -177,25 +175,5 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator> {
     freeToPlayGameSelected = false;
     notifyListeners();
   }
-
-  // select game
-  selectRAWGGame(RAWGGame game) {
-    rawgGameSelected = true;
-    rawgGameSelectedGame = game;
-    notifyListeners();
-  }
-
-  // unselect game
-  unselectRAWGGame() {
-    rawgGameSelected = false;
-    notifyListeners();
-  }
-
-
-  // function to navigate to the search screen
-  goToHomeSearchScreen(){
-    navigator!.goToSearchScreen();
-  }
-
 
 }

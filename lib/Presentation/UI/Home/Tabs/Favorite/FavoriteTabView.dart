@@ -72,14 +72,17 @@ class _FavoriteTabViewState extends BaseState<FavoriteTabView , FavoriteTabViewM
                   Column(
                     children: [
                       Expanded(
-                        child: ListView.builder(
-                           itemBuilder: (context, index) => GameWidget(
-                               game: value.games[index],
-                               selectGame: value.selectRAWGGame,
-                               unselectGame:value.unselectRAWGGame,
-                               editWishListState: value.deleteGame ,
-                           ),
-                          itemCount: value.games.length,
+                        child: ScrollConfiguration(
+                          behavior: const ScrollBehavior().copyWith(overscroll: false),
+                          child: ListView.builder(
+                             itemBuilder: (context, index) => GameWidget(
+                                 game: value.games[index],
+                                 selectGame: value.selectRAWGGame,
+                                 unselectGame:value.unselectRAWGGame,
+                                 editWishListState: value.deleteGame ,
+                             ),
+                            itemCount: value.games.length,
+                          ),
                         ),
                       ),
                     ],

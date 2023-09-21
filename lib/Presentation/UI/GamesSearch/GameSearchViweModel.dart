@@ -25,9 +25,6 @@ class GameSearchViewModel extends BaseViewModel<GameSearchNavigator> {
   bool loading = false;
   List<RAWGGame> games = [];
 
-  bool rawgGameSelected = false;
-  late RAWGGame rawgGameSelectedGame;
-
   // function to go to home screen
   goToHome(){
     navigator!.goBack();
@@ -59,7 +56,6 @@ class GameSearchViewModel extends BaseViewModel<GameSearchNavigator> {
       } else {
         errorMessage = e.toString();
       }
-      print(errorMessage);
       notifyListeners();
     }
   }
@@ -96,20 +92,5 @@ class GameSearchViewModel extends BaseViewModel<GameSearchNavigator> {
     }
     notifyListeners();
   }
-
-
-  // select game
-  selectRAWGGame(RAWGGame game) {
-    rawgGameSelected = true;
-    rawgGameSelectedGame = game;
-    notifyListeners();
-  }
-
-  // unselect game
-  unselectRAWGGame() {
-    rawgGameSelected = false;
-    notifyListeners();
-  }
-
 
 }

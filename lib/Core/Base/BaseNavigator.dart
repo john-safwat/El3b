@@ -30,6 +30,7 @@ abstract class BaseNavigator {
   });
 
   goBack();
+  goToSearchScreen();
 
   showErrorNotification({required String message});
   showSuccessNotification({required String message});

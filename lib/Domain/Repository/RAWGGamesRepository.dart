@@ -10,4 +10,5 @@ abstract class RAWGGamesRepository {
   Future<int> deleteGameFromWishList({required int game ,required String uid});
   Future<List<RAWGGame>?> loadGamesFromWishList({required String uid});
 
+  Future<(num? , List<RAWGGame>?)> getGamesByGenre({required String genre , required int pageNumber});
 }
