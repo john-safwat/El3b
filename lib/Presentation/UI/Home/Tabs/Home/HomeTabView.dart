@@ -42,9 +42,9 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
     return ChangeNotifierProvider(
       create: (context) => viewModel!,
       child: Scaffold(
-        // extendBodyBehindAppBar: true,
+        extendBodyBehindAppBar: true,
         appBar: AppBar(
-          toolbarHeight: 85,
+          toolbarHeight: 70,
           titleSpacing: 10,
           centerTitle: true,
           leadingWidth: 0,
@@ -53,6 +53,7 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
         body: RefreshIndicator(
           color: MyTheme.lightPurple,
           onRefresh: viewModel!.loadNewGame,
+          edgeOffset: 100,
           child: Consumer<HomeTabViewModel>(
             builder: (context, value, child) {
               if (value.errorMessage != null) {
@@ -86,6 +87,7 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
+                            const SizedBox(height: 100,),
                             GiveawayGamesList(
                               games: value.listGiveawayGames,
                               selectGame: value.selectGiveawayGame,

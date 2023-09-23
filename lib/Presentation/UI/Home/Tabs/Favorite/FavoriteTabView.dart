@@ -38,7 +38,7 @@ class _FavoriteTabViewState extends BaseState<FavoriteTabView , FavoriteTabViewM
         extendBodyBehindAppBar: true,
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          toolbarHeight: 85,
+          toolbarHeight: 70,
           title: CustomSearchBar(
             label: viewModel!.local!.whatAreYouSearchingFor +
                 viewModel!.appConfigProvider!

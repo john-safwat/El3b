@@ -32,7 +32,7 @@ class _GameSearchViewState
         extendBodyBehindAppBar: true,
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          toolbarHeight: 85,
+          toolbarHeight: 70,
           title: CustomSearchBar(
             label: viewModel!.local!.whatAreYouSearchingFor +
                 viewModel!.appConfigProvider!
@@ -82,20 +82,23 @@ class _GameSearchViewState
             } else {
               return Stack(
                 children: [
-                  Column(
-                    children: [
-                      Expanded(
-                        child: ListView.builder(
-                          itemBuilder: (context, index) => GameWidget(
-                              game: value.games[index],
-                              selectGame: value.selectRAWGGame,
-                              unselectGame: value.unselectRAWGGame,
-                              editWishListState: value.editGameWishListState
+                  ScrollConfiguration(
+                    behavior: const ScrollBehavior().copyWith(overscroll: false),
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: ListView.builder(
+                            itemBuilder: (context, index) => GameWidget(
+                                game: value.games[index],
+                                selectGame: value.selectRAWGGame,
+                                unselectGame: value.unselectRAWGGame,
+                                editWishListState: value.editGameWishListState
+                            ),
+                            itemCount: value.games.length,
                           ),
-                          itemCount: value.games.length,
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   value.rawgGameSelected?GameHoldWidget(game: value.rawgGameSelectedGame) : const SizedBox()
                 ],
