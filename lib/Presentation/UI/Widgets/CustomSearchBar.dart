@@ -22,19 +22,19 @@ class CustomSearchBar extends StatelessWidget {
       onChanged: (value){
         onChangeFunction != null ? onChangeFunction!(value) : {};
       },
-      style: textTheme.displayMedium,
+      style: textTheme.displaySmall,
       cursorColor: MyTheme.lightPurple,
       keyboardType: TextInputType.text,
-      cursorHeight: 20,
+      cursorHeight: 15,
       decoration: InputDecoration(
-        contentPadding: const EdgeInsets.all(20),
+        contentPadding: const EdgeInsets.all(0),
         hintText: label,
         filled: true,
         fillColor: themeProvider.isDark()?MyTheme.purple: MyTheme.offWhite,
-        hintStyle: Theme.of(context).textTheme.displayMedium!.copyWith(
+        hintStyle: Theme.of(context).textTheme.displaySmall!.copyWith(
             color: themeProvider.isDark()? MyTheme.grayPurple : MyTheme.lightPurple
         ),
-        prefixIcon : Icon(BoxIcons.bx_search_alt , size: 30, color: themeProvider.isDark()?MyTheme.grayPurple : MyTheme.lightPurple,),
+        prefixIcon : Icon(BoxIcons.bx_search_alt , size: 22, color: themeProvider.isDark()?MyTheme.grayPurple : MyTheme.lightPurple,),
         border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
             borderSide:const BorderSide(

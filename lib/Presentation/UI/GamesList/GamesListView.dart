@@ -35,7 +35,7 @@ class _GamesListViewState extends BaseState<GamesListView , GamesListViewModel> 
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
-          toolbarHeight: 85,
+          toolbarHeight: 70,
           titleSpacing: 10,
           centerTitle: true,
           title: CustomSearchBarButton(navigation: viewModel!.goToSearchScreen,),
@@ -69,44 +69,47 @@ class _GamesListViewState extends BaseState<GamesListView , GamesListViewModel> 
             } else {
               return Stack(
                 children: [
-                  Column(
-                    children: [
-                      Expanded(
-                          child: ListView.builder(
-                            itemBuilder: (context, index) {
-                              if (index < value.games.length) {
-                                return GameWidget(
-                                  game: value.games[index],
-                                  selectGame: value.selectRAWGGame,
-                                  unselectGame: value.unselectRAWGGame,
-                                  editWishListState: value.editGameWishListState,
-                                );
-                              } else if (value.errorMessage != null) {
-                                return ErrorMessageWidget(
-                                  errorMessage: value.errorMessage!,
-                                  fixErrorFunction: value.getGames,
-                                );
-                              } else {
-                                value.getGames();
-                                return Padding(
-                                  padding: const EdgeInsets.all(30.0),
-                                  child: value.themeProvider!.isDark()
-                                      ? Lottie.asset(
-                                      "Assets/Animations/loading2.json",
-                                      width: 150,
-                                      height: 120)
-                                      : Lottie.asset(
-                                      "Assets/Animations/loading3.json",
-                                      width: 300,
-                                      height: 300),
-                                );
-                              }
-                            },
-                            itemCount: value.count > value.games.length
-                                ? value.games.length + 1
-                                : value.games.length,
-                          ))
-                    ],
+                  ScrollConfiguration(
+                    behavior: const ScrollBehavior().copyWith(overscroll: false),
+                    child: Column(
+                      children: [
+                        Expanded(
+                            child: ListView.builder(
+                              itemBuilder: (context, index) {
+                                if (index < value.games.length) {
+                                  return GameWidget(
+                                    game: value.games[index],
+                                    selectGame: value.selectRAWGGame,
+                                    unselectGame: value.unselectRAWGGame,
+                                    editWishListState: value.editGameWishListState,
+                                  );
+                                } else if (value.errorMessage != null) {
+                                  return ErrorMessageWidget(
+                                    errorMessage: value.errorMessage!,
+                                    fixErrorFunction: value.getGames,
+                                  );
+                                } else {
+                                  value.getGames();
+                                  return Padding(
+                                    padding: const EdgeInsets.all(30.0),
+                                    child: value.themeProvider!.isDark()
+                                        ? Lottie.asset(
+                                        "Assets/Animations/loading2.json",
+                                        width: 150,
+                                        height: 120)
+                                        : Lottie.asset(
+                                        "Assets/Animations/loading3.json",
+                                        width: 300,
+                                        height: 300),
+                                  );
+                                }
+                              },
+                              itemCount: value.count > value.games.length
+                                  ? value.games.length + 1
+                                  : value.games.length,
+                            ))
+                      ],
+                    ),
                   ),
                   value.rawgGameSelected?GameHoldWidget(game: value.rawgGameSelectedGame) : const SizedBox()
                 ],
