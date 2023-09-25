@@ -5,11 +5,16 @@ import 'package:El3b/Core/Providers/LocalProvider.dart';
 import 'package:El3b/Core/Providers/ThemeProvider.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Core/Utils/DialogUtils.dart';
+import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
+import 'package:El3b/Presentation/UI/GameDetails/GameDetailsView.dart';
 import 'package:El3b/Presentation/UI/GamesSearch/GameSearchView.dart';
 import 'package:elegant_notification/elegant_notification.dart';
 import 'package:elegant_notification/resources/arrays.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:page_animation_transition/animations/bottom_to_top_transition.dart';
+import 'package:page_animation_transition/animations/right_to_left_transition.dart';
+import 'package:page_animation_transition/page_animation_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -155,7 +160,12 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
 
   @override
   goToSearchScreen() {
-    Navigator.pushNamed(context, GameSearchView.routeName);
+    Navigator.of(context).push(PageAnimationTransition(page: const GameSearchView(), pageAnimationType: BottomToTopTransition()));
+  }
+
+  @override
+  goToGameDetailsScreen(RAWGGame game) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => GameDetailsView(game: game)));
   }
 
 }

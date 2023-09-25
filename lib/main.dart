@@ -84,7 +84,7 @@ class MyApp extends StatelessWidget {
         ExtraInfoView.routeName : (_) => const ExtraInfoView(),
         ForgetPasswordView.routeName : (_) => const ForgetPasswordView(),
         GameSearchView.routeName :(_)=> const GameSearchView(),
-        GamesListView.routeName :(_)=> GamesListView(),
+        GamesListView.routeName :(_)=> const GamesListView(),
       },
       initialRoute: SplashScreen.routeName,
       theme: MyTheme.lightTheme,

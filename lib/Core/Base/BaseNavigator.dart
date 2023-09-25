@@ -1,3 +1,4 @@
+import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
 import 'package:flutter/material.dart';
 
 abstract class BaseNavigator {
@@ -31,6 +32,7 @@ abstract class BaseNavigator {
 
   goBack();
   goToSearchScreen();
+  goToGameDetailsScreen(RAWGGame game);
 
   showErrorNotification({required String message});
   showSuccessNotification({required String message});
