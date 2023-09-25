@@ -80,6 +80,7 @@ class _FavoriteTabViewState extends BaseState<FavoriteTabView , FavoriteTabViewM
                                  selectGame: value.selectRAWGGame,
                                  unselectGame:value.unselectRAWGGame,
                                  editWishListState: value.deleteGame ,
+                                 goToGameDetailsScreen: value.goToGameDetailsScreen,
                              ),
                             itemCount: value.games.length,
                           ),

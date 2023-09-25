@@ -4,7 +4,6 @@ import 'package:El3b/Domain/UseCase/DeleteGameFromWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetGamesByGenreUseCase.dart';
 import 'package:El3b/Presentation/UI/GamesList/GamesListNavigator.dart';
 import 'package:El3b/Presentation/UI/GamesList/GamesListViewModel.dart';
-import 'package:El3b/Presentation/UI/Home/Tabs/Home/HomeTabViewModel.dart';
 import 'package:El3b/Presentation/UI/Widgets/CustomSearchBarButton.dart';
 import 'package:El3b/Presentation/UI/Widgets/ErrorMessageWidget.dart';
 import 'package:El3b/Presentation/UI/Widgets/GameHoldWidget.dart';
@@ -82,6 +81,7 @@ class _GamesListViewState extends BaseState<GamesListView , GamesListViewModel> 
                                     selectGame: value.selectRAWGGame,
                                     unselectGame: value.unselectRAWGGame,
                                     editWishListState: value.editGameWishListState,
+                                      goToGameDetailsScreen: value.goToGameDetailsScreen
                                   );
                                 } else if (value.errorMessage != null) {
                                   return ErrorMessageWidget(

@@ -19,6 +19,8 @@ import 'package:El3b/Presentation/UI/Widgets/GameHoldWidget.dart';
 import 'package:El3b/Presentation/UI/Widgets/GameWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:page_animation_transition/animations/bottom_to_top_transition.dart';
+import 'package:page_animation_transition/page_animation_transition.dart';
 import 'package:provider/provider.dart';
 
 class HomeTabView extends StatefulWidget {
@@ -158,6 +160,7 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
                                         selectGame: value.selectRAWGGame,
                                         unselectGame: value.unselectRAWGGame,
                                         editWishListState: value.editGameWishListState,
+                                        goToGameDetailsScreen: value.goToGameDetailsScreen,
                                       ),).toList(),
                                     );
                                   }
@@ -205,8 +208,4 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
     );
   }
 
-  @override
-  goToSearchScreen() {
-    Navigator.pushNamed(context, GameSearchView.routeName);
-  }
 }

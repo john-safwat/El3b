@@ -9,6 +9,8 @@ import 'package:El3b/Presentation/UI/Widgets/CustomSearchBarButton.dart';
 import 'package:El3b/Presentation/UI/Widgets/ErrorMessageWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:page_animation_transition/animations/bottom_to_top_transition.dart';
+import 'package:page_animation_transition/page_animation_transition.dart';
 import 'package:provider/provider.dart';
 
 class ExploreTabView extends StatefulWidget {
@@ -103,12 +105,8 @@ class _ExploreTabViewState
   }
 
   @override
-  goToSearchScreen() {
-    Navigator.pushNamed(context, GameSearchView.routeName);
-  }
-
-  @override
   goToGameListScreen(String id) {
+
     Navigator.pushNamed(context, GamesListView.routeName , arguments: id);
   }
 }

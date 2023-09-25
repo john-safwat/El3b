@@ -41,4 +41,9 @@ class BaseViewModel<N extends BaseNavigator> extends ChangeNotifier {
     navigator!.goToSearchScreen();
   }
 
+  // function to go to game details screen
+  goToGameDetailsScreen(RAWGGame game){
+    navigator!.goToGameDetailsScreen(game);
+  }
+
 }

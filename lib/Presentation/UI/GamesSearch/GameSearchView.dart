@@ -92,7 +92,8 @@ class _GameSearchViewState
                                 game: value.games[index],
                                 selectGame: value.selectRAWGGame,
                                 unselectGame: value.unselectRAWGGame,
-                                editWishListState: value.editGameWishListState
+                                editWishListState: value.editGameWishListState,
+                                goToGameDetailsScreen: value.goToGameDetailsScreen
                             ),
                             itemCount: value.games.length,
                           ),
