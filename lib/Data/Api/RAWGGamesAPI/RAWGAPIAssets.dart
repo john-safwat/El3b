@@ -19,6 +19,7 @@ class RAWGGamesAPIAssets extends BaseAPIAssets {
   String baseURL =  'api.rawg.io';
   String gamesRoute = "/api/games";
   String genresRoute = "/api/genres";
+  String gameDetailsRoute = "/api/games/";
   String apiKey = "58cb6e3d5f144d9ab9600c3cd1985820";
 
 }
