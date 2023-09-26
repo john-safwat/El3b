@@ -4,37 +4,39 @@ import 'package:flutter/material.dart';
 
 class RatingWidget extends StatelessWidget {
   String title ;
-  double count ;
-  List<Ratings> ratings;
-  RatingWidget({required this.title , required this.count, required this.ratings , super.key});
+  List<double> ratings;
+  RatingWidget({required this.title , required this.ratings , super.key});
 
   @override
   Widget build(BuildContext context) {
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        TitleWidget(title: title),
-        Container(
-          height: 80,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Color(0xFF85CC36),
-                Color(0xFF4E6DD1),
-                Color(0xFFF9A541),
-                Color(0xFFF73645),
-              ],
-              stops: [
-                (ratings[0].count! / count),
-                (ratings[1].count! / count),
-                (ratings[2].count! / count),
-                (ratings[1].count! / count),
-              ]
-            )
-          ),
-        )
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0 , vertical: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TitleWidget(title: title),
+          const SizedBox(height: 20,),
+          Container(
+            height:60,
+            decoration: BoxDecoration(
+              borderRadius:BorderRadius.circular(10),
+              gradient: LinearGradient(
+                colors: const [
+                  Color(0xFF85CC36),
+                  Color(0xFF85CC36),
+                  Color(0xFF4E6DD1),
+                  Color(0xFF4E6DD1),
+                  Color(0xFFF9A541),
+                  Color(0xFFF9A541),
+                  Color(0xFFF73645),
+                  Color(0xFFF73645),
+                ],
+                stops: ratings
+              )
+            ),
+          )
+        ],
+      ),
     );
   }
 }

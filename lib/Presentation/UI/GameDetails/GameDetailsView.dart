@@ -122,7 +122,7 @@ class _GameDetailsViewState extends BaseState<GameDetailsView , GameDetailsViewM
                                 // MetacriticPlatformsRatingsWidget(metacriticPlatforms: value.gameDetails!.metacriticPlatforms??[])
                                 // the game description
                                 DescriptionWidget(title: value.local!.description,description: value.gameDetails!.descriptionRaw??value.local!.noDescription),
-                                RatingWidget(title: value.local!.rating, count: value.calcGameRatingsCount(), ratings: value.gameDetails!.ratings??[])
+                                RatingWidget(title: value.local!.rating, ratings: value.calcStepsList())
                               ],
                             );
                           }
