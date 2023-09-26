@@ -4,7 +4,11 @@ import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
 import 'package:El3b/Domain/UseCase/GetGameDetailsUseCase.dart';
 import 'package:El3b/Presentation/UI/GameDetails/GameDetailsNavigator.dart';
 import 'package:El3b/Presentation/UI/GameDetails/GameDetailsViewModel.dart';
+import 'package:El3b/Presentation/UI/GameDetails/Widgets/DiscriptionWidget.dart';
 import 'package:El3b/Presentation/UI/GameDetails/Widgets/ImagesSlider.dart';
+import 'package:El3b/Presentation/UI/GameDetails/Widgets/MetacriticPlatformsRatingsWidget.dart';
+import 'package:El3b/Presentation/UI/GameDetails/Widgets/RatingWidget.dart';
+import 'package:El3b/Presentation/UI/GameDetails/Widgets/ReleaseDateWidget.dart';
 import 'package:El3b/Presentation/UI/Widgets/ErrorMessageWidget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -84,7 +88,6 @@ class _GameDetailsViewState extends BaseState<GameDetailsView , GameDetailsViewM
                     const SizedBox(height: 80,),
                     // the game screen shots
                     ImagesSlider(images: viewModel!.game.shortScreenshots??[]),
-                    const SizedBox(height: 20,),
                     Consumer<GameDetailsViewModel>(
                         builder: (context, value, child) {
                           if (value.gameErrorMessage != null){
@@ -113,7 +116,14 @@ class _GameDetailsViewState extends BaseState<GameDetailsView , GameDetailsViewM
                             );
                           }else {
                             return Column(
-
+                              children: [
+                                ReleaseDateWidget(date: value.gameDetails!.released??"--/--/----"),
+                                // change the design of the metacitic rating
+                                // MetacriticPlatformsRatingsWidget(metacriticPlatforms: value.gameDetails!.metacriticPlatforms??[])
+                                // the game description
+                                DescriptionWidget(title: value.local!.description,description: value.gameDetails!.descriptionRaw??value.local!.noDescription),
+                                RatingWidget(title: value.local!.rating, count: value.calcGameRatingsCount(), ratings: value.gameDetails!.ratings??[])
+                              ],
                             );
                           }
                         },

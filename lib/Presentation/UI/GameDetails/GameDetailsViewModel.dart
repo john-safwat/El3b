@@ -45,4 +45,14 @@ class GameDetailsViewModel extends BaseViewModel<GameDetailsNavigator> {
   }
 
 
+  // function to calc the total ratings of the game
+  double calcGameRatingsCount(){
+    double count = 0;
+    for(int i =0 ; i<gameDetails!.ratings!.length;i++){
+      count += gameDetails!.ratings![i].count??0;
+    }
+    return count;
+  }
+
+
 }

@@ -81,5 +81,8 @@
   "releaseDate" : "Release Date",
   "gameAddedToWishList" : "Game Added To Favorite Successfully",
   "gameDeletedFromWishList" : "Game Removed From Favorite Successfully",
-  "noGamesInWishList" : "There are No Games In Your Favorite List"
+  "noGamesInWishList" : "There are No Games In Your Favorite List",
+  "noDescription" : "No Description Available",
+  "description" : "Description",
+  "rating" : "Ratings"
 }

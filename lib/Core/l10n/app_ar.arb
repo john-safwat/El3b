@@ -81,5 +81,8 @@
   "releaseDate" : "تاريخ الاصدار",
   "gameAddedToWishList" : "تم اضافة اللعبة اللي المفضلة بنجاح",
   "gameDeletedFromWishList" : "تم ازالة اللعبة من المفضلة بنجاح",
-  "noGamesInWishList" : "لا يوجد العاب في المفضلة"
+  "noGamesInWishList" : "لا يوجد العاب في المفضلة",
+  "noDescription" : "الوصف غير متوفر الان",
+  "description" : "وصف اللعبة",
+  "rating" : "التقيمات"
 }
