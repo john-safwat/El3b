@@ -77,7 +77,6 @@ class RAWGGamesAPI extends BaseAPIManager<RAWGGamesAPIAssets> {
     Uri uri = Uri.https(apiAssets.baseURL, "${apiAssets.gamesRoute}/$id", {
       "key": apiAssets.apiKey
     });
-    print(uri);
     // make api request
     var response = await dio.getUri(uri);
     // return the data

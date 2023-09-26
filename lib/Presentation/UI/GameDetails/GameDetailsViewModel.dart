@@ -44,7 +44,6 @@ class GameDetailsViewModel extends BaseViewModel<GameDetailsNavigator> {
 
   }
 
-
   // function to calc the total ratings of the game
   double calcGameRatingsCount(){
     double count = 0;
@@ -52,6 +51,23 @@ class GameDetailsViewModel extends BaseViewModel<GameDetailsNavigator> {
       count += gameDetails!.ratings![i].count??0;
     }
     return count;
+  }
+
+  // function to calc the steps of the gradiant based on the rating count
+  List<double> calcStepsList(){
+
+    double count = calcGameRatingsCount();
+    double sum = 0 ;
+    List<double> steps = [];
+
+    for(int i = 0; i<gameDetails!.ratings!.length ; i++){
+      steps.add(sum);
+      sum += (gameDetails!.ratings![i].count! / count);
+      steps.add(sum);
+    }
+
+    return steps;
+
   }
 
 
