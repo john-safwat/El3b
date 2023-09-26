@@ -11,6 +11,7 @@ import 'package:El3b/Domain/Exception/DioServerException.dart';
 import 'package:El3b/Domain/Exception/InternetConnectionException.dart';
 import 'package:El3b/Domain/Exception/TimeOutOperationsException.dart';
 import 'package:El3b/Domain/Exception/UnknownException.dart';
+import 'package:El3b/Domain/Models/Games/GameDetails/GameDetails.dart';
 import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
 import 'package:El3b/Domain/Repository/RAWGGamesRepository.dart';
 
@@ -115,6 +116,13 @@ class RAWGGamesRepositoryImpl implements RAWGGamesRepository {
   Future<(num? , List<RAWGGame>?)> getGamesByGenre({required String genre, required int pageNumber}) async{
    var (count , response) = await remoteDataSource.getGamesByGenre(genre: genre, pageNumber: pageNumber);
    return (count , response);
+  }
+
+  // function to get the Game details from RAWG games API
+  @override
+  Future<GameDetails?> getGameDetails({required String id}) async{
+    var response = await remoteDataSource.getGameDetails(id: id);
+    return response;
   }
 
 }

@@ -1,5 +1,6 @@
 import 'package:El3b/Core/Base/BaseAPIManager.dart';
 import 'package:El3b/Data/Api/RAWGGamesAPI/RAWGAPIAssets.dart';
+import 'package:El3b/Data/Models/Games/GameDetails/GameDetailsDTO.dart';
 import 'package:El3b/Data/Models/Games/RAWG/RAWGGamesResponseDTO.dart';
 import 'package:El3b/Data/Models/Genres/GenresResponseDTO.dart';
 
@@ -67,6 +68,20 @@ class RAWGGamesAPI extends BaseAPIManager<RAWGGamesAPIAssets> {
     var response = await dio.getUri(uri);
     // return the data
     return RAWGGamesResponseDTO.fromJson(response.data);
+  }
+
+
+  // function to get the game details from the data base
+  Future<GameDetailsDTO> getGameDetails({required String id})async {
+    // prepare the url
+    Uri uri = Uri.https(apiAssets.baseURL, "${apiAssets.gamesRoute}/$id", {
+      "key": apiAssets.apiKey
+    });
+    print(uri);
+    // make api request
+    var response = await dio.getUri(uri);
+    // return the data
+    return GameDetailsDTO.fromJson(response.data);
   }
 
 }

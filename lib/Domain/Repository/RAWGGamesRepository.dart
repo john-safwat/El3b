@@ -1,4 +1,5 @@
 
+import 'package:El3b/Domain/Models/Games/GameDetails/GameDetails.dart';
 import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
 
 abstract class RAWGGamesRepository {
@@ -11,4 +12,7 @@ abstract class RAWGGamesRepository {
   Future<List<RAWGGame>?> loadGamesFromWishList({required String uid});
 
   Future<(num? , List<RAWGGame>?)> getGamesByGenre({required String genre , required int pageNumber});
+
+  Future<GameDetails?> getGameDetails({required String id});
+
 }
