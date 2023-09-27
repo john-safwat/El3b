@@ -84,5 +84,11 @@
   "noGamesInWishList" : "There are No Games In Your Favorite List",
   "noDescription" : "No Description Available",
   "description" : "Description",
-  "rating" : "Ratings"
+  "rating" : "Ratings",
+  "exceptional" : "Exceptional",
+  "recommended" : "Recommended",
+  "meh" : "Meh",
+  "skip" : "Skip",
+  "genre" : "Genre",
+  "whereToBuy" : "Where To Buy"
 }

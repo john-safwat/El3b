@@ -84,5 +84,11 @@
   "noGamesInWishList" : "لا يوجد العاب في المفضلة",
   "noDescription" : "الوصف غير متوفر الان",
   "description" : "وصف اللعبة",
-  "rating" : "التقيمات"
+  "rating" : "التقيمات",
+  "exceptional" : "استثنائي",
+  "recommended" : "مُستَحسَن",
+  "meh" : "سئ",
+  "skip" : "تخطي",
+  "genre" : "التصنيفات",
+  "whereToBuy" : "هنا يمكنك شراء اللعبة"
 }

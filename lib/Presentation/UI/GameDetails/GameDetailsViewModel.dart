@@ -2,11 +2,13 @@ import 'package:El3b/Core/Base/BaseViewModel.dart';
 import 'package:El3b/Domain/Exception/DioServerException.dart';
 import 'package:El3b/Domain/Exception/InternetConnectionException.dart';
 import 'package:El3b/Domain/Exception/TimeOutOperationsException.dart';
+import 'package:El3b/Domain/Exception/URLLauncherException.dart';
 import 'package:El3b/Domain/Exception/UnknownException.dart';
 import 'package:El3b/Domain/Models/Games/GameDetails/GameDetails.dart';
 import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
 import 'package:El3b/Domain/UseCase/GetGameDetailsUseCase.dart';
 import 'package:El3b/Presentation/UI/GameDetails/GameDetailsNavigator.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 class GameDetailsViewModel extends BaseViewModel<GameDetailsNavigator> {
@@ -65,9 +67,17 @@ class GameDetailsViewModel extends BaseViewModel<GameDetailsNavigator> {
       sum += (gameDetails!.ratings![i].count! / count);
       steps.add(sum);
     }
-
     return steps;
+  }
 
+  // function to return list of rating color meaning
+  List<String> getRatingMeaning(){
+    return [
+      local!.exceptional,
+      local!.recommended,
+      local!.meh ,
+      local!.skip ,
+    ];
   }
 
 
