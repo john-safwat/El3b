@@ -1,3 +1,4 @@
+import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:flutter/material.dart';
 
 class ReleaseDateWidget extends StatelessWidget {
@@ -13,7 +14,7 @@ class ReleaseDateWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(date , style: Theme.of(context).textTheme.displaySmall,)
+          Text(date , style: Theme.of(context).textTheme.displaySmall!.copyWith(color: MyTheme.offWhite),)
         ],
       ),
     );
