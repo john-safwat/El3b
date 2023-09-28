@@ -22,4 +22,8 @@ class RAWGGamesAPIAssets extends BaseAPIAssets {
   String gameDetailsRoute = "/api/games/";
   String apiKey = "58cb6e3d5f144d9ab9600c3cd1985820";
 
+  String gameDevelopmentTeam (String id){
+    return "/api/games/$id/development-team";
+  }
+
 }

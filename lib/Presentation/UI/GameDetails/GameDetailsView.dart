@@ -2,9 +2,11 @@ import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
 import 'package:El3b/Domain/UseCase/GetGameDetailsUseCase.dart';
+import 'package:El3b/Domain/UseCase/GetGameDevelopersUseCase.dart';
 import 'package:El3b/Presentation/UI/GameDetails/GameDetailsNavigator.dart';
 import 'package:El3b/Presentation/UI/GameDetails/GameDetailsViewModel.dart';
 import 'package:El3b/Presentation/UI/GameDetails/Widgets/DiscriptionWidget.dart';
+import 'package:El3b/Presentation/UI/GameDetails/Widgets/GameDevelopersWidget.dart';
 import 'package:El3b/Presentation/UI/GameDetails/Widgets/GameGenresWidget.dart';
 import 'package:El3b/Presentation/UI/GameDetails/Widgets/ImagesSlider.dart';
 import 'package:El3b/Presentation/UI/GameDetails/Widgets/MetacriticPlatformsRatingsWidget.dart';
@@ -43,55 +45,54 @@ class _GameDetailsViewState extends BaseState<GameDetailsView , GameDetailsViewM
     super.build(context);
     return ChangeNotifierProvider(
       create: (context) => viewModel!,
-      child: Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          title: Text(
-            viewModel!.game.name??"No Name",
-          ),
-        ),
-        body: Stack(
-          children: [
-            // the backGround Image
-            CachedNetworkImage(
-              imageUrl: viewModel!.game.backgroundImage??"",
-              imageBuilder: (context, imageProvider) => Stack(
-                children: [
-                  Image(image: imageProvider,
-                    fit: BoxFit.cover ,
-                    width: double.infinity,
-                    height: double.infinity,
-                  ),
-                  Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    color: MyTheme.darkPurple.withOpacity(0.75),
-                  )
-                ],
-              ),
-              errorWidget: (context, url, error) =>  Image.asset(
-                "Assets/Images/errorImage.png" ,
-                fit: BoxFit.cover ,
-                width: double.infinity,
-                height: double.infinity,
-              ),
-              placeholder: (context, url) => Container(
-                width: double.infinity,
-                height: double.infinity,
-                decoration: BoxDecoration(
-                    color: MyTheme.lightPurple,
-                    borderRadius: BorderRadius.circular(15)
+      child: Stack(
+        children: [
+          // the backGround Image
+          CachedNetworkImage(
+            imageUrl: viewModel!.game.backgroundImage??"",
+            imageBuilder: (context, imageProvider) => Stack(
+              children: [
+                Image(image: imageProvider,
+                  fit: BoxFit.cover ,
+                  width: double.infinity,
+                  height: double.infinity,
                 ),
-                child:const Center(child: CircularProgressIndicator(color: MyTheme.offWhite,),),
+                Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  color: MyTheme.darkPurple.withOpacity(0.75),
+                )
+              ],
+            ),
+            errorWidget: (context, url, error) =>  Image.asset(
+              "Assets/Images/errorImage.png" ,
+              fit: BoxFit.cover ,
+              width: double.infinity,
+              height: double.infinity,
+            ),
+            placeholder: (context, url) => Container(
+              width: double.infinity,
+              height: double.infinity,
+              decoration: BoxDecoration(
+                  color: MyTheme.lightPurple,
+                  borderRadius: BorderRadius.circular(15)
+              ),
+              child:const Center(child: CircularProgressIndicator(color: MyTheme.offWhite,),),
+            ),
+          ),
+
+          Scaffold(
+            backgroundColor: Colors.transparent,
+            appBar: AppBar(
+              title: Text(
+                viewModel!.game.name??"No Name",
               ),
             ),
-            // the screen content
-            ScrollConfiguration(
+            body: ScrollConfiguration(
               behavior: const ScrollBehavior().copyWith(overscroll: false),
               child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      const SizedBox(height: 80,),
                       // the game screen shots
                       ImagesSlider(images: viewModel!.game.shortScreenshots??[]),
                       Consumer<GameDetailsViewModel>(
@@ -131,7 +132,22 @@ class _GameDetailsViewState extends BaseState<GameDetailsView , GameDetailsViewM
                                   // the genres of the game
                                   GameGenresWidget(title: value.local!.genre, genres: value.gameDetails!.genres??[]),
                                   // stores to buy the games
-                                  StoresWidget(title: value.local!.whereToBuy, stores: value.gameDetails!.stores??[] )
+                                  StoresWidget(title: value.local!.whereToBuy, stores: value.gameDetails!.stores??[] ),
+                                  // game developers widget
+                                  Consumer<GameDetailsViewModel>(
+                                      builder: (context, value, child) {
+                                        if (value.developersErrorMessage != null){
+                                          return const SizedBox();
+                                        }else if (value.gameDevelopers.isEmpty){
+                                          return const Padding(
+                                            padding: EdgeInsets.all(40),
+                                            child: CircularProgressIndicator(),
+                                          );
+                                        }else {
+                                          return GameDevelopersWidget(title: value.local!.developers, developers: value.gameDevelopers,);
+                                        }
+                                      },
+                                  )
                                 ],
                               );
                             }
@@ -140,9 +156,9 @@ class _GameDetailsViewState extends BaseState<GameDetailsView , GameDetailsViewM
                     ],
                   )
               ),
-            )
-          ],
-        ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -151,7 +167,8 @@ class _GameDetailsViewState extends BaseState<GameDetailsView , GameDetailsViewM
   GameDetailsViewModel initViewModel() {
     return GameDetailsViewModel(
       game: widget.game,
-      getGameDetailsUseCase: injectGetGameDetailsUseCase()
+      getGameDetailsUseCase: injectGetGameDetailsUseCase(),
+      getGameDevelopersUseCase:  injectGetGameDevelopersUseCase()
     );
   }
 }
