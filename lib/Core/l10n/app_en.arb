@@ -90,5 +90,7 @@
   "meh" : "Meh",
   "skip" : "Skip",
   "genre" : "Genre",
-  "whereToBuy" : "Where To Buy"
+  "whereToBuy" : "Where To Buy",
+  "developers" : "Developers",
+  "view" : "View"
 }

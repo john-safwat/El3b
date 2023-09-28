@@ -2,13 +2,13 @@ import 'package:El3b/Core/Base/BaseViewModel.dart';
 import 'package:El3b/Domain/Exception/DioServerException.dart';
 import 'package:El3b/Domain/Exception/InternetConnectionException.dart';
 import 'package:El3b/Domain/Exception/TimeOutOperationsException.dart';
-import 'package:El3b/Domain/Exception/URLLauncherException.dart';
 import 'package:El3b/Domain/Exception/UnknownException.dart';
+import 'package:El3b/Domain/Models/Developers/Developers.dart';
 import 'package:El3b/Domain/Models/Games/GameDetails/GameDetails.dart';
 import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
 import 'package:El3b/Domain/UseCase/GetGameDetailsUseCase.dart';
+import 'package:El3b/Domain/UseCase/GetGameDevelopersUseCase.dart';
 import 'package:El3b/Presentation/UI/GameDetails/GameDetailsNavigator.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 
 class GameDetailsViewModel extends BaseViewModel<GameDetailsNavigator> {
@@ -16,10 +16,14 @@ class GameDetailsViewModel extends BaseViewModel<GameDetailsNavigator> {
 
   RAWGGame game;
   GetGameDetailsUseCase getGameDetailsUseCase;
-  GameDetailsViewModel({required this.game , required this.getGameDetailsUseCase});
+  GetGameDevelopersUseCase getGameDevelopersUseCase;
+  GameDetailsViewModel({required this.game , required this.getGameDetailsUseCase , required this.getGameDevelopersUseCase});
 
   GameDetails? gameDetails;
   String? gameErrorMessage ;
+
+  List<Developers> gameDevelopers = [];
+  String? developersErrorMessage ;
 
   // function to get the game details
   void getGameDetails()async{
@@ -29,6 +33,7 @@ class GameDetailsViewModel extends BaseViewModel<GameDetailsNavigator> {
     try {
       gameDetails = await getGameDetailsUseCase.invoke(id: game.id.toString());
       notifyListeners();
+      getGameDevelopers(id: gameDetails!.id.toString());
     } catch (e) {
       if (e is DioServerException) {
         gameErrorMessage = e.errorMessage;
@@ -43,7 +48,30 @@ class GameDetailsViewModel extends BaseViewModel<GameDetailsNavigator> {
       }
       notifyListeners();
     }
+  }
 
+  // function to load all game developers
+  void getGameDevelopers({required String id})async{
+    developersErrorMessage = null;
+    gameDevelopers = [];
+    notifyListeners();
+    try {
+      gameDevelopers = await getGameDevelopersUseCase.invoke(id: game.id.toString());
+      notifyListeners();
+    } catch (e) {
+      if (e is DioServerException) {
+        developersErrorMessage = e.errorMessage;
+      } else if (e is TimeOutOperationsException) {
+        developersErrorMessage = local!.operationTimedOut;
+      } else if (e is InternetConnectionException) {
+        developersErrorMessage = local!.checkYourInternetConnection;
+      } else if (e is UnknownException) {
+        developersErrorMessage = e.errorMessage;
+      } else {
+        developersErrorMessage = e.toString();
+      }
+      notifyListeners();
+    }
   }
 
   // function to calc the total ratings of the game

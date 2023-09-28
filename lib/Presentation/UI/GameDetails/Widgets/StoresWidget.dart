@@ -24,33 +24,29 @@ class StoresWidget extends StatelessWidget {
           height: 10,
         ),
         SizedBox(
-          height: 80,
+          height: 70,
           child: Row(
             children: [
               Expanded(
-                child: ListView.builder(
+                child: ListView.separated(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   scrollDirection: Axis.horizontal,
                   itemCount: stores.length,
-                  itemBuilder: (context, index) => Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                            color: MyTheme.purple,
-                            borderRadius: BorderRadius.circular(15),
-                            border: Border.all(
-                                width: 2, color: MyTheme.lightPurple)),
-                        child: SvgPicture.asset(
-                          stores[index].store!.icon ?? "Assets/SVG/browser.svg",
-                          color: MyTheme.offWhite,
-                          width: 35,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      )
-                    ],
+                  separatorBuilder: (context, index) => const SizedBox(
+                    width: 10,
+                  ),
+                  itemBuilder: (context, index) => Container(
+                    padding: const EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                        color: MyTheme.purple,
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(
+                            width: 2, color: MyTheme.lightPurple)),
+                    child: SvgPicture.asset(
+                      stores[index].store!.icon ?? "Assets/SVG/browser.svg",
+                      color: MyTheme.offWhite,
+                      width: 35,
+                    ),
                   )
                 )
               ),
