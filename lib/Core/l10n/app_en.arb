@@ -92,5 +92,9 @@
   "genre" : "Genre",
   "whereToBuy" : "Where To Buy",
   "developers" : "Developers",
-  "view" : "View"
+  "view" : "View",
+  "availableOn" : "Available on",
+  "tags" : "Tags",
+  "gameAchievements" : "Game Achievements",
+  "viewAll" : "View All"
 }

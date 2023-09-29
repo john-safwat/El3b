@@ -104,6 +104,7 @@ class DeveloperWidget extends StatelessWidget {
                         developer.name ?? "No Name Found",
                         style: Theme.of(context).textTheme.displayLarge!.copyWith(
                             color: MyTheme.offWhite, fontWeight: FontWeight.w500),
+                        maxLines: 2,
                       ),
                       ElevatedButton(
                         onPressed: (){},
