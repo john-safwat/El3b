@@ -1,18 +1,22 @@
 import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
+import 'package:El3b/Domain/UseCase/GetGameAchievementsUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetGameDetailsUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetGameDevelopersUseCase.dart';
 import 'package:El3b/Presentation/UI/GameDetails/GameDetailsNavigator.dart';
 import 'package:El3b/Presentation/UI/GameDetails/GameDetailsViewModel.dart';
 import 'package:El3b/Presentation/UI/GameDetails/Widgets/DiscriptionWidget.dart';
+import 'package:El3b/Presentation/UI/GameDetails/Widgets/GameAchievementsListWidget.dart';
 import 'package:El3b/Presentation/UI/GameDetails/Widgets/GameDevelopersWidget.dart';
 import 'package:El3b/Presentation/UI/GameDetails/Widgets/GameGenresWidget.dart';
+import 'package:El3b/Presentation/UI/GameDetails/Widgets/GamePlatformsWidget.dart';
 import 'package:El3b/Presentation/UI/GameDetails/Widgets/ImagesSlider.dart';
 import 'package:El3b/Presentation/UI/GameDetails/Widgets/MetacriticPlatformsRatingsWidget.dart';
 import 'package:El3b/Presentation/UI/GameDetails/Widgets/RatingWidget.dart';
 import 'package:El3b/Presentation/UI/GameDetails/Widgets/ReleaseDateWidget.dart';
 import 'package:El3b/Presentation/UI/GameDetails/Widgets/StoresWidget.dart';
+import 'package:El3b/Presentation/UI/GameDetails/Widgets/TagsListWidget.dart';
 import 'package:El3b/Presentation/UI/Widgets/ErrorMessageWidget.dart';
 import 'package:El3b/Presentation/UI/Widgets/LanguageSwitch.dart';
 import 'package:El3b/Presentation/UI/Widgets/ThemeSwitch.dart';
@@ -147,7 +151,33 @@ class _GameDetailsViewState extends BaseState<GameDetailsView , GameDetailsViewM
                                           return GameDevelopersWidget(title: value.local!.developers, developers: value.gameDevelopers,);
                                         }
                                       },
-                                  )
+                                  ),
+                                  // the game platforms and its requirements
+                                  GamePlatformsWidget(
+                                    title: value.local!.availableOn,
+                                    platforms: value.gameDetails!.platforms??[]
+                                  ),
+                                  // game tags widget
+                                  TagsListWidget(title: value.local!.tags, tags: value.gameDetails!.tags??[]),
+                                  // game achievements widget
+                                  Consumer<GameDetailsViewModel>(
+                                    builder: (context, value, child) {
+                                      if (value.developersErrorMessage != null){
+                                        return const SizedBox();
+                                      }else if (value.gameDevelopers.isEmpty){
+                                        return const Padding(
+                                          padding: EdgeInsets.all(40),
+                                          child: CircularProgressIndicator(),
+                                        );
+                                      }else {
+                                        return GameAchievementsListWidget(
+                                          title: value.local!.gameAchievements,
+                                          achievements: value.gameAchievements,
+                                          buttonTitle: value.local!.viewAll,
+                                        );
+                                      }
+                                    },
+                                  ),
                                 ],
                               );
                             }
@@ -168,7 +198,8 @@ class _GameDetailsViewState extends BaseState<GameDetailsView , GameDetailsViewM
     return GameDetailsViewModel(
       game: widget.game,
       getGameDetailsUseCase: injectGetGameDetailsUseCase(),
-      getGameDevelopersUseCase:  injectGetGameDevelopersUseCase()
+      getGameDevelopersUseCase:  injectGetGameDevelopersUseCase(),
+      getGameAchievementsUseCase: injectGetGameAchievementsUseCase()
     );
   }
 }

@@ -92,5 +92,10 @@
   "genre" : "التصنيفات",
   "whereToBuy" : "هنا يمكنك شراء اللعبة",
   "developers" : "المطورون",
-  "view" : "عرض"
+  "view" : "عرض",
+  "availableOn" : "متطلبات التشغيل",
+  "tags" : "الاشارات",
+  "gameAchievements" : "انجازات داخل اللعبة",
+  "viewAll" : "عرض الكل"
+
 }

@@ -26,4 +26,8 @@ class RAWGGamesAPIAssets extends BaseAPIAssets {
     return "/api/games/$id/development-team";
   }
 
+  String gameAchievements (String id){
+    return "/api/games/$id/achievements";
+  }
+
 }

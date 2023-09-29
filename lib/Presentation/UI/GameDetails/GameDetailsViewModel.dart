@@ -3,9 +3,11 @@ import 'package:El3b/Domain/Exception/DioServerException.dart';
 import 'package:El3b/Domain/Exception/InternetConnectionException.dart';
 import 'package:El3b/Domain/Exception/TimeOutOperationsException.dart';
 import 'package:El3b/Domain/Exception/UnknownException.dart';
+import 'package:El3b/Domain/Models/Achievements/Achievement.dart';
 import 'package:El3b/Domain/Models/Developers/Developers.dart';
 import 'package:El3b/Domain/Models/Games/GameDetails/GameDetails.dart';
 import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
+import 'package:El3b/Domain/UseCase/GetGameAchievementsUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetGameDetailsUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetGameDevelopersUseCase.dart';
 import 'package:El3b/Presentation/UI/GameDetails/GameDetailsNavigator.dart';
@@ -17,13 +19,17 @@ class GameDetailsViewModel extends BaseViewModel<GameDetailsNavigator> {
   RAWGGame game;
   GetGameDetailsUseCase getGameDetailsUseCase;
   GetGameDevelopersUseCase getGameDevelopersUseCase;
-  GameDetailsViewModel({required this.game , required this.getGameDetailsUseCase , required this.getGameDevelopersUseCase});
+  GetGameAchievementsUseCase getGameAchievementsUseCase;
+  GameDetailsViewModel({required this.game , required this.getGameDetailsUseCase , required this.getGameDevelopersUseCase , required this.getGameAchievementsUseCase});
 
   GameDetails? gameDetails;
   String? gameErrorMessage ;
 
   List<Developers> gameDevelopers = [];
   String? developersErrorMessage ;
+
+  List<Achievement> gameAchievements = [];
+  String? achievementsErrorMessage ;
 
   // function to get the game details
   void getGameDetails()async{
@@ -34,6 +40,7 @@ class GameDetailsViewModel extends BaseViewModel<GameDetailsNavigator> {
       gameDetails = await getGameDetailsUseCase.invoke(id: game.id.toString());
       notifyListeners();
       getGameDevelopers(id: gameDetails!.id.toString());
+      getGameAchievements(id: gameDetails!.id.toString());
     } catch (e) {
       if (e is DioServerException) {
         gameErrorMessage = e.errorMessage;
@@ -69,6 +76,30 @@ class GameDetailsViewModel extends BaseViewModel<GameDetailsNavigator> {
         developersErrorMessage = e.errorMessage;
       } else {
         developersErrorMessage = e.toString();
+      }
+      notifyListeners();
+    }
+  }
+
+  // function to load all game developers
+  void getGameAchievements({required String id})async{
+    achievementsErrorMessage = null;
+    gameAchievements = [];
+    notifyListeners();
+    try {
+      gameAchievements = await getGameAchievementsUseCase.invoke(id: game.id.toString());
+      notifyListeners();
+    } catch (e) {
+      if (e is DioServerException) {
+        achievementsErrorMessage = e.errorMessage;
+      } else if (e is TimeOutOperationsException) {
+        achievementsErrorMessage = local!.operationTimedOut;
+      } else if (e is InternetConnectionException) {
+        achievementsErrorMessage = local!.checkYourInternetConnection;
+      } else if (e is UnknownException) {
+        achievementsErrorMessage = e.errorMessage;
+      } else {
+        achievementsErrorMessage = e.toString();
       }
       notifyListeners();
     }
