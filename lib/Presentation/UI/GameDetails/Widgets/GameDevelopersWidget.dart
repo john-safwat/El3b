@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 class GameDevelopersWidget extends StatelessWidget {
 
   String title ;
-  List<Developers> developers;
-
-  GameDevelopersWidget({required this.title , required this.developers ,super.key});
+  List<Developer> developers;
+  Function goToDeveloperProfile;
+  GameDevelopersWidget({required this.title , required this.developers,required this.goToDeveloperProfile ,super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class GameDevelopersWidget extends StatelessWidget {
           child: ListView.separated(
             padding:const EdgeInsets.all(20),
             scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => DeveloperWidget(developer: developers[index]),
+              itemBuilder: (context, index) => DeveloperWidget(developer: developers[index] , goToDeveloperProfile: goToDeveloperProfile),
               separatorBuilder:(context, index) => const SizedBox(width: 20,),
               itemCount: developers.length
           ),

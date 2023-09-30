@@ -10,7 +10,9 @@ class DevelopersDTO {
       this.image, 
       this.imageBackground, 
       this.gamesCount,
-      this.positions,});
+      this.positions,
+      this.description,
+  });
 
   DevelopersDTO.fromJson(dynamic json) {
     id = json['id'];
@@ -19,6 +21,7 @@ class DevelopersDTO {
     image = json['image'];
     imageBackground = json['image_background'];
     gamesCount = json['games_count'];
+    description = json['description'];
     if (json['positions'] != null) {
       positions = [];
       json['positions'].forEach((v) {
@@ -33,6 +36,7 @@ class DevelopersDTO {
   String? imageBackground;
   num? gamesCount;
   List<PositionsDTO>? positions;
+  String? description;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -40,6 +44,7 @@ class DevelopersDTO {
     map['name'] = name;
     map['slug'] = slug;
     map['image'] = image;
+    map['description'] = description;
     map['image_background'] = imageBackground;
     map['games_count'] = gamesCount;
     if (positions != null) {
@@ -48,8 +53,8 @@ class DevelopersDTO {
     return map;
   }
 
-  Developers toDomain(){
-    return Developers(
+  Developer toDomain(){
+    return Developer(
         id : id,
         name : name,
         slug : slug,
@@ -57,6 +62,7 @@ class DevelopersDTO {
         imageBackground : imageBackground,
         gamesCount : gamesCount,
         positions : positions?.map((e) => e.toDomain()).toList(),
+        description:description
     );
   }
 

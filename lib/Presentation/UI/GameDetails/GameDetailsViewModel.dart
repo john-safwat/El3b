@@ -25,7 +25,7 @@ class GameDetailsViewModel extends BaseViewModel<GameDetailsNavigator> {
   GameDetails? gameDetails;
   String? gameErrorMessage ;
 
-  List<Developers> gameDevelopers = [];
+  List<Developer> gameDevelopers = [];
   String? developersErrorMessage ;
 
   List<Achievement> gameAchievements = [];
@@ -137,6 +137,11 @@ class GameDetailsViewModel extends BaseViewModel<GameDetailsNavigator> {
       local!.meh ,
       local!.skip ,
     ];
+  }
+
+  // function to navigate to game developer profile
+  goToGameDeveloperProfile(Developer developer){
+    navigator!.goToDeveloperProfileScreen(developer: developer);
   }
 
 
