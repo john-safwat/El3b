@@ -1,9 +1,11 @@
 import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
+import 'package:El3b/Domain/Models/Developers/Developers.dart';
 import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
 import 'package:El3b/Domain/UseCase/GetGameAchievementsUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetGameDetailsUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetGameDevelopersUseCase.dart';
+import 'package:El3b/Presentation/UI/DeveloperProfile/DeveloperProfileView.dart';
 import 'package:El3b/Presentation/UI/GameDetails/GameDetailsNavigator.dart';
 import 'package:El3b/Presentation/UI/GameDetails/GameDetailsViewModel.dart';
 import 'package:El3b/Presentation/UI/GameDetails/Widgets/DiscriptionWidget.dart';
@@ -78,7 +80,7 @@ class _GameDetailsViewState extends BaseState<GameDetailsView , GameDetailsViewM
               width: double.infinity,
               height: double.infinity,
               decoration: BoxDecoration(
-                  color: MyTheme.lightPurple,
+                  color: MyTheme.darkPurple,
                   borderRadius: BorderRadius.circular(15)
               ),
               child:const Center(child: CircularProgressIndicator(color: MyTheme.offWhite,),),
@@ -94,97 +96,99 @@ class _GameDetailsViewState extends BaseState<GameDetailsView , GameDetailsViewM
             ),
             body: ScrollConfiguration(
               behavior: const ScrollBehavior().copyWith(overscroll: false),
-              child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      // the game screen shots
-                      ImagesSlider(images: viewModel!.game.shortScreenshots??[]),
-                      Consumer<GameDetailsViewModel>(
-                          builder: (context, value, child) {
-                            if (value.gameErrorMessage != null){
-                              return ErrorMessageWidget(
-                                  errorMessage: value.gameErrorMessage!,
-                                  fixErrorFunction: value.getGameDetails
-                              );
-                            }else if (value.gameDetails == null){
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(30.0),
-                                    child: value.themeProvider!.isDark()
-                                        ? Lottie.asset(
-                                        "Assets/Animations/loading2.json",
-                                        width: 150,
-                                        height: 120)
-                                        : Lottie.asset(
-                                        "Assets/Animations/loading3.json",
-                                        width: 300,
-                                        height: 300),
-                                  ),
-                                ],
-                              );
-                            }else {
-                              return Column(
-                                children: [
-                                  ReleaseDateWidget(date: value.gameDetails!.released??"--/--/----"),
-                                  // the game description
-                                  DescriptionWidget(title: value.local!.description,description: value.gameDetails!.descriptionRaw??value.local!.noDescription),
-                                  // add image rating
-                                  RatingWidget(title: value.local!.rating, ratings: value.calcStepsList() , ratingMeanings: value.getRatingMeaning()),
-                                  // the genres of the game
-                                  GameGenresWidget(title: value.local!.genre, genres: value.gameDetails!.genres??[]),
-                                  // stores to buy the games
-                                  StoresWidget(title: value.local!.whereToBuy, stores: value.gameDetails!.stores??[] ),
-                                  // game developers widget
-                                  Consumer<GameDetailsViewModel>(
-                                      builder: (context, value, child) {
-                                        if (value.developersErrorMessage != null){
-                                          return const SizedBox();
-                                        }else if (value.gameDevelopers.isEmpty){
-                                          return const Padding(
-                                            padding: EdgeInsets.all(40),
-                                            child: CircularProgressIndicator(),
-                                          );
-                                        }else {
-                                          return GameDevelopersWidget(title: value.local!.developers, developers: value.gameDevelopers,);
-                                        }
-                                      },
-                                  ),
-                                  // the game platforms and its requirements
-                                  GamePlatformsWidget(
-                                    title: value.local!.availableOn,
-                                    platforms: value.gameDetails!.platforms??[]
-                                  ),
-                                  // game tags widget
-                                  TagsListWidget(title: value.local!.tags, tags: value.gameDetails!.tags??[]),
-                                  // game achievements widget
-                                  Consumer<GameDetailsViewModel>(
-                                    builder: (context, value, child) {
-                                      if (value.developersErrorMessage != null){
-                                        return const SizedBox();
-                                      }else if (value.gameDevelopers.isEmpty){
-                                        return const Padding(
-                                          padding: EdgeInsets.all(40),
-                                          child: CircularProgressIndicator(),
-                                        );
-                                      }else {
-                                        return GameAchievementsListWidget(
-                                          title: value.local!.gameAchievements,
-                                          achievements: value.gameAchievements,
-                                          buttonTitle: value.local!.viewAll,
-                                        );
-                                      }
-                                    },
-                                  ),
-                                ],
-                              );
-                            }
-                          },
-                      )
-                    ],
+              child: ListView(
+                children: [
+                  // the game screen shots
+                  ImagesSlider(images: viewModel!.game.shortScreenshots??[]),
+                  Consumer<GameDetailsViewModel>(
+                      builder: (context, value, child) {
+                        if (value.gameErrorMessage != null){
+                          return ErrorMessageWidget(
+                              errorMessage: value.gameErrorMessage!,
+                              fixErrorFunction: value.getGameDetails
+                          );
+                        }else if (value.gameDetails == null){
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(30.0),
+                                child: value.themeProvider!.isDark()
+                                    ? Lottie.asset(
+                                    "Assets/Animations/loading2.json",
+                                    width: 150,
+                                    height: 120)
+                                    : Lottie.asset(
+                                    "Assets/Animations/loading3.json",
+                                    width: 300,
+                                    height: 300),
+                              ),
+                            ],
+                          );
+                        }else {
+                          return Column(
+                            children: [
+                              ReleaseDateWidget(date: value.gameDetails!.released??"--/--/----"),
+                              // the game description
+                              DescriptionWidget(title: value.local!.description,description: value.gameDetails!.descriptionRaw??value.local!.noDescription),
+                              // add image rating
+                              RatingWidget(title: value.local!.rating, ratings: value.calcStepsList() , ratingMeanings: value.getRatingMeaning()),
+                              // the genres of the game
+                              GameGenresWidget(title: value.local!.genre, genres: value.gameDetails!.genres??[]),
+                              // stores to buy the games
+                              StoresWidget(title: value.local!.whereToBuy, stores: value.gameDetails!.stores??[] ),
+                              // game developers widget
+                              Consumer<GameDetailsViewModel>(
+                                  builder: (context, value, child) {
+                                    if (value.developersErrorMessage != null){
+                                      return const SizedBox();
+                                    }else if (value.gameDevelopers.isEmpty){
+                                      return const Padding(
+                                        padding: EdgeInsets.all(40),
+                                        child: CircularProgressIndicator(),
+                                      );
+                                    }else {
+                                      return GameDevelopersWidget(
+                                        title: value.local!.developers,
+                                        developers: value.gameDevelopers,
+                                        goToDeveloperProfile: value.goToGameDeveloperProfile,
+                                      );
+                                    }
+                                  },
+                              ),
+                              // the game platforms and its requirements
+                              GamePlatformsWidget(
+                                title: value.local!.availableOn,
+                                platforms: value.gameDetails!.platforms??[]
+                              ),
+                              // game tags widget
+                              TagsListWidget(title: value.local!.tags, tags: value.gameDetails!.tags??[]),
+                              // game achievements widget
+                              Consumer<GameDetailsViewModel>(
+                                builder: (context, value, child) {
+                                  if (value.developersErrorMessage != null){
+                                    return const SizedBox();
+                                  }else if (value.gameDevelopers.isEmpty){
+                                    return const Padding(
+                                      padding: EdgeInsets.all(40),
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  }else {
+                                    return GameAchievementsListWidget(
+                                      title: value.local!.gameAchievements,
+                                      achievements: value.gameAchievements,
+                                      buttonTitle: value.local!.viewAll,
+                                    );
+                                  }
+                                },
+                              ),
+                            ],
+                          );
+                        }
+                      },
                   )
+                ],
               ),
             ),
           ),
@@ -201,5 +205,10 @@ class _GameDetailsViewState extends BaseState<GameDetailsView , GameDetailsViewM
       getGameDevelopersUseCase:  injectGetGameDevelopersUseCase(),
       getGameAchievementsUseCase: injectGetGameAchievementsUseCase()
     );
+  }
+
+  @override
+  goToDeveloperProfileScreen({required Developer developer}) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => DeveloperProfileView(developer: developer,)));
   }
 }

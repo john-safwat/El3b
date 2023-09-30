@@ -15,7 +15,7 @@ class GetGameDevelopersUseCase {
   GameDevelopersRepository repository;
   GetGameDevelopersUseCase({required this.repository});
 
-  Future<List<Developers>> invoke({required String id}) async {
+  Future<List<Developer>> invoke({required String id}) async {
 
     var response = await repository.getGameDevelopers(id: id);
     return response??[];
@@ -23,4 +23,4 @@ class GetGameDevelopersUseCase {
   }
 
 
-}
+} 

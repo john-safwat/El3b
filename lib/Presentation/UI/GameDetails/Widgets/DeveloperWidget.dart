@@ -6,8 +6,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 class DeveloperWidget extends StatelessWidget {
-  Developers developer;
-  DeveloperWidget({required this.developer, super.key});
+  Developer developer;
+  Function goToDeveloperProfile;
+  DeveloperWidget({required this.developer,required this.goToDeveloperProfile, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +108,9 @@ class DeveloperWidget extends StatelessWidget {
                         maxLines: 2,
                       ),
                       ElevatedButton(
-                        onPressed: (){},
+                        onPressed:(){
+                          goToDeveloperProfile(developer);
+                        },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

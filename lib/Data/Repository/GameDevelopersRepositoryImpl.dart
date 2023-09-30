@@ -15,8 +15,14 @@ class GameDevelopersRepositoryImpl implements GameDevelopersRepository {
   GameDevelopersRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<List<Developers>?> getGameDevelopers({required String id}) async{
+  Future<List<Developer>?> getGameDevelopers({required String id}) async{
     var response = await remoteDataSource.getGameDevelopers(id: id);
+    return response;
+  }
+
+  @override
+  Future<Developer?> getGameDeveloperDetails({required String id}) async{
+    var response = await remoteDataSource.getGameDeveloperDetails(id: id);
     return response;
   }
 
