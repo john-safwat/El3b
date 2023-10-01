@@ -30,7 +30,7 @@ class GameAchievementsRemoteDataSourceImpl implements GameAchievementsRemoteData
   @override
   Future<List<Achievement>?> getGameAchievements({required String id}) async{
     try {
-      var response = await api.getGameAchievements(id: id).timeout(const Duration(seconds: 60));
+      var response = await api.getGameAchievements(id: id , size: "10").timeout(const Duration(seconds: 60));
       return response?.results?.map((e) => e.toDomain()).toList();
     }on DioException catch (e){
       throw DioServerException(errorMessage: errorHandler.dioExceptionHandler(e.type));
