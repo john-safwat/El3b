@@ -43,5 +43,21 @@ class GameAchievementsRemoteDataSourceImpl implements GameAchievementsRemoteData
     }
   }
 
+  @override
+  Future<(String?, List<Achievement>?)> getAllAGameAchievements({required String id})async {
+    try {
+      var response = await api.getGameAchievements(id: id , size: "40").timeout(const Duration(seconds: 60));
+      return (response?.next , response?.results?.map((e) => e.toDomain()).toList());
+    }on DioException catch (e){
+      throw DioServerException(errorMessage: errorHandler.dioExceptionHandler(e.type));
+    }on TimeoutException {
+      throw TimeOutOperationsException(errorMessage: "Loading Data Timed Out Refresh To Reload");
+    }on IOException catch(e){
+      throw InternetConnectionException(errorMessage: "Check Your Internet Connection");
+    }catch (e){
+      throw UnknownException(errorMessage: e.toString());
+    }
+  }
+
 
 }
