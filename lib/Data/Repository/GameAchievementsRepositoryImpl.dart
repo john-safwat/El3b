@@ -19,5 +19,10 @@ class GameAchievementsRepositoryImpl implements GameAchievementsRepository{
     return response;
   }
 
+  @override
+  Future<(String?, List<Achievement>?)> getAllAGameAchievements({required String id}) async{
+    var response = await remoteDataSource.getAllAGameAchievements(id: id);
+    return response;
+  }
 
 }
