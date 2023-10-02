@@ -8,10 +8,12 @@ class GameAchievementsListWidget extends StatelessWidget {
   String title;
   List<Achievement> achievements;
   String buttonTitle;
+  Function goToGameAchievementsList;
   GameAchievementsListWidget(
       {required this.title,
       required this.achievements,
       required this.buttonTitle,
+      required this.goToGameAchievementsList,
       super.key});
 
   @override
@@ -57,7 +59,9 @@ class GameAchievementsListWidget extends StatelessWidget {
           width: double.infinity,
           margin: const EdgeInsets.symmetric(horizontal: 20),
           child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                goToGameAchievementsList();
+              },
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: Text(
