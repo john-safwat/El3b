@@ -6,6 +6,7 @@ import 'package:El3b/Domain/UseCase/GetGameAchievementsUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetGameDetailsUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetGameDevelopersUseCase.dart';
 import 'package:El3b/Presentation/UI/DeveloperProfile/DeveloperProfileView.dart';
+import 'package:El3b/Presentation/UI/GameAchievementsList/GameAchievementsListView.dart';
 import 'package:El3b/Presentation/UI/GameDetails/GameDetailsNavigator.dart';
 import 'package:El3b/Presentation/UI/GameDetails/GameDetailsViewModel.dart';
 import 'package:El3b/Presentation/UI/GameDetails/Widgets/DiscriptionWidget.dart';
@@ -179,6 +180,7 @@ class _GameDetailsViewState extends BaseState<GameDetailsView , GameDetailsViewM
                                       title: value.local!.gameAchievements,
                                       achievements: value.gameAchievements,
                                       buttonTitle: value.local!.viewAll,
+                                      goToGameAchievementsList: value.goToAchievementsListScreen,
                                     );
                                   }
                                 },
@@ -210,5 +212,10 @@ class _GameDetailsViewState extends BaseState<GameDetailsView , GameDetailsViewM
   @override
   goToDeveloperProfileScreen({required Developer developer}) {
     Navigator.push(context, MaterialPageRoute(builder: (context) => DeveloperProfileView(developer: developer,)));
+  }
+
+  @override
+  goToAchievementsListScreen({required String gameId}) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => GameAchievementsListView( gameId: gameId,)));
   }
 }

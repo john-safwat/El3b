@@ -144,5 +144,10 @@ class GameDetailsViewModel extends BaseViewModel<GameDetailsNavigator> {
     navigator!.goToDeveloperProfileScreen(developer: developer);
   }
 
+  // function to navigate to the game achievements list
+  goToAchievementsListScreen(){
+    navigator!.goToAchievementsListScreen(gameId: game.id.toString());
+  }
+
 
 }

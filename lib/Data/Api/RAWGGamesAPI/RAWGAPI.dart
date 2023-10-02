@@ -101,11 +101,13 @@ class RAWGGamesAPI extends BaseAPIManager<RAWGGamesAPIAssets> {
 
 
   // function to get the achievements of the game
-  Future<AchievementsResponseDTO?> getGameAchievements({required String id , required String size})async {
+  Future<AchievementsResponseDTO?> getGameAchievements({required String id , required String size , required String pageNumber})async {
     // prepare the url
     Uri uri = Uri.https(apiAssets.baseURL, apiAssets.gameAchievements(id), {
       "key": apiAssets.apiKey,
-      "page_size": size
+      "page_size": size,
+      "page": pageNumber
+
     });
     // make api request
     var response = await dio.getUri(uri);
