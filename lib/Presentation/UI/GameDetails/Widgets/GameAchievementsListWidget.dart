@@ -24,6 +24,7 @@ class GameAchievementsListWidget extends StatelessWidget {
         GridView.builder(
           shrinkWrap: true,
           padding: const EdgeInsets.all(20),
+          physics: const NeverScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 5,
               mainAxisSpacing: 10,
