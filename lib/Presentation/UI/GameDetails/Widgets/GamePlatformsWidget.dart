@@ -30,39 +30,12 @@ class GamePlatformsWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                       child: Stack(
                         children: [
-                          // the background image
-                          Positioned.fill(
-                            child: CachedNetworkImage(
-                              imageUrl: e.platform!.imageBackground ?? "",
-                              imageBuilder: (context, imageProvider) => Image(
-                                image: imageProvider,
-                                fit: BoxFit.cover,
-                                width: double.infinity,
-                              ),
-                              errorWidget: (context, url, error) => Image.asset(
-                                "Assets/Images/errorImage.png",
-                                fit: BoxFit.cover,
-                                width: double.infinity,
-                              ),
-                              placeholder: (context, url) => Container(
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                    color: MyTheme.lightPurple,
-                                    borderRadius: BorderRadius.circular(15)),
-                                child: const Center(
-                                  child: CircularProgressIndicator(
-                                    color: MyTheme.offWhite,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
                           // the game data
                           Container(
                             padding: const EdgeInsets.all(20),
                             width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: MyTheme.purple.withOpacity(0.8),
+                            decoration:const BoxDecoration(
+                              color: MyTheme.purple,
                             ),
                             child: Column(
                               children: [

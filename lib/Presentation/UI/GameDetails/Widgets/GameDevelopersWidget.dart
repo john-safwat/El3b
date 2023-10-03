@@ -21,7 +21,7 @@ class GameDevelopersWidget extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: 160,
+          height: 250,
           child: ListView.separated(
             padding:const EdgeInsets.all(20),
             scrollDirection: Axis.horizontal,
