@@ -11,6 +11,7 @@ import 'package:El3b/Domain/UseCase/GetGameAchievementsUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetGameDetailsUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetGameDevelopersUseCase.dart';
 import 'package:El3b/Presentation/UI/GameDetails/GameDetailsNavigator.dart';
+import 'package:flutter/material.dart';
 
 
 class GameDetailsViewModel extends BaseViewModel<GameDetailsNavigator> {
@@ -26,9 +27,11 @@ class GameDetailsViewModel extends BaseViewModel<GameDetailsNavigator> {
   String? gameErrorMessage ;
 
   List<Developer> gameDevelopers = [];
+  bool gameDevelopersLoaded = false;
   String? developersErrorMessage ;
 
   List<Achievement> gameAchievements = [];
+  bool gameAchievementsLoaded = false ;
   String? achievementsErrorMessage ;
 
   // function to get the game details
@@ -64,6 +67,7 @@ class GameDetailsViewModel extends BaseViewModel<GameDetailsNavigator> {
     notifyListeners();
     try {
       gameDevelopers = await getGameDevelopersUseCase.invoke(id: game.id.toString());
+      gameDevelopersLoaded = true;
       notifyListeners();
     } catch (e) {
       if (e is DioServerException) {
@@ -88,6 +92,7 @@ class GameDetailsViewModel extends BaseViewModel<GameDetailsNavigator> {
     notifyListeners();
     try {
       gameAchievements = await getGameAchievementsUseCase.invoke(id: game.id.toString());
+      gameAchievementsLoaded = true;
       notifyListeners();
     } catch (e) {
       if (e is DioServerException) {
@@ -127,6 +132,26 @@ class GameDetailsViewModel extends BaseViewModel<GameDetailsNavigator> {
       steps.add(sum);
     }
     return steps;
+  }
+
+  List<Color> getColorsList(){
+    List<Color> colors = [];
+    for(int i = 0; i<gameDetails!.ratings!.length ; i++){
+      if (gameDetails!.ratings![i].id == 5){
+        colors.add(const Color(0xFF85CC36));
+        colors.add(const Color(0xFF85CC36));
+      }else if (gameDetails!.ratings![i].id == 4){
+        colors.add(const Color(0xFF4E6DD1));
+        colors.add(const Color(0xFF4E6DD1));
+      }else if (gameDetails!.ratings![i].id == 3){
+        colors.add(const Color(0xFFF9A541));
+        colors.add(const Color(0xFFF9A541));
+      }else{
+        colors.add(const Color(0xFFF73645));
+        colors.add(const Color(0xFFF73645));
+      }
+    }
+    return colors;
   }
 
   // function to return list of rating color meaning

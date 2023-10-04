@@ -7,7 +7,8 @@ class RatingWidget extends StatelessWidget {
   String title ;
   List<double> ratings;
   List<String> ratingMeanings;
-  RatingWidget({required this.title , required this.ratings , required this.ratingMeanings});
+  List<Color> colors;
+  RatingWidget({required this.title , required this.ratings , required this.ratingMeanings , required this.colors});
 
   @override
   Widget build(BuildContext context) {
@@ -23,16 +24,7 @@ class RatingWidget extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius:BorderRadius.circular(10),
               gradient: LinearGradient(
-                colors: const [
-                  Color(0xFF85CC36),
-                  Color(0xFF85CC36),
-                  Color(0xFF4E6DD1),
-                  Color(0xFF4E6DD1),
-                  Color(0xFFF9A541),
-                  Color(0xFFF9A541),
-                  Color(0xFFF73645),
-                  Color(0xFFF73645),
-                ],
+                colors: colors,
                 stops: ratings
               )
             ),
