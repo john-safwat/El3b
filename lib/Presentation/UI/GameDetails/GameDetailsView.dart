@@ -134,7 +134,7 @@ class _GameDetailsViewState extends BaseState<GameDetailsView , GameDetailsViewM
                               // the game description
                               DescriptionWidget(title: value.local!.description,description: value.gameDetails!.descriptionRaw??value.local!.noDescription),
                               // add image rating
-                              RatingWidget(title: value.local!.rating, ratings: value.calcStepsList() , ratingMeanings: value.getRatingMeaning()),
+                              RatingWidget(title: value.local!.rating, ratings: value.calcStepsList() , ratingMeanings: value.getRatingMeaning() ,colors:  value.getColorsList()),
                               // the genres of the game
                               GameGenresWidget(title: value.local!.genre, genres: value.gameDetails!.genres??[]),
                               // stores to buy the games
@@ -144,17 +144,19 @@ class _GameDetailsViewState extends BaseState<GameDetailsView , GameDetailsViewM
                                   builder: (context, value, child) {
                                     if (value.developersErrorMessage != null){
                                       return const SizedBox();
-                                    }else if (value.gameDevelopers.isEmpty){
+                                    }else if (!value.gameDevelopersLoaded){
                                       return const Padding(
                                         padding: EdgeInsets.all(40),
                                         child: CircularProgressIndicator(),
                                       );
-                                    }else {
+                                    }else if( value.gameDevelopers.isNotEmpty){
                                       return GameDevelopersWidget(
                                         title: value.local!.developers,
                                         developers: value.gameDevelopers,
                                         goToDeveloperProfile: value.goToGameDeveloperProfile,
                                       );
+                                    }else {
+                                    return const SizedBox();
                                     }
                                   },
                               ),
@@ -170,18 +172,20 @@ class _GameDetailsViewState extends BaseState<GameDetailsView , GameDetailsViewM
                                 builder: (context, value, child) {
                                   if (value.developersErrorMessage != null){
                                     return const SizedBox();
-                                  }else if (value.gameDevelopers.isEmpty){
+                                  }else if (!value.gameDevelopersLoaded){
                                     return const Padding(
                                       padding: EdgeInsets.all(40),
                                       child: CircularProgressIndicator(),
                                     );
-                                  }else {
+                                  }else if (value.gameAchievements.isNotEmpty){
                                     return GameAchievementsListWidget(
                                       title: value.local!.gameAchievements,
                                       achievements: value.gameAchievements,
                                       buttonTitle: value.local!.viewAll,
                                       goToGameAchievementsList: value.goToAchievementsListScreen,
                                     );
+                                  }else {
+                                    return const SizedBox();
                                   }
                                 },
                               ),

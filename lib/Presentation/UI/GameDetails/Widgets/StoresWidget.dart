@@ -11,7 +11,7 @@ class StoresWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return stores.isEmpty ? const SizedBox() : Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Row(
@@ -24,7 +24,7 @@ class StoresWidget extends StatelessWidget {
           height: 10,
         ),
         SizedBox(
-          height: 70,
+          height:70,
           child: Row(
             children: [
               Expanded(
