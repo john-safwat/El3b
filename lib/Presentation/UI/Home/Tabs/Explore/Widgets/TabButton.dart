@@ -61,7 +61,8 @@ class TabButton extends StatelessWidget {
               child: Text(
                 genre.name??"No Name",
                 style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                    fontWeight: FontWeight.bold
+                    fontWeight: FontWeight.bold,
+                  color: MyTheme.offWhite
                 ),
                 textAlign: TextAlign.center,
               ),

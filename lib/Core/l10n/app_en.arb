@@ -96,5 +96,6 @@
   "availableOn" : "Available on",
   "tags" : "Tags",
   "gameAchievements" : "Game Achievements",
-  "viewAll" : "View All"
+  "viewAll" : "View All",
+  "edit" : "Edit"
 }

@@ -39,8 +39,8 @@ class _GameAchievementsListViewState extends BaseState<GameAchievementsListView 
           builder: (context, value, child) {
             if(value.errorMessage != null){
               return ErrorMessageWidget(
-                errorMessage: value.errorMessage!,
-                fixErrorFunction: value.getGameAchievements
+                  errorMessage: value.errorMessage!,
+                  fixErrorFunction: value.getGameAchievements
               );
             }else if (value.achievements.isEmpty){
               return Column(
@@ -61,101 +61,101 @@ class _GameAchievementsListViewState extends BaseState<GameAchievementsListView 
               return Column(
                 children: [
                   Expanded(
-                    child: ListView.separated(
-                      physics: const BouncingScrollPhysics(),
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                      itemBuilder: (context, index) {
+                      child: ListView.separated(
+                        physics: const BouncingScrollPhysics(),
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        itemBuilder: (context, index) {
 
-                        if(index != value.achievements.length){
-                          return Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                gradient:const LinearGradient(
-                                    colors: [
-                                      MyTheme.lightPurple ,
-                                      MyTheme.purple
-                                    ],
-                                    begin: Alignment.bottomLeft,
-                                    end: Alignment.topRight
-                                )
-                            ),
-                            child: Row(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(5),
-                                  child: CachedNetworkImage(
-                                    imageUrl: value.achievements[index].image ?? "",
-                                    imageBuilder: (context, imageProvider) => Image(
-                                      image: imageProvider,
-                                      fit: BoxFit.cover,
-                                      width: 70,
-                                      height:70,
-                                    ),
-                                    errorWidget: (context, url, error) => Image.asset(
-                                      "Assets/Images/errorImage.png",
-                                      fit: BoxFit.cover,
-                                      width: 70,
-                                      height: 70,
-                                    ),
-                                    placeholder: (context, url) => Container(
-                                      width: 70,
-                                      height: 70,
-                                      decoration: BoxDecoration(
-                                          color: MyTheme.lightPurple,
-                                          borderRadius: BorderRadius.circular(15)),
-                                      child: const Center(
-                                        child: CircularProgressIndicator(
-                                          color: MyTheme.offWhite,
+                          if(index != value.achievements.length){
+                            return Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  gradient:const LinearGradient(
+                                      colors: [
+                                        MyTheme.lightPurple ,
+                                        MyTheme.purple
+                                      ],
+                                      begin: Alignment.bottomLeft,
+                                      end: Alignment.topRight
+                                  )
+                              ),
+                              child: Row(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(5),
+                                    child: CachedNetworkImage(
+                                      imageUrl: value.achievements[index].image ?? "",
+                                      imageBuilder: (context, imageProvider) => Image(
+                                        image: imageProvider,
+                                        fit: BoxFit.cover,
+                                        width: 70,
+                                        height:70,
+                                      ),
+                                      errorWidget: (context, url, error) => Image.asset(
+                                        "Assets/Images/errorImage.png",
+                                        fit: BoxFit.cover,
+                                        width: 70,
+                                        height: 70,
+                                      ),
+                                      placeholder: (context, url) => Container(
+                                        width: 70,
+                                        height: 70,
+                                        decoration: BoxDecoration(
+                                            color: MyTheme.lightPurple,
+                                            borderRadius: BorderRadius.circular(15)),
+                                        child: const Center(
+                                          child: CircularProgressIndicator(
+                                            color: MyTheme.offWhite,
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                const SizedBox(width: 10,),
-                                Expanded(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(value.achievements[index].name??"No Name" , style:const TextStyle(
+                                  const SizedBox(width: 10,),
+                                  Expanded(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(value.achievements[index].name??"No Name" , style:const TextStyle(
+                                              color: MyTheme.offWhite,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500
+                                          ),
+                                            maxLines: 1,
+                                          ),
+                                          const SizedBox(height: 10),
+                                          Text(value.achievements[index].description??"No Name" , style:const TextStyle(
                                             color: MyTheme.offWhite,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500
-                                        ),
-                                          maxLines: 1,
-                                        ),
-                                        const SizedBox(height: 10),
-                                        Text(value.achievements[index].description??"No Name" , style:const TextStyle(
-                                          color: MyTheme.offWhite,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                          maxLines:2,
-                                        ),
-                                      ],
-                                    )
-                                )
-                              ],
-                            ),
-                          );
-                        }else{
-                          value.getGameAchievements();
-                          return  const Padding(
-                            padding: EdgeInsets.all(30.0),
-                            child: Center(
-                              child: CircularProgressIndicator(
-                                color: MyTheme.offWhite,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                            maxLines:2,
+                                          ),
+                                        ],
+                                      )
+                                  )
+                                ],
                               ),
-                            ),
-                          );
-                        }
+                            );
+                          }else{
+                            value.getGameAchievements();
+                            return  const Padding(
+                              padding: EdgeInsets.all(30.0),
+                              child: Center(
+                                child: CircularProgressIndicator(
+                                  color: MyTheme.offWhite,
+                                ),
+                              ),
+                            );
+                          }
 
-                      },
-                      itemCount:
+                        },
+                        itemCount:
                         value.next == null? value.achievements.length :
                         value.achievements.length +1,
-                      separatorBuilder: (context, index) =>const SizedBox(height: 15,),
-                    )
+                        separatorBuilder: (context, index) =>const SizedBox(height: 15,),
+                      )
                   )
                 ],
               );
@@ -169,8 +169,8 @@ class _GameAchievementsListViewState extends BaseState<GameAchievementsListView 
   @override
   GameAchievementsListViewModel initViewModel() {
     return GameAchievementsListViewModel(
-      gameId: widget.gameId,
-      getAllGameAchievementsUseCase: injectGetAllGameAchievementsUseCase()
+        gameId: widget.gameId,
+        getAllGameAchievementsUseCase: injectGetAllGameAchievementsUseCase()
     );
   }
 }
