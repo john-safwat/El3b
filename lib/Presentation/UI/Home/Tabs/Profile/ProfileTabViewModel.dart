@@ -10,10 +10,6 @@ class ProfileTabViewModel extends BaseViewModel <ProfileTabNavigator> {
     navigator!.goToEditProfileScreen();
   }
 
-  // function to go to setting screen
-  goToSettingScreen(){
-
-  }
   // function to go to History Screen
   goToHistoryScreen(){
 
@@ -30,7 +26,7 @@ class ProfileTabViewModel extends BaseViewModel <ProfileTabNavigator> {
 
   // Function to sign out user
   signOut(){
-    
+
   }
 
 }

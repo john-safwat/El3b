@@ -41,8 +41,6 @@ class LocalDatabase {
 
   // function to create database and create it's tables
   _onCreate(Database db, int version) async {
-    await db.execute(assets.giveawayGamesTable);
-    await db.execute(assets.freeToPlayGamesTable);
     await db.execute(assets.rawgGamesTable);
     await db.execute(assets.rawgGamesGenresTable);
     await db.execute(assets.rawgGamesStoresTable);

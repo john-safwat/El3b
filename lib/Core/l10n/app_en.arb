@@ -103,5 +103,10 @@
   "history" : "History",
   "feedback" : "Your Feedback",
   "aboutUs" : "About Us",
-  "signOut" : "Sign Out"
+  "signOut" : "Sign Out",
+  "darkTheme" : "Dark Theme",
+  "lightTheme" : "Light Theme",
+  "arabic" : "Arabic",
+  "english" : "English"
+
 }
