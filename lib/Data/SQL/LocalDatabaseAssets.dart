@@ -14,32 +14,9 @@ class LocalDatabaseAssets {
     return _instance ??= LocalDatabaseAssets._();
   }
 
-
-  String giveawayGamesTable = '''
-      CREATE TABLE `GiveawayGames` (  
-      `title` text null , 
-      `worth` text null ,
-      `image` text null ,
-      `instructions` text null ,
-      `openGiveawayUrl` text null ,
-      `platforms` text null ,
-      `endDate` text null 
-    );
-  ''';
-
-  String freeToPlayGamesTable = '''
-      CREATE TABLE `FreeToPlayGames` (  
-        `title` text null,
-        `thumbnail` text null,
-        `shortDescription` text null,
-        `gameUrl` text null,
-        `genre` text null,
-        `platform` text null
-      );
-  ''';
-
   String rawgGamesTable = '''
         CREATE TABLE `rawgGamesTable` (  
+          `uid` text null ,
           `id` INTEGER  null,
           `name` text  null,
           `released` text  null,
@@ -51,6 +28,7 @@ class LocalDatabaseAssets {
 
   String rawgGamesGenresTable = '''
           CREATE TABLE `rawgGamesGenresTable` (
+            `uid` text null ,
             `gameID` INTEGER null ,  
             `id` INTEGER null ,
             `name` text null  ,
@@ -62,6 +40,7 @@ class LocalDatabaseAssets {
 
   String rawgGamesStoresTable = '''
           CREATE TABLE `rawgGamesStoresTable` (
+            `uid` text null ,
             `gameID` INTEGER null ,  
             `id` INTEGER null ,
             `name` text null ,
@@ -74,6 +53,7 @@ class LocalDatabaseAssets {
 
   String rawgGamesScreenShotsTable = '''
           CREATE TABLE `rawgGamesScreenShotsTable` (
+            `uid` text null ,
             `gameID` INTEGER null ,  
             `id` INTEGER null ,
             `image` text null
