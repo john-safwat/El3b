@@ -74,23 +74,3 @@ class RAWGGamesResponseDTO {
     return data;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -97,5 +97,6 @@
   "tags" : "Tags",
   "gameAchievements" : "Game Achievements",
   "viewAll" : "View All",
-  "edit" : "Edit"
+  "edit" : "Edit",
+  "editProfile" : "Edit Profile"
 }

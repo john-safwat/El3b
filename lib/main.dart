@@ -1,6 +1,7 @@
 import 'package:El3b/Core/Providers/AppConfigProvider.dart';
 import 'package:El3b/Core/Providers/LocalProvider.dart';
 import 'package:El3b/Core/Providers/ThemeProvider.dart';
+import 'package:El3b/Presentation/UI/EditProfile/EditProfileView.dart';
 import 'package:El3b/Presentation/UI/ExtraInfo/ExtraInfoView.dart';
 import 'package:El3b/Presentation/UI/ForgetPassword/ForgetPasswordView.dart';
 import 'package:El3b/Presentation/UI/GamesList/GamesListView.dart';
@@ -85,6 +86,7 @@ class MyApp extends StatelessWidget {
         ForgetPasswordView.routeName : (_) => const ForgetPasswordView(),
         GameSearchView.routeName :(_)=> const GameSearchView(),
         GamesListView.routeName :(_)=> const GamesListView(),
+        EditProfileView.routeName : (_) => const EditProfileView(),
       },
       initialRoute: SplashScreen.routeName,
       theme: MyTheme.lightTheme,

@@ -1,4 +1,5 @@
 import 'package:El3b/Core/Base/BaseState.dart';
+import 'package:El3b/Presentation/UI/EditProfile/EditProfileView.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Profile/ProfileTabNavigator.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Profile/ProfileTabViewModel.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Profile/Widgets/UserProfileDataWidget.dart';
@@ -22,7 +23,7 @@ class _ProfileTabViewState extends BaseState<ProfileTabView , ProfileTabViewMode
         UserProfileDataWidget(
           user: viewModel!.appConfigProvider!.getUser()!,
           buttonTitle: viewModel!.local!.edit,
-          buttonAction: (){},
+          buttonAction: viewModel!.goToEditProfileScreen,
           isEn: viewModel!.localProvider!.isEn(),
         ),
         ThemeSwitch(),
@@ -34,5 +35,10 @@ class _ProfileTabViewState extends BaseState<ProfileTabView , ProfileTabViewMode
   @override
   ProfileTabViewModel initViewModel() {
     return ProfileTabViewModel();
+  }
+
+  @override
+  goToEditProfileScreen() {
+    Navigator.pushNamed(context, EditProfileView.routeName);
   }
 }
