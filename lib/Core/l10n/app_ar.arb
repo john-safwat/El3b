@@ -98,5 +98,10 @@
   "gameAchievements" : "انجازات داخل اللعبة",
   "viewAll" : "عرض الكل",
   "edit" : "تعديل",
-  "editProfile" : "تحديث البيانات"
+  "editProfile" : "تحديث البيانات",
+  "settings" : "الاعدادات",
+  "history" : "السجل",
+  "feedback" : "رايك في التطبيق",
+  "aboutUs" : "من نحن",
+  "signOut" : "تسجيل الخروج"
 }

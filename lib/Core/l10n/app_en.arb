@@ -98,5 +98,10 @@
   "gameAchievements" : "Game Achievements",
   "viewAll" : "View All",
   "edit" : "Edit",
-  "editProfile" : "Edit Profile"
+  "editProfile" : "Edit Profile",
+  "settings" : "Settings",
+  "history" : "History",
+  "feedback" : "Your Feedback",
+  "aboutUs" : "About Us",
+  "signOut" : "Sign Out"
 }

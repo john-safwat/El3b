@@ -89,7 +89,6 @@ class UserProfileDataWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 20,),
                   Text(
                     user.displayName??"No Name",
                     style: const TextStyle(
