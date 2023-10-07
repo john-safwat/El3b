@@ -10,4 +10,27 @@ class ProfileTabViewModel extends BaseViewModel <ProfileTabNavigator> {
     navigator!.goToEditProfileScreen();
   }
 
+  // function to go to setting screen
+  goToSettingScreen(){
+
+  }
+  // function to go to History Screen
+  goToHistoryScreen(){
+
+  }
+  // function to go to feedback screen
+  goToFeedbackScreen(){
+
+  }
+  // function to to about us Screen
+  goToAboutUsScreen(){
+
+  }
+
+
+  // Function to sign out user
+  signOut(){
+    
+  }
+
 }
