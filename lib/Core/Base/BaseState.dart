@@ -13,7 +13,6 @@ import 'package:elegant_notification/resources/arrays.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:page_animation_transition/animations/bottom_to_top_transition.dart';
-import 'package:page_animation_transition/animations/right_to_left_transition.dart';
 import 'package:page_animation_transition/page_animation_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

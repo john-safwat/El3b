@@ -3,10 +3,10 @@ import 'dart:convert';
 
 import 'package:El3b/Data/DataSource/CacheDataLocalDataSourceImpl.dart';
 import 'package:El3b/Data/DataSource/RAWGGamesRemoteDataSourceImpl.dart';
-import 'package:El3b/Data/DataSource/WishListLocalDataSourceImpl.dart';
+import 'package:El3b/Data/DataSource/GamesListLocalDataSourceImpl.dart';
 import 'package:El3b/Domain/DataSource/CacheDataLocalDataSource.dart';
 import 'package:El3b/Domain/DataSource/RAWGGamesRemoteDataSource.dart';
-import 'package:El3b/Domain/DataSource/WishListLocalDataSource.dart';
+import 'package:El3b/Domain/DataSource/GamesListLocalDataSource.dart';
 import 'package:El3b/Domain/Exception/DioServerException.dart';
 import 'package:El3b/Domain/Exception/InternetConnectionException.dart';
 import 'package:El3b/Domain/Exception/TimeOutOperationsException.dart';
@@ -20,7 +20,7 @@ import 'package:El3b/Domain/Repository/RAWGGamesRepository.dart';
 RAWGGamesRepository injectRAWGGamesRepository(){
   return RAWGGamesRepositoryImpl(
     remoteDataSource: injectRAWGGamesRemoteDataSource(),
-    wishListLocalDataSource: injectWishListLocalDataSource(),
+    gamesListLocalDataSource: injectGamesListLocalDataSource(),
     localDataSource: injectCacheDataLocalDataSource()
   );
 }
@@ -30,10 +30,10 @@ class RAWGGamesRepositoryImpl implements RAWGGamesRepository {
 
   RAWGGamesRemoteDataSource remoteDataSource ;
   CacheDataLocalDataSource localDataSource;
-  WishListLocalDataSource wishListLocalDataSource;
+  GamesListLocalDataSource gamesListLocalDataSource;
   RAWGGamesRepositoryImpl({
     required this.remoteDataSource ,
-    required this.wishListLocalDataSource,
+    required this.gamesListLocalDataSource,
     required this.localDataSource
   });
 
@@ -90,19 +90,19 @@ class RAWGGamesRepositoryImpl implements RAWGGamesRepository {
   // function to add
   @override
   Future<int> addGameToWishList({required RAWGGame game, required String uid}) async{
-    var response = await wishListLocalDataSource.addGameToWishList(game: game, uid: uid);
+    var response = await gamesListLocalDataSource.addGameToWishList(game: game, uid: uid);
     return response;
   }
 
   @override
   Future<int> deleteGameFromWishList({required int game, required String uid}) async{
-    var response = await wishListLocalDataSource.deleteGameFromWishList(game: game, uid: uid);
+    var response = await gamesListLocalDataSource.deleteGameFromWishList(game: game, uid: uid);
     return response;
   }
 
   @override
   Future<List<RAWGGame>?> loadGamesFromWishList({required String uid}) async{
-    var response = await wishListLocalDataSource.loadGamesFromWishList(uid: uid);
+    var response = await gamesListLocalDataSource.loadGamesFromWishList(uid: uid);
     return response!;
   }
 
@@ -123,6 +123,31 @@ class RAWGGamesRepositoryImpl implements RAWGGamesRepository {
   Future<GameDetails?> getGameDetails({required String id}) async{
     var response = await remoteDataSource.getGameDetails(id: id);
     return response;
+  }
+
+  // function to validate if the game data exist in data base or not
+  @override
+  Future<bool> gameExist({required String gameId, required String uid})async {
+    var response = await gamesListLocalDataSource.gameExist(gameId: gameId, uid: uid);
+    return response ;
+  }
+
+  @override
+  Future<int> addGameToHistory({required RAWGGame game, required String uid}) async{
+    var response = await gamesListLocalDataSource.addGameToHistory(game: game, uid: uid);
+    return response ;
+  }
+
+  @override
+  Future<int> deleteGameFromHistory({required int game, required String uid}) async{
+    var response = await gamesListLocalDataSource.deleteGameFromHistory(game: game, uid: uid);
+    return response ;
+  }
+
+  @override
+  Future<List<RAWGGame>?> loadGamesFromHistory({required String uid}) async {
+    var response = await gamesListLocalDataSource.loadGamesFromHistory(uid: uid);
+    return response ;
   }
 
 }

@@ -87,4 +87,12 @@ class LocalDatabase {
 
     return [games , genres,stores,screenShots];
   }
+
+
+  // function to validate if data Exist or not
+  Future<bool> gameExist({required String sql})async {
+    Database? myDb = _db;
+    var response =  await myDb!.rawQuery(sql);
+    return response.first['count'] as int > 0 ;
+  }
 }
