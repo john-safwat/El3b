@@ -8,6 +8,7 @@ import 'package:El3b/Domain/Exception/UnknownException.dart';
 import 'package:El3b/Domain/Models/Games/FreeToPlayGame/FreeToPlayGame.dart';
 import 'package:El3b/Domain/Models/Games/GiveawayGames/GiveawayGame.dart';
 import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
+import 'package:El3b/Domain/UseCase/AddGameToHistoryUseCase.dart';
 import 'package:El3b/Domain/UseCase/AddGameToWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/DeleteGameFromWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetAllGiveGamesUseCase.dart';
@@ -27,13 +28,15 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator> {
   AddGameToWishListUseCase addGameToWishListUseCase;
   DeleteGameFromWishListUseCase deleteGameFromWishListUseCase;
   GetGiveawayGamesFromServerUseCase gamesFromServerUseCase;
+  AddGameToHistoryUseCase addGameToHistoryUseCase;
   HomeTabViewModel({
     required this.getAllGiveGamesUseCase,
     required this.getFreeToPlayGamesUseCase,
     required this.getRAWGGeneralGamesUseCase,
     required this.addGameToWishListUseCase,
     required this.deleteGameFromWishListUseCase,
-    required this.gamesFromServerUseCase
+    required this.gamesFromServerUseCase,
+    required this.addGameToHistoryUseCase
   });
 
   // error message and list of games
@@ -149,6 +152,15 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator> {
       debugPrint(e.toString());
     }
     notifyListeners();
+  }
+
+  // function to add game to history
+  void addGameToHistory(RAWGGame game)async{
+    try{
+      await addGameToHistoryUseCase.invoke(game: game, uid: appConfigProvider!.getUser()!.uid);
+    }catch(e){
+      debugPrint(e.toString());
+    }
   }
 
 

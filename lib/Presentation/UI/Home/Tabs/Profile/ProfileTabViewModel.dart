@@ -12,7 +12,7 @@ class ProfileTabViewModel extends BaseViewModel <ProfileTabNavigator> {
 
   // function to go to History Screen
   goToHistoryScreen(){
-
+    navigator!.goToHistoryScreen();
   }
   // function to go to feedback screen
   goToFeedbackScreen(){

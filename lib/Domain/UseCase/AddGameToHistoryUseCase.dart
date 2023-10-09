@@ -15,7 +15,7 @@ class AddGameToHistoryUseCase {
   AddGameToHistoryUseCase({required this.repository});
 
 
-  void invoke({required RAWGGame game , required String uid})async{
+  Future<void> invoke({required RAWGGame game , required String uid})async{
     try {
       var gameExist = await repository.gameExist(gameId: game.id.toString(), uid: uid);
       if (gameExist) {

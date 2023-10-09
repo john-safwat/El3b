@@ -1,5 +1,5 @@
 import 'package:El3b/Core/Base/BaseState.dart';
-import 'package:El3b/Domain/UseCase/AddGameToWishListUseCase.dart';
+import 'package:El3b/Domain/UseCase/AddGameToHistoryUseCase.dart';
 import 'package:El3b/Domain/UseCase/DeleteGameFromWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetGamesForWishListUseCase.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Favorite/FavoriteTabNavigator.dart';
@@ -8,8 +8,6 @@ import 'package:El3b/Presentation/UI/Widgets/CustomSearchBar.dart';
 import 'package:El3b/Presentation/UI/Widgets/ErrorMessageWidget.dart';
 import 'package:El3b/Presentation/UI/Widgets/GameHoldWidget.dart';
 import 'package:El3b/Presentation/UI/Widgets/GameWidget.dart';
-import 'package:El3b/Presentation/UI/Widgets/LanguageSwitch.dart';
-import 'package:El3b/Presentation/UI/Widgets/ThemeSwitch.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -81,6 +79,7 @@ class _FavoriteTabViewState extends BaseState<FavoriteTabView , FavoriteTabViewM
                                  unselectGame:value.unselectRAWGGame,
                                  editWishListState: value.deleteGame ,
                                  goToGameDetailsScreen: value.goToGameDetailsScreen,
+                               addGameToHistory: value.addGameToHistory,
                              ),
                             itemCount: value.games.length,
                           ),
@@ -102,7 +101,8 @@ class _FavoriteTabViewState extends BaseState<FavoriteTabView , FavoriteTabViewM
   FavoriteTabViewModel initViewModel() {
     return FavoriteTabViewModel(
       getGamesForWishListUseCase: injectGetGamesForWishListUseCase(),
-      deleteGameFromWishListUseCase: injectDeleteGameFromWishListUseCase()
+      deleteGameFromWishListUseCase: injectDeleteGameFromWishListUseCase(),
+      addGameToHistoryUseCase: injectAddGameToHistoryUseCase()
     );
   }
 }

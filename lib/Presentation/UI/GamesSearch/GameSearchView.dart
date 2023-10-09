@@ -1,4 +1,5 @@
 import 'package:El3b/Core/Base/BaseState.dart';
+import 'package:El3b/Domain/UseCase/AddGameToHistoryUseCase.dart';
 import 'package:El3b/Domain/UseCase/AddGameToWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/DeleteGameFromWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/SearchFromGameFromServerUseCase.dart';
@@ -93,7 +94,8 @@ class _GameSearchViewState
                                 selectGame: value.selectRAWGGame,
                                 unselectGame: value.unselectRAWGGame,
                                 editWishListState: value.editGameWishListState,
-                                goToGameDetailsScreen: value.goToGameDetailsScreen
+                                goToGameDetailsScreen: value.goToGameDetailsScreen,
+                              addGameToHistory: value.addGameToHistory,
                             ),
                             itemCount: value.games.length,
                           ),
@@ -116,7 +118,8 @@ class _GameSearchViewState
     return GameSearchViewModel(
       searchFromGameFromServerUseCase: injectSearchFromGameFromServerUseCase(),
       addGameToWishListUseCase: injectAddGameToWishListUseCase(),
-      deleteGameFromWishListUseCase: injectDeleteGameFromWishListUseCase()
+      deleteGameFromWishListUseCase: injectDeleteGameFromWishListUseCase(),
+      addGameToHistoryUseCase: injectAddGameToHistoryUseCase()
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Presentation/UI/EditProfile/EditProfileView.dart';
+import 'package:El3b/Presentation/UI/History/HistoryView.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Profile/ProfileTabNavigator.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Profile/ProfileTabViewModel.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Profile/Widgets/CustomButton.dart';
@@ -92,6 +93,11 @@ class _ProfileTabViewState extends BaseState<ProfileTabView , ProfileTabViewMode
   @override
   goToEditProfileScreen() {
     Navigator.pushNamed(context, EditProfileView.routeName);
+  }
+
+  @override
+  goToHistoryScreen() {
+    Navigator.pushNamed(context, HistoryView.routeName);
   }
 
 }

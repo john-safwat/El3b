@@ -1,5 +1,6 @@
 import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
+import 'package:El3b/Domain/UseCase/AddGameToHistoryUseCase.dart';
 import 'package:El3b/Domain/UseCase/AddGameToWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/DeleteGameFromWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetAllGiveGamesUseCase.dart';
@@ -158,6 +159,7 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
                                         unselectGame: value.unselectRAWGGame,
                                         editWishListState: value.editGameWishListState,
                                         goToGameDetailsScreen: value.goToGameDetailsScreen,
+                                        addGameToHistory: value.addGameToHistory,
                                       ),).toList(),
                                     );
                                   }
@@ -202,6 +204,7 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
         addGameToWishListUseCase: injectAddGameToWishListUseCase(),
         deleteGameFromWishListUseCase: injectDeleteGameFromWishListUseCase(),
         gamesFromServerUseCase: injectGetGiveawayGamesFromServerUseCase(),
+        addGameToHistoryUseCase: injectAddGameToHistoryUseCase()
     );
   }
 

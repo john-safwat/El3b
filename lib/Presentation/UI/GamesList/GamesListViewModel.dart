@@ -4,6 +4,7 @@ import 'package:El3b/Domain/Exception/InternetConnectionException.dart';
 import 'package:El3b/Domain/Exception/TimeOutOperationsException.dart';
 import 'package:El3b/Domain/Exception/UnknownException.dart';
 import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
+import 'package:El3b/Domain/UseCase/AddGameToHistoryUseCase.dart';
 import 'package:El3b/Domain/UseCase/AddGameToWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/DeleteGameFromWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetGamesByGenreUseCase.dart';
@@ -15,10 +16,12 @@ class GamesListViewModel extends BaseViewModel<GamesListNavigator> {
   GetGamesByGenreUseCase getGamesByGenreUseCase;
   AddGameToWishListUseCase addGameToWishListUseCase;
   DeleteGameFromWishListUseCase deleteGameFromWishListUseCase;
+  AddGameToHistoryUseCase addGameToHistoryUseCase;
   GamesListViewModel({
     required this.getGamesByGenreUseCase ,
     required this.addGameToWishListUseCase,
-    required this.deleteGameFromWishListUseCase
+    required this.deleteGameFromWishListUseCase,
+    required this.addGameToHistoryUseCase
   });
 
   num count = 0;
@@ -92,6 +95,16 @@ class GamesListViewModel extends BaseViewModel<GamesListNavigator> {
     }
     notifyListeners();
   }
+
+  // function to add game to history
+  void addGameToHistory(RAWGGame game)async{
+    try{
+      await addGameToHistoryUseCase.invoke(game: game, uid: appConfigProvider!.getUser()!.uid);
+    }catch(e){
+      debugPrint(e.toString());
+    }
+  }
+
 
 
 }

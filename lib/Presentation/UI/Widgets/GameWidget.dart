@@ -12,13 +12,15 @@ class GameWidget extends StatelessWidget {
   Function unselectGame ;
   Function editWishListState;
   Function goToGameDetailsScreen;
+  Function addGameToHistory;
 
   GameWidget({
     required this.game ,
     required this.selectGame ,
     required this.unselectGame,
     required this.editWishListState,
-    required this.goToGameDetailsScreen
+    required this.goToGameDetailsScreen,
+    required this.addGameToHistory
   });
 
   @override
@@ -30,7 +32,10 @@ class GameWidget extends StatelessWidget {
         onLongPress: () => selectGame(game),
         onLongPressEnd: (details) =>  unselectGame(),
         onDoubleTap: () => editWishListState(game),
-        onTap: () => goToGameDetailsScreen(game),
+        onTap: () {
+          goToGameDetailsScreen(game);
+          addGameToHistory(game);
+        },
         child: Stack(
           children: [
             Container(

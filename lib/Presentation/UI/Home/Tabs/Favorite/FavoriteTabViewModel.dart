@@ -1,18 +1,20 @@
 import 'package:El3b/Core/Base/BaseViewModel.dart';
 import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
+import 'package:El3b/Domain/UseCase/AddGameToHistoryUseCase.dart';
 import 'package:El3b/Domain/UseCase/DeleteGameFromWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetGamesForWishListUseCase.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Favorite/FavoriteTabNavigator.dart';
 import 'package:flutter/material.dart';
-import 'package:icons_launcher/cli_commands.dart';
 
 class FavoriteTabViewModel extends BaseViewModel <FavoriteTabNavigator> {
 
   GetGamesForWishListUseCase getGamesForWishListUseCase ;
   DeleteGameFromWishListUseCase deleteGameFromWishListUseCase;
+  AddGameToHistoryUseCase addGameToHistoryUseCase;
   FavoriteTabViewModel({
     required this.getGamesForWishListUseCase ,
-    required this.deleteGameFromWishListUseCase
+    required this.deleteGameFromWishListUseCase,
+    required this.addGameToHistoryUseCase
   });
 
 
@@ -39,7 +41,7 @@ class FavoriteTabViewModel extends BaseViewModel <FavoriteTabNavigator> {
   // function to copy list to avoid any reference
   List<RAWGGame> copyList(List<RAWGGame> games){
     List<RAWGGame> copy = [];
-    for(int i =0 ; i<games.length ;i++){
+    for(int i = 0 ; i<games.length ;i++){
       copy.add(games[i]);
     }
     return copy;
@@ -71,9 +73,22 @@ class FavoriteTabViewModel extends BaseViewModel <FavoriteTabNavigator> {
   search(String query) {
     games = allGames.where((element) => element.name!.contains(query)).toList();
     if (games.isEmpty){
-      query = query[0].toUpperCase() + query.substring(1);
-      games = allGames.where((element) => element.name!.contains(query)).toList();
+      games = allGames.where((element) => element.name!.toLowerCase().contains(query.toLowerCase())).toList();
+    }
+    if (games.isEmpty) {
+      games = allGames.where((element) => element.name!.toUpperCase().contains(query.toUpperCase())).toList();
     }
     notifyListeners();
   }
+
+  // function to add game to history
+  void addGameToHistory(RAWGGame game)async{
+    try{
+      await addGameToHistoryUseCase.invoke(game: game, uid: appConfigProvider!.getUser()!.uid);
+    }catch(e){
+      debugPrint(e.toString());
+    }
+  }
+
+
 }
