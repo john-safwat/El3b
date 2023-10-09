@@ -68,6 +68,7 @@ dependencies:
   lottie: ^2.6.0
   page_animation_transition: ^1.0.0
   flutter_widget_from_html: ^0.10.5+3
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:
