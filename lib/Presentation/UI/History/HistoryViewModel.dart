@@ -1,69 +1,39 @@
 import 'package:El3b/Core/Base/BaseViewModel.dart';
-import 'package:El3b/Domain/Exception/DioServerException.dart';
-import 'package:El3b/Domain/Exception/InternetConnectionException.dart';
-import 'package:El3b/Domain/Exception/TimeOutOperationsException.dart';
-import 'package:El3b/Domain/Exception/UnknownException.dart';
 import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
 import 'package:El3b/Domain/UseCase/AddGameToHistoryUseCase.dart';
 import 'package:El3b/Domain/UseCase/AddGameToWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/DeleteGameFromWishListUseCase.dart';
-import 'package:El3b/Domain/UseCase/SearchFromGameFromServerUseCase.dart';
-import 'package:El3b/Presentation/UI/GamesSearch/GameSearchNavigator.dart';
+import 'package:El3b/Domain/UseCase/GatGamesFromHistoryUseCase.dart';
+import 'package:El3b/Presentation/UI/History/HistoryNavigator.dart';
 import 'package:flutter/material.dart';
 
-class GameSearchViewModel extends BaseViewModel<GameSearchNavigator> {
-
-  SearchFromGameFromServerUseCase searchFromGameFromServerUseCase ;
+class HistoryViewModel extends BaseViewModel<HistoryNavigator> {
+  GatGamesFromHistoryUseCase gamesFromHistoryUseCase;
   AddGameToWishListUseCase addGameToWishListUseCase;
   DeleteGameFromWishListUseCase deleteGameFromWishListUseCase;
   AddGameToHistoryUseCase addGameToHistoryUseCase;
-  GameSearchViewModel({
-    required this.searchFromGameFromServerUseCase ,
-    required this.addGameToWishListUseCase,
+  HistoryViewModel({
+    required this.gamesFromHistoryUseCase,
     required this.deleteGameFromWishListUseCase,
-    required this.addGameToHistoryUseCase
+    required this.addGameToHistoryUseCase,
+    required this.addGameToWishListUseCase,
   });
 
   String? errorMessage;
-  bool loading = false;
   List<RAWGGame> games = [];
 
-  // function to go to home screen
-  goToHome(){
-    navigator!.goBack();
-  }
-
-  // function to search
-  void search(String query)async{
-    loading = true;
+  // function to load data from local database
+  void loadData() async {
     errorMessage = null;
-    notifyListeners();
     try {
-      if(query.length != 0){
-        games = await searchFromGameFromServerUseCase.invoke(query: query, uid: appConfigProvider!.getUser()!.uid);
-      }else {
-        games= [];
-      }
-      loading = false ;
+      games = await gamesFromHistoryUseCase.invoke(
+          uid: appConfigProvider!.getUser()!.uid);
       notifyListeners();
-    }catch(e){
-      loading = false;
-      if (e is DioServerException) {
-        errorMessage = e.errorMessage;
-      } else if (e is TimeOutOperationsException) {
-        errorMessage = local!.operationTimedOut;
-      } else if (e is InternetConnectionException) {
-        errorMessage = local!.checkYourInternetConnection;
-      } else if (e is UnknownException) {
-        errorMessage = e.errorMessage;
-      } else {
-        errorMessage = e.toString();
-      }
+    } catch (e) {
+      errorMessage = e.toString();
       notifyListeners();
     }
   }
-
-
 
   // function to add game to wishlist
   Future<void> editGameWishListState(RAWGGame game) async {
@@ -73,8 +43,8 @@ class GameSearchViewModel extends BaseViewModel<GameSearchNavigator> {
         var response = await addGameToWishListUseCase.invoke(
             game: game, uid: appConfigProvider!.getUser()!.uid);
         if (response != 0) {
-          navigator!.showSuccessNotification(
-              message: local!.gameAddedToWishList);
+          navigator!
+              .showSuccessNotification(message: local!.gameAddedToWishList);
         } else {
           navigator!.showErrorNotification(message: local!.someThingWentWrong);
         }
@@ -84,8 +54,8 @@ class GameSearchViewModel extends BaseViewModel<GameSearchNavigator> {
             game: int.parse(game.id!.toString()),
             uid: appConfigProvider!.getUser()!.uid);
         if (response != 0) {
-          navigator!.showSuccessNotification(
-              message: local!.gameDeletedFromWishList);
+          navigator!
+              .showSuccessNotification(message: local!.gameDeletedFromWishList);
         } else {
           navigator!.showErrorNotification(message: local!.someThingWentWrong);
         }
@@ -96,7 +66,6 @@ class GameSearchViewModel extends BaseViewModel<GameSearchNavigator> {
     notifyListeners();
   }
 
-
   // function to add game to history
   void addGameToHistory(RAWGGame game)async{
     try{
@@ -105,6 +74,5 @@ class GameSearchViewModel extends BaseViewModel<GameSearchNavigator> {
       debugPrint(e.toString());
     }
   }
-
 
 }

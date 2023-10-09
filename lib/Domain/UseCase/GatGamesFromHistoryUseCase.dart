@@ -3,35 +3,30 @@ import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
 import 'package:El3b/Domain/Repository/RAWGGamesRepository.dart';
 
 
+
 // dependency injection
-GetGamesForWishListUseCase injectGetGamesForWishListUseCase(){
-  return GetGamesForWishListUseCase(repository: injectRAWGGamesRepository());
+GatGamesFromHistoryUseCase injectGatGamesFromHistoryUseCase(){
+  return GatGamesFromHistoryUseCase(repository: injectRAWGGamesRepository());
 }
 
-class GetGamesForWishListUseCase {
+class GatGamesFromHistoryUseCase {
 
   RAWGGamesRepository repository;
-  GetGamesForWishListUseCase({required this.repository});
+  GatGamesFromHistoryUseCase({required this.repository});
+
 
   Future<List<RAWGGame>> invoke({required String uid})async{
-    var response = await repository.loadGamesFromWishList(uid: uid);
-    response = changeWishListState(response??[]);
-    response = addStoresIcons(response);
+    var response = await repository.loadGamesFromHistory(uid: uid);
+    var favorite = await repository.loadGamesFromWishList(uid: uid);
+    response = addStoresIcons(response??[]);
     response = noNullValue(response);
+    response = wishListGames(response , favorite!);
 
     List<RAWGGame> games = [];
     for(int i = response.length-1 ; i>=0 ;i-- ){
       games.add(response[i]);
     }
 
-    return games;
-  }
-
-  // mark all games as in wishlist
-  List<RAWGGame> changeWishListState(List<RAWGGame> games){
-    for (int i = 0 ; i<games.length ; i++){
-      games[i].inWishList = true;
-    }
     return games;
   }
 
@@ -90,6 +85,19 @@ class GetGamesForWishListUseCase {
 
     return games;
   }
+
+  // validate on wish list value set the games in wish list  the inWishlist value to true
+  List<RAWGGame> wishListGames(List<RAWGGame> games , List<RAWGGame> favorite){
+    for (int i = 0 ; i<games.length ; i++){
+      for (int j =0 ; j<favorite.length ; j++){
+        if(games[i].id! == favorite[j].id){
+          games[i].inWishList = true;
+        }
+      }
+    }
+    return games;
+  }
+
 
 
 }

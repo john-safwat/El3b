@@ -1,4 +1,5 @@
 import 'package:El3b/Core/Base/BaseState.dart';
+import 'package:El3b/Domain/UseCase/AddGameToHistoryUseCase.dart';
 import 'package:El3b/Domain/UseCase/AddGameToWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/DeleteGameFromWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetGamesByGenreUseCase.dart';
@@ -81,7 +82,8 @@ class _GamesListViewState extends BaseState<GamesListView , GamesListViewModel> 
                                     selectGame: value.selectRAWGGame,
                                     unselectGame: value.unselectRAWGGame,
                                     editWishListState: value.editGameWishListState,
-                                      goToGameDetailsScreen: value.goToGameDetailsScreen
+                                    goToGameDetailsScreen: value.goToGameDetailsScreen,
+                                    addGameToHistory: value.addGameToHistory,
                                   );
                                 } else if (value.errorMessage != null) {
                                   return ErrorMessageWidget(
@@ -125,7 +127,8 @@ class _GamesListViewState extends BaseState<GamesListView , GamesListViewModel> 
     return GamesListViewModel(
         getGamesByGenreUseCase: injectGetGamesByGenreUseCase(),
         addGameToWishListUseCase: injectAddGameToWishListUseCase(),
-        deleteGameFromWishListUseCase: injectDeleteGameFromWishListUseCase()
+        deleteGameFromWishListUseCase: injectDeleteGameFromWishListUseCase(),
+      addGameToHistoryUseCase: injectAddGameToHistoryUseCase()
     );
   }
 }
