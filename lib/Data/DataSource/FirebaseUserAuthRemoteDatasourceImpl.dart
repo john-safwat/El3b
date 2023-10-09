@@ -122,6 +122,21 @@ class FirebaseUserAuthRemoteDatasourceImpl implements FirebaseUserAuthRemoteData
     }
   }
 
+  @override
+  Future<void> signOutUser() async{
+    try{
+      await firebaseUserAuth.signOut().timeout(const Duration(seconds: 180));
+    }on FirebaseAuthException catch(e){
+      throw FirebaseUserAuthException(errorMessage: errorHandler.handleLoginError(e.code));
+    }on TimeoutException catch(e){
+      throw TimeOutOperationsException(errorMessage: "Operation Timed Out");
+    }on FirebaseException catch(e){
+      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
+    }catch (e){
+      throw UnknownException(errorMessage: e.toString());
+    }
+  }
+
 
 
 }

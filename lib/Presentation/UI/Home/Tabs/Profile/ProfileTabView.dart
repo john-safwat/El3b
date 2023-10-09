@@ -1,5 +1,6 @@
 import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
+import 'package:El3b/Domain/UseCase/SignUserOutUseCase.dart';
 import 'package:El3b/Presentation/UI/About/AboutView.dart';
 import 'package:El3b/Presentation/UI/EditProfile/EditProfileView.dart';
 import 'package:El3b/Presentation/UI/Feedback/FeedbackView.dart';
@@ -8,6 +9,7 @@ import 'package:El3b/Presentation/UI/Home/Tabs/Profile/ProfileTabNavigator.dart'
 import 'package:El3b/Presentation/UI/Home/Tabs/Profile/ProfileTabViewModel.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Profile/Widgets/CustomButton.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Profile/Widgets/UserProfileDataWidget.dart';
+import 'package:El3b/Presentation/UI/Login/LoginView.dart';
 import 'package:El3b/Presentation/UI/Widgets/LanguageSwitch.dart';
 import 'package:El3b/Presentation/UI/Widgets/ThemeSwitch.dart';
 import 'package:flutter/material.dart';
@@ -71,7 +73,7 @@ class _ProfileTabViewState extends BaseState<ProfileTabView , ProfileTabViewMode
             const SizedBox(height: 20,),
             CustomButton(
               title: viewModel!.local!.signOut,
-              action: viewModel!.signOut,
+              action: viewModel!.onSignOutPress,
               icon: Bootstrap.box_arrow_in_right,
               color: MyTheme.red,
             ),
@@ -89,7 +91,9 @@ class _ProfileTabViewState extends BaseState<ProfileTabView , ProfileTabViewMode
 
   @override
   ProfileTabViewModel initViewModel() {
-    return ProfileTabViewModel();
+    return ProfileTabViewModel(
+      useCase: injectSignUserOutUseCase()
+    );
   }
 
   @override
@@ -110,6 +114,11 @@ class _ProfileTabViewState extends BaseState<ProfileTabView , ProfileTabViewMode
   @override
   goToAboutUsScreen() {
     Navigator.pushNamed(context, AboutView.routeName);
+  }
+
+  @override
+  goToLoginScreen() {
+    Navigator.pushReplacementNamed(context, LoginView.routeName);
   }
 
 }

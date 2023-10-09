@@ -14,4 +14,5 @@ abstract class UserRepository {
   Future<bool> userExist({required String uid});
   Future<User> singInWithGoogle();
   Future<User> signInWithFacebook();
+  Future<void> signOutUser();
 }
