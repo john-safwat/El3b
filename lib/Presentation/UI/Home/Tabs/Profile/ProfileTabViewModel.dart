@@ -20,7 +20,7 @@ class ProfileTabViewModel extends BaseViewModel <ProfileTabNavigator> {
   }
   // function to to about us Screen
   goToAboutUsScreen(){
-
+    navigator!.goToAboutUsScreen();
   }
 
 

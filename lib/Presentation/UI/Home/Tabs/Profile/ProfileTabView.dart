@@ -1,5 +1,6 @@
 import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
+import 'package:El3b/Presentation/UI/About/AboutView.dart';
 import 'package:El3b/Presentation/UI/EditProfile/EditProfileView.dart';
 import 'package:El3b/Presentation/UI/Feedback/FeedbackView.dart';
 import 'package:El3b/Presentation/UI/History/HistoryView.dart';
@@ -104,6 +105,11 @@ class _ProfileTabViewState extends BaseState<ProfileTabView , ProfileTabViewMode
   @override
   goToFeedbackScreen() {
     Navigator.pushNamed(context, FeedbackView.routeName);
+  }
+
+  @override
+  goToAboutUsScreen() {
+    Navigator.pushNamed(context, AboutView.routeName);
   }
 
 }

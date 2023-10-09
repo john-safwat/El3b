@@ -4,4 +4,5 @@ abstract class ProfileTabNavigator extends BaseNavigator {
   goToEditProfileScreen();
   goToHistoryScreen();
   goToFeedbackScreen();
+  goToAboutUsScreen();
 }
