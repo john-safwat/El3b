@@ -72,4 +72,9 @@ class FirebaseUserAuth {
     return _firebase.currentUser!;
   }
 
+  // function to sign user out
+  Future<void> signOut()async {
+    await _firebase.signOut();
+  }
+
 }

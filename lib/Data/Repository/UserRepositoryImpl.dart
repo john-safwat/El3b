@@ -93,4 +93,9 @@ class UserRepositoryImpl implements UserRepository {
     var response = await authRemoteDatasource.signInWithFacebook();
     return response;
   }
+
+  @override
+  Future<void> signOutUser() async{
+    await authRemoteDatasource.signOutUser();
+  }
 }
