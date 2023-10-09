@@ -1,6 +1,7 @@
 import 'package:El3b/Core/Providers/AppConfigProvider.dart';
 import 'package:El3b/Core/Providers/LocalProvider.dart';
 import 'package:El3b/Core/Providers/ThemeProvider.dart';
+import 'package:El3b/Presentation/UI/About/AboutView.dart';
 import 'package:El3b/Presentation/UI/EditProfile/EditProfileView.dart';
 import 'package:El3b/Presentation/UI/ExtraInfo/ExtraInfoView.dart';
 import 'package:El3b/Presentation/UI/Feedback/FeedbackView.dart';
@@ -90,7 +91,8 @@ class MyApp extends StatelessWidget {
         GamesListView.routeName :(_)=> const GamesListView(),
         EditProfileView.routeName : (_) => const EditProfileView(),
         HistoryView.routeName :(_) => const HistoryView(),
-        FeedbackView.routeName :(_) => const FeedbackView()
+        FeedbackView.routeName :(_) => const FeedbackView(),
+        AboutView.routeName :(_) => const AboutView()
       },
       initialRoute: SplashScreen.routeName,
       theme: MyTheme.lightTheme,
