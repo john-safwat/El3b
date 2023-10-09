@@ -16,7 +16,7 @@ class ProfileTabViewModel extends BaseViewModel <ProfileTabNavigator> {
   }
   // function to go to feedback screen
   goToFeedbackScreen(){
-
+    navigator!.goToFeedbackScreen();
   }
   // function to to about us Screen
   goToAboutUsScreen(){

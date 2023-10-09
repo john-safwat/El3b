@@ -107,6 +107,8 @@
   "darkTheme" : "Dark Theme",
   "lightTheme" : "Light Theme",
   "arabic" : "Arabic",
-  "english" : "English"
-
+  "english" : "English",
+  "feedbackMessage" : "We are happy that you are using our application. We made it with love for you, and we are happy to experience it and use it, and use it and the rest of the family of our applications that we work on with every possible effort for you for a fun experience with us. Your evaluation of this application and providing your opinion in it will help us to develop more for you.",
+  "yourFeedback" : "Your Feedback",
+  "sendYourFeedback" : "Send Your Feedback"
 }
