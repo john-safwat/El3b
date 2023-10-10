@@ -77,6 +77,7 @@ class _ProfileTabViewState extends BaseState<ProfileTabView , ProfileTabViewMode
               icon: Bootstrap.box_arrow_in_right,
               color: MyTheme.red,
             ),
+            const SizedBox(height: 50,),
           ],
         ),
         UserProfileDataWidget(
