@@ -29,7 +29,7 @@ class ExtraInfoViewModel extends BaseViewModel<ExtraInfoNavigator> {
   }
   // go to Home Screen
   goToHomeScreen(){
-    navigator!.goToHomeScreen();
+    navigator!.goToLoginScreen();
   }
 
 

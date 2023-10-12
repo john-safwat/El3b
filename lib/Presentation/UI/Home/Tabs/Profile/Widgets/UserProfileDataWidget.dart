@@ -89,6 +89,7 @@ class UserProfileDataWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const SizedBox(height: 20,),
                   Text(
                     user.displayName??"No Name",
                     style: const TextStyle(
@@ -99,7 +100,7 @@ class UserProfileDataWidget extends StatelessWidget {
                     maxLines: 1,
                   ),
                   const Spacer(),
-                  Text(user.email??"No Email", style: Theme.of(context).textTheme.displayMedium!.copyWith(color: MyTheme.offWhite),),
+                  FittedBox(child: Text(user.email??"No Email", style: Theme.of(context).textTheme.displayMedium!.copyWith(color: MyTheme.offWhite),)),
                   const Spacer(),
                   ElevatedButton(
                     onPressed: (){

@@ -30,10 +30,12 @@ class NegativeActionButton extends StatelessWidget {
         },
         child: Padding(
           padding: const EdgeInsets.all(10.0),
-          child: Text(negativeActionTitle,style: Theme.of(context).textTheme.displayLarge!.copyWith(
-              color: theme.isDark()?MyTheme.offWhite : MyTheme.lightPurple,
-              fontWeight: FontWeight.bold
-          ),
+          child: FittedBox(
+            child: Text(negativeActionTitle,style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                color: theme.isDark()?MyTheme.offWhite : MyTheme.lightPurple,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ),
       )

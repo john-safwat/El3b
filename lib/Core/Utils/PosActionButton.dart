@@ -17,7 +17,7 @@ class PosActionButton extends StatelessWidget {
             },
             child: Padding(
               padding: const EdgeInsets.all(10.0),
-              child: Text(posActionTitle),
+              child: FittedBox(child: Text(posActionTitle)),
             )
         )
     );

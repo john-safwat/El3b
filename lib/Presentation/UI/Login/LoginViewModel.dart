@@ -90,13 +90,39 @@ class LoginViewModel extends BaseViewModel<LoginNavigator>{
             email: emailController.text,
             password: passwordController.text
         );
+        var exist = await checkIfUserExistUseCase.invoke(uid: response.uid);
         appConfigProvider!.updateUser(user: response);
-        navigator!.goBack();
-        navigator!.showSuccessMessage(
-          message: local!.welcomeBack,
-          posActionTitle: local!.ok,
-          posAction: goToHomeScreen
-        );
+        if(exist) {
+          navigator!.goBack();
+          navigator!.showSuccessMessage(
+              message: local!.welcomeBack,
+              posActionTitle: local!.ok,
+              posAction: goToHomeScreen
+          );
+        }else {
+          try{
+            // add user data to database
+            await addUserUseCase.invoke(uid: response.uid,
+                myUser: MyUser(
+                    name: response.displayName!,
+                    email: response.email!,
+                    password: "Private",
+                    image: response.photoURL??"",
+                    phoneNumber: "",
+                    bio: local!.defaultBio,
+                    birthDate: "--/--/----"
+                )
+            );
+            navigator!.goBack();
+            navigator!.showSuccessMessage(
+                message: local!.welcomeBack,
+                posActionTitle: local!.ok,
+                posAction: goToExtraInfoScreen
+            );
+          }catch(e){
+            throw FirebaseUserDatabaseException(errorMessage: local!.tryAgain);
+          }
+        }
       }catch(e){
         navigator!.goBack();
         if (e is FirebaseUserAuthException) {

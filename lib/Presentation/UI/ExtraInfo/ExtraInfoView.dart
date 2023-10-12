@@ -4,6 +4,7 @@ import 'package:El3b/Domain/UseCase/UpdateUserDataUseCase.dart';
 import 'package:El3b/Presentation/UI/ExtraInfo/ExtraInfoNavigator.dart';
 import 'package:El3b/Presentation/UI/ExtraInfo/ExtraInfoViewModel.dart';
 import 'package:El3b/Presentation/UI/Home/HomeView.dart';
+import 'package:El3b/Presentation/UI/Login/LoginView.dart';
 import 'package:El3b/Presentation/UI/Widgets/CustomLongTextFormField.dart';
 import 'package:El3b/Presentation/UI/Widgets/CustomTextFormField.dart';
 import 'package:flutter/material.dart';
@@ -201,8 +202,8 @@ class _ExtraInfoViewState extends BaseState<ExtraInfoView , ExtraInfoViewModel> 
   }
 
   @override
-  goToHomeScreen() {
-    Navigator.pushReplacementNamed(context, HomeView.routeName);
+  goToLoginScreen() {
+    Navigator.pushReplacementNamed(context, LoginView.routeName);
   }
 
 
