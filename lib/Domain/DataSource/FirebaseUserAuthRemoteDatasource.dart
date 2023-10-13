@@ -10,4 +10,5 @@ abstract class FirebaseUserAuthRemoteDatasource {
   Future<User> signInWithGoogle();
   Future<User> signInWithFacebook();
   Future<void> signOutUser();
+  Future<User> updateUserDisplayName({required String name});
 }

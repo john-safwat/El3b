@@ -98,4 +98,23 @@ class UserRepositoryImpl implements UserRepository {
   Future<void> signOutUser() async{
     await authRemoteDatasource.signOutUser();
   }
+
+  // function to load to user data from firebase fire storage
+  @override
+  Future<MyUser?> getUser({required String uid}) async{
+    var response = await userFirebaseDatabaseRemoteDatasource.getUser(uid: uid);
+    return response;
+  }
+
+  @override
+  Future<String> updateUserProfileImage({required XFile file, required String name})async {
+    var image = await imagesRemoteDatasource.updateUserProfileImage(file: file , name: name);
+    return image;
+  }
+
+  @override
+  Future<User> updateUserDisplayName({required String name}) async{
+    var response = await authRemoteDatasource.updateUserDisplayName(name: name);
+    return response;
+  }
 }

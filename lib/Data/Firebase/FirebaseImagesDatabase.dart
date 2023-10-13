@@ -30,6 +30,16 @@ class FirebaseImagesDatabase {
     return downloadUrl;
   }
 
+  // function to delete use image
+  Future<String> updateImage({required XFile file , required String name})async {
+    // file = await compressImage(file, file.path);
+    // upload image to firebase storage
+    var snapshot = await _firebaseStorage.ref().child('images/$name').putFile(File(file.path));
+    // get the image URL from firebase storage
+    var downloadUrl = await snapshot.ref.getDownloadURL();
+    return downloadUrl;
+  }
+
   // generate random string for image name
   String generateName(){
     return RandomString().getRandomString(

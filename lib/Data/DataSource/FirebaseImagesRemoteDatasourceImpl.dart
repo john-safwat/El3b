@@ -41,4 +41,21 @@ class FirebaseImagesRemoteDatasourceImpl
       throw UnknownException(errorMessage: "UnKnown Error");
     }
   }
+
+  // function to upload user image to firebase fireStore
+  @override
+  Future<String> updateUserProfileImage({required XFile file , required String name}) async {
+    try {
+      var response = await database
+          .updateImage(file: file, name: name)
+          .timeout(const Duration(seconds: 60));
+      return response;
+    } on FirebaseException catch (e) {
+      throw FirebaseImagesException(errorMessage: errorHandler.handleFirebaseImageDatabaseExceptions(error: e.code));
+    } on TimeoutException catch (e) {
+      throw TimeOutOperationsException(errorMessage: "Uploading Image Timed Out Try Again");
+    } catch (e) {
+      throw UnknownException(errorMessage: "UnKnown Error");
+    }
+  }
 }
