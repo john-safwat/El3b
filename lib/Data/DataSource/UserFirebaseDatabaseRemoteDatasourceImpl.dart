@@ -8,6 +8,7 @@ import 'package:El3b/Domain/Exception/FirebaseUserAuthException.dart';
 import 'package:El3b/Domain/Exception/FirebaseUserDatabaseException.dart';
 import 'package:El3b/Domain/Exception/TimeOutOperationsException.dart';
 import 'package:El3b/Domain/Exception/UnknownException.dart';
+import 'package:El3b/Domain/Models/User/MyUser.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 
@@ -66,6 +67,24 @@ class UserFirebaseDatabaseRemoteDatasourceImpl implements UserFirebaseDatabaseRe
       throw FirebaseUserDatabaseException(errorMessage: errorHandler.handleFirebaseFireStoreError(e.code));
     }on TimeoutException {
       throw TimeOutOperationsException(errorMessage: "Operation Timed Out");
+    }catch(e){
+      throw UnknownException(errorMessage: "Unknown Error");
+    }
+  }
+
+
+  // function to load data from user database
+  @override
+  Future<MyUser?> getUser({required String uid})async {
+    try{
+      var response = await userFirebaseDatabase.getUserData(uid: uid).timeout(const Duration(seconds: 60));
+      return response?.toDomain();
+    }on FirebaseAuthException catch(e){
+      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
+    }on FirebaseException catch(e){
+      throw FirebaseUserDatabaseException(errorMessage: errorHandler.handleFirebaseFireStoreError(e.code));
+    }on TimeoutException catch(e){
+      throw TimeOutOperationsException(errorMessage: "User Auth Timed Out");
     }catch(e){
       throw UnknownException(errorMessage: "Unknown Error");
     }

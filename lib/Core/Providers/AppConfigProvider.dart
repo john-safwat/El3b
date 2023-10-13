@@ -6,6 +6,7 @@ class AppConfigProvider extends ChangeNotifier {
   User? _user;
 
   void updateUser({required User user}){
+    _user = null;
     _user = user;
     notifyListeners();
   }

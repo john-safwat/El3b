@@ -137,6 +137,21 @@ class FirebaseUserAuthRemoteDatasourceImpl implements FirebaseUserAuthRemoteData
     }
   }
 
+  @override
+  Future<User> updateUserDisplayName({required String name}) async{
+    try{
+      var response = await firebaseUserAuth.updateUserDisplayName(name).timeout(const Duration(seconds: 180));
+      return response;
+    }on FirebaseAuthException catch(e){
+      throw FirebaseUserAuthException(errorMessage: errorHandler.handleLoginError(e.code));
+    }on TimeoutException catch(e){
+      throw TimeOutOperationsException(errorMessage: "Operation Timed Out");
+    }on FirebaseException catch(e){
+      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
+    }catch (e){
+      throw UnknownException(errorMessage: e.toString());
+    }
+  }
 
 
 }

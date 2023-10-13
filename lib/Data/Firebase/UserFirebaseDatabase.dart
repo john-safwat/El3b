@@ -39,4 +39,9 @@ class UserFirebaseDatabase {
     return doc.exists;
   }
 
+  Future<UserDTO?> getUserData({required String uid})async {
+    var doc = await getCollectionReference().doc(uid).get();
+    return doc.data();
+  }
+
 }

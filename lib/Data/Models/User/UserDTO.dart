@@ -1,3 +1,5 @@
+import 'package:El3b/Domain/Models/User/MyUser.dart';
+
 class UserDTO {
 
   String name ;
@@ -38,6 +40,18 @@ class UserDTO {
       "bio" : bio,
       "birthDate" : birthDate,
     };
+  }
+
+  MyUser toDomain(){
+    return MyUser(
+        name: name,
+        email: email,
+        password: password,
+        image: image,
+        phoneNumber: phoneNumber,
+        bio: bio,
+        birthDate: birthDate
+    );
   }
 
 }
