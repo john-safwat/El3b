@@ -3,20 +3,17 @@ import 'package:flutter/material.dart';
 
 class AppConfigProvider extends ChangeNotifier {
 
-  User? _user;
+  User? user;
+  AppConfigProvider({this.user});
 
   void updateUser({required User user}){
-    _user = null;
-    _user = user;
+    this.user = null;
+    this.user = user;
     notifyListeners();
   }
 
-  void updateUserWithoutNotifyListeners({required User user}){
-    _user = user;
-  }
-
   User? getUser(){
-    return _user!;
+    return user!;
   }
 
 }

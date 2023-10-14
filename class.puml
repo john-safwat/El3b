@@ -251,6 +251,7 @@ class "El3b::Data::DataSource::FirebaseImagesRemoteDatasourceImpl.dart::Firebase
   +FirebaseImagesDatabase database
   +FirebaseErrorHandler errorHandler
   +dynamic uploadUserProfileImage()
+  +dynamic updateUserProfileImage()
 }
 
 "El3b::Data::DataSource::FirebaseImagesRemoteDatasourceImpl.dart::FirebaseImagesRemoteDatasourceImpl" o-- "El3b::Data::Firebase::FirebaseImagesDatabase.dart::FirebaseImagesDatabase"
@@ -267,6 +268,7 @@ class "El3b::Data::DataSource::FirebaseUserAuthRemoteDatasourceImpl.dart::Fireba
   +dynamic signInWithGoogle()
   +dynamic signInWithFacebook()
   +dynamic signOutUser()
+  +dynamic updateUserDisplayName()
 }
 
 "El3b::Data::DataSource::FirebaseUserAuthRemoteDatasourceImpl.dart::FirebaseUserAuthRemoteDatasourceImpl" o-- "El3b::Data::Firebase::FirebaseUserAuth.dart::FirebaseUserAuth"
@@ -364,6 +366,7 @@ class "El3b::Data::DataSource::UserFirebaseDatabaseRemoteDatasourceImpl.dart::Us
   +dynamic createUser()
   +dynamic updateUser()
   +dynamic userExist()
+  +dynamic getUser()
 }
 
 "El3b::Data::DataSource::UserFirebaseDatabaseRemoteDatasourceImpl.dart::UserFirebaseDatabaseRemoteDatasourceImpl" o-- "El3b::Data::Firebase::UserFirebaseDatabase.dart::UserFirebaseDatabase"
@@ -403,6 +406,7 @@ class "El3b::Data::Firebase::FirebaseImagesDatabase.dart::FirebaseImagesDatabase
   -FirebaseStorage _firebaseStorage
   {static} +dynamic getInstance()
   +dynamic uploadImage()
+  +dynamic updateImage()
   +String generateName()
 }
 
@@ -433,6 +437,7 @@ class "El3b::Data::Firebase::UserFirebaseDatabase.dart::UserFirebaseDatabase" {
   +dynamic createUser()
   +dynamic updateUserData()
   +dynamic userExist()
+  +dynamic getUserData()
 }
 
 "El3b::Data::Firebase::UserFirebaseDatabase.dart::UserFirebaseDatabase" o-- "El3b::Data::Firebase::UserFirebaseDatabase.dart::UserFirebaseDatabase"
@@ -912,6 +917,7 @@ class "El3b::Data::Models::User::UserDTO.dart::UserDTO" {
   +String birthDate
   +String bio
   +Map<String, dynamic> toFireStore()
+  +MyUser toDomain()
 }
 
 class "El3b::Data::Repository::FeedbackRepositoryImpl.dart::FeedbackRepositoryImpl" {
@@ -1014,6 +1020,9 @@ class "El3b::Data::Repository::UserRepositoryImpl.dart::UserRepositoryImpl" {
   +dynamic singInWithGoogle()
   +dynamic signInWithFacebook()
   +dynamic signOutUser()
+  +dynamic getUser()
+  +dynamic updateUserProfileImage()
+  +dynamic updateUserDisplayName()
 }
 
 "El3b::Data::Repository::UserRepositoryImpl.dart::UserRepositoryImpl" o-- "El3b::Domain::DataSource::FirebaseImagesRemoteDatasource.dart::FirebaseImagesRemoteDatasource"
@@ -1069,6 +1078,7 @@ abstract class "El3b::Domain::DataSource::FeedbackRemoteDataSource.dart::Feedbac
 
 abstract class "El3b::Domain::DataSource::FirebaseImagesRemoteDatasource.dart::FirebaseImagesRemoteDatasource" {
   +dynamic uploadUserProfileImage()
+  +dynamic updateUserProfileImage()
 }
 
 abstract class "El3b::Domain::DataSource::FirebaseUserAuthRemoteDatasource.dart::FirebaseUserAuthRemoteDatasource" {
@@ -1079,6 +1089,7 @@ abstract class "El3b::Domain::DataSource::FirebaseUserAuthRemoteDatasource.dart:
   +dynamic signInWithGoogle()
   +dynamic signInWithFacebook()
   +dynamic signOutUser()
+  +dynamic updateUserDisplayName()
 }
 
 abstract class "El3b::Domain::DataSource::FreeToPlayGamesRemoteDataSource.dart::FreeToPlayGamesRemoteDataSource" {
@@ -1130,6 +1141,7 @@ abstract class "El3b::Domain::DataSource::UserFirebaseDatabaseRemoteDatasource.d
   +dynamic createUser()
   +dynamic updateUser()
   +dynamic userExist()
+  +dynamic getUser()
 }
 
 class "El3b::Domain::Exception::CacheException.dart::CacheException" {
@@ -1513,6 +1525,7 @@ abstract class "El3b::Domain::Repository::UserRepository.dart::UserRepository" {
   +dynamic createUserFirebaseFireStore()
   +dynamic createUserFireBaseAuth()
   +dynamic uploadUserImage()
+  +dynamic updateUserProfileImage()
   +dynamic updateUserPhotoUrl()
   +dynamic updateUserData()
   +dynamic signInWithEmailAndPassword()
@@ -1520,7 +1533,9 @@ abstract class "El3b::Domain::Repository::UserRepository.dart::UserRepository" {
   +dynamic userExist()
   +dynamic singInWithGoogle()
   +dynamic signInWithFacebook()
+  +dynamic getUser()
   +dynamic signOutUser()
+  +dynamic updateUserDisplayName()
 }
 
 class "El3b::Domain::UseCase::AddGameToHistoryUseCase.dart::AddGameToHistoryUseCase" {
@@ -1678,6 +1693,13 @@ class "El3b::Domain::UseCase::GetRAWGGeneralGamesUseCase.dart::GetRAWGGeneralGam
 
 "El3b::Domain::UseCase::GetRAWGGeneralGamesUseCase.dart::GetRAWGGeneralGamesUseCase" o-- "El3b::Domain::Repository::RAWGGamesRepository.dart::RAWGGamesRepository"
 
+class "El3b::Domain::UseCase::LoadUserDataUseCase.dart::LoadUserDataUseCase" {
+  +UserRepository repository
+  +dynamic invoke()
+}
+
+"El3b::Domain::UseCase::LoadUserDataUseCase.dart::LoadUserDataUseCase" o-- "El3b::Domain::Repository::UserRepository.dart::UserRepository"
+
 class "El3b::Domain::UseCase::ResetPasswordUseCase.dart::ResetPasswordUseCase" {
   +UserRepository repository
   +dynamic invoke()
@@ -1736,6 +1758,13 @@ class "El3b::Domain::UseCase::UpdateUserDataUseCase.dart::UpdateUserDataUseCase"
 }
 
 "El3b::Domain::UseCase::UpdateUserDataUseCase.dart::UpdateUserDataUseCase" o-- "El3b::Domain::Repository::UserRepository.dart::UserRepository"
+
+class "El3b::Domain::UseCase::UpdateUserProfileUseCase.dart::UpdateUserProfileUseCase" {
+  +UserRepository repository
+  +dynamic invoke()
+}
+
+"El3b::Domain::UseCase::UpdateUserProfileUseCase.dart::UpdateUserProfileUseCase" o-- "El3b::Domain::Repository::UserRepository.dart::UserRepository"
 
 class "El3b::firebase_options.dart::DefaultFirebaseOptions" {
   {static} +FirebaseOptions web
@@ -1822,6 +1851,8 @@ class "El3b::Presentation::UI::DeveloperProfile::DeveloperProfileViewModel.dart:
 "El3b::Core::Base::BaseViewModel.dart::BaseViewModel" <|-- "El3b::Presentation::UI::DeveloperProfile::DeveloperProfileViewModel.dart::DeveloperProfileViewModel"
 
 abstract class "El3b::Presentation::UI::EditProfile::EditProfileNavigator.dart::EditProfileNavigator" {
+  +dynamic showMyModalBottomSheetWidget()
+  +dynamic showCustomDatePicker()
 }
 
 "El3b::Core::Base::BaseNavigator.dart::BaseNavigator" <|-- "El3b::Presentation::UI::EditProfile::EditProfileNavigator.dart::EditProfileNavigator"
@@ -1834,21 +1865,65 @@ class "El3b::Presentation::UI::EditProfile::EditProfileView.dart::EditProfileVie
 "flutter::src::widgets::framework.dart::StatefulWidget" <|-- "El3b::Presentation::UI::EditProfile::EditProfileView.dart::EditProfileView"
 
 class "El3b::Presentation::UI::EditProfile::EditProfileView.dart::_EditProfileViewState" {
+  +void initState()
   +Widget build()
+  +dynamic showMyModalBottomSheetWidget()
   +EditProfileViewModel initViewModel()
+  +dynamic showCustomDatePicker()
 }
 
 "El3b::Core::Base::BaseState.dart::BaseState" <|-- "El3b::Presentation::UI::EditProfile::EditProfileView.dart::_EditProfileViewState"
 "El3b::Presentation::UI::EditProfile::EditProfileNavigator.dart::EditProfileNavigator" <|-- "El3b::Presentation::UI::EditProfile::EditProfileView.dart::_EditProfileViewState"
 
 class "El3b::Presentation::UI::EditProfile::EditProfileViewModel.dart::EditProfileViewModel" {
+  +GlobalKey<FormState> formKey
+  +TextEditingController nameController
+  +TextEditingController phoneController
+  +TextEditingController bioController
+  +DateTime birthDate
+  +String selectedDate
+  +XFile? image
+  +LoadUserDataUseCase loadUserDataUseCase
+  +ResetPasswordUseCase resetPasswordUseCase
+  +UpdateUserProfileUseCase updateUserProfileUseCase
+  +MyUser? user
+  +String? errorMessage
+  +void loadData()
+  +dynamic pickImageFromCamera()
+  +dynamic pickImageFromGallery()
+  +void showMyModalBottomSheet()
+  +String? nameValidation()
+  +String? phoneValidation()
+  +dynamic changeDate()
+  +String? bioValidation()
+  +dynamic showDatePicker()
+  +dynamic updateUserData()
+  +dynamic changePassword()
 }
 
+"El3b::Presentation::UI::EditProfile::EditProfileViewModel.dart::EditProfileViewModel" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"El3b::Presentation::UI::EditProfile::EditProfileViewModel.dart::EditProfileViewModel" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"El3b::Presentation::UI::EditProfile::EditProfileViewModel.dart::EditProfileViewModel" o-- "cross_file::src::types::interface.dart::XFile"
+"El3b::Presentation::UI::EditProfile::EditProfileViewModel.dart::EditProfileViewModel" o-- "El3b::Domain::UseCase::LoadUserDataUseCase.dart::LoadUserDataUseCase"
+"El3b::Presentation::UI::EditProfile::EditProfileViewModel.dart::EditProfileViewModel" o-- "El3b::Domain::UseCase::ResetPasswordUseCase.dart::ResetPasswordUseCase"
+"El3b::Presentation::UI::EditProfile::EditProfileViewModel.dart::EditProfileViewModel" o-- "El3b::Domain::UseCase::UpdateUserProfileUseCase.dart::UpdateUserProfileUseCase"
+"El3b::Presentation::UI::EditProfile::EditProfileViewModel.dart::EditProfileViewModel" o-- "El3b::Domain::Models::User::MyUser.dart::MyUser"
 "El3b::Core::Base::BaseViewModel.dart::BaseViewModel" <|-- "El3b::Presentation::UI::EditProfile::EditProfileViewModel.dart::EditProfileViewModel"
+
+class "El3b::Presentation::UI::EditProfile::Widgets::BottomSheeteWiget.dart::MyBottomSheetWidget" {
+  +String title
+  +String cameraTitle
+  +Function pickImageFromCamera
+  +String galleryTitle
+  +Function pickImageFromGallery
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "El3b::Presentation::UI::EditProfile::Widgets::BottomSheeteWiget.dart::MyBottomSheetWidget"
 
 abstract class "El3b::Presentation::UI::ExtraInfo::ExtraInfoNavigator.dart::ExtraInfoNavigator" {
   +dynamic showCustomDatePicker()
-  +dynamic goToHomeScreen()
+  +dynamic goToLoginScreen()
 }
 
 "El3b::Core::Base::BaseNavigator.dart::BaseNavigator" <|-- "El3b::Presentation::UI::ExtraInfo::ExtraInfoNavigator.dart::ExtraInfoNavigator"
@@ -1864,7 +1939,7 @@ class "El3b::Presentation::UI::ExtraInfo::ExtraInfoView.dart::_ExtraInfoViewStat
   +Widget build()
   +ExtraInfoViewModel initViewModel()
   +dynamic showCustomDatePicker()
-  +dynamic goToHomeScreen()
+  +dynamic goToLoginScreen()
 }
 
 "El3b::Core::Base::BaseState.dart::BaseState" <|-- "El3b::Presentation::UI::ExtraInfo::ExtraInfoView.dart::_ExtraInfoViewState"

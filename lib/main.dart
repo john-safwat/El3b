@@ -43,7 +43,7 @@ void main()async{
         providers: [
           ChangeNotifierProvider(create: (context) => ThemeProvider(),),
           ChangeNotifierProvider(create: (context) => LocalProvider(),),
-          ChangeNotifierProvider(create: (context) => AppConfigProvider(),)
+          ChangeNotifierProvider(create: (context) => AppConfigProvider(user: user),)
         ],
         child: MyApp(firstTime: firstTime?? true, user: user,)
       )
@@ -57,17 +57,13 @@ class MyApp extends StatelessWidget {
 
   late ThemeProvider themeProvider ;
   late LocalProvider localProvider ;
+
   @override
   Widget build(BuildContext context) {
     themeProvider = Provider.of<ThemeProvider>(context);
     localProvider = Provider.of<LocalProvider>(context);
     setTheme();
     setLocal();
-
-    if(user != null){
-      var provider = Provider.of<AppConfigProvider>(context , listen: false);
-      provider.updateUserWithoutNotifyListeners(user: user!);
-    }
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -112,5 +108,4 @@ class MyApp extends StatelessWidget {
     var local = prefs.getString("local");
     localProvider.changeLocal(local??="en");
   }
-
 }
