@@ -1,3 +1,4 @@
+import 'package:El3b/Core/Providers/AppConfigProvider.dart';
 import 'package:El3b/Core/Providers/ThemeProvider.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Presentation/UI/Home/HomeView.dart';
@@ -19,6 +20,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var themeProvider = Provider.of<ThemeProvider>(context);
+
     return AnimatedSplashScreen(
       splash: Center(
         child: SizedBox(
