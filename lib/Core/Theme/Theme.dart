@@ -14,6 +14,10 @@ class MyTheme {
   static ThemeData lightTheme = ThemeData(
       // the screen background
       scaffoldBackgroundColor: offWhite,
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: lightPurple,
+          foregroundColor: white
+      ),
 
       // the elevated button style in thee screen
       elevatedButtonTheme: ElevatedButtonThemeData(
@@ -64,6 +68,10 @@ class MyTheme {
   static ThemeData darkTheme = ThemeData(
       // the screen background
       scaffoldBackgroundColor: darkPurple,
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        backgroundColor: purple,
+        foregroundColor: white
+      ),
 
       // the elevated button style in thee screen
       elevatedButtonTheme: ElevatedButtonThemeData(

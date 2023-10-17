@@ -115,5 +115,6 @@
   "areYouSureToExit" : "هل انت متاكد من انك تريد الخرج",
   "cancel" : "الغاء",
   "changePassword" : "تغير كلمة المرور",
-  "updateAccount" : "تحديث الحساب"
+  "updateAccount" : "تحديث الحساب",
+  "createGroup" : "انشاء مجموعة"
 }
