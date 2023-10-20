@@ -10,7 +10,6 @@ import 'package:El3b/Domain/UseCase/ResetPasswordUseCase.dart';
 import 'package:El3b/Domain/UseCase/UpdateUserProfileUseCase.dart';
 import 'package:El3b/Presentation/UI/EditProfile/EditProfileNavigator.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 class EditProfileViewModel extends BaseViewModel<EditProfileNavigator> {
@@ -22,8 +21,6 @@ class EditProfileViewModel extends BaseViewModel<EditProfileNavigator> {
 
   DateTime birthDate = DateTime.now();
   late String selectedDate;
-
-  XFile? image;
 
   LoadUserDataUseCase loadUserDataUseCase;
   ResetPasswordUseCase resetPasswordUseCase;
@@ -91,34 +88,6 @@ class EditProfileViewModel extends BaseViewModel<EditProfileNavigator> {
     }
   }
 
-  // image picker from camera
-  Future<void> pickImageFromCamera() async {
-    navigator!.goBack();
-    final ImagePicker picker = ImagePicker();
-    // Capture a photo.
-    var image = await picker.pickImage(source: ImageSource.camera);
-    if (image != null) {
-      this.image = image;
-      notifyListeners();
-    }
-  }
-
-  // image picker from gallery
-  Future<void> pickImageFromGallery() async {
-    navigator!.goBack();
-    final ImagePicker picker = ImagePicker();
-    // Pick an image.
-    var image = await picker.pickImage(source: ImageSource.gallery);
-    if (image != null) {
-      this.image = image;
-      notifyListeners();
-    }
-  }
-
-  // function to show modal Bottom Sheet
-  void showMyModalBottomSheet() {
-    navigator!.showMyModalBottomSheetWidget();
-  }
 
   // validation functions
   // validate on the name if it is not empty and doesn't contain ant spacial characters

@@ -20,41 +20,10 @@ class RegisterViewModel extends BaseViewModel<RegisterNavigator> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController passwordConfirmationController = TextEditingController();
 
-  XFile? image;
-
-  // image picker from camera
-  Future<void> pickImageFromCamera() async {
-    navigator!.goBack();
-    final ImagePicker picker = ImagePicker();
-    // Capture a photo.
-    var image = await picker.pickImage(source: ImageSource.camera);
-    if (image != null) {
-      this.image = image;
-      notifyListeners();
-    }
-  }
-
-  // image picker from gallery
-  Future<void> pickImageFromGallery() async {
-    navigator!.goBack();
-    final ImagePicker picker = ImagePicker();
-    // Pick an image.
-    var image = await picker.pickImage(source: ImageSource.gallery);
-    if (image != null) {
-      this.image = image;
-      notifyListeners();
-    }
-  }
-
   // navigation Functions
   // function to navigate to registration screen
   void goToLoginScreen() {
     navigator!.goToLoginScreen();
-  }
-
-  // function to show modal Bottom Sheet
-  void showMyModalBottomSheet() {
-    navigator!.showMyModalBottomSheetWidget();
   }
 
   // function to go to Extra info Screen()
