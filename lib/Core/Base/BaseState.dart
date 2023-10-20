@@ -8,6 +8,7 @@ import 'package:El3b/Core/Utils/DialogUtils.dart';
 import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
 import 'package:El3b/Presentation/UI/GameDetails/GameDetailsView.dart';
 import 'package:El3b/Presentation/UI/GamesSearch/GameSearchView.dart';
+import 'package:El3b/Presentation/UI/Widgets/BottomSheetImagePicker.dart';
 import 'package:elegant_notification/elegant_notification.dart';
 import 'package:elegant_notification/resources/arrays.dart';
 import 'package:flutter/material.dart';
@@ -165,6 +166,29 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
   @override
   goToGameDetailsScreen(RAWGGame game) {
     Navigator.push(context, MaterialPageRoute(builder: (context) => GameDetailsView(game: game)));
+  }
+
+
+  @override
+  showMyModalBottomSheetWidget() {
+    showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        builder: (context) => MyBottomSheetWidget(
+          title: viewModel!.local!.selectPickingImageMethod,
+          pickImageFromCamera: viewModel!.pickImageFromCamera,
+          cameraTitle: viewModel!.local!.camera,
+          galleryTitle: viewModel!.local!.gallery,
+          pickImageFromGallery: viewModel!.pickImageFromGallery,
+        ),
+        backgroundColor: viewModel!.themeProvider!.isDark()
+            ? MyTheme.purple
+            : MyTheme.offWhite,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(20),
+              topLeft: Radius.circular(20),
+            )));
   }
 
 }

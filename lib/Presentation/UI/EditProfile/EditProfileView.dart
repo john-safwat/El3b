@@ -7,7 +7,6 @@ import 'package:El3b/Domain/UseCase/ResetPasswordUseCase.dart';
 import 'package:El3b/Domain/UseCase/UpdateUserProfileUseCase.dart';
 import 'package:El3b/Presentation/UI/EditProfile/EditProfileNavigator.dart';
 import 'package:El3b/Presentation/UI/EditProfile/EditProfileViewModel.dart';
-import 'package:El3b/Presentation/UI/EditProfile/Widgets/BottomSheeteWiget.dart';
 import 'package:El3b/Presentation/UI/Widgets/CustomLongTextFormField.dart';
 import 'package:El3b/Presentation/UI/Widgets/CustomTextFormField.dart';
 import 'package:flutter/material.dart';
@@ -187,28 +186,6 @@ class _EditProfileViewState extends BaseState<EditProfileView , EditProfileViewM
         ),
       ),
     );
-  }
-
-  @override
-  showMyModalBottomSheetWidget() {
-    showModalBottomSheet(
-        context: context,
-        isScrollControlled: true,
-        builder: (context) => MyBottomSheetWidget(
-          title: viewModel!.local!.selectPickingImageMethod,
-          pickImageFromCamera: viewModel!.pickImageFromCamera,
-          cameraTitle: viewModel!.local!.camera,
-          galleryTitle: viewModel!.local!.gallery,
-          pickImageFromGallery: viewModel!.pickImageFromGallery,
-        ),
-        backgroundColor: viewModel!.themeProvider!.isDark()
-            ? MyTheme.purple
-            : MyTheme.offWhite,
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(20),
-              topLeft: Radius.circular(20),
-            )));
   }
 
 

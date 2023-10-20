@@ -43,4 +43,6 @@ abstract class BaseNavigator {
     required double height
   });
 
+  showMyModalBottomSheetWidget();
+
 }
