@@ -2,11 +2,16 @@
 import 'package:El3b/Data/Models/User/UserDTO.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+// dependency injection
+RoomUsersDatabase injectRoomUsersDatabase(){
+  return RoomUsersDatabase.getInstance();
+}
+
 class RoomUsersDatabase {
 
   RoomUsersDatabase._();
   static RoomUsersDatabase? _instance;
-  static RoomUsersDatabase getRoomUsersDatabase(){
+  static RoomUsersDatabase getInstance(){
     _instance ??= RoomUsersDatabase._();
     return _instance!;
   }

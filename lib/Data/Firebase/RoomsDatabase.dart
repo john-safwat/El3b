@@ -1,12 +1,17 @@
 import 'package:El3b/Data/Models/Room/RoomDTO.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+// dependency injection
+RoomsDatabase injectRoomsDatabase(){
+  return RoomsDatabase.getInstance();
+}
+
 class RoomsDatabase {
 
   // obtain the singleton pattern
   RoomsDatabase._();
   static RoomsDatabase? _instance ;
-  static getRoomDatabase(){
+  static getInstance(){
     _instance ??= RoomsDatabase._();
     return _instance;
   }
