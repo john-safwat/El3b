@@ -1,9 +1,11 @@
 import 'package:El3b/Data/Models/Room/RoomDTO.dart';
 import 'package:El3b/Domain/Models/Room/Room.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:image_picker/image_picker.dart';
 
 abstract class RoomDataRepository{
   Future<String> addRoom(Room room);
+  Future<String> uploadImage({required XFile file});
   Stream<QuerySnapshot<RoomDTO>>getPublicRooms();
   Stream<QuerySnapshot<RoomDTO>>getUserRooms(String uid);
   Future<String> updateRoomMembers(Room room);

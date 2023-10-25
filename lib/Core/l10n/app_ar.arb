@@ -116,5 +116,7 @@
   "cancel" : "الغاء",
   "changePassword" : "تغير كلمة المرور",
   "updateAccount" : "تحديث الحساب",
-  "createGroup" : "انشاء مجموعة"
+  "createGroup" : "انشاء مجموعة",
+  "roomCreatedSuccessfully" : "تم انشاء المجموعة بنجاح"
+
 }

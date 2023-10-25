@@ -1,19 +1,26 @@
 
+import 'package:El3b/Data/DataSource/FirebaseImagesRemoteDatasourceImpl.dart';
 import 'package:El3b/Data/DataSource/RoomDataRemoteDataSourceImpl.dart';
 import 'package:El3b/Data/Models/Room/RoomDTO.dart';
+import 'package:El3b/Domain/DataSource/FirebaseImagesRemoteDatasource.dart';
 import 'package:El3b/Domain/DataSource/RoomDataRemoteDataSource.dart';
 import 'package:El3b/Domain/Models/Room/Room.dart';
 import 'package:El3b/Domain/Repository/RoomDataRepository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:image_picker/image_picker.dart';
 
 RoomDataRepository injectRoomDataRepository(){
-  return RoomDataRepositoryImpl(dataSource: injectRoomDataRemoteDataSource());
+  return RoomDataRepositoryImpl(
+    dataSource: injectRoomDataRemoteDataSource(),
+    imagesRemoteDatasource: injectFirebaseImagesRemoteDatasource()
+  );
 }
 
 class RoomDataRepositoryImpl implements RoomDataRepository{
 
   RoomDataRemoteDataSource dataSource ;
-  RoomDataRepositoryImpl({required this.dataSource});
+  FirebaseImagesRemoteDatasource imagesRemoteDatasource;
+  RoomDataRepositoryImpl({required this.dataSource , required this.imagesRemoteDatasource});
 
   @override
   Future<String> addRoom(Room room) async{
@@ -58,6 +65,12 @@ class RoomDataRepositoryImpl implements RoomDataRepository{
   @override
   Future<void> updateRoomData(Room room) async{
     await dataSource.updateRoomData(room.toDataSource());
+  }
+
+  @override
+  Future<String> uploadImage({required XFile file}) async{
+    var image = await imagesRemoteDatasource.uploadImage(file: file);
+    return image;
   }
 
 }
