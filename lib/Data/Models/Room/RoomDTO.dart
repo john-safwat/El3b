@@ -4,6 +4,7 @@ class RoomDTO {
   String id;
   String name;
   String description;
+  String image;
   String type;
   String ownerId;
   List<String> users ;
@@ -13,6 +14,7 @@ class RoomDTO {
       {required this.id,
         required this.name,
         required this.description,
+        required this.image,
         required this.type,
         required this.ownerId,
         required this.users,
@@ -24,6 +26,7 @@ class RoomDTO {
       id: json['id'],
       name: json['name'],
       description: json['description'],
+      image: json['image'],
       type: json['type'],
       ownerId: json['ownerId'],
       users: List<String>.from(json['users']),
@@ -35,6 +38,7 @@ class RoomDTO {
       'id': id,
       'name': name,
       'description': description,
+      'image' : image,
       'type': type,
       'ownerId': ownerId,
       'users':users,
@@ -47,6 +51,7 @@ class RoomDTO {
         id: id,
         name: name,
         description: description,
+        image: image,
         type: type,
         ownerId: ownerId,
         users: users,

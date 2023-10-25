@@ -12,7 +12,7 @@ import 'package:image_picker/image_picker.dart';
 // inject the user repo
 UserRepository injectUserRepo() {
   return UserRepositoryImpl(
-      imagesRemoteDatasource: getFirebaseImagesRemoteDatasource(),
+      imagesRemoteDatasource: injectFirebaseImagesRemoteDatasource(),
       authRemoteDatasource: getFirebaseUserAuthRemoteDatasource(),
       userFirebaseDatabaseRemoteDatasource:getUserFirebaseDatabaseRemoteDatasource());
 }
@@ -38,7 +38,7 @@ class UserRepositoryImpl implements UserRepository {
   // 2 - if there is no exceptions it will upload the user image to firebase storage (if user picked image)
   @override
   Future<String> uploadUserImage({required XFile file})async{
-    var image = await imagesRemoteDatasource.uploadUserProfileImage(file: file);
+    var image = await imagesRemoteDatasource.uploadImage(file: file);
     return image;
   }
   // 3 - update user image in firebase auth
@@ -108,7 +108,7 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<String> updateUserProfileImage({required XFile file, required String name})async {
-    var image = await imagesRemoteDatasource.updateUserProfileImage(file: file , name: name);
+    var image = await imagesRemoteDatasource.updateImage(file: file , name: name);
     return image;
   }
 

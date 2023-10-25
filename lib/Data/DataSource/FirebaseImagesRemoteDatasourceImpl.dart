@@ -11,7 +11,7 @@ import 'package:image_picker/image_picker.dart';
 
 
 // dependency injection
-FirebaseImagesRemoteDatasource getFirebaseImagesRemoteDatasource() {
+FirebaseImagesRemoteDatasource injectFirebaseImagesRemoteDatasource() {
   return FirebaseImagesRemoteDatasourceImpl(
       database: injectFirebaseImagesDatabase(), errorHandler: injectFirebaseErrorHandler());
 }
@@ -27,7 +27,7 @@ class FirebaseImagesRemoteDatasourceImpl
 
   // function to upload user image to firebase fireStore
   @override
-  Future<String> uploadUserProfileImage({required XFile file}) async {
+  Future<String> uploadImage({required XFile file}) async {
     try {
       var response = await database
           .uploadImage(file: file)
@@ -44,7 +44,7 @@ class FirebaseImagesRemoteDatasourceImpl
 
   // function to upload user image to firebase fireStore
   @override
-  Future<String> updateUserProfileImage({required XFile file , required String name}) async {
+  Future<String> updateImage({required XFile file , required String name}) async {
     try {
       var response = await database
           .updateImage(file: file, name: name)

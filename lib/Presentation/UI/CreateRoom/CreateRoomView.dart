@@ -88,6 +88,7 @@ class _CreateRoomViewState extends BaseState<CreateRoomView , CreateRoomViewMode
                   ),
                   const SizedBox(height: 20,),
                   Form(
+                    key: viewModel!.formKey,
                     child: Column(
                       children: [
                         // text from e
