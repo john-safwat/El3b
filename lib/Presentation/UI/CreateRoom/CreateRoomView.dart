@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
+import 'package:El3b/Domain/UseCase/AddRoomUseCase.dart';
 import 'package:El3b/Presentation/Models/RoomType.dart';
 import 'package:El3b/Presentation/UI/CreateRoom/CreateRoomNavigator.dart';
 import 'package:El3b/Presentation/UI/CreateRoom/CreateRoomViewModel.dart';
@@ -160,7 +161,9 @@ class _CreateRoomViewState extends BaseState<CreateRoomView , CreateRoomViewMode
 
   @override
   CreateRoomViewModel initViewModel() {
-    return CreateRoomViewModel();
+    return CreateRoomViewModel(
+      addRoomUseCase: injectAddRoomUseCase()
+    );
   }
 }
 
