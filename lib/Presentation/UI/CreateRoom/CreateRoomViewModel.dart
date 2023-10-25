@@ -1,9 +1,14 @@
 import 'package:El3b/Core/Base/BaseViewModel.dart';
+import 'package:El3b/Domain/UseCase/AddRoomUseCase.dart';
 import 'package:El3b/Presentation/Models/RoomType.dart';
 import 'package:El3b/Presentation/UI/CreateRoom/CreateRoomNavigator.dart';
 import 'package:flutter/material.dart';
 
 class CreateRoomViewModel extends BaseViewModel<CreateRoomNavigator> {
+
+  AddRoomUseCase addRoomUseCase ;
+  CreateRoomViewModel({required this.addRoomUseCase});
+
 
   final formKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
@@ -41,7 +46,6 @@ class CreateRoomViewModel extends BaseViewModel<CreateRoomNavigator> {
   }
 
   createRoom(){
-
   }
 
 

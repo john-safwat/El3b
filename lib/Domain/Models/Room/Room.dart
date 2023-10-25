@@ -4,7 +4,6 @@ class Room {
   String id;
   String name;
   String description;
-  String category;
   String type;
   String ownerId;
   List<String> users;
@@ -14,7 +13,6 @@ class Room {
     required this.id,
     required this.name,
     required this.description,
-    required this.category,
     required this.type,
     required this.ownerId,
     required this.users,
@@ -26,7 +24,6 @@ class Room {
         id: id,
         name: name,
         description: description,
-        category: category,
         type: type,
         ownerId:ownerId,
         users: users,
