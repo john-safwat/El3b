@@ -21,7 +21,7 @@ class _ChatTabViewState extends BaseState<ChatTabView , ChatTabViewModel > imple
     super.build(context);
     return ChangeNotifierProvider(
       create: (context) => viewModel!,
-      child: Consumer<ChatTabView>(
+      child: Consumer<ChatTabViewModel>(
         builder: (context, value, child) {
           return Scaffold(
             appBar: AppBar(

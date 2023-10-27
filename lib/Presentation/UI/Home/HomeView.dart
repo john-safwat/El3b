@@ -26,46 +26,39 @@ class _HomeViewState extends BaseState<HomeView , HomeViewModel> implements Home
         builder:(context, value, child) => Scaffold(
           resizeToAvoidBottomInset: false,
           body: viewModel!.tabs[viewModel!.currentIndex],
-          bottomNavigationBar: ClipRRect(
-            child: SalomonBottomBar(
-              items: [
-                SalomonBottomBarItem(
-                  title: Text(viewModel!.local!.home),
-                  icon:const Icon(Bootstrap.house),
-                  activeIcon:const Icon(Bootstrap.house_fill)
-                ),
-                SalomonBottomBarItem(
-                  title: Text(viewModel!.local!.chat),
-                  icon:const Icon(Bootstrap.chat_left_text),
-                  activeIcon:const Icon(Bootstrap.chat_left_text_fill)
-                ),
-                SalomonBottomBarItem(
-                  title: Text(viewModel!.local!.explore),
-                  icon:const Icon(Bootstrap.compass),
-                  activeIcon:const Icon(Bootstrap.compass_fill),
-                ),
-                SalomonBottomBarItem(
-                  title: Text(viewModel!.local!.favorite),
-                  icon:const Icon(Bootstrap.heart),
-                  activeIcon:const Icon(Bootstrap.heart_fill),
-                ),
-                SalomonBottomBarItem(
-                  title: Text(viewModel!.local!.profile),
-                  icon:const Icon(Bootstrap.person),
-                  activeIcon:const Icon(Bootstrap.person_fill),
-                ),
-              ],
-              currentIndex: viewModel!.currentIndex,
-              onTap: (selectedIndex) => viewModel!.changeSelectedIndex(selectedIndex),
-              backgroundColor: viewModel!.themeProvider!.isDark()?MyTheme.purple : MyTheme.lightPurple,
-              margin: const EdgeInsets.all(10),
-              itemShape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15)
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: value.currentIndex,
+
+            items: [
+              BottomNavigationBarItem(
+                label: viewModel!.local!.home,
+                icon: const Icon(Bootstrap.house , size: 20,),
+                activeIcon: const Icon(Bootstrap.house_fill , size: 20,)
               ),
-              selectedItemColor: MyTheme.offWhite,
-              selectedColorOpacity: 0.2,
-              unselectedItemColor: MyTheme.darkPurple,
-            ),
+              BottomNavigationBarItem(
+                  label: viewModel!.local!.chat,
+                  icon: const Icon(Bootstrap.chat_left_text, size: 20,),
+                  activeIcon: const Icon(Bootstrap.chat_left_text_fill, size: 20,)
+              ),
+              BottomNavigationBarItem(
+                  label: viewModel!.local!.explore,
+                  icon: const Icon(Bootstrap.compass, size: 20,),
+                  activeIcon: const Icon(Bootstrap.compass_fill, size: 20,),
+              ),
+              BottomNavigationBarItem(
+                  label: viewModel!.local!.favorite,
+                  icon:const Icon(Bootstrap.heart, size: 20,),
+                  activeIcon:const Icon(Bootstrap.heart_fill, size: 20,),
+              ),
+              BottomNavigationBarItem(
+                  label: viewModel!.local!.home,
+                  icon:const Icon(Bootstrap.person, size: 20,),
+                  activeIcon:const Icon(Bootstrap.person_fill, size: 20,),
+              ),
+            ],
+            onTap: (value) {
+              viewModel!.changeSelectedIndex(value);
+            },
           ),
         ),
       ),

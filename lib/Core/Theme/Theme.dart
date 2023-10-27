@@ -19,6 +19,17 @@ class MyTheme {
           foregroundColor: white
       ),
 
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          elevation: 0 ,
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: lightPurple,
+          enableFeedback: true,
+          selectedItemColor: white,
+          unselectedItemColor: purple,
+          showSelectedLabels: false,
+          showUnselectedLabels: false
+      ),
+
       // the elevated button style in thee screen
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
@@ -102,6 +113,17 @@ class MyTheme {
       ),
 
       progressIndicatorTheme:const ProgressIndicatorThemeData(color: offWhite),
+
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        elevation: 0 ,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: purple,
+        enableFeedback: true,
+        selectedItemColor: white,
+        unselectedItemColor: grayPurple,
+        showSelectedLabels: false,
+        showUnselectedLabels: false
+      ),
 
       // app bar theme
       appBarTheme: const AppBarTheme(

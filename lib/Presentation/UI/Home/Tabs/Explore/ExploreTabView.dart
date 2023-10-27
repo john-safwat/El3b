@@ -35,7 +35,6 @@ class _ExploreTabViewState
     return ChangeNotifierProvider(
       create: (context) => viewModel!,
       builder: (context, child) => Scaffold(
-        extendBodyBehindAppBar: true,
         appBar: AppBar(
           toolbarHeight: 70,
           titleSpacing: 10,
@@ -69,27 +68,25 @@ class _ExploreTabViewState
             } else {
               return ScrollConfiguration(
                     behavior: const ScrollBehavior().copyWith(overscroll: false),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0 , horizontal: 15),
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: GridView.builder(
-                                gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  childAspectRatio: 1.7,
-                                  crossAxisSpacing: 10,
-                                  mainAxisSpacing: 10
-                                ),
-                              itemBuilder: (context, index) => TabButton(
-                                genre: value.genres[index],
-                                goToSearchScreen: value.goToGameListScreen,
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: GridView.builder(
+                            padding: const EdgeInsets.symmetric(vertical: 10.0 , horizontal: 15),
+                              gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                childAspectRatio: 1.7,
+                                crossAxisSpacing: 10,
+                                mainAxisSpacing: 10
                               ),
-                              itemCount: value.genres.length,
+                            itemBuilder: (context, index) => TabButton(
+                              genre: value.genres[index],
+                              goToSearchScreen: value.goToGameListScreen,
                             ),
-                          )
-                        ],
-                      ),
+                            itemCount: value.genres.length,
+                          ),
+                        )
+                      ],
                     ),
                   );
             }
