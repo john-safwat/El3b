@@ -1,7 +1,9 @@
 import 'package:El3b/Core/Base/BaseViewModel.dart';
+import 'package:El3b/Data/Models/Room/RoomDTO.dart';
 import 'package:El3b/Domain/Models/Room/Room.dart';
 import 'package:El3b/Domain/UseCase/GetUserRoomsUseCase.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Chat/ChatTabNavigator.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ChatTabViewModel extends BaseViewModel <ChatTabNavigator>{
 
@@ -19,8 +21,8 @@ class ChatTabViewModel extends BaseViewModel <ChatTabNavigator>{
   }
 
   // function to load data
-  loadData()async{
-
+  Stream<QuerySnapshot<RoomDTO>>getUserRooms(){
+    return getUserRoomsUseCase.invoke(appConfigProvider!.user!.uid);
   }
 
 
