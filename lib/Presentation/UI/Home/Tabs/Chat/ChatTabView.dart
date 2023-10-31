@@ -3,6 +3,7 @@ import 'package:El3b/Domain/UseCase/GetUserRoomsUseCase.dart';
 import 'package:El3b/Presentation/UI/CreateRoom/CreateRoomView.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Chat/ChatTabNavigator.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Chat/ChatTabViewModel.dart';
+import 'package:El3b/Presentation/UI/Home/Tabs/Chat/Widgets/UserRoomWidget.dart';
 import 'package:El3b/Presentation/UI/Widgets/CustomSearchBarButton.dart';
 import 'package:El3b/Presentation/UI/Widgets/ErrorMessageWidget.dart';
 import 'package:flutter/material.dart';
@@ -58,8 +59,18 @@ class _ChatTabViewState extends BaseState<ChatTabView , ChatTabViewModel > imple
                           errorMessage: value.errorMessage!,
                           fixErrorFunction: (){});
                     }else {
-                      return Container(
+                      viewModel!.userRooms = snapshot.data!.docs.map((e) => e.data().toDomain()).toList();
 
+                      return SizedBox(
+                        height: 160,
+                        child: ListView.separated(
+                          physics: const BouncingScrollPhysics(),
+                          padding:const EdgeInsets.all(20),
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) => UserRoomWidget(room: viewModel!.userRooms[index]),
+                          itemCount: viewModel!.userRooms.length,
+                          separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 15,) ,
+                        ),
                       );
                     }
                   },
