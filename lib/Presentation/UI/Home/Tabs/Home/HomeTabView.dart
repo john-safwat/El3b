@@ -65,8 +65,7 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
                   },
                 );
               } else if (value.listGiveawayGames.isEmpty) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                return Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(

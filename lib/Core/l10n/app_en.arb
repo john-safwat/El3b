@@ -117,5 +117,6 @@
   "changePassword" : "Change Password",
   "updateAccount" : "Update Account",
   "createGroup" : "Create Group",
-  "roomCreatedSuccessfully" : "Room Create Successfully"
+  "roomCreatedSuccessfully" : "Room Create Successfully",
+  "publicRooms" : "Public Rooms"
 }
