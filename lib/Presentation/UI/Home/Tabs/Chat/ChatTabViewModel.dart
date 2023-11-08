@@ -42,4 +42,8 @@ class ChatTabViewModel extends BaseViewModel <ChatTabNavigator>{
     }
   }
 
+  goToJoinRoomScree(Room room){
+    navigator!.goToJoinRoomView(room);
+  }
+
 }

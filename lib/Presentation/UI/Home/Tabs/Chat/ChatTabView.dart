@@ -1,4 +1,5 @@
 import 'package:El3b/Core/Base/BaseState.dart';
+import 'package:El3b/Domain/Models/Room/Room.dart';
 import 'package:El3b/Domain/UseCase/GetGeneralRoomsUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetUserRoomsUseCase.dart';
 import 'package:El3b/Presentation/UI/CreateRoom/CreateRoomView.dart';
@@ -6,6 +7,7 @@ import 'package:El3b/Presentation/UI/Home/Tabs/Chat/ChatTabNavigator.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Chat/ChatTabViewModel.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Chat/Widgets/PublicRoomsWidget.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Chat/Widgets/UserRoomWidget.dart';
+import 'package:El3b/Presentation/UI/JoinRoom/JoinRoomView.dart';
 import 'package:El3b/Presentation/UI/Widgets/CustomSearchBarButton.dart';
 import 'package:El3b/Presentation/UI/Widgets/ErrorMessageWidget.dart';
 import 'package:flutter/material.dart';
@@ -107,7 +109,7 @@ class _ChatTabViewState extends BaseState<ChatTabView , ChatTabViewModel > imple
                         child: ListView.separated(
                           physics: const BouncingScrollPhysics(),
                           padding:const EdgeInsets.symmetric(horizontal: 20 , vertical: 10),
-                          itemBuilder: (context, index) => PublicRoomsWidget(room: viewModel!.rooms[index]),
+                          itemBuilder: (context, index) => PublicRoomsWidget(room: viewModel!.rooms[index] , onPress: viewModel!.goToJoinRoomScree),
                           itemCount: viewModel!.rooms.length,
                           separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 15,) ,
                         ),
@@ -140,5 +142,10 @@ class _ChatTabViewState extends BaseState<ChatTabView , ChatTabViewModel > imple
   @override
   goToCreateRoomScreen() {
     Navigator.pushNamed(context, CreateRoomView.routeName);
+  }
+
+  @override
+  goToJoinRoomView(Room room) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => JoinRoomView(room: room,)));
   }
 }

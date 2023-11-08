@@ -118,5 +118,7 @@
   "updateAccount" : "Update Account",
   "createGroup" : "Create Group",
   "roomCreatedSuccessfully" : "Room Create Successfully",
-  "publicRooms" : "Public Rooms"
+  "publicRooms" : "Public Rooms",
+  "joinRoom" : "Join Room",
+  "roomDescription" : "Room Description"
 }
