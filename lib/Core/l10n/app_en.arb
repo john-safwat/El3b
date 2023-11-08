@@ -11,6 +11,7 @@
   "invalidPasswordLength" : "The Password Must be More Than 8 Characters",
   "forgetPassword" : "Forget Password ?",
   "login" : "Login",
+  "weSentEmailVerification" : "We Sent an Email Verification To Your Mail",
   "doNotHaveAccount" : "Don't Have Account ?",
   "createAccount" :"Create One",
   "or" :"Or",

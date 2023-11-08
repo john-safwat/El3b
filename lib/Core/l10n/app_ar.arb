@@ -11,6 +11,7 @@
   "invalidPasswordLength" : "كلمة المرور يجب ان تكون اكبر من 8 حروف",
   "forgetPassword" : "هل نسيت كلمة المرور ؟",
   "login" : "تسجيل الدخول",
+  "weSentEmailVerification" : "تم ارسال بريد لتاكيد الحساب اللي بريدك",
   "doNotHaveAccount" : "ليس لديك حساب ؟",
   "createAccount" :"انشئ حساب",
   "or" :"او",
