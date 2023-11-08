@@ -96,6 +96,9 @@ class RegisterViewModel extends BaseViewModel<RegisterNavigator> {
               birthDate: "--/--/----")
         );
         appConfigProvider!.updateUser(user: response);
+        if(!response.emailVerified){
+          await response.sendEmailVerification();
+        }
         navigator!.goBack();
         navigator!.showSuccessMessage(
             message: local!.accountCreatedSuccessfully,

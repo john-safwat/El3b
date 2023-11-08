@@ -118,6 +118,9 @@
   "updateAccount" : "تحديث الحساب",
   "createGroup" : "انشاء مجموعة",
   "roomCreatedSuccessfully" : "تم انشاء المجموعة بنجاح",
-  "publicRooms" : "محوعات قد تعجبك"
+  "publicRooms" : "محوعات قد تعجبك",
+  "joinRoom" : "انضم للمجموعة",
+  "roomDescription" : "وصف المجموعة"
+
 
 }
