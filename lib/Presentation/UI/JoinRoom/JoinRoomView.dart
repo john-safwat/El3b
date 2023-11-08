@@ -1,6 +1,8 @@
 import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Domain/Models/Room/Room.dart';
+import 'package:El3b/Domain/UseCase/AddUserToRoomUseCase.dart';
+import 'package:El3b/Presentation/UI/ChatRoom/ChatRoomView.dart';
 import 'package:El3b/Presentation/UI/JoinRoom/JoinRoomNavigator.dart';
 import 'package:El3b/Presentation/UI/JoinRoom/JoinRoomViewModel.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -70,12 +72,14 @@ class _JoinRoomViewState extends BaseState<JoinRoomView , JoinRoomViewModel> imp
                 // Room Title
                 Text(viewModel!.room.name , style: Theme.of(context).textTheme.displayLarge!.copyWith(fontWeight: FontWeight.bold , fontSize: 24),),
                 const SizedBox(height: 20,),
-                Text(viewModel!.local!.roomDescription , style: Theme.of(context).textTheme.displayLarge!.copyWith(fontWeight: FontWeight.w400)),
+                Text(viewModel!.local!.roomDescription , style: Theme.of(context).textTheme.displayMedium!.copyWith(fontWeight: FontWeight.w400)),
                 const SizedBox(height: 20,),
                 Text(viewModel!.room.description, style: Theme.of(context).textTheme.displayMedium),
-                const SizedBox(height: 20,),
+                const SizedBox(height: 50,),
                 ElevatedButton(
-                  onPressed: (){},
+                  onPressed: (){
+                    viewModel!.joinRoom();
+                  },
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Row(
@@ -97,6 +101,11 @@ class _JoinRoomViewState extends BaseState<JoinRoomView , JoinRoomViewModel> imp
 
   @override
   JoinRoomViewModel initViewModel() {
-    return JoinRoomViewModel();
+    return JoinRoomViewModel(addUserToRoomUseCase: injectAddUserToRoomUseCase());
+  }
+
+  @override
+  goToRoomChatScreen(Room room) {
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ChatRoomView(room: room,)));
   }
 }

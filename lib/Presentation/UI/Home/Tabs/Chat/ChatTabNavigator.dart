@@ -5,5 +5,6 @@ abstract class ChatTabNavigator extends BaseNavigator {
 
   goToCreateRoomScreen();
   goToJoinRoomView(Room room);
+  goToChatRoomScreen(Room room);
 
 }

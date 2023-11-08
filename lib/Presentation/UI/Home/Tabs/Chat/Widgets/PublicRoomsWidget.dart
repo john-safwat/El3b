@@ -112,7 +112,7 @@ class PublicRoomsWidget extends StatelessWidget {
                     const Icon(
                       Bootstrap.people,
                       color: MyTheme.offWhite,
-                      size: 35,
+                      size: 30,
                     ),
                     Text(
                       room.users.length <= 1000

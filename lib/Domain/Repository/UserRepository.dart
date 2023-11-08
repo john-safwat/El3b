@@ -18,4 +18,5 @@ abstract class UserRepository {
   Future<MyUser?> getUser({required String uid});
   Future<void> signOutUser();
   Future<User> updateUserDisplayName({required String name});
+
 }

@@ -2,6 +2,7 @@ import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Domain/Models/Room/Room.dart';
 import 'package:El3b/Domain/UseCase/GetGeneralRoomsUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetUserRoomsUseCase.dart';
+import 'package:El3b/Presentation/UI/ChatRoom/ChatRoomView.dart';
 import 'package:El3b/Presentation/UI/CreateRoom/CreateRoomView.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Chat/ChatTabNavigator.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Chat/ChatTabViewModel.dart';
@@ -64,17 +65,21 @@ class _ChatTabViewState extends BaseState<ChatTabView , ChatTabViewModel > imple
                           fixErrorFunction: (){});
                     }else {
                       viewModel!.userRooms = snapshot.data!.docs.map((e) => e.data().toDomain()).toList();
-                      return SizedBox(
-                        height: 140,
-                        child: ListView.separated(
-                          physics: const BouncingScrollPhysics(),
-                          padding:const EdgeInsets.symmetric(horizontal: 20 , vertical: 10),
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) => UserRoomWidget(room: viewModel!.userRooms[index]),
-                          itemCount: viewModel!.userRooms.length,
-                          separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 15,) ,
-                        ),
-                      );
+                      if(viewModel!.userRooms.isNotEmpty){
+                        return SizedBox(
+                          height: 140,
+                          child: ListView.separated(
+                            physics: const BouncingScrollPhysics(),
+                            padding:const EdgeInsets.symmetric(horizontal: 20 , vertical: 10),
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) => UserRoomWidget(room: viewModel!.userRooms[index] , onPress: viewModel!.goToChatRoomScreen),
+                            itemCount: viewModel!.userRooms.length,
+                            separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 15,) ,
+                          ),
+                        );
+                      }else {
+                        return const SizedBox();
+                      }
                     }
                   },
                 ),
@@ -147,5 +152,10 @@ class _ChatTabViewState extends BaseState<ChatTabView , ChatTabViewModel > imple
   @override
   goToJoinRoomView(Room room) {
     Navigator.push(context, MaterialPageRoute(builder: (context) => JoinRoomView(room: room,)));
+  }
+
+  @override
+  goToChatRoomScreen(Room room) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => ChatRoomView(room: room,)));
   }
 }
