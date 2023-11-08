@@ -92,13 +92,24 @@ class LoginViewModel extends BaseViewModel<LoginNavigator>{
         );
         var exist = await checkIfUserExistUseCase.invoke(uid: response.uid);
         appConfigProvider!.updateUser(user: response);
+        if(!response.emailVerified){
+          await response.sendEmailVerification();
+        }
         if(exist) {
           navigator!.goBack();
-          navigator!.showSuccessMessage(
-              message: local!.welcomeBack,
-              posActionTitle: local!.ok,
-              posAction: goToHomeScreen
-          );
+          if(response.emailVerified){
+            navigator!.showSuccessMessage(
+                message: local!.welcomeBack,
+                posActionTitle: local!.ok,
+                posAction: goToHomeScreen
+            );
+          }else {
+            navigator!.showFailMessage(
+                message: local!.weSentEmailVerification,
+                posActionTitle: local!.ok,
+                posAction: (){}
+            );
+          }
         }else {
           try{
             // add user data to database
@@ -114,11 +125,19 @@ class LoginViewModel extends BaseViewModel<LoginNavigator>{
                 )
             );
             navigator!.goBack();
-            navigator!.showSuccessMessage(
-                message: local!.welcomeBack,
-                posActionTitle: local!.ok,
-                posAction: goToExtraInfoScreen
-            );
+            if(response.emailVerified){
+              navigator!.showSuccessMessage(
+                  message: local!.welcomeBack,
+                  posActionTitle: local!.ok,
+                  posAction: goToHomeScreen
+              );
+            }else {
+              navigator!.showFailMessage(
+                  message: local!.weSentEmailVerification,
+                  posActionTitle: local!.ok,
+                  posAction: (){}
+              );
+            }
           }catch(e){
             throw FirebaseUserDatabaseException(errorMessage: local!.tryAgain);
           }

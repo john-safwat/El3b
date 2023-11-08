@@ -88,7 +88,7 @@ class ExtraInfoViewModel extends BaseViewModel<ExtraInfoNavigator> {
           );
           navigator!.goBack();
           navigator!.showSuccessMessage(
-              message: local!.accountUpdated,
+              message: local!.weSentEmailVerification,
               posActionTitle: local!.ok,
               posAction: goToHomeScreen);
         } catch (e) {
