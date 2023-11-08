@@ -121,5 +121,6 @@
   "roomCreatedSuccessfully" : "Room Create Successfully",
   "publicRooms" : "Public Rooms",
   "joinRoom" : "Join Room",
-  "roomDescription" : "Room Description"
+  "roomDescription" : "Room Description",
+  "youJoinedRoom" : "You Joined This Room Successfully"
 }

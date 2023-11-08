@@ -121,7 +121,7 @@
   "roomCreatedSuccessfully" : "تم انشاء المجموعة بنجاح",
   "publicRooms" : "محوعات قد تعجبك",
   "joinRoom" : "انضم للمجموعة",
-  "roomDescription" : "وصف المجموعة"
-
+  "roomDescription" : "وصف المجموعة",
+  "youJoinedRoom" : "تم انضمامك للمجموعة بنجاح"
 
 }
