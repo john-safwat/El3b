@@ -11,6 +11,7 @@ class UserRoomWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      overlayColor: MaterialStateProperty.all(Colors.transparent),
       onTap: () {
         onPress(room);
       },
