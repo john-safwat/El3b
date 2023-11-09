@@ -122,6 +122,7 @@
   "publicRooms" : "محوعات قد تعجبك",
   "joinRoom" : "انضم للمجموعة",
   "roomDescription" : "وصف المجموعة",
-  "youJoinedRoom" : "تم انضمامك للمجموعة بنجاح"
+  "youJoinedRoom" : "تم انضمامك للمجموعة بنجاح",
+  "message" : "اكتب رسالة"
 
 }

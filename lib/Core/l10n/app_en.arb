@@ -122,5 +122,6 @@
   "publicRooms" : "Public Rooms",
   "joinRoom" : "Join Room",
   "roomDescription" : "Room Description",
-  "youJoinedRoom" : "You Joined This Room Successfully"
+  "youJoinedRoom" : "You Joined This Room Successfully",
+  "message" : "Type Message"
 }

@@ -15,6 +15,7 @@ class PublicRoomsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return InkWell(
+      borderRadius: BorderRadius.circular(20),
       onTap: () {
         onPress(room);
       },
