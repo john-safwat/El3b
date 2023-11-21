@@ -165,9 +165,6 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
                                   }
                                 },
                             ),
-                            const SizedBox(
-                              height: 80,
-                            ),
                           ],
                         ),
                       ),
