@@ -62,7 +62,6 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
     MyDialogUtils.showFailMessage(
       context: context,
       message: message,
-      backgroundColor: viewModel!.themeProvider!.isDark()?MyTheme.purple : MyTheme.offWhite,
       negativeActionTitle: negativeActionTitle,
       posActionTitle: posActionTitle,
       posAction: posAction,
@@ -75,7 +74,6 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
     MyDialogUtils.showLoadingDialog(
       context: context,
       message: message,
-      backgroundColor: viewModel!.themeProvider!.isDark()?MyTheme.purple : MyTheme.offWhite,
     );
   }
 
@@ -84,7 +82,6 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
     MyDialogUtils.showQuestionMessage(
       context: context,
       message: message,
-      backgroundColor: viewModel!.themeProvider!.isDark()?MyTheme.purple : MyTheme.offWhite,
       negativeActionTitle: negativeActionTitle,
       posActionTitle: posActionTitle,
       posAction: posAction,
@@ -97,7 +94,6 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
     MyDialogUtils.showSuccessMessage(
       context: context,
       message: message,
-      backgroundColor: viewModel!.themeProvider!.isDark()?MyTheme.purple : MyTheme.offWhite,
       negativeActionTitle: negativeActionTitle,
       posActionTitle: posActionTitle,
       posAction: posAction,

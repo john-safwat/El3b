@@ -8,7 +8,6 @@ class MyDialogUtils {
   static Future<void> showLoadingDialog({
     required BuildContext context,
     required String message,
-    required Color backgroundColor
   }) async {
     showDialog(
         context: context,
@@ -20,9 +19,7 @@ class MyDialogUtils {
           contentPadding:const EdgeInsets.all(30),
           content: Row(
             children: [
-              CircularProgressIndicator(
-                color: backgroundColor == MyTheme.purple? MyTheme.offWhite : MyTheme.lightPurple,
-              ),
+              const CircularProgressIndicator(),
               const SizedBox(
                 width: 20,
               ),
@@ -30,7 +27,6 @@ class MyDialogUtils {
                 child: Text(
                   message,
                   style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                    color: backgroundColor == MyTheme.purple? MyTheme.offWhite : MyTheme.lightPurple,
                     fontWeight: FontWeight.w400
                   ),
                   overflow: TextOverflow.ellipsis,
@@ -55,7 +51,6 @@ class MyDialogUtils {
     VoidCallback? posAction,
     String? negativeActionTitle,
     VoidCallback? negativeAction,
-    required Color backgroundColor
   }) {
 
     List<Widget> actionList = [];
@@ -116,7 +111,7 @@ class MyDialogUtils {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
                   message,
-                  style: Theme.of(context).textTheme.displayMedium!.copyWith(color:backgroundColor == MyTheme.purple ? MyTheme.offWhite : MyTheme.lightPurple),
+                  style: Theme.of(context).textTheme.displayMedium,
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -142,7 +137,6 @@ class MyDialogUtils {
     VoidCallback? posAction,
     String? negativeActionTitle,
     VoidCallback? negativeAction,
-    required Color backgroundColor
   }) {
 
     List<Widget> actionList = [];
@@ -203,7 +197,7 @@ class MyDialogUtils {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
                   message,
-                  style: Theme.of(context).textTheme.displayMedium!.copyWith(color:backgroundColor == MyTheme.purple ? MyTheme.offWhite : MyTheme.lightPurple),
+                  style: Theme.of(context).textTheme.displayMedium,
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -227,7 +221,6 @@ class MyDialogUtils {
     VoidCallback? posAction,
     String? negativeActionTitle,
     VoidCallback? negativeAction,
-    required Color backgroundColor
   }) {
 
     List<Widget> actionList = [];
@@ -287,7 +280,7 @@ class MyDialogUtils {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
                   message,
-                  style: Theme.of(context).textTheme.displayMedium!.copyWith(color:backgroundColor == MyTheme.purple ? MyTheme.offWhite : MyTheme.lightPurple),
+                  style: Theme.of(context).textTheme.displayMedium,
                   textAlign: TextAlign.center,
                 ),
               ),
