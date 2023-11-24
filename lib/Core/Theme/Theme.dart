@@ -29,6 +29,7 @@ class MyTheme {
           // the elevated button style in thee screen
           elevatedButtonTheme: ElevatedButtonThemeData(
               style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all(offWhite),
             backgroundColor: MaterialStateProperty.all(lightPurple),
             elevation: MaterialStateProperty.all(0),
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
@@ -87,6 +88,7 @@ class MyTheme {
           // the elevated button style in thee screen
           elevatedButtonTheme: ElevatedButtonThemeData(
               style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all(offWhite),
             backgroundColor: MaterialStateProperty.all(lightPurple),
             elevation: MaterialStateProperty.all(0),
             shape: MaterialStateProperty.all(RoundedRectangleBorder(

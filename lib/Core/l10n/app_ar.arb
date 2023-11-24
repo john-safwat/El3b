@@ -123,6 +123,9 @@
   "joinRoom" : "انضم للمجموعة",
   "roomDescription" : "وصف المجموعة",
   "youJoinedRoom" : "تم انضمامك للمجموعة بنجاح",
-  "message" : "اكتب رسالة"
+  "message" : "اكتب رسالة",
+  "resend" : "ارسال",
+  "emailNotVerified" : "لم يتم تأكيد الحساب"
+
 
 }

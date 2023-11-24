@@ -92,9 +92,6 @@ class LoginViewModel extends BaseViewModel<LoginNavigator>{
         );
         var exist = await checkIfUserExistUseCase.invoke(uid: response.uid);
         appConfigProvider!.updateUser(user: response);
-        if(!response.emailVerified){
-          await response.sendEmailVerification();
-        }
         if(exist) {
           navigator!.goBack();
           if(response.emailVerified){
@@ -105,9 +102,10 @@ class LoginViewModel extends BaseViewModel<LoginNavigator>{
             );
           }else {
             navigator!.showFailMessage(
-                message: local!.weSentEmailVerification,
-                posActionTitle: local!.ok,
-                posAction: (){}
+                message: local!.emailNotVerified,
+                posActionTitle: local!.resend,
+                posAction: sendVerifcationMail,
+                negativeActionTitle: local!.cancel
             );
           }
         }else {
@@ -324,6 +322,21 @@ class LoginViewModel extends BaseViewModel<LoginNavigator>{
         );
       }
     }
+  }
+
+  Future<void> sendVerifcationMail()async{
+    navigator!.goBack();
+    try{
+      navigator!.showLoading(message: local!.loading);
+      await appConfigProvider!.getUser()!.sendEmailVerification();
+      navigator!.goBack();
+      navigator!.showSuccessMessage(message: local!.weSentEmailVerification , posActionTitle: local!.ok);
+    }
+    catch (e){
+      navigator!.goBack();
+      navigator!.showFailMessage(message: local!.someThingWentWrong,posActionTitle: local!.tryAgain);
+    }
+
   }
 
 }
