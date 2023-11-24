@@ -39,9 +39,12 @@ class _ChatRoomViewState extends BaseState<ChatRoomView, ChatRoomViewModel>
                 child: Column(
                   children: [
                     Expanded(
-                      child: Container(
-                      color: Colors.red,
-                    )),
+                      child: Column(
+                        children: [
+
+                        ],
+                      )
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0 , horizontal: 5),
                       child: Row(

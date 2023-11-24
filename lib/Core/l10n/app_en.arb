@@ -123,5 +123,7 @@
   "joinRoom" : "Join Room",
   "roomDescription" : "Room Description",
   "youJoinedRoom" : "You Joined This Room Successfully",
-  "message" : "Type Message"
+  "message" : "Type Message",
+  "resend" : "resend",
+  "emailNotVerified" : "Email not verified"
 }
