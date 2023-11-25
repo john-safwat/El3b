@@ -71,15 +71,10 @@ class MyTheme {
           dividerColor: lightPurple,
           textButtonTheme: TextButtonThemeData(
               style: ButtonStyle(
-                  overlayColor: MaterialStateProperty.all(Colors.transparent))))
-      .copyWith(
-          pageTransitionsTheme: const PageTransitionsTheme(
-    builders: <TargetPlatform, PageTransitionsBuilder>{
-      TargetPlatform.android: ZoomPageTransitionsBuilder(),
-    },
-  ));
+                  overlayColor: MaterialStateProperty.all(Colors.transparent))));
 
   static ThemeData darkTheme = ThemeData(
+
           // the screen background
           scaffoldBackgroundColor: darkPurple,
           floatingActionButtonTheme: const FloatingActionButtonThemeData(
@@ -140,11 +135,5 @@ class MyTheme {
           dividerColor: offWhite,
           textButtonTheme: TextButtonThemeData(
               style: ButtonStyle(
-                  overlayColor: MaterialStateProperty.all(Colors.transparent))))
-      .copyWith(
-          pageTransitionsTheme: const PageTransitionsTheme(
-    builders: <TargetPlatform, PageTransitionsBuilder>{
-      TargetPlatform.android: ZoomPageTransitionsBuilder(),
-    },
-  ));
+                  overlayColor: MaterialStateProperty.all(Colors.transparent))));
 }
