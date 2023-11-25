@@ -30,19 +30,19 @@ class MessageDTO{
 
   MessageDTO.fromFireStore(Map<String, dynamic> json)
       : this(
-    roomId: json['roomId'],
-    messageId: json['messageId'],
-    content: json['content'],
-    type: json['type'],
-    senderName: json['senderName'],
-    senderId: json['senderId'],
-    senderImage: json['senderImage'],
-    image: json['image'],
-    receivedStatus: json['receivedStatus'],
-    sendingStatus: json['sendingStatus'],
-    readStatus: json['readStatus'],
-    dateTime: json['time'],
-    sentState: json['sentState']
+      roomId: json['roomId'],
+      messageId: json['messageId'],
+      content: json['content'],
+      type: json['type'],
+      senderName: json['senderName'],
+      senderId: json['senderId'],
+      senderImage: json['senderImage'],
+      image: json['image'],
+      receivedStatus: json['receivedStatus'],
+      sendingStatus: json['sendingStatus'],
+      readStatus: json['readStatus'],
+      dateTime: json['time'],
+      sentState: json['sentState']
   );
 
   Map<String, dynamic> toFireStore() {
