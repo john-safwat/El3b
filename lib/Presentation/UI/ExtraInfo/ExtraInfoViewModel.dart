@@ -108,7 +108,7 @@ class ExtraInfoViewModel extends BaseViewModel<ExtraInfoNavigator> {
               message: e.errorMessage,
               posActionTitle: local!.tryAgain,
             );
-          } else if (e is FirebaseUserDatabaseException) {
+          } else if (e is FirebaseFireStoreDatabaseException) {
             navigator!.showFailMessage(
               message: e.errorMessage,
               posActionTitle: local!.tryAgain,

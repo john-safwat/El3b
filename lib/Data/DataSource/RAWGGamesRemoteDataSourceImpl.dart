@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:El3b/Data/Api/RAWGGamesAPI/RAWGAPI.dart';
-import 'package:El3b/Data/Error/DioErrorHandler.dart';
 import 'package:El3b/Domain/DataSource/RAWGGamesRemoteDataSource.dart';
 import 'package:El3b/Domain/Exception/DioServerException.dart';
 import 'package:El3b/Domain/Exception/InternetConnectionException.dart';
@@ -15,15 +14,14 @@ import 'package:dio/dio.dart';
 
 // dependency injection
 RAWGGamesRemoteDataSource injectRAWGGamesRemoteDataSource(){
-  return RAWGGamesRemoteDataSourceImpl(api: injectRAWGAPI(), errorHandler: injectDioErrorHandler());
+  return RAWGGamesRemoteDataSourceImpl(api: injectRAWGAPI());
 }
 
 class RAWGGamesRemoteDataSourceImpl implements RAWGGamesRemoteDataSource {
 
   RAWGGamesAPI api ;
-  DioErrorHandler errorHandler;
 
-  RAWGGamesRemoteDataSourceImpl({required this.api , required this.errorHandler});
+  RAWGGamesRemoteDataSourceImpl({required this.api });
 
   // function to get all general games
   @override
@@ -32,7 +30,7 @@ class RAWGGamesRemoteDataSourceImpl implements RAWGGamesRemoteDataSource {
       var response = await api.getGeneralGames().timeout(const Duration(seconds: 60));
       return response?.results?.map((e) => e.toDomain()).toList();
     }on DioException catch (e){
-      throw DioServerException(errorMessage: errorHandler.dioExceptionHandler(e.type));
+      throw DioServerException(errorMessage: e.type);
     }on TimeoutException {
       throw TimeOutOperationsException(errorMessage: "Loading Data Timed Out Refresh To Reload");
     }on IOException catch(e){
@@ -49,7 +47,7 @@ class RAWGGamesRemoteDataSourceImpl implements RAWGGamesRemoteDataSource {
       var response = await api.searchForGame(query: query).timeout(const Duration(seconds: 60));
       return response?.results?.map((e) => e.toDomain()).toList();
     }on DioException catch (e){
-      throw DioServerException(errorMessage: errorHandler.dioExceptionHandler(e.type));
+      throw DioServerException(errorMessage: e.type);
     }on TimeoutException {
       throw TimeOutOperationsException(errorMessage: "Loading Data Timed Out Refresh To Reload");
     }on IOException catch(e){
@@ -66,7 +64,7 @@ class RAWGGamesRemoteDataSourceImpl implements RAWGGamesRemoteDataSource {
       var response = await api.getGamesByGenre(genres: genre , pageNumber: pageNumber).timeout(const Duration(seconds: 60));
       return (response?.count , response?.results?.map((e) => e.toDomain()).toList());
     }on DioException catch (e){
-      throw DioServerException(errorMessage: errorHandler.dioExceptionHandler(e.type));
+      throw DioServerException(errorMessage: e.type);
     }on TimeoutException {
       throw TimeOutOperationsException(errorMessage: "Loading Data Timed Out Refresh To Reload");
     }on IOException catch(e){
@@ -84,7 +82,7 @@ class RAWGGamesRemoteDataSourceImpl implements RAWGGamesRemoteDataSource {
       var response = await api.getGameDetails(id: id).timeout(const Duration(seconds: 60));
       return response.toDomain();
     }on DioException catch (e){
-      throw DioServerException(errorMessage: errorHandler.dioExceptionHandler(e.type));
+      throw DioServerException(errorMessage: e.type);
     }on TimeoutException {
       throw TimeOutOperationsException(errorMessage: "Loading Data Timed Out Refresh To Reload");
     }on IOException catch(e){

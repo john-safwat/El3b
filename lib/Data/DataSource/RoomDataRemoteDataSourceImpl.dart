@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:El3b/Data/Error/FirebaseErrorHandler.dart';
 import 'package:El3b/Data/Firebase/RoomsDatabase.dart';
 import 'package:El3b/Data/Models/Room/RoomDTO.dart';
 import 'package:El3b/Domain/DataSource/RoomDataRemoteDataSource.dart';
 import 'package:El3b/Domain/Exception/FirebaseUserAuthException.dart';
+import 'package:El3b/Domain/Exception/FirebaseUserDatabaseException.dart';
 import 'package:El3b/Domain/Exception/TimeOutOperationsException.dart';
 import 'package:El3b/Domain/Exception/UnknownException.dart';
 import 'package:El3b/Domain/Models/Room/Room.dart';
@@ -15,15 +15,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 // dependency injection
 RoomDataRemoteDataSource injectRoomDataRemoteDataSource(){
   return RoomDataRemoteDataSourceImpl(
-    errorHandler: injectFirebaseErrorHandler(),
     database: injectRoomsDatabase()
   );
 }
 
 class RoomDataRemoteDataSourceImpl implements RoomDataRemoteDataSource{
   RoomsDatabase database;
-  FirebaseErrorHandler errorHandler;
-  RoomDataRemoteDataSourceImpl({required this.database ,required this.errorHandler});
+  RoomDataRemoteDataSourceImpl({required this.database});
 
   @override
   Future<String> addRoom(RoomDTO room) async {
@@ -31,9 +29,9 @@ class RoomDataRemoteDataSourceImpl implements RoomDataRemoteDataSource{
       var response = await database.addRoom(room).timeout(const Duration(seconds: 15));
       return response;
     }on FirebaseAuthException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
+      throw FirebaseUserAuthException(errorMessage: e.code);
     }on FirebaseException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
+      throw FirebaseFireStoreDatabaseException(errorMessage:  e.code);
     }on TimeoutException catch(e){
       throw TimeOutOperationsException(errorMessage: "User Auth Timed Out");
     }catch(e){
@@ -52,9 +50,9 @@ class RoomDataRemoteDataSourceImpl implements RoomDataRemoteDataSource{
       await database.updateRoomData(room).timeout(const Duration(seconds: 15));
       return "Welcome\nYou Joint Successfully";
     }on FirebaseAuthException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
+      throw FirebaseUserAuthException(errorMessage:e.code);
     }on FirebaseException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
+      throw FirebaseFireStoreDatabaseException(errorMessage:  e.code);
     }on TimeoutException catch(e){
       throw TimeOutOperationsException(errorMessage: "User Auth Timed Out");
     }catch(e){
@@ -72,10 +70,8 @@ class RoomDataRemoteDataSourceImpl implements RoomDataRemoteDataSource{
     try{
       var response  = await database.getRoomById(roomId);
       return response.toDomain();
-    }on FirebaseAuthException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
     }on FirebaseException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
+      throw FirebaseFireStoreDatabaseException(errorMessage:  e.code);
     }on TimeoutException catch(e){
       throw TimeOutOperationsException(errorMessage: "User Auth Timed Out");
     }catch(e){
@@ -88,10 +84,8 @@ class RoomDataRemoteDataSourceImpl implements RoomDataRemoteDataSource{
     try{
       var response  = await database.getSearchRooms(query);
       return response.map((e) => e.toDomain()).toList();
-    }on FirebaseAuthException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
     }on FirebaseException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
+      throw FirebaseFireStoreDatabaseException(errorMessage:  e.code);
     }on TimeoutException catch(e){
       throw TimeOutOperationsException(errorMessage: "User Auth Timed Out");
     }catch(e){
@@ -104,10 +98,8 @@ class RoomDataRemoteDataSourceImpl implements RoomDataRemoteDataSource{
     try{
       await database.deleteRoom(roomId);
       return "Room Deleted successfully";
-    }on FirebaseAuthException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
     }on FirebaseException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
+      throw FirebaseFireStoreDatabaseException(errorMessage:  e.code);
     }on TimeoutException catch(e){
       throw TimeOutOperationsException(errorMessage: "User Auth Timed Out");
     }catch(e){
@@ -119,10 +111,8 @@ class RoomDataRemoteDataSourceImpl implements RoomDataRemoteDataSource{
   Future<void> updateRoomData(RoomDTO room) async{
     try{
       await database.updateRoomData(room);
-    }on FirebaseAuthException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
     }on FirebaseException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
+      throw FirebaseFireStoreDatabaseException(errorMessage:  e.code);
     }on TimeoutException catch(e){
       throw TimeOutOperationsException(errorMessage: "User Auth Timed Out");
     }catch(e){
