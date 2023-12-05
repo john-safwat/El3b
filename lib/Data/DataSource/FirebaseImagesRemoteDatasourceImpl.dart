@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:El3b/Data/Error/FirebaseErrorHandler.dart';
 import 'package:El3b/Data/Firebase/FirebaseImagesDatabase.dart';
 import 'package:El3b/Domain/DataSource/FirebaseImagesRemoteDatasource.dart';
 import 'package:El3b/Domain/Exception/FirebaseImagesException.dart';
@@ -13,16 +12,15 @@ import 'package:image_picker/image_picker.dart';
 // dependency injection
 FirebaseImagesRemoteDatasource injectFirebaseImagesRemoteDatasource() {
   return FirebaseImagesRemoteDatasourceImpl(
-      database: injectFirebaseImagesDatabase(), errorHandler: injectFirebaseErrorHandler());
+      database: injectFirebaseImagesDatabase());
 }
 
 // the object
 class FirebaseImagesRemoteDatasourceImpl
     implements FirebaseImagesRemoteDatasource {
   FirebaseImagesDatabase database;
-  FirebaseErrorHandler errorHandler;
   FirebaseImagesRemoteDatasourceImpl(
-      {required this.database, required this.errorHandler});
+      {required this.database});
 
 
   // function to upload user image to firebase fireStore
@@ -34,7 +32,7 @@ class FirebaseImagesRemoteDatasourceImpl
           .timeout(const Duration(seconds: 60));
       return response;
     } on FirebaseException catch (e) {
-      throw FirebaseImagesException(errorMessage: errorHandler.handleFirebaseImageDatabaseExceptions(error: e.code));
+      throw FirebaseImagesException(errorMessage: e.code);
     } on TimeoutException catch (e) {
       throw TimeOutOperationsException(errorMessage: "Uploading Image Timed Out Try Again");
     } catch (e) {
@@ -51,7 +49,7 @@ class FirebaseImagesRemoteDatasourceImpl
           .timeout(const Duration(seconds: 60));
       return response;
     } on FirebaseException catch (e) {
-      throw FirebaseImagesException(errorMessage: errorHandler.handleFirebaseImageDatabaseExceptions(error: e.code));
+      throw FirebaseImagesException(errorMessage: e.code);
     } on TimeoutException catch (e) {
       throw TimeOutOperationsException(errorMessage: "Uploading Image Timed Out Try Again");
     } catch (e) {

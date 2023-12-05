@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:El3b/Data/Api/RAWGGamesAPI/RAWGAPI.dart';
-import 'package:El3b/Data/Error/DioErrorHandler.dart';
 import 'package:El3b/Domain/DataSource/GameDevelopersRemoteDataSource.dart';
 import 'package:El3b/Domain/Exception/DioServerException.dart';
 import 'package:El3b/Domain/Exception/InternetConnectionException.dart';
@@ -17,7 +16,6 @@ import 'package:dio/dio.dart';
 GameDevelopersRemoteDataSource injectGameDevelopersRemoteDataSource(){
   return GameDevelopersRemoteDataSourceImpl(
       api: injectRAWGAPI(),
-      errorHandler: injectDioErrorHandler()
   );
 }
 
@@ -25,9 +23,8 @@ GameDevelopersRemoteDataSource injectGameDevelopersRemoteDataSource(){
 class GameDevelopersRemoteDataSourceImpl extends GameDevelopersRemoteDataSource {
 
   RAWGGamesAPI api ;
-  DioErrorHandler errorHandler;
 
-  GameDevelopersRemoteDataSourceImpl({required this.api , required this.errorHandler});
+  GameDevelopersRemoteDataSourceImpl({required this.api });
 
   @override
   Future<List<Developer>?> getGameDevelopers({required String id})async {
@@ -35,7 +32,7 @@ class GameDevelopersRemoteDataSourceImpl extends GameDevelopersRemoteDataSource 
       var response = await api.getGameDevelopers(id: id).timeout(const Duration(seconds: 60));
       return response?.developers?.map((e) => e.toDomain()).toList();
     }on DioException catch (e){
-      throw DioServerException(errorMessage: errorHandler.dioExceptionHandler(e.type));
+      throw DioServerException(errorMessage: e.type);
     }on TimeoutException {
       throw TimeOutOperationsException(errorMessage: "Loading Data Timed Out Refresh To Reload");
     }on IOException catch(e){
@@ -51,7 +48,8 @@ class GameDevelopersRemoteDataSourceImpl extends GameDevelopersRemoteDataSource 
       var response = await api.getGameDeveloperDetails(id: id).timeout(const Duration(seconds: 60));
       return response?.toDomain();
     }on DioException catch (e){
-      throw DioServerException(errorMessage: errorHandler.dioExceptionHandler(e.type));
+      throw DioServerException(errorMessage: e.type);
+
     }on TimeoutException {
       throw TimeOutOperationsException(errorMessage: "Loading Data Timed Out Refresh To Reload");
     }on IOException catch(e){

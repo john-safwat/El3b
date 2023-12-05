@@ -1,4 +1,6 @@
+import 'package:dio/dio.dart';
+
 class DioServerException implements Exception {
-  String errorMessage ;
+  DioExceptionType errorMessage ;
   DioServerException({required this.errorMessage});
 }

@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:El3b/Data/Api/RAWGGamesAPI/RAWGAPI.dart';
-import 'package:El3b/Data/Error/DioErrorHandler.dart';
 import 'package:El3b/Domain/DataSource/GameAchievementsRemoteDataSource.dart';
 import 'package:El3b/Domain/Exception/DioServerException.dart';
 import 'package:El3b/Domain/Exception/InternetConnectionException.dart';
@@ -16,7 +15,6 @@ import 'package:dio/dio.dart';
 GameAchievementsRemoteDataSource injectGameAchievementsRemoteDataSource(){
   return GameAchievementsRemoteDataSourceImpl(
     api: injectRAWGAPI(),
-    errorHandler: injectDioErrorHandler()
   );
 }
 
@@ -24,8 +22,7 @@ GameAchievementsRemoteDataSource injectGameAchievementsRemoteDataSource(){
 class GameAchievementsRemoteDataSourceImpl implements GameAchievementsRemoteDataSource {
 
   RAWGGamesAPI api ;
-  DioErrorHandler errorHandler;
-  GameAchievementsRemoteDataSourceImpl({required this.api , required this.errorHandler});
+  GameAchievementsRemoteDataSourceImpl({required this.api});
 
   @override
   Future<List<Achievement>?> getGameAchievements({required String id}) async{
@@ -33,7 +30,7 @@ class GameAchievementsRemoteDataSourceImpl implements GameAchievementsRemoteData
       var response = await api.getGameAchievements(id: id , size: "10" , pageNumber: "1").timeout(const Duration(seconds: 60));
       return response?.results?.map((e) => e.toDomain()).toList();
     }on DioException catch (e){
-      throw DioServerException(errorMessage: errorHandler.dioExceptionHandler(e.type));
+      throw DioServerException(errorMessage: e.type);
     }on TimeoutException {
       throw TimeOutOperationsException(errorMessage: "Loading Data Timed Out Refresh To Reload");
     }on IOException catch(e){
@@ -49,7 +46,7 @@ class GameAchievementsRemoteDataSourceImpl implements GameAchievementsRemoteData
       var response = await api.getGameAchievements(id: id , size: "40" , pageNumber: pageNumber).timeout(const Duration(seconds: 60));
       return (response?.next , response?.results?.map((e) => e.toDomain()).toList());
     }on DioException catch (e){
-      throw DioServerException(errorMessage: errorHandler.dioExceptionHandler(e.type));
+      throw DioServerException(errorMessage: e.type);
     }on TimeoutException {
       throw TimeOutOperationsException(errorMessage: "Loading Data Timed Out Refresh To Reload");
     }on IOException catch(e){

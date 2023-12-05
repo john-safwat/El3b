@@ -137,7 +137,7 @@ class LoginViewModel extends BaseViewModel<LoginNavigator>{
               );
             }
           }catch(e){
-            throw FirebaseUserDatabaseException(errorMessage: local!.tryAgain);
+            throw FirebaseFireStoreDatabaseException(errorMessage: local!.tryAgain);
           }
         }
       }catch(e){
@@ -208,11 +208,11 @@ class LoginViewModel extends BaseViewModel<LoginNavigator>{
                 posAction: goToExtraInfoScreen
             );
           }catch(e){
-            throw FirebaseUserDatabaseException(errorMessage: local!.tryAgain);
+            throw FirebaseFireStoreDatabaseException(errorMessage: local!.tryAgain);
           }
         }
       }catch(e){
-        throw FirebaseUserDatabaseException(errorMessage: local!.tryAgain);
+        throw FirebaseFireStoreDatabaseException(errorMessage: local!.tryAgain);
       }
     }catch(e){
       googleLogin = false;
@@ -232,7 +232,7 @@ class LoginViewModel extends BaseViewModel<LoginNavigator>{
           message: e.errorMessage,
           posActionTitle: local!.tryAgain,
         );
-      } else if (e is FirebaseUserDatabaseException) {
+      } else if (e is FirebaseFireStoreDatabaseException) {
         navigator!.showFailMessage(
           message: e.errorMessage,
           posActionTitle: local!.tryAgain,
@@ -287,11 +287,11 @@ class LoginViewModel extends BaseViewModel<LoginNavigator>{
                 posAction: goToExtraInfoScreen
             );
           }catch(e){
-            throw FirebaseUserDatabaseException(errorMessage: local!.tryAgain);
+            throw FirebaseFireStoreDatabaseException(errorMessage: local!.tryAgain);
           }
         }
       }catch(e){
-        throw FirebaseUserDatabaseException(errorMessage: local!.tryAgain);
+        throw FirebaseFireStoreDatabaseException(errorMessage: local!.tryAgain);
       }
     }catch(e){
       navigator!.goBack();
@@ -310,7 +310,7 @@ class LoginViewModel extends BaseViewModel<LoginNavigator>{
           message: e.errorMessage,
           posActionTitle: local!.tryAgain,
         );
-      } else if (e is FirebaseUserDatabaseException) {
+      } else if (e is FirebaseFireStoreDatabaseException) {
         navigator!.showFailMessage(
           message: e.errorMessage,
           posActionTitle: local!.tryAgain,

@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'package:El3b/Data/Error/FirebaseErrorHandler.dart';
 import 'package:El3b/Data/Firebase/FirebaseUserAuth.dart';
 import 'package:El3b/Data/Models/User/UserDTO.dart';
 import 'package:El3b/Domain/DataSource/FirebaseUserAuthRemoteDatasource.dart';
+import 'package:El3b/Domain/Exception/FirebaseLoginException.dart';
 import 'package:El3b/Domain/Exception/FirebaseUserAuthException.dart';
 import 'package:El3b/Domain/Exception/TimeOutOperationsException.dart';
 import 'package:El3b/Domain/Exception/UnknownException.dart';
@@ -11,15 +11,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 // dependency injection
 FirebaseUserAuthRemoteDatasource getFirebaseUserAuthRemoteDatasource() {
   return FirebaseUserAuthRemoteDatasourceImpl(
-      firebaseUserAuth: injectFirebaseUserAuth(), errorHandler: injectFirebaseErrorHandler());
+      firebaseUserAuth: injectFirebaseUserAuth());
 }
 
 // the object
 class FirebaseUserAuthRemoteDatasourceImpl implements FirebaseUserAuthRemoteDatasource {
 
   FirebaseUserAuth firebaseUserAuth;
-  FirebaseErrorHandler errorHandler;
-  FirebaseUserAuthRemoteDatasourceImpl ({required this.firebaseUserAuth , required this.errorHandler});
+  FirebaseUserAuthRemoteDatasourceImpl ({required this.firebaseUserAuth});
 
   // function to create user account using firebase auth and handle any exceptions
   @override
@@ -28,9 +27,9 @@ class FirebaseUserAuthRemoteDatasourceImpl implements FirebaseUserAuthRemoteData
       var response = await firebaseUserAuth.createUser(user: user).timeout(const Duration(seconds: 60));
       return response;
     }on FirebaseAuthException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
+      throw FirebaseUserAuthException(errorMessage: e.code);
     }on FirebaseException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
+      throw FirebaseUserAuthException(errorMessage: e.code);
     }on TimeoutException catch(e){
       throw TimeOutOperationsException(errorMessage: "User Auth Timed Out");
     }catch(e){
@@ -45,9 +44,9 @@ class FirebaseUserAuthRemoteDatasourceImpl implements FirebaseUserAuthRemoteData
       var response = await firebaseUserAuth.updateUserPhoto(photo).timeout(const Duration(seconds: 60));
       return response;
     }on FirebaseAuthException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
+      throw FirebaseUserAuthException(errorMessage:  e.code);
     }on FirebaseException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
+      throw FirebaseUserAuthException(errorMessage: e.code);
     }on TimeoutException catch(e){
       throw TimeOutOperationsException(errorMessage: "User Auth Timed Out");
     }catch(e){
@@ -62,9 +61,9 @@ class FirebaseUserAuthRemoteDatasourceImpl implements FirebaseUserAuthRemoteData
       var response = await firebaseUserAuth.signInUserWithEmailAndPassword(email: email , password: password).timeout(const Duration(seconds: 60));
       return response;
     }on FirebaseAuthException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleLoginError( e.code));
+      throw FirebaseLoginException(errorMessage: e.code);
     }on FirebaseException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleLoginError( e.code));
+      throw FirebaseLoginException(errorMessage: e.code);
     }on TimeoutException catch(e){
       throw TimeOutOperationsException(errorMessage: "User Auth Timed Out");
     }catch(e){
@@ -78,11 +77,11 @@ class FirebaseUserAuthRemoteDatasourceImpl implements FirebaseUserAuthRemoteData
     try{
       await firebaseUserAuth.resetPassword(email: email).timeout(const Duration(seconds: 60));
     }on FirebaseAuthException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleLoginError(e.code));
+      throw FirebaseLoginException(errorMessage: e.code);
     }on TimeoutException catch(e){
       throw TimeOutOperationsException(errorMessage: "Operation Timed Out");
     }on FirebaseException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
+      throw FirebaseUserAuthException(errorMessage: e.code);
     }catch (e){
       throw UnknownException(errorMessage: "Unknown Error");
     }
@@ -95,11 +94,11 @@ class FirebaseUserAuthRemoteDatasourceImpl implements FirebaseUserAuthRemoteData
       var response = await firebaseUserAuth.signInWithGoogle().timeout(const Duration(seconds: 180));
       return response;
     }on FirebaseAuthException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleLoginError(e.code));
+      throw FirebaseLoginException(errorMessage: e.code);
     }on TimeoutException catch(e){
       throw TimeOutOperationsException(errorMessage: "Operation Timed Out");
     }on FirebaseException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
+      throw FirebaseLoginException(errorMessage: e.code);
     }catch (e){
       throw UnknownException(errorMessage: e.toString());
     }
@@ -112,11 +111,11 @@ class FirebaseUserAuthRemoteDatasourceImpl implements FirebaseUserAuthRemoteData
       var response = await firebaseUserAuth.signInWithFacebook().timeout(const Duration(seconds: 180));
       return response;
     }on FirebaseAuthException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleLoginError(e.code));
+      throw FirebaseLoginException(errorMessage: e.code);
     }on TimeoutException catch(e){
       throw TimeOutOperationsException(errorMessage: "Operation Timed Out");
     }on FirebaseException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
+      throw FirebaseLoginException(errorMessage: e.code);
     }catch (e){
       throw UnknownException(errorMessage: e.toString());
     }
@@ -127,11 +126,11 @@ class FirebaseUserAuthRemoteDatasourceImpl implements FirebaseUserAuthRemoteData
     try{
       await firebaseUserAuth.signOut().timeout(const Duration(seconds: 180));
     }on FirebaseAuthException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleLoginError(e.code));
+      throw FirebaseLoginException(errorMessage: e.code);
     }on TimeoutException catch(e){
       throw TimeOutOperationsException(errorMessage: "Operation Timed Out");
     }on FirebaseException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
+      throw FirebaseLoginException(errorMessage: e.code);
     }catch (e){
       throw UnknownException(errorMessage: e.toString());
     }
@@ -143,11 +142,11 @@ class FirebaseUserAuthRemoteDatasourceImpl implements FirebaseUserAuthRemoteData
       var response = await firebaseUserAuth.updateUserDisplayName(name).timeout(const Duration(seconds: 180));
       return response;
     }on FirebaseAuthException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleLoginError(e.code));
+      throw FirebaseUserAuthException(errorMessage: e.code);
     }on TimeoutException catch(e){
       throw TimeOutOperationsException(errorMessage: "Operation Timed Out");
     }on FirebaseException catch(e){
-      throw FirebaseUserAuthException(errorMessage: errorHandler.handleFirebaseAuthException(error: e.code));
+      throw FirebaseUserAuthException(errorMessage: e.code);
     }catch (e){
       throw UnknownException(errorMessage: e.toString());
     }

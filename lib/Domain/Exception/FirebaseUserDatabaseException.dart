@@ -1,6 +1,6 @@
-class FirebaseUserDatabaseException implements Exception {
+class FirebaseFireStoreDatabaseException implements Exception {
 
   String errorMessage ;
-  FirebaseUserDatabaseException({required this.errorMessage});
+  FirebaseFireStoreDatabaseException({required this.errorMessage});
 
 }

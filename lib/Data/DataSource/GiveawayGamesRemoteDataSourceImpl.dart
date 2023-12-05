@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:El3b/Data/Api/GiveawayGamesApi/GiveawayGamesApi.dart';
-import 'package:El3b/Data/Error/DioErrorHandler.dart';
 import 'package:El3b/Domain/DataSource/GiveawayGamesRemoteDataSource.dart';
 import 'package:El3b/Domain/Exception/DioServerException.dart';
 import 'package:El3b/Domain/Exception/InternetConnectionException.dart';
@@ -14,7 +13,6 @@ import 'package:dio/dio.dart';
 GiveawayGamesRemoteDataSource injectGiveawayGamesRemoteDataSource() {
   return GiveawayGamesRemoteDataSourceImpl(
     api: injectGiveawayGamesApi(),
-    errorHandler: injectDioErrorHandler()
   );
 }
 
@@ -22,9 +20,8 @@ GiveawayGamesRemoteDataSource injectGiveawayGamesRemoteDataSource() {
 class GiveawayGamesRemoteDataSourceImpl implements GiveawayGamesRemoteDataSource {
 
   GiveawayGamesApi api ;
-  DioErrorHandler errorHandler;
 
-  GiveawayGamesRemoteDataSourceImpl({required this.api  , required this.errorHandler});
+  GiveawayGamesRemoteDataSourceImpl({required this.api });
 
   // function to load giveaway game from api and handle any remote data source calling exception
   @override
@@ -33,7 +30,7 @@ class GiveawayGamesRemoteDataSourceImpl implements GiveawayGamesRemoteDataSource
       var response = await api.getAllGames().timeout(const Duration(seconds: 60));
       return response!.map((e) => e.toDomain()).toList();
     }on DioException catch (e){
-      throw DioServerException(errorMessage: errorHandler.dioExceptionHandler(e.type));
+      throw DioServerException(errorMessage: e.type);
     }on TimeoutException {
       throw TimeOutOperationsException(errorMessage: "Loading Data Timed Out Refresh To Reload");
     }on IOException catch(e){
