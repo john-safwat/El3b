@@ -125,5 +125,7 @@
   "youJoinedRoom" : "You Joined This Room Successfully",
   "message" : "Type Message",
   "resend" : "resend",
-  "emailNotVerified" : "Email not verified"
+  "emailNotVerified" : "Email not verified",
+  "unableToLoadDate" : "Unable To Load Data",
+  "permissionDenied" : "Permission Denied"
 }

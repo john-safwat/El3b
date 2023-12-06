@@ -1,7 +1,4 @@
 import 'package:El3b/Core/Base/BaseViewModel.dart';
-import 'package:El3b/Domain/Exception/FirebaseUserAuthException.dart';
-import 'package:El3b/Domain/Exception/TimeOutOperationsException.dart';
-import 'package:El3b/Domain/Exception/UnknownException.dart';
 import 'package:El3b/Domain/UseCase/ResetPasswordUseCase.dart';
 import 'package:El3b/Presentation/UI/ForgetPassword/ForgetPasswordNavigator.dart';
 import 'package:flutter/material.dart';
@@ -50,15 +47,7 @@ class ForgetPasswordViewModel extends BaseViewModel<ForgetPasswordNavigator>{
         );
       }catch (e){
         navigator!.goBack();
-        if(e is TimeOutOperationsException){
-          navigator!.showFailMessage(message: e.errorMessage, negativeActionTitle: local!.tryAgain);
-        }else if (e is FirebaseUserAuthException){
-          navigator!.showFailMessage(message: e.errorMessage, negativeActionTitle: local!.tryAgain);
-        }else if (e is UnknownException){
-          navigator!.showFailMessage(message: e.errorMessage, negativeActionTitle: local!.tryAgain);
-        }else {
-          navigator!.showFailMessage(message: e.toString(), negativeActionTitle: local!.tryAgain);
-        }
+        navigator!.showFailMessage(message: handleExceptions(e as Exception), negativeActionTitle: local!.tryAgain);
       }
     }
 

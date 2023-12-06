@@ -30,7 +30,7 @@ class HistoryViewModel extends BaseViewModel<HistoryNavigator> {
           uid: appConfigProvider!.getUser()!.uid);
       notifyListeners();
     } catch (e) {
-      errorMessage = e.toString();
+      errorMessage = handleExceptions(e as Exception);
       notifyListeners();
     }
   }
@@ -43,8 +43,7 @@ class HistoryViewModel extends BaseViewModel<HistoryNavigator> {
         var response = await addGameToWishListUseCase.invoke(
             game: game, uid: appConfigProvider!.getUser()!.uid);
         if (response != 0) {
-          navigator!
-              .showSuccessNotification(message: local!.gameAddedToWishList);
+          navigator!.showSuccessNotification(message: local!.gameAddedToWishList);
         } else {
           navigator!.showErrorNotification(message: local!.someThingWentWrong);
         }

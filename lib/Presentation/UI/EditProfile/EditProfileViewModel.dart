@@ -1,9 +1,4 @@
 import 'package:El3b/Core/Base/BaseViewModel.dart';
-import 'package:El3b/Domain/Exception/FirebaseImagesException.dart';
-import 'package:El3b/Domain/Exception/FirebaseUserAuthException.dart';
-import 'package:El3b/Domain/Exception/FirebaseUserDatabaseException.dart';
-import 'package:El3b/Domain/Exception/TimeOutOperationsException.dart';
-import 'package:El3b/Domain/Exception/UnknownException.dart';
 import 'package:El3b/Domain/Models/User/MyUser.dart';
 import 'package:El3b/Domain/UseCase/LoadUserDataUseCase.dart';
 import 'package:El3b/Domain/UseCase/ResetPasswordUseCase.dart';
@@ -53,37 +48,10 @@ class EditProfileViewModel extends BaseViewModel<EditProfileNavigator> {
       notifyListeners();
     }catch(e){
       navigator!.goBack();
-      if (e is FirebaseImagesException) {
-        navigator!.showFailMessage(
-          message: e.errorMessage,
-          posActionTitle: local!.tryAgain,
-        );
-      } else if (e is FirebaseUserAuthException) {
-        navigator!.showFailMessage(
-          message: e.errorMessage,
-          posActionTitle: local!.tryAgain,
-        );
-      } else if (e is TimeOutOperationsException) {
-        navigator!.showFailMessage(
-          message: e.errorMessage,
-          posActionTitle: local!.tryAgain,
-        );
-      } else if (e is UnknownException) {
-        navigator!.showFailMessage(
-          message: e.errorMessage,
-          posActionTitle: local!.tryAgain,
-        );
-      }else if (e is FirebaseFireStoreDatabaseException) {
-        navigator!.showFailMessage(
-          message: e.errorMessage,
-          posActionTitle: local!.tryAgain,
-        );
-      } else {
-        navigator!.showFailMessage(
-          message: e.toString(),
-          posActionTitle: local!.tryAgain,
-        );
-      }
+      navigator!.showFailMessage(
+        message: handleExceptions(e as Exception),
+        posActionTitle: local!.tryAgain,
+      );
       notifyListeners();
     }
   }
@@ -151,15 +119,7 @@ class EditProfileViewModel extends BaseViewModel<EditProfileNavigator> {
       navigator!.showSuccessMessage(message: local!.accountUpdated , posActionTitle: local!.ok );
     }catch(e){
       navigator!.goBack();
-      if(e is TimeOutOperationsException){
-        navigator!.showFailMessage(message: e.errorMessage, negativeActionTitle: local!.tryAgain);
-      }else if (e is FirebaseUserAuthException){
-        navigator!.showFailMessage(message: e.errorMessage, negativeActionTitle: local!.tryAgain);
-      }else if (e is UnknownException){
-        navigator!.showFailMessage(message: e.errorMessage, negativeActionTitle: local!.tryAgain);
-      }else {
-        navigator!.showFailMessage(message: e.toString(), negativeActionTitle: local!.tryAgain);
-      }
+      navigator!.showFailMessage(message: handleExceptions(e as Exception), negativeActionTitle: local!.tryAgain);
     }
   }
 
@@ -176,15 +136,7 @@ class EditProfileViewModel extends BaseViewModel<EditProfileNavigator> {
       );
     }catch (e){
       navigator!.goBack();
-      if(e is TimeOutOperationsException){
-        navigator!.showFailMessage(message: e.errorMessage, negativeActionTitle: local!.tryAgain);
-      }else if (e is FirebaseUserAuthException){
-        navigator!.showFailMessage(message: e.errorMessage, negativeActionTitle: local!.tryAgain);
-      }else if (e is UnknownException){
-        navigator!.showFailMessage(message: e.errorMessage, negativeActionTitle: local!.tryAgain);
-      }else {
-        navigator!.showFailMessage(message: e.toString(), negativeActionTitle: local!.tryAgain);
-      }
+      navigator!.showFailMessage(message: handleExceptions(e as Exception), negativeActionTitle: local!.tryAgain);
     }
   }
 

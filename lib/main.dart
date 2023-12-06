@@ -32,6 +32,7 @@ void main()async{
   // call shared pref to get some value
   SharedPreferences prefs = await SharedPreferences.getInstance();
   var firstTime = prefs.getBool("firstTime");
+  var loggedIn = prefs.getBool("loggedIn");
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -46,15 +47,16 @@ void main()async{
           ChangeNotifierProvider(create: (context) => LocalProvider(),),
           ChangeNotifierProvider(create: (context) => AppConfigProvider(user: user),)
         ],
-        child: MyApp(firstTime: firstTime?? true, user: user,)
+        child: MyApp(firstTime: firstTime?? true , loggedIn: loggedIn??false, user: user,)
       )
   );
 }
 
 class MyApp extends StatelessWidget {
   bool firstTime;
+  bool loggedIn ;
   User? user;
-  MyApp({required this.firstTime , this.user});
+  MyApp({required this.firstTime , required this.loggedIn , this.user});
 
   late ThemeProvider themeProvider ;
   late LocalProvider localProvider ;
@@ -77,7 +79,7 @@ class MyApp extends StatelessWidget {
       locale:Locale(localProvider.getLocal()),
       supportedLocales: AppLocalizations.supportedLocales,
       routes: {
-        SplashScreen.routeName : (_) => SplashScreen(firstTime: firstTime , user: user),
+        SplashScreen.routeName : (_) => SplashScreen(firstTime: firstTime, loggedIn: loggedIn, user: user),
         IntroView.routeName : (_) => const IntroView(),
         LoginView.routeName : (_) => const LoginView(),
         HomeView.routeName : (_) => const HomeView(),

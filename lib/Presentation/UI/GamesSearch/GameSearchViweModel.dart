@@ -1,8 +1,4 @@
 import 'package:El3b/Core/Base/BaseViewModel.dart';
-import 'package:El3b/Domain/Exception/DioServerException.dart';
-import 'package:El3b/Domain/Exception/InternetConnectionException.dart';
-import 'package:El3b/Domain/Exception/TimeOutOperationsException.dart';
-import 'package:El3b/Domain/Exception/UnknownException.dart';
 import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
 import 'package:El3b/Domain/UseCase/AddGameToHistoryUseCase.dart';
 import 'package:El3b/Domain/UseCase/AddGameToWishListUseCase.dart';
@@ -48,17 +44,7 @@ class GameSearchViewModel extends BaseViewModel<GameSearchNavigator> {
       notifyListeners();
     }catch(e){
       loading = false;
-      if (e is DioServerException) {
-        errorMessage = e.errorMessage;
-      } else if (e is TimeOutOperationsException) {
-        errorMessage = local!.operationTimedOut;
-      } else if (e is InternetConnectionException) {
-        errorMessage = local!.checkYourInternetConnection;
-      } else if (e is UnknownException) {
-        errorMessage = e.errorMessage;
-      } else {
-        errorMessage = e.toString();
-      }
+      errorMessage = handleExceptions(e as Exception);
       notifyListeners();
     }
   }
