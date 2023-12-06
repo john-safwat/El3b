@@ -125,7 +125,8 @@
   "youJoinedRoom" : "تم انضمامك للمجموعة بنجاح",
   "message" : "اكتب رسالة",
   "resend" : "ارسال",
-  "emailNotVerified" : "لم يتم تأكيد الحساب"
-
+  "emailNotVerified" : "لم يتم تأكيد الحساب",
+  "unableToLoadDate" : "لم نتمكن من تحميل البيانات",
+  "permissionDenied" : "تم رفض التصريح"
 
 }

@@ -33,7 +33,7 @@ class FavoriteTabViewModel extends BaseViewModel <FavoriteTabNavigator> {
       games = copyList(allGames);
       notifyListeners();
     }catch(e){
-      errorMessage = e.toString();
+      errorMessage = handleExceptions(e as Exception);
       notifyListeners();
     }
   }

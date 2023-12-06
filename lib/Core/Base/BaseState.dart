@@ -1,5 +1,10 @@
 import 'package:El3b/Core/Base/BaseNavigator.dart';
 import 'package:El3b/Core/Base/BaseViewModel.dart';
+import 'package:El3b/Core/Errors/DioErrorHandler.dart';
+import 'package:El3b/Core/Errors/FirebaseAuthExceptionHandler.dart';
+import 'package:El3b/Core/Errors/FirebaseFireStoreErrorHandler.dart';
+import 'package:El3b/Core/Errors/FirebaseImageDatabaseExceptionsHandler.dart';
+import 'package:El3b/Core/Errors/FirebaseLoginErrorHandler.dart';
 import 'package:El3b/Core/Providers/AppConfigProvider.dart';
 import 'package:El3b/Core/Providers/LocalProvider.dart';
 import 'package:El3b/Core/Providers/ThemeProvider.dart';
@@ -28,6 +33,11 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
     viewModel = initViewModel();
     viewModel!.navigator = this;
     viewModel!.appConfigProvider = Provider.of<AppConfigProvider>(context , listen: false);
+    viewModel!.dioErrorHandler = injectDioErrorHandler();
+    viewModel!.firebaseLoginErrorHandler = injectFirebaseLoginErrorHandler();
+    viewModel!.firebaseImageDatabaseExceptionsHandler = injectFirebaseImageDatabaseExceptionsHandler();
+    viewModel!.firebaseFireStoreErrorHandler = injectFirebaseFireStoreErrorHandler();
+    viewModel!.firebaseAuthExceptionHandler = injectFirebaseAuthExceptionHandler();
   }
 
   @override

@@ -1,10 +1,6 @@
 
 import 'package:El3b/Core/Base/BaseViewModel.dart';
-import 'package:El3b/Domain/Exception/DioServerException.dart';
-import 'package:El3b/Domain/Exception/InternetConnectionException.dart';
-import 'package:El3b/Domain/Exception/TimeOutOperationsException.dart';
 import 'package:El3b/Domain/Exception/URLLauncherException.dart';
-import 'package:El3b/Domain/Exception/UnknownException.dart';
 import 'package:El3b/Domain/Models/Games/FreeToPlayGame/FreeToPlayGame.dart';
 import 'package:El3b/Domain/Models/Games/GiveawayGames/GiveawayGame.dart';
 import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
@@ -65,17 +61,7 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator> {
       listFreeToPLayGames = await getFreeToPlayGamesUseCase.invoke();
       notifyListeners();
     } catch (e) {
-      if (e is DioServerException) {
-        errorMessage = e.errorMessage;
-      } else if (e is TimeOutOperationsException) {
-        errorMessage = local!.operationTimedOut;
-      } else if (e is InternetConnectionException) {
-        errorMessage = local!.checkYourInternetConnection;
-      } else if (e is UnknownException) {
-        errorMessage = e.errorMessage;
-      } else {
-        errorMessage = e.toString();
-      }
+      errorMessage = handleExceptions(e as Exception);
     }
     notifyListeners();
   }
@@ -88,17 +74,7 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator> {
       listRAWGGames = await getRAWGGeneralGamesUseCase.invoke(uid: appConfigProvider!.getUser()!.uid);
       notifyListeners();
     } catch (e) {
-      if (e is DioServerException) {
-        rawgErrorMessage = e.errorMessage;
-      } else if (e is TimeOutOperationsException) {
-        rawgErrorMessage = local!.operationTimedOut;
-      } else if (e is InternetConnectionException) {
-        rawgErrorMessage = local!.checkYourInternetConnection;
-      } else if (e is UnknownException) {
-        rawgErrorMessage = e.errorMessage;
-      } else {
-        rawgErrorMessage = e.toString();
-      }
+      rawgErrorMessage = handleExceptions(e as Exception);
       notifyListeners();
     }
   }
@@ -116,9 +92,7 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator> {
         throw URLLauncherException(errorMessage: local!.urlLaunchingError);
       }
     } catch (e) {
-      if (e is URLLauncherException) {
-        navigator!.showErrorNotification(message: e.errorMessage);
-      }
+      navigator!.showErrorNotification(message: handleExceptions(e as Exception));
     }
   }
 

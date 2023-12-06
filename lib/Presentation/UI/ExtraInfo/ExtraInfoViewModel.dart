@@ -93,32 +93,10 @@ class ExtraInfoViewModel extends BaseViewModel<ExtraInfoNavigator> {
               posAction: goToHomeScreen);
         } catch (e) {
           navigator!.goBack();
-          if (e is FirebaseUserAuthException) {
-            navigator!.showFailMessage(
-              message: e.errorMessage,
-              posActionTitle: local!.tryAgain,
-            );
-          } else if (e is TimeOutOperationsException) {
-            navigator!.showFailMessage(
-              message: e.errorMessage,
-              posActionTitle: local!.tryAgain,
-            );
-          } else if (e is UnknownException) {
-            navigator!.showFailMessage(
-              message: e.errorMessage,
-              posActionTitle: local!.tryAgain,
-            );
-          } else if (e is FirebaseFireStoreDatabaseException) {
-            navigator!.showFailMessage(
-              message: e.errorMessage,
-              posActionTitle: local!.tryAgain,
-            );
-          } else {
-            navigator!.showFailMessage(
-              message: e.toString(),
-              posActionTitle: local!.tryAgain,
-            );
-          }
+          navigator!.showFailMessage(
+            message: handleExceptions(e as Exception),
+            posActionTitle: local!.tryAgain,
+          );
         }
       }
     }

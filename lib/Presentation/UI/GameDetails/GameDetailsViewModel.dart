@@ -45,17 +45,7 @@ class GameDetailsViewModel extends BaseViewModel<GameDetailsNavigator> {
       getGameDevelopers(id: gameDetails!.id.toString());
       getGameAchievements(id: gameDetails!.id.toString());
     } catch (e) {
-      if (e is DioServerException) {
-        gameErrorMessage = e.errorMessage;
-      } else if (e is TimeOutOperationsException) {
-        gameErrorMessage = local!.operationTimedOut;
-      } else if (e is InternetConnectionException) {
-        gameErrorMessage = local!.checkYourInternetConnection;
-      } else if (e is UnknownException) {
-        gameErrorMessage = e.errorMessage;
-      } else {
-        gameErrorMessage = e.toString();
-      }
+      gameErrorMessage = handleExceptions(e as Exception);
       notifyListeners();
     }
   }
@@ -70,17 +60,7 @@ class GameDetailsViewModel extends BaseViewModel<GameDetailsNavigator> {
       gameDevelopersLoaded = true;
       notifyListeners();
     } catch (e) {
-      if (e is DioServerException) {
-        developersErrorMessage = e.errorMessage;
-      } else if (e is TimeOutOperationsException) {
-        developersErrorMessage = local!.operationTimedOut;
-      } else if (e is InternetConnectionException) {
-        developersErrorMessage = local!.checkYourInternetConnection;
-      } else if (e is UnknownException) {
-        developersErrorMessage = e.errorMessage;
-      } else {
-        developersErrorMessage = e.toString();
-      }
+      developersErrorMessage  = handleExceptions(e as Exception);
       notifyListeners();
     }
   }
@@ -95,17 +75,7 @@ class GameDetailsViewModel extends BaseViewModel<GameDetailsNavigator> {
       gameAchievementsLoaded = true;
       notifyListeners();
     } catch (e) {
-      if (e is DioServerException) {
-        achievementsErrorMessage = e.errorMessage;
-      } else if (e is TimeOutOperationsException) {
-        achievementsErrorMessage = local!.operationTimedOut;
-      } else if (e is InternetConnectionException) {
-        achievementsErrorMessage = local!.checkYourInternetConnection;
-      } else if (e is UnknownException) {
-        achievementsErrorMessage = e.errorMessage;
-      } else {
-        achievementsErrorMessage = e.toString();
-      }
+      achievementsErrorMessage = handleExceptions(e as Exception);
       notifyListeners();
     }
   }

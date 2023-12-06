@@ -13,9 +13,10 @@ class SplashScreen extends StatelessWidget {
   static const String routeName = "SplashScreen";
 
   bool firstTime ;
+  bool loggedIn ;
   User? user;
 
-  SplashScreen({required this.firstTime , this.user ,super.key});
+  SplashScreen({required this.firstTime ,required this.loggedIn, this.user ,super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class SplashScreen extends StatelessWidget {
               : Image.asset("Assets/Images/LightLogo.png" , fit: BoxFit.cover,),
         ),
       ),
-      nextScreen: firstTime?const IntroView() : user == null ? const LoginView() : user!.emailVerified ? const HomeView() : const LoginView(),
+      nextScreen:firstTime? const IntroView(): user != null && loggedIn?const HomeView(): const LoginView(),
       duration: 2000,
       backgroundColor: themeProvider.isDark()? MyTheme.darkPurple : MyTheme.offWhite,
       splashIconSize: double.infinity,
