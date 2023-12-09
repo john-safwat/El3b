@@ -1,4 +1,4 @@
-import 'package:El3b/Data/Models/Messages/messageDTO.dart';
+import 'package:El3b/Data/Models/Messages/MessageDTO.dart';
 
 class Message{
   String roomId;
@@ -12,6 +12,7 @@ class Message{
   bool receivedStatus;
   bool sendingStatus;
   bool readStatus;
+  bool sendingError ;
   int dateTime;
   bool sentState;
   Message({
@@ -27,7 +28,9 @@ class Message{
     required this.sendingStatus ,
     required this.readStatus ,
     required this.dateTime,
-    required this.sentState});
+    required this.sentState,
+    required this.sendingError
+  });
 
   MessageDTO toDatasource(){
     return MessageDTO(
@@ -44,6 +47,7 @@ class Message{
       readStatus: readStatus,
       dateTime: dateTime,
       sentState: sentState,
+      sendingError: sendingError
     );
   }
 }

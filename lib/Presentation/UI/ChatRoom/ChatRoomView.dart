@@ -1,6 +1,7 @@
 import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Domain/Models/Room/Room.dart';
+import 'package:El3b/Domain/UseCase/SendMessageUseCase.dart';
 import 'package:El3b/Presentation/UI/ChatRoom/ChatRoomNavigator.dart';
 import 'package:El3b/Presentation/UI/ChatRoom/ChatRoomViewModel.dart';
 import 'package:flutter/material.dart';
@@ -150,6 +151,8 @@ class _ChatRoomViewState extends BaseState<ChatRoomView, ChatRoomViewModel>
 
   @override
   ChatRoomViewModel initViewModel() {
-    return ChatRoomViewModel();
+    return ChatRoomViewModel(
+      useCase: injectSendMessageUseCase()
+    );
   }
 }
