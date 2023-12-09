@@ -1,9 +1,12 @@
 import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
+import 'package:El3b/Data/Models/Messages/MessageDTO.dart';
 import 'package:El3b/Domain/Models/Room/Room.dart';
+import 'package:El3b/Domain/UseCase/GetMessagesUseCase.dart';
 import 'package:El3b/Domain/UseCase/SendMessageUseCase.dart';
 import 'package:El3b/Presentation/UI/ChatRoom/ChatRoomNavigator.dart';
 import 'package:El3b/Presentation/UI/ChatRoom/ChatRoomViewModel.dart';
+import 'package:El3b/Presentation/UI/ChatRoom/Widgets/MessageWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:provider/provider.dart';
@@ -40,10 +43,25 @@ class _ChatRoomViewState extends BaseState<ChatRoomView, ChatRoomViewModel>
                 child: Column(
                   children: [
                     Expanded(
-                      child: Column(
-                        children: [
-
-                        ],
+                      child:
+                      StreamBuilder(
+                        stream: viewModel!.getMessages(),
+                        builder: (context, snapshot) {
+                          if(snapshot.connectionState == ConnectionState.waiting){
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }else if (snapshot.hasError){
+                            return ErrorWidget(viewModel!.handleExceptions(snapshot.error! as Exception));
+                          } else {
+                            viewModel!.messages =  snapshot.data!.docs.map((e) => e.data().toDomain()).toList();
+                            return ListView.builder(
+                              reverse: true,
+                              itemBuilder: (context, index) => MessageWidget(message: viewModel!.messages[index]),
+                              itemCount: viewModel!.messages.length,
+                            );
+                          }
+                        },
                       )
                     ),
                     Padding(
@@ -61,7 +79,7 @@ class _ChatRoomViewState extends BaseState<ChatRoomView, ChatRoomViewModel>
                                 suffixIcon: InkWell(
                                   overlayColor:
                                       MaterialStateProperty.all(Colors.transparent),
-                                  onTap: () {},
+                                  onTap: viewModel!.sendMessage,
                                   child:  Padding(
                                     padding:const EdgeInsets.symmetric(
                                         vertical: 10.0, horizontal: 20),
@@ -152,7 +170,8 @@ class _ChatRoomViewState extends BaseState<ChatRoomView, ChatRoomViewModel>
   @override
   ChatRoomViewModel initViewModel() {
     return ChatRoomViewModel(
-      useCase: injectSendMessageUseCase()
+      getMessagesUseCase: injectGetMessagesUseCase(),
+      sendMessageUseCase: injectSendMessageUseCase()
     );
   }
 }
