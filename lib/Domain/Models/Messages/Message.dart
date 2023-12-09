@@ -9,12 +9,7 @@ class Message{
   String senderId;
   String senderImage;
   String image;
-  bool receivedStatus;
-  bool sendingStatus;
-  bool readStatus;
-  bool sendingError ;
   int dateTime;
-  bool sentState;
   Message({
     required this.roomId,
     required this.messageId ,
@@ -24,12 +19,7 @@ class Message{
     required this.senderName ,
     required this.senderImage ,
     required this.image ,
-    required this.receivedStatus ,
-    required this.sendingStatus ,
-    required this.readStatus ,
     required this.dateTime,
-    required this.sentState,
-    required this.sendingError
   });
 
   MessageDTO toDatasource(){
@@ -42,12 +32,7 @@ class Message{
       senderId: senderId,
       senderImage: senderImage,
       image: image,
-      receivedStatus: receivedStatus,
-      sendingStatus: sendingStatus,
-      readStatus: readStatus,
       dateTime: dateTime,
-      sentState: sentState,
-      sendingError: sendingError
     );
   }
 }

@@ -9,12 +9,7 @@ class MessageDTO {
   String senderId;
   String senderImage;
   String image;
-  bool receivedStatus;
-  bool sendingStatus;
-  bool readStatus;
-  bool sendingError;
   int dateTime;
-  bool sentState;
   MessageDTO(
       {required this.roomId,
       required this.messageId,
@@ -24,12 +19,7 @@ class MessageDTO {
       required this.senderName,
       required this.senderImage,
       required this.image,
-      required this.receivedStatus,
-      required this.sendingStatus,
-      required this.readStatus,
-      required this.dateTime,
-      required this.sentState,
-      required this.sendingError});
+      required this.dateTime,});
 
   MessageDTO.fromFireStore(Map<String, dynamic> json)
       : this(
@@ -41,12 +31,7 @@ class MessageDTO {
             senderId: json['senderId'],
             senderImage: json['senderImage'],
             image: json['image'],
-            receivedStatus: json['receivedStatus'],
-            sendingStatus: json['sendingStatus'],
-            readStatus: json['readStatus'],
-            dateTime: json['time'],
-            sentState: json['sentState'],
-            sendingError: json["sendingError"]);
+            dateTime: json['time'],);
 
   Map<String, dynamic> toFireStore() {
     return {
@@ -58,12 +43,7 @@ class MessageDTO {
       "senderId": senderId,
       "senderImage": senderImage,
       "image": image,
-      "receivedStatus": receivedStatus,
-      "sendingStatus": sendingStatus,
-      "readStatus": readStatus,
       "time": dateTime,
-      'sentState': sentState,
-      "sendingError": sendingError
     };
   }
 
@@ -77,11 +57,6 @@ class MessageDTO {
         senderName: senderName,
         senderImage: senderImage,
         image: image,
-        receivedStatus: receivedStatus,
-        sendingStatus: sendingStatus,
-        readStatus: readStatus,
-        dateTime: dateTime,
-        sentState: sentState,
-        sendingError: sendingError);
+        dateTime: dateTime);
   }
 }

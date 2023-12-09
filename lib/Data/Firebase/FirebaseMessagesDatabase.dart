@@ -37,4 +37,8 @@ class FirebaseMessagesDatabase {
     return message ;
   }
 
+  Stream<QuerySnapshot<MessageDTO>> getMessagesStream({required String roomId}){
+    return getCollectionReference(roomId).snapshots();
+  }
+
 }

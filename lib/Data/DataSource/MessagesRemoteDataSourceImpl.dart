@@ -32,4 +32,9 @@ class MessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
       throw UnknownException(errorMessage: "Unknown Error");
     }
   }
+
+  @override
+  Stream<QuerySnapshot<MessageDTO>> readMessages({required String roomId}) {
+    return database.getMessagesStream(roomId: roomId);
+  }
 }
