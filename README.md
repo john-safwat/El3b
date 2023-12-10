@@ -1,4 +1,4 @@
-# El3b
+# El3b 
 
 Welcome to El3b, the mobile app designed to provide you with the latest games news and a platform for chatting. We appreciate your usage of our app and strive to offer you an enjoyable and informative experience along with other app users.
 
@@ -31,16 +31,3 @@ The app's user-friendly interface and intuitive navigation make it easy to explo
 El3b is built with Flutter, a powerful cross-platform framework, ensuring seamless performance and compatibility across iOS and Android devices. The app's sleek design, smooth animations, and responsive layout contribute to an immersive and enjoyable user experience.
 
 Whether you're a casual gamer looking for the latest news, a dedicated player seeking a vibrant community, or simply someone interested in the gaming industry, El3b provides a comprehensive and engaging mobile app experience that caters to all your gaming needs.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
