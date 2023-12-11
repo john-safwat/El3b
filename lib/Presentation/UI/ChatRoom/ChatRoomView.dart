@@ -41,6 +41,7 @@ class _ChatRoomViewState extends BaseState<ChatRoomView, ChatRoomViewModel>
             children: [
               Expanded(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
                       child:
