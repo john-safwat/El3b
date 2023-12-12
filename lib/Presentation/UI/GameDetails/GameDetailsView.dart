@@ -15,14 +15,11 @@ import 'package:El3b/Presentation/UI/GameDetails/Widgets/GameDevelopersWidget.da
 import 'package:El3b/Presentation/UI/GameDetails/Widgets/GameGenresWidget.dart';
 import 'package:El3b/Presentation/UI/GameDetails/Widgets/GamePlatformsWidget.dart';
 import 'package:El3b/Presentation/UI/GameDetails/Widgets/ImagesSlider.dart';
-import 'package:El3b/Presentation/UI/GameDetails/Widgets/MetacriticPlatformsRatingsWidget.dart';
 import 'package:El3b/Presentation/UI/GameDetails/Widgets/RatingWidget.dart';
 import 'package:El3b/Presentation/UI/GameDetails/Widgets/ReleaseDateWidget.dart';
 import 'package:El3b/Presentation/UI/GameDetails/Widgets/StoresWidget.dart';
 import 'package:El3b/Presentation/UI/GameDetails/Widgets/TagsListWidget.dart';
 import 'package:El3b/Presentation/UI/Widgets/ErrorMessageWidget.dart';
-import 'package:El3b/Presentation/UI/Widgets/LanguageSwitch.dart';
-import 'package:El3b/Presentation/UI/Widgets/ThemeSwitch.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -71,11 +68,8 @@ class _GameDetailsViewState extends BaseState<GameDetailsView , GameDetailsViewM
                 )
               ],
             ),
-            errorWidget: (context, url, error) =>  Image.asset(
-              "Assets/Images/errorImage.png" ,
-              fit: BoxFit.cover ,
-              width: double.infinity,
-              height: double.infinity,
+            errorWidget: (context, url, error) =>  Container(
+              color: Theme.of(context).scaffoldBackgroundColor,
             ),
             placeholder: (context, url) => Container(
               width: double.infinity,
@@ -83,8 +77,7 @@ class _GameDetailsViewState extends BaseState<GameDetailsView , GameDetailsViewM
               decoration: BoxDecoration(
                   color: MyTheme.darkPurple,
                   borderRadius: BorderRadius.circular(15)
-              ),
-              child:const Center(child: CircularProgressIndicator(color: MyTheme.offWhite,),),
+              )
             ),
           ),
 
