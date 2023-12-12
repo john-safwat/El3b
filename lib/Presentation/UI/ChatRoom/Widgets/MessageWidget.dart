@@ -52,7 +52,7 @@ class MessageWidget extends StatelessWidget {
               topLeft: appConfigProvider.user!.uid == message.senderId?const Radius.circular(15) :const Radius.circular(0)
             )
           ),
-          child: Text(message.content , style: Theme.of(context).textTheme.displayMedium,),
+          child: Text(message.content , style: Theme.of(context).textTheme.displayMedium!.copyWith(color: MyTheme.offWhite),),
         ),
       ],
     );
