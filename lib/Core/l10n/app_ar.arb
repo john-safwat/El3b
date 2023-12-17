@@ -127,6 +127,6 @@
   "resend" : "ارسال",
   "emailNotVerified" : "لم يتم تأكيد الحساب",
   "unableToLoadDate" : "لم نتمكن من تحميل البيانات",
-  "permissionDenied" : "تم رفض التصريح"
-
+  "permissionDenied" : "تم رفض التصريح",
+  "makeItYourOwn" : "صُنعت خصيصًا لك، خصص تجربتك بأسلوب شخصي."
 }

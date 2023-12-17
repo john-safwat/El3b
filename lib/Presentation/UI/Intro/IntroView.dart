@@ -4,6 +4,7 @@ import 'package:El3b/Presentation/UI/Intro/IntroNavigator.dart';
 import 'package:El3b/Presentation/UI/Intro/IntroViewModel.dart';
 import 'package:El3b/Presentation/UI/Login/LoginView.dart';
 import 'package:El3b/Presentation/UI/Widgets/LanguageSwitch.dart';
+import 'package:El3b/Presentation/UI/Widgets/ThemeSwitch.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:lottie/lottie.dart';
@@ -43,6 +44,27 @@ class _IntroViewState extends BaseState<IntroView , IntroViewModel> implements I
               // title: "Welcome",
               bodyWidget: const LanguageSwitch(),
               image: Lottie.asset("Assets/Animations/language.json")
+          ) ,
+          // pick Your theme
+          PageViewModel(
+              decoration: PageDecoration(
+                titleTextStyle: Theme.of(context).textTheme.displayLarge!.copyWith(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24
+                ),
+                bodyTextStyle: Theme.of(context).textTheme.displayLarge!.copyWith(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20
+                ),
+                imageFlex: 2,
+                titlePadding: const EdgeInsets.all(20),
+                bodyPadding: const EdgeInsets.symmetric(horizontal: 20),
+                imagePadding: const EdgeInsets.symmetric(horizontal: 20),
+              ),
+              title: viewModel!.local!.makeItYourOwn,
+              // title: "Welcome",
+              bodyWidget: const ThemeSwitch(),
+              image: Lottie.asset("Assets/Animations/colors.json")
           ) ,
           // Welcome Message
           PageViewModel(
@@ -155,22 +177,22 @@ class _IntroViewState extends BaseState<IntroView , IntroViewModel> implements I
         next: Text(viewModel!.local!.next),
         back: Text(viewModel!.local!.back),
         backStyle: ButtonStyle(
-            textStyle: MaterialStateProperty.all( const TextStyle(color: MyTheme.offWhite, fontSize: 18)),
-            foregroundColor: MaterialStateProperty.all(MyTheme.offWhite)
+            textStyle: MaterialStateProperty.all( TextStyle(color: Theme.of(context).primaryColor, fontSize: 18)),
+            foregroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor)
         ) ,
         nextStyle:  ButtonStyle(
-          textStyle: MaterialStateProperty.all( const TextStyle(color: MyTheme.offWhite, fontSize: 18)),
-          foregroundColor: MaterialStateProperty.all(MyTheme.offWhite)
+            textStyle: MaterialStateProperty.all( TextStyle(color: Theme.of(context).primaryColor, fontSize: 18)),
+            foregroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor)
         ),
         doneStyle: ButtonStyle(
-            textStyle: MaterialStateProperty.all( const TextStyle(color: MyTheme.offWhite, fontSize: 18)),
-            foregroundColor: MaterialStateProperty.all(MyTheme.offWhite)
+            textStyle: MaterialStateProperty.all( TextStyle(color: Theme.of(context).primaryColor, fontSize: 18)),
+            foregroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor)
         ),
         dotsDecorator: DotsDecorator(
           size: const Size.square(10.0),
           activeSize: const Size(20.0, 10.0),
           activeColor: MyTheme.lightPurple,
-          color: MyTheme.offWhite,
+          color: Theme.of(context).primaryColor,
           spacing: const EdgeInsets.symmetric(horizontal: 3.0),
           activeShape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(25.0)
