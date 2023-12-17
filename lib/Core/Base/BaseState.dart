@@ -11,6 +11,8 @@ import 'package:El3b/Core/Providers/ThemeProvider.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Core/Utils/DialogUtils.dart';
 import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
+import 'package:El3b/Domain/UseCase/AddGameToWishListUseCase.dart';
+import 'package:El3b/Domain/UseCase/DeleteGameFromWishListUseCase.dart';
 import 'package:El3b/Presentation/UI/GameDetails/GameDetailsView.dart';
 import 'package:El3b/Presentation/UI/GamesSearch/GameSearchView.dart';
 import 'package:El3b/Presentation/UI/Widgets/BottomSheetImagePicker.dart';
@@ -38,6 +40,8 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
     viewModel!.firebaseImageDatabaseExceptionsHandler = injectFirebaseImageDatabaseExceptionsHandler();
     viewModel!.firebaseFireStoreErrorHandler = injectFirebaseFireStoreErrorHandler();
     viewModel!.firebaseAuthExceptionHandler = injectFirebaseAuthExceptionHandler();
+    viewModel!.addGameToWishListUseCase = injectAddGameToWishListUseCase();
+    viewModel!.deleteGameFromWishListUseCase = injectDeleteGameFromWishListUseCase();
   }
 
   @override

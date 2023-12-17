@@ -1,6 +1,5 @@
 import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Domain/UseCase/AddGameToHistoryUseCase.dart';
-import 'package:El3b/Domain/UseCase/DeleteGameFromWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetGamesForWishListUseCase.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Favorite/FavoriteTabNavigator.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Favorite/FavoriteTabViewModel.dart';
@@ -101,7 +100,6 @@ class _FavoriteTabViewState extends BaseState<FavoriteTabView , FavoriteTabViewM
   FavoriteTabViewModel initViewModel() {
     return FavoriteTabViewModel(
       getGamesForWishListUseCase: injectGetGamesForWishListUseCase(),
-      deleteGameFromWishListUseCase: injectDeleteGameFromWishListUseCase(),
       addGameToHistoryUseCase: injectAddGameToHistoryUseCase()
     );
   }

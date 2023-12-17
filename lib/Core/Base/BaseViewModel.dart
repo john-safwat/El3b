@@ -18,6 +18,8 @@ import 'package:El3b/Domain/Exception/PermissionDeniedException.dart';
 import 'package:El3b/Domain/Exception/TimeOutOperationsException.dart';
 import 'package:El3b/Domain/Exception/URLLauncherException.dart';
 import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
+import 'package:El3b/Domain/UseCase/AddGameToWishListUseCase.dart';
+import 'package:El3b/Domain/UseCase/DeleteGameFromWishListUseCase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:image_picker/image_picker.dart';
@@ -30,6 +32,9 @@ class BaseViewModel<N extends BaseNavigator> extends ChangeNotifier {
   AppConfigProvider? appConfigProvider;
   AppLocalizations? local;
   Size? mediaQuery;
+
+  late AddGameToWishListUseCase addGameToWishListUseCase;
+  late DeleteGameFromWishListUseCase deleteGameFromWishListUseCase;
 
   // error handlers
   late DioErrorHandler dioErrorHandler;
@@ -138,6 +143,37 @@ class BaseViewModel<N extends BaseNavigator> extends ChangeNotifier {
     }else {
       return local!.someThingWentWrong;
     }
+  }
+
+  // function to add game to wishlist
+  Future<void> editGameWishListState(RAWGGame game) async {
+    try {
+      if (!game.inWishList!) {
+        game.inWishList = true;
+        var response = await addGameToWishListUseCase.invoke(
+            game: game, uid: appConfigProvider!.getUser()!.uid);
+        if (response != 0) {
+          navigator!.showSuccessNotification(
+              message: local!.gameAddedToWishList);
+        } else {
+          navigator!.showErrorNotification(message: local!.someThingWentWrong);
+        }
+      } else {
+        game.inWishList = false;
+        var response = await deleteGameFromWishListUseCase.invoke(
+            game: int.parse(game.id!.toString()),
+            uid: appConfigProvider!.getUser()!.uid);
+        if (response != 0) {
+          navigator!.showSuccessNotification(
+              message: local!.gameDeletedFromWishList);
+        } else {
+          navigator!.showErrorNotification(message: local!.someThingWentWrong);
+        }
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    notifyListeners();
   }
 
 }

@@ -1,7 +1,5 @@
 import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Domain/UseCase/AddGameToHistoryUseCase.dart';
-import 'package:El3b/Domain/UseCase/AddGameToWishListUseCase.dart';
-import 'package:El3b/Domain/UseCase/DeleteGameFromWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetGamesByGenreUseCase.dart';
 import 'package:El3b/Presentation/UI/GamesList/GamesListNavigator.dart';
 import 'package:El3b/Presentation/UI/GamesList/GamesListViewModel.dart';
@@ -126,8 +124,6 @@ class _GamesListViewState extends BaseState<GamesListView , GamesListViewModel> 
   GamesListViewModel initViewModel() {
     return GamesListViewModel(
         getGamesByGenreUseCase: injectGetGamesByGenreUseCase(),
-        addGameToWishListUseCase: injectAddGameToWishListUseCase(),
-        deleteGameFromWishListUseCase: injectDeleteGameFromWishListUseCase(),
       addGameToHistoryUseCase: injectAddGameToHistoryUseCase()
     );
   }

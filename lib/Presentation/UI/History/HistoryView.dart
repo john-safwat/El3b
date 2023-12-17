@@ -1,7 +1,5 @@
 import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Domain/UseCase/AddGameToHistoryUseCase.dart';
-import 'package:El3b/Domain/UseCase/AddGameToWishListUseCase.dart';
-import 'package:El3b/Domain/UseCase/DeleteGameFromWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/GatGamesFromHistoryUseCase.dart';
 import 'package:El3b/Presentation/UI/History/HistoryNavigator.dart';
 import 'package:El3b/Presentation/UI/History/HistoryViewModel.dart';
@@ -100,8 +98,6 @@ class _HistoryViewState extends BaseState<HistoryView, HistoryViewModel>
     return HistoryViewModel(
       gamesFromHistoryUseCase: injectGatGamesFromHistoryUseCase(),
       addGameToHistoryUseCase: injectAddGameToHistoryUseCase(),
-      deleteGameFromWishListUseCase: injectDeleteGameFromWishListUseCase(),
-      addGameToWishListUseCase: injectAddGameToWishListUseCase()
     );
   }
 }

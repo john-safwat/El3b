@@ -1,6 +1,5 @@
 import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
-import 'package:El3b/Data/Models/Messages/MessageDTO.dart';
 import 'package:El3b/Domain/Models/Room/Room.dart';
 import 'package:El3b/Domain/UseCase/GetMessagesUseCase.dart';
 import 'package:El3b/Domain/UseCase/SendMessageUseCase.dart';
