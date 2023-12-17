@@ -9,11 +9,9 @@ import 'package:flutter/material.dart';
 class FavoriteTabViewModel extends BaseViewModel <FavoriteTabNavigator> {
 
   GetGamesForWishListUseCase getGamesForWishListUseCase ;
-  DeleteGameFromWishListUseCase deleteGameFromWishListUseCase;
   AddGameToHistoryUseCase addGameToHistoryUseCase;
   FavoriteTabViewModel({
     required this.getGamesForWishListUseCase ,
-    required this.deleteGameFromWishListUseCase,
     required this.addGameToHistoryUseCase
   });
 

@@ -1,8 +1,6 @@
 import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Domain/UseCase/AddGameToHistoryUseCase.dart';
-import 'package:El3b/Domain/UseCase/AddGameToWishListUseCase.dart';
-import 'package:El3b/Domain/UseCase/DeleteGameFromWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetAllGiveGamesUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetFreeToPlayGamesUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetGiveawayGamesFromServerUseCase.dart';
@@ -198,8 +196,6 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
         getAllGiveGamesUseCase: injectGetAllGiveGamesUseCase(),
         getFreeToPlayGamesUseCase: injectGetFreeToPlayGamesUseCase(),
         getRAWGGeneralGamesUseCase: injectGetRAWGGeneralGamesUseCase(),
-        addGameToWishListUseCase: injectAddGameToWishListUseCase(),
-        deleteGameFromWishListUseCase: injectDeleteGameFromWishListUseCase(),
         gamesFromServerUseCase: injectGetGiveawayGamesFromServerUseCase(),
         addGameToHistoryUseCase: injectAddGameToHistoryUseCase()
     );

@@ -1,7 +1,6 @@
 import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Domain/UseCase/GetGenresUseCase.dart';
 import 'package:El3b/Presentation/UI/GamesList/GamesListView.dart';
-import 'package:El3b/Presentation/UI/GamesSearch/GameSearchView.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Explore/ExploreTabNavigator.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Explore/ExploreTabViewModel.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Explore/Widgets/TabButton.dart';
@@ -9,8 +8,6 @@ import 'package:El3b/Presentation/UI/Widgets/CustomSearchBarButton.dart';
 import 'package:El3b/Presentation/UI/Widgets/ErrorMessageWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:page_animation_transition/animations/bottom_to_top_transition.dart';
-import 'package:page_animation_transition/page_animation_transition.dart';
 import 'package:provider/provider.dart';
 
 class ExploreTabView extends StatefulWidget {
