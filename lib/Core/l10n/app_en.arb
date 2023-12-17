@@ -127,5 +127,6 @@
   "resend" : "resend",
   "emailNotVerified" : "Email not verified",
   "unableToLoadDate" : "Unable To Load Data",
-  "permissionDenied" : "Permission Denied"
+  "permissionDenied" : "Permission Denied",
+  "makeItYourOwn" : "Crafted exclusively for you, customize your experience with personal flair."
 }
