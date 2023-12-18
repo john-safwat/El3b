@@ -6,6 +6,7 @@ import 'package:El3b/Presentation/UI/Widgets/CustomTextFormField.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:lottie/lottie.dart';
 
 class ForgetPasswordView extends StatefulWidget {
   static const String routeName = "ForgetPassword";
@@ -15,12 +16,14 @@ class ForgetPasswordView extends StatefulWidget {
   State<ForgetPasswordView> createState() => _ForgetPasswordViewState();
 }
 
-class _ForgetPasswordViewState extends BaseState <ForgetPasswordView , ForgetPasswordViewModel> implements ForgetPasswordNavigator{
+class _ForgetPasswordViewState
+    extends BaseState<ForgetPasswordView, ForgetPasswordViewModel>
+    implements ForgetPasswordNavigator {
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
-      appBar:  AppBar(
+      appBar: AppBar(
         title: Text(viewModel!.local!.forgetPassword),
       ),
       body: SingleChildScrollView(
@@ -29,38 +32,41 @@ class _ForgetPasswordViewState extends BaseState <ForgetPasswordView , ForgetPas
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              SvgPicture.asset(
-                  viewModel!.themeProvider!.isDark()?
-                    "Assets/SVG/DarkForgetPassword.svg":
-                    "Assets/SVG/LightForgetPassword.svg",
+              Lottie.asset(
+                  viewModel!.themeProvider!.isDark()
+                      ? "Assets/Animations/forgetMail.json"
+                      : "Assets/Animations/forgetMail2.json",
+                  width: double.infinity,
+                  fit: BoxFit.cover),
+              const SizedBox(
+                height: 20,
               ),
               Form(
                   key: viewModel!.formKey,
-                  child:Column(
+                  child: Column(
                     children: [
                       CustomTextFormField(
-                        label: viewModel!.local!.email,
-                        controller: viewModel!.emailController,
-                        inputType: TextInputType.emailAddress,
-                        validator: viewModel!.emailValidation,
-                        icon: HeroIcons.envelope
+                          label: viewModel!.local!.email,
+                          controller: viewModel!.emailController,
+                          inputType: TextInputType.emailAddress,
+                          validator: viewModel!.emailValidation,
+                          icon: HeroIcons.envelope),
+                      const SizedBox(
+                        height: 20,
                       ),
-                      const SizedBox(height:20,),
                       ElevatedButton(
-                        onPressed: viewModel!.resetPassword,
-                        child: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(viewModel!.local!.sendMail),
-                            ],
-                          ),
-                        )
-                      )
+                          onPressed: viewModel!.resetPassword,
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(viewModel!.local!.sendMail),
+                              ],
+                            ),
+                          ))
                     ],
-                  )
-              ),
+                  )),
             ],
           ),
         ),
