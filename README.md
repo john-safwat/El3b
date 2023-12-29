@@ -1,4 +1,5 @@
 # El3b 
+By John Safwat
 
 Welcome to El3b, the mobile app designed to provide you with the latest games news and a platform for chatting. We appreciate your usage of our app and strive to offer you an enjoyable and informative experience along with other app users.
 
