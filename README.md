@@ -32,3 +32,5 @@ The app's user-friendly interface and intuitive navigation make it easy to explo
 El3b is built with Flutter, a powerful cross-platform framework, ensuring seamless performance and compatibility across iOS and Android devices. The app's sleek design, smooth animations, and responsive layout contribute to an immersive and enjoyable user experience.
 
 Whether you're a casual gamer looking for the latest news, a dedicated player seeking a vibrant community, or simply someone interested in the gaming industry, El3b provides a comprehensive and engaging mobile app experience that caters to all your gaming needs.
+
+## This Will be updated soon 
