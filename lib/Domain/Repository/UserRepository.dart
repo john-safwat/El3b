@@ -7,7 +7,7 @@ abstract class UserRepository {
   Future<void> createUserFirebaseFireStore({required String uid, required MyUser myUser});
   Future<User> createUserFireBaseAuth({required MyUser user});
   Future<String> uploadUserImage({required XFile file});
-  Future<String> updateUserProfileImage({required XFile file , required String name});
+  Future<String> updateUserProfileImage({required XFile file, required String url});
   Future<User> updateUserPhotoUrl({required String image});
   Future<String> updateUserData({required MyUser myUser , required String uid});
   Future<User> signInWithEmailAndPassword({required String email , required String password});
