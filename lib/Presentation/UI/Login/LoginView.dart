@@ -48,6 +48,7 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
       child: Consumer<LoginViewModel>(
         builder:(context, value, child) =>  Scaffold(
           body: SingleChildScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             physics: const BouncingScrollPhysics(),
             child: Padding(
               padding: const EdgeInsets.all(20.0),

@@ -36,6 +36,7 @@ class _RegisterViewState extends BaseState<RegisterView, RegisterViewModel>
       builder: (context, child) => Consumer<RegisterViewModel>(
         builder: (context, value, child) =>  Scaffold(
           body: SingleChildScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             physics: const BouncingScrollPhysics(),
             child: Padding(
               padding: const EdgeInsets.all(20),

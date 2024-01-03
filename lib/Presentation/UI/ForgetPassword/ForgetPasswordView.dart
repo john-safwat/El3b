@@ -27,6 +27,7 @@ class _ForgetPasswordViewState
         title: Text(viewModel!.local!.forgetPassword),
       ),
       body: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         physics: const BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.all(20.0),
