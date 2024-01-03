@@ -1,34 +1,45 @@
 import 'package:El3b/Core/Theme/Theme.dart';
+import 'package:El3b/Presentation/Models/Button.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-  String title ;
-  Function action;
-  IconData icon;
-  Color color;
-  CustomButton({required this.title , required this.action , required this.icon , this.color = MyTheme.lightPurple , super.key});
-
+  Button button;
+  CustomButton({required this.button, super.key});
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: ElevatedButton(
-        style: ButtonStyle(
-          shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
-          backgroundColor: MaterialStateProperty.all(color),
+    return InkWell(
+      onTap: () => button.onClickListener(),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: button.color,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Icon(
+                button.icon,
+                size: 25,
+                color: MyTheme.white,
+              ),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Text(
+              button.title,
+              style: Theme.of(context).textTheme.displayMedium,
+            ),
+            const Expanded(child: SizedBox()),
+            Icon(
+              Icons.arrow_forward_ios,
+              size: 20,
+              color: Theme.of(context).primaryColor,
+            )
+          ],
         ),
-        onPressed: (){action();},
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 5 , vertical: 15),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Icon(icon , color: MyTheme.offWhite, size: 25 ,),
-              const SizedBox(width: 10,),
-              Text(title),
-            ],
-          ),
-        )
       ),
     );
   }

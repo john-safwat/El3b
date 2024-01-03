@@ -26,6 +26,7 @@ class _ProfileTabViewState extends BaseState<ProfileTabView , ProfileTabViewMode
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    viewModel!.setButtonsData();
     return Stack(
       children: [
         ListView(
@@ -53,31 +54,13 @@ class _ProfileTabViewState extends BaseState<ProfileTabView , ProfileTabViewMode
               ),
             ),
             const SizedBox(height: 20,),
-            CustomButton(
-              title: viewModel!.local!.history,
-              action: viewModel!.goToHistoryScreen,
-              icon: Bootstrap.clock_history,
-            ),
-            const SizedBox(height: 20,),
-            CustomButton(
-              title: viewModel!.local!.feedback,
-              action: viewModel!.goToFeedbackScreen,
-              icon: EvaIcons.smiling_face,
-            ),
-            const SizedBox(height: 20,),
-            CustomButton(
-              title: viewModel!.local!.aboutUs,
-              action: viewModel!.goToAboutUsScreen,
-              icon: Bootstrap.info_circle,
-            ),
-            const SizedBox(height: 20,),
-            CustomButton(
-              title: viewModel!.local!.signOut,
-              action: viewModel!.onSignOutPress,
-              icon: Bootstrap.box_arrow_in_right,
-              color: MyTheme.red,
-            ),
-            const SizedBox(height: 50,),
+            CustomButton(button: viewModel!.buttonsData[0]),
+            const SizedBox(height: 10,),
+            CustomButton(button: viewModel!.buttonsData[1]),
+            const SizedBox(height: 10,),
+            CustomButton(button: viewModel!.buttonsData[2]),
+            const SizedBox(height: 10,),
+            CustomButton(button: viewModel!.buttonsData[3]),
           ],
         ),
         UserProfileDataWidget(
