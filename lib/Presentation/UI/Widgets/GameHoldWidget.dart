@@ -216,6 +216,5 @@ class GameHoldWidget extends StatelessWidget {
         ],
       ),
     ).fade(duration: const Duration(milliseconds: 200));
-    ;
   }
 }
