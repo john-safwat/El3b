@@ -18,9 +18,9 @@ class ThemeSwitch extends StatelessWidget {
       colorBuilder: (value) => MyTheme.lightPurple,
       iconBuilder: (value, size, foreground) {
         if (value == ThemeMode.dark) {
-          return const Icon(EvaIcons.moon);
+          return Icon(EvaIcons.moon , color: theme.isDark()? MyTheme.offWhite : MyTheme.lightPurple ,);
         } else {
-          return const Icon(EvaIcons.sun);
+          return const Icon(EvaIcons.sun , color: MyTheme.offWhite ,);
         }
       },
       onChanged: (p0) => theme.changeTheme(theme.isDark()? ThemeMode.light : ThemeMode.dark),
