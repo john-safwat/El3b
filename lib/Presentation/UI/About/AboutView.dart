@@ -41,7 +41,10 @@ class _AboutViewState extends BaseState<AboutView, AboutViewModel>
                       fontWeight: FontWeight.bold),
                 ),
               ),
-
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.asset("Assets/Images/me.jpg"),
+              ),
             ],
           )),
     );
