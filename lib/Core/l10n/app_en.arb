@@ -128,5 +128,6 @@
   "unableToLoadDate" : "Unable To Load Data",
   "permissionDenied" : "Permission Denied",
   "makeItYourOwn" : "Crafted exclusively for you, customize your experience with personal flair.",
-  "appVersion" : "App Version : 1.0.1"
+  "appVersion" : "App Version : 1.0.1",
+  "aboutUsMessage1" : "Hello\nI'm John Safwat The Creator of This App"
 }

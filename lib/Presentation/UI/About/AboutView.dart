@@ -41,10 +41,13 @@ class _AboutViewState extends BaseState<AboutView, AboutViewModel>
                       fontWeight: FontWeight.bold),
                 ),
               ),
+              const SizedBox(height: 20),
               ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image.asset("Assets/Images/me.jpg"),
               ),
+              const SizedBox(height: 20),
+              Text(viewModel!.local!.aboutUsMessage1, style: Theme.of(context).textTheme.displayLarge)
             ],
           )),
     );
