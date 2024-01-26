@@ -28,7 +28,7 @@ class _ChatTabViewState extends BaseState<ChatTabView , ChatTabViewModel > imple
   Widget build(BuildContext context) {
     super.build(context);
     return ChangeNotifierProvider(
-      create: (context) => viewModel!,
+      create: (context) => viewModel,
       child: Consumer<ChatTabViewModel>(
         builder: (context, value, child) {
           return Scaffold(
@@ -43,7 +43,7 @@ class _ChatTabViewState extends BaseState<ChatTabView , ChatTabViewModel > imple
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 StreamBuilder(
-                  stream: viewModel!.getUserRooms(),
+                  stream: viewModel.getUserRooms(),
                   builder: (context, snapshot) {
                     if(snapshot.connectionState == ConnectionState.waiting){
                       return Row(
@@ -64,16 +64,16 @@ class _ChatTabViewState extends BaseState<ChatTabView , ChatTabViewModel > imple
                           errorMessage: value.errorMessage!,
                           fixErrorFunction: (){});
                     }else {
-                      viewModel!.userRooms = snapshot.data!.docs.map((e) => e.data().toDomain()).toList();
-                      if(viewModel!.userRooms.isNotEmpty){
+                      viewModel.userRooms = snapshot.data!.docs.map((e) => e.data().toDomain()).toList();
+                      if(viewModel.userRooms.isNotEmpty){
                         return SizedBox(
                           height: 140,
                           child: ListView.separated(
                             physics: const BouncingScrollPhysics(),
                             padding:const EdgeInsets.symmetric(horizontal: 20 , vertical: 10),
                             scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) => UserRoomWidget(room: viewModel!.userRooms[index] , onPress: viewModel!.goToChatRoomScreen),
-                            itemCount: viewModel!.userRooms.length,
+                            itemBuilder: (context, index) => UserRoomWidget(room: viewModel.userRooms[index] , onPress: viewModel.goToChatRoomScreen),
+                            itemCount: viewModel.userRooms.length,
                             separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 15,) ,
                           ),
                         );
@@ -85,10 +85,10 @@ class _ChatTabViewState extends BaseState<ChatTabView , ChatTabViewModel > imple
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0 , vertical: 10),
-                  child: Text(viewModel!.local!.publicRooms,style: Theme.of(context).textTheme.displayMedium!.copyWith(fontWeight: FontWeight.bold),),
+                  child: Text(viewModel.local!.publicRooms,style: Theme.of(context).textTheme.displayMedium!.copyWith(fontWeight: FontWeight.bold),),
                 ),
                 StreamBuilder(
-                  stream: viewModel!.getPublicRooms(),
+                  stream: viewModel.getPublicRooms(),
                   builder: (context, snapshot) {
                     if(snapshot.connectionState == ConnectionState.waiting){
                       return Expanded(
@@ -108,14 +108,14 @@ class _ChatTabViewState extends BaseState<ChatTabView , ChatTabViewModel > imple
                             fixErrorFunction: (){}),
                       );
                     }else {
-                      viewModel!.rooms = snapshot.data!.docs.map((e) => e.data().toDomain()).toList();
-                      viewModel!.filterRooms();
+                      viewModel.rooms = snapshot.data!.docs.map((e) => e.data().toDomain()).toList();
+                      viewModel.filterRooms();
                       return Expanded(
                         child: ListView.separated(
                           physics: const BouncingScrollPhysics(),
                           padding:const EdgeInsets.symmetric(horizontal: 20 , vertical: 10),
-                          itemBuilder: (context, index) => PublicRoomsWidget(room: viewModel!.rooms[index] , onPress: viewModel!.goToJoinRoomScree),
-                          itemCount: viewModel!.rooms.length,
+                          itemBuilder: (context, index) => PublicRoomsWidget(room: viewModel.rooms[index] , onPress: viewModel.goToJoinRoomScree),
+                          itemCount: viewModel.rooms.length,
                           separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 15,) ,
                         ),
                       );
@@ -126,7 +126,7 @@ class _ChatTabViewState extends BaseState<ChatTabView , ChatTabViewModel > imple
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: (){
-                viewModel!.goToCreateRoomScreen();
+                viewModel.goToCreateRoomScreen();
               },
               child: const Icon(Icons.add),
             ),

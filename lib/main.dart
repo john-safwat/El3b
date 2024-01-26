@@ -65,8 +65,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     themeProvider = Provider.of<ThemeProvider>(context);
     localProvider = Provider.of<LocalProvider>(context);
-    setTheme();
-    setLocal();
+    // setTheme();
+    // setLocal();
+    debugPrint("this is john");
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,

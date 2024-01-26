@@ -23,7 +23,7 @@ class _HistoryViewState extends BaseState<HistoryView, HistoryViewModel>
   @override
   void initState() {
     super.initState();
-    viewModel!.loadData();
+    viewModel.loadData();
   }
 
   @override
@@ -31,10 +31,10 @@ class _HistoryViewState extends BaseState<HistoryView, HistoryViewModel>
     super.build(context);
     return Scaffold(
         appBar: AppBar(
-          title: Text(viewModel!.local!.history),
+          title: Text(viewModel.local!.history),
         ),
         body: ChangeNotifierProvider(
-          create: (context) => viewModel!,
+          create: (context) => viewModel,
           child: Consumer<HistoryViewModel>(
             builder: (context, value, child) {
               if (value.errorMessage != null) {

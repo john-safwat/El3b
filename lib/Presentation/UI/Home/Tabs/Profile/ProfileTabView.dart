@@ -14,6 +14,7 @@ import 'package:El3b/Presentation/UI/Widgets/LanguageSwitch.dart';
 import 'package:El3b/Presentation/UI/Widgets/ThemeSwitch.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:provider/provider.dart';
 
 class ProfileTabView extends StatefulWidget {
   const ProfileTabView({super.key});
@@ -26,51 +27,57 @@ class _ProfileTabViewState extends BaseState<ProfileTabView , ProfileTabViewMode
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    viewModel!.setButtonsData();
-    return Stack(
-      children: [
-        ListView(
-          children: [
-            const SizedBox(height: 200,),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    viewModel.setButtonsData();
+    debugPrint("john");
+    return  ChangeNotifierProvider(
+      create: (context) => viewModel,
+      child: Column(
+        children: [
+          UserProfileDataWidget(
+            user: viewModel.appConfigProvider!.getUser()!,
+            buttonTitle: viewModel.local!.edit,
+            buttonAction: viewModel.goToEditProfileScreen,
+            isEn: viewModel.localProvider!.isEn(),
+          ),
+          Expanded(
+              child: ListView(
                 children: [
-                  Text(viewModel!.local!.theme , style: Theme.of(context).textTheme.displayLarge!.copyWith(fontWeight: FontWeight.bold),),
-                  const ThemeSwitch(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(viewModel.local!.theme , style: Theme.of(context).textTheme.displayLarge!.copyWith(fontWeight: FontWeight.bold),),
+                        const ThemeSwitch(),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 20,),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(viewModel.local!.language , style: Theme.of(context).textTheme.displayLarge!.copyWith(fontWeight: FontWeight.bold),),
+                        const LanguageSwitch(),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 20,),
+                  CustomButton(button: viewModel.buttonsData[0]),
+                  const SizedBox(height: 10,),
+                  CustomButton(button: viewModel.buttonsData[1]),
+                  const SizedBox(height: 10,),
+                  CustomButton(button: viewModel.buttonsData[2]),
+                  const SizedBox(height: 10,),
+                  CustomButton(button: viewModel.buttonsData[3]),
                 ],
-              ),
-            ),
-            const SizedBox(height: 20,),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(viewModel!.local!.language , style: Theme.of(context).textTheme.displayLarge!.copyWith(fontWeight: FontWeight.bold),),
-                  const LanguageSwitch(),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20,),
-            CustomButton(button: viewModel!.buttonsData[0]),
-            const SizedBox(height: 10,),
-            CustomButton(button: viewModel!.buttonsData[1]),
-            const SizedBox(height: 10,),
-            CustomButton(button: viewModel!.buttonsData[2]),
-            const SizedBox(height: 10,),
-            CustomButton(button: viewModel!.buttonsData[3]),
-          ],
-        ),
-        UserProfileDataWidget(
-          user: viewModel!.appConfigProvider!.getUser()!,
-          buttonTitle: viewModel!.local!.edit,
-          buttonAction: viewModel!.goToEditProfileScreen,
-          isEn: viewModel!.localProvider!.isEn(),
-        ),
-      ],
+              )
+          )
+        ],
+      ),
     );
+
   }
 
   @override

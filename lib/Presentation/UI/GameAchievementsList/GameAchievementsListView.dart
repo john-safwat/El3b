@@ -23,7 +23,7 @@ class _GameAchievementsListViewState extends BaseState<GameAchievementsListView 
   @override
   void initState() {
     super.initState();
-    viewModel!.getGameAchievements();
+    viewModel.getGameAchievements();
   }
 
   @override
@@ -31,10 +31,10 @@ class _GameAchievementsListViewState extends BaseState<GameAchievementsListView 
     super.build(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(viewModel!.local!.gameAchievements),
+        title: Text(viewModel.local!.gameAchievements),
       ),
       body: ChangeNotifierProvider(
-        create: (context) => viewModel!,
+        create: (context) => viewModel,
         builder: (context, child) => Consumer<GameAchievementsListViewModel>(
           builder: (context, value, child) {
             if(value.errorMessage != null){

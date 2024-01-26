@@ -24,19 +24,19 @@ class _GamesListViewState extends BaseState<GamesListView , GamesListViewModel> 
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    if(viewModel!.genre.isEmpty){
-      viewModel!.genre = ModalRoute.of(context)?.settings.arguments as String;
-      viewModel!.getGames();
+    if(viewModel.genre.isEmpty){
+      viewModel.genre = ModalRoute.of(context)?.settings.arguments as String;
+      viewModel.getGames();
     }
     return ChangeNotifierProvider(
-      create: (context) => viewModel!,
+      create: (context) => viewModel,
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           toolbarHeight: 70,
           titleSpacing: 10,
           centerTitle: true,
-          title: CustomSearchBarButton(navigation: viewModel!.goToSearchScreen,),
+          title: CustomSearchBarButton(navigation: viewModel.goToSearchScreen,),
         ),
         body: Consumer<GamesListViewModel>(
           builder: (context, value, child) {

@@ -26,19 +26,19 @@ class _GameSearchViewState
   Widget build(BuildContext context) {
     super.build(context);
     return ChangeNotifierProvider(
-      create: (context) => viewModel!,
+      create: (context) => viewModel,
       child: Scaffold(
         extendBodyBehindAppBar: true,
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           toolbarHeight: 70,
           title: CustomSearchBar(
-            label: viewModel!.local!.whatAreYouSearchingFor +
-                viewModel!.appConfigProvider!
+            label: viewModel.local!.whatAreYouSearchingFor +
+                viewModel.appConfigProvider!
                     .getUser()!
                     .displayName!
                     .split(" ")[0],
-            onSubmit: viewModel!.search,
+            onSubmit: viewModel.search,
           ),
           titleSpacing: 10,
         ),

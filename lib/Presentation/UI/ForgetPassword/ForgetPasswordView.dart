@@ -24,7 +24,7 @@ class _ForgetPasswordViewState
     super.build(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(viewModel!.local!.forgetPassword),
+        title: Text(viewModel.local!.forgetPassword),
       ),
       body: SingleChildScrollView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
@@ -34,7 +34,7 @@ class _ForgetPasswordViewState
           child: Column(
             children: [
               Lottie.asset(
-                  viewModel!.themeProvider!.isDark()
+                  viewModel.themeProvider!.isDark()
                       ? "Assets/Animations/forgetMail.json"
                       : "Assets/Animations/forgetMail2.json",
                   width: double.infinity,
@@ -43,26 +43,26 @@ class _ForgetPasswordViewState
                 height: 20,
               ),
               Form(
-                  key: viewModel!.formKey,
+                  key: viewModel.formKey,
                   child: Column(
                     children: [
                       CustomTextFormField(
-                          label: viewModel!.local!.email,
-                          controller: viewModel!.emailController,
+                          label: viewModel.local!.email,
+                          controller: viewModel.emailController,
                           inputType: TextInputType.emailAddress,
-                          validator: viewModel!.emailValidation,
+                          validator: viewModel.emailValidation,
                           icon: HeroIcons.envelope),
                       const SizedBox(
                         height: 20,
                       ),
                       ElevatedButton(
-                          onPressed: viewModel!.resetPassword,
+                          onPressed: viewModel.resetPassword,
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(viewModel!.local!.sendMail),
+                                Text(viewModel.local!.sendMail),
                               ],
                             ),
                           ))

@@ -23,17 +23,17 @@ class _JoinRoomViewState extends BaseState<JoinRoomView , JoinRoomViewModel> imp
   @override
   void initState() {
     super.initState();
-    viewModel!.room = widget.room;
+    viewModel.room = widget.room;
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return ChangeNotifierProvider(
-      create: (context) => viewModel!,
+      create: (context) => viewModel,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(viewModel!.local!.joinRoom),
+          title: Text(viewModel.local!.joinRoom),
         ),
 
         body: SingleChildScrollView(
@@ -47,7 +47,7 @@ class _JoinRoomViewState extends BaseState<JoinRoomView , JoinRoomViewModel> imp
                 ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: CachedNetworkImage(
-                    imageUrl: viewModel!.room.image,
+                    imageUrl: viewModel.room.image,
                     imageBuilder: (context, imageProvider) => Image(
                       image: imageProvider,
                       width: double.infinity,
@@ -70,22 +70,22 @@ class _JoinRoomViewState extends BaseState<JoinRoomView , JoinRoomViewModel> imp
                 ),
                 const SizedBox(height: 20,),
                 // Room Title
-                Text(viewModel!.room.name , style: Theme.of(context).textTheme.displayLarge!.copyWith(fontWeight: FontWeight.bold , fontSize: 24),),
+                Text(viewModel.room.name , style: Theme.of(context).textTheme.displayLarge!.copyWith(fontWeight: FontWeight.bold , fontSize: 24),),
                 const SizedBox(height: 20,),
-                Text(viewModel!.local!.roomDescription , style: Theme.of(context).textTheme.displayMedium!.copyWith(fontWeight: FontWeight.w400)),
+                Text(viewModel.local!.roomDescription , style: Theme.of(context).textTheme.displayMedium!.copyWith(fontWeight: FontWeight.w400)),
                 const SizedBox(height: 20,),
-                Text(viewModel!.room.description, style: Theme.of(context).textTheme.displayMedium),
+                Text(viewModel.room.description, style: Theme.of(context).textTheme.displayMedium),
                 const SizedBox(height: 50,),
                 ElevatedButton(
                   onPressed: (){
-                    viewModel!.joinRoom();
+                    viewModel.joinRoom();
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(viewModel!.local!.joinRoom)
+                        Text(viewModel.local!.joinRoom)
                       ],
                     ),
                   )
