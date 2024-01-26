@@ -28,18 +28,18 @@ class _CreateRoomViewState extends BaseState<CreateRoomView , CreateRoomViewMode
   @override
   void initState() {
     super.initState();
-    viewModel!.selectedType = viewModel!.types.first;
+    viewModel.selectedType = viewModel.types.first;
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return ChangeNotifierProvider(
-      create: (context) => viewModel!,
+      create: (context) => viewModel,
       child: Consumer<CreateRoomViewModel>(
         builder: (context, value, child) => Scaffold(
           appBar: AppBar(
-            title: Text(viewModel!.local!.createGroup),
+            title: Text(viewModel.local!.createGroup),
           ),
           body: SingleChildScrollView(
             child: Padding(
@@ -48,12 +48,12 @@ class _CreateRoomViewState extends BaseState<CreateRoomView , CreateRoomViewMode
                 children: [
                   //Image Picker
                   InkWell(
-                    onTap: viewModel!.showMyModalBottomSheet,
+                    onTap: viewModel.showMyModalBottomSheet,
                     child: Container(
                       width: 200,
                       height: 200,
                       decoration: BoxDecoration(
-                          color: viewModel!.themeProvider!.isDark()
+                          color: viewModel.themeProvider!.isDark()
                               ? MyTheme.lightPurple
                               : MyTheme.offWhite,
                           borderRadius: BorderRadius.circular(20),
@@ -66,9 +66,9 @@ class _CreateRoomViewState extends BaseState<CreateRoomView , CreateRoomViewMode
                           ]),
                       child: Column(
                         children: [
-                          viewModel!.image == null?
+                          viewModel.image == null?
                           Image.asset(
-                            viewModel!.themeProvider!.isDark()
+                            viewModel.themeProvider!.isDark()
                                 ? "Assets/Images/DarkLogo2.png"
                                 : "Assets/Images/LightLogo2.png",
                           ):Container(
@@ -76,7 +76,7 @@ class _CreateRoomViewState extends BaseState<CreateRoomView , CreateRoomViewMode
                             height: 200,
                             decoration: BoxDecoration(
                                 image: DecorationImage(
-                                  image: FileImage(File(viewModel!.image!.path)),
+                                  image: FileImage(File(viewModel.image!.path)),
                                   fit: BoxFit.cover,
                                 ),
                                 borderRadius: BorderRadius.circular(20)
@@ -88,24 +88,24 @@ class _CreateRoomViewState extends BaseState<CreateRoomView , CreateRoomViewMode
                   ),
                   const SizedBox(height: 20,),
                   Form(
-                    key: viewModel!.formKey,
+                    key: viewModel.formKey,
                     child: Column(
                       children: [
                         // text from e
                         CustomTextFormField(
-                          label: viewModel!.local!.name,
-                          controller: viewModel!.nameController,
+                          label: viewModel.local!.name,
+                          controller: viewModel.nameController,
                           inputType: TextInputType.name,
-                          validator: viewModel!.nameValidation,
+                          validator: viewModel.nameValidation,
                           icon: EvaIcons.file
                         ),
                         const SizedBox(height: 20,),
                         // the text area
                         CustomLongTextFormField(
-                          label: viewModel!.local!.description,
-                          controller: viewModel!.descriptionController,
+                          label: viewModel.local!.description,
+                          controller: viewModel.descriptionController,
                           inputType: TextInputType.text,
-                          validator: viewModel!.descriptionValidation
+                          validator: viewModel.descriptionValidation
                         ),
                         const SizedBox(height: 20,),
                         // the room type dropdown
@@ -113,37 +113,37 @@ class _CreateRoomViewState extends BaseState<CreateRoomView , CreateRoomViewMode
                           padding: const EdgeInsets.symmetric(horizontal: 20 , vertical: 5),
                           width: double.infinity,
                           decoration: BoxDecoration(
-                            color: viewModel!.themeProvider!.isDark()? MyTheme.darkPurple : MyTheme.offWhite,
+                            color: viewModel.themeProvider!.isDark()? MyTheme.darkPurple : MyTheme.offWhite,
                             borderRadius: BorderRadius.circular(15),
                             border: Border.all(width: 2 ,color: MyTheme.lightPurple),
                           ),
                           child: DropdownButton<RoomType>(
                             isExpanded: true,
                             underline: Container(),
-                            value: viewModel!.selectedType,
+                            value: viewModel.selectedType,
                             borderRadius: BorderRadius.circular(20),
-                            dropdownColor: viewModel!.themeProvider!.isDark()? MyTheme.darkPurple : MyTheme.offWhite,
-                            icon: Icon(EvaIcons.arrow_down , color: viewModel!.themeProvider!.isDark()? MyTheme.offWhite : MyTheme.darkPurple),
-                            iconEnabledColor: viewModel!.themeProvider!.isDark()? MyTheme.darkPurple : MyTheme.lightPurple,
-                            items: viewModel!.types.map<DropdownMenuItem<RoomType>>(
+                            dropdownColor: viewModel.themeProvider!.isDark()? MyTheme.darkPurple : MyTheme.offWhite,
+                            icon: Icon(EvaIcons.arrow_down , color: viewModel.themeProvider!.isDark()? MyTheme.offWhite : MyTheme.darkPurple),
+                            iconEnabledColor: viewModel.themeProvider!.isDark()? MyTheme.darkPurple : MyTheme.lightPurple,
+                            items: viewModel.types.map<DropdownMenuItem<RoomType>>(
                                     (e) => DropdownMenuItem<RoomType>(
                                   value: e,
                                   child: TypeDropdownButtonWidget(roomType: e,),
                                 )
                             ).toList(),
-                            onChanged: (value) => viewModel!.changeSelectedType(value!),
+                            onChanged: (value) => viewModel.changeSelectedType(value!),
                           ),
                         ),
                         const SizedBox(height: 20,),
                         // Button
                         ElevatedButton(
-                          onPressed: viewModel!.createRoom,
+                          onPressed: viewModel.createRoom,
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(viewModel!.local!.createGroup),
+                                Text(viewModel.local!.createGroup),
                               ],
                             ),
                           )

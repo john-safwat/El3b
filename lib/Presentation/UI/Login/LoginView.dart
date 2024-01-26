@@ -44,7 +44,7 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
   Widget build(BuildContext context) {
     super.build(context);
     return ChangeNotifierProvider(
-      create: (context) => viewModel!,
+      create: (context) => viewModel,
       child: Consumer<LoginViewModel>(
         builder:(context, value, child) =>  Scaffold(
           body: SingleChildScrollView(
@@ -56,10 +56,10 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
                 children: [
                   // El3b logo
                   InkWell(
-                    onTap: viewModel!.changeTheme,
+                    onTap: viewModel.changeTheme,
                     overlayColor: MaterialStateProperty.all(Colors.transparent),
                     child: Image.asset(
-                      viewModel!.themeProvider!.isDark()
+                      viewModel.themeProvider!.isDark()
                           ? "Assets/Images/DarkLogo2.png"
                           : "Assets/Images/LightLogo2.png",
                       height: 200,
@@ -67,15 +67,15 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
                   ),
                   // Input Form
                   Form(
-                      key: viewModel!.formKey,
+                      key: viewModel.formKey,
                       child: Column(
                         children: [
                           // Email Text From Field
                           CustomTextFormField(
-                            controller: viewModel!.emailController,
+                            controller: viewModel.emailController,
                             inputType: TextInputType.emailAddress,
-                            label: viewModel!.local!.email,
-                            validator: viewModel!.emailValidation,
+                            label: viewModel.local!.email,
+                            validator: viewModel.emailValidation,
                             icon: EvaIcons.email,
                           ),
                           const SizedBox(
@@ -83,10 +83,10 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
                           ),
                           // Password Text From Field
                           CustomPasswordTextFormField(
-                            controller: viewModel!.passwordController,
+                            controller: viewModel.passwordController,
                             inputType: TextInputType.visiblePassword,
-                            label: viewModel!.local!.password,
-                            validator: viewModel!.passwordValidation,
+                            label: viewModel.local!.password,
+                            validator: viewModel.passwordValidation,
                             icon: EvaIcons.lock,
                           ),
                           const SizedBox(
@@ -97,15 +97,15 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               TextButton(
-                                  onPressed: viewModel!.goToForgetPasswordScreen,
+                                  onPressed: viewModel.goToForgetPasswordScreen,
                                   child: Text(
-                                    viewModel!.local!.forgetPassword,
+                                    viewModel.local!.forgetPassword,
                                     style: Theme.of(context)
                                         .textTheme
                                         .displayMedium!
                                         .copyWith(
                                             color:
-                                                viewModel!.themeProvider!.isDark()
+                                                viewModel.themeProvider!.isDark()
                                                     ? MyTheme.offWhite
                                                     : MyTheme.lightPurple,
                                             fontStyle: FontStyle.italic,
@@ -118,13 +118,13 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
                           ),
                           // Login Button
                           ElevatedButton(
-                              onPressed: viewModel!.signInWithEmailAndPassword,
+                              onPressed: viewModel.signInWithEmailAndPassword,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.all(10),
-                                    child: Text(viewModel!.local!.login),
+                                    child: Text(viewModel.local!.login),
                                   ),
                                 ],
                               )),
@@ -136,19 +136,19 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                viewModel!.local!.doNotHaveAccount,
+                                viewModel.local!.doNotHaveAccount,
                                 style: Theme.of(context)
                                     .textTheme
                                     .displayMedium!
                                     .copyWith(
-                                        color: viewModel!.themeProvider!.isDark()
+                                        color: viewModel.themeProvider!.isDark()
                                             ? MyTheme.offWhite
                                             : MyTheme.darkPurple),
                               ),
                               TextButton(
-                                  onPressed: viewModel!.goToRegistrationScreen,
+                                  onPressed: viewModel.goToRegistrationScreen,
                                   child: Text(
-                                    viewModel!.local!.createAccount,
+                                    viewModel.local!.createAccount,
                                     style: Theme.of(context)
                                         .textTheme
                                         .displayMedium!
@@ -174,7 +174,7 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
                         ),
                       ),
                       const SizedBox(width: 15),
-                      Text(viewModel!.local!.or,
+                      Text(viewModel.local!.or,
                           style: Theme.of(context).textTheme.displayMedium),
                       const SizedBox(width: 15),
                       const Expanded(
@@ -190,17 +190,17 @@ class _LoginViewState extends BaseState<LoginView, LoginViewModel>
                   DirectPlatformLogin(
                     darkImage: "Assets/SVG/google_Dark.svg",
                     lightImage: "Assets/SVG/google_Light.svg",
-                    title: viewModel!.local!.googleLogin,
-                    login: viewModel!.loginWithGoogle,
-                    loading: viewModel!.googleLogin,
+                    title: viewModel.local!.googleLogin,
+                    login: viewModel.loginWithGoogle,
+                    loading: viewModel.googleLogin,
                   ),
                   const SizedBox(height: 20),
                   DirectPlatformLogin(
                     darkImage: "Assets/SVG/facebook_Dark.svg",
                     lightImage: "Assets/SVG/facebook_Light.svg",
-                    title: viewModel!.local!.facebookLogin,
-                    login: viewModel!.loginWithFacebook,
-                    loading: viewModel!.facebookLogin,
+                    title: viewModel.local!.facebookLogin,
+                    login: (){},
+                    loading: viewModel.facebookLogin,
                   ),
                   const SizedBox(height: 20),
                   const LanguageSwitch(),

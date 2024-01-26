@@ -20,7 +20,7 @@ class _AboutViewState extends BaseState<AboutView, AboutViewModel>
     super.build(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(viewModel!.local!.aboutUs),
+        title: Text(viewModel.local!.aboutUs),
       ),
       body: ScrollConfiguration(
           behavior: const ScrollBehavior().copyWith(overscroll: false),
@@ -35,7 +35,7 @@ class _AboutViewState extends BaseState<AboutView, AboutViewModel>
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
-                  viewModel!.local!.appVersion,
+                  viewModel.local!.appVersion,
                   style: Theme.of(context).textTheme.displayLarge!.copyWith(
                       color: Theme.of(context).scaffoldBackgroundColor,
                       fontWeight: FontWeight.bold),
@@ -47,7 +47,7 @@ class _AboutViewState extends BaseState<AboutView, AboutViewModel>
                 child: Image.asset("Assets/Images/me.jpg"),
               ),
               const SizedBox(height: 20),
-              Text(viewModel!.local!.aboutUsMessage1, style: Theme.of(context).textTheme.displayLarge)
+              Text(viewModel.local!.aboutUsMessage1, style: Theme.of(context).textTheme.displayLarge)
             ],
           )),
     );

@@ -27,41 +27,40 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> extends State<T> implements BaseNavigator{
-  VM? viewModel;
+  late VM viewModel;
 
   @override
   void initState() {
     super.initState();
     viewModel = initViewModel();
-    viewModel!.navigator = this;
-    viewModel!.appConfigProvider = Provider.of<AppConfigProvider>(context , listen: false);
-    viewModel!.dioErrorHandler = injectDioErrorHandler();
-    viewModel!.firebaseLoginErrorHandler = injectFirebaseLoginErrorHandler();
-    viewModel!.firebaseImageDatabaseExceptionsHandler = injectFirebaseImageDatabaseExceptionsHandler();
-    viewModel!.firebaseFireStoreErrorHandler = injectFirebaseFireStoreErrorHandler();
-    viewModel!.firebaseAuthExceptionHandler = injectFirebaseAuthExceptionHandler();
-    viewModel!.addGameToWishListUseCase = injectAddGameToWishListUseCase();
-    viewModel!.deleteGameFromWishListUseCase = injectDeleteGameFromWishListUseCase();
+    viewModel.navigator = this;
+    viewModel.appConfigProvider = Provider.of<AppConfigProvider>(context , listen: false);
+    viewModel.dioErrorHandler = injectDioErrorHandler();
+    viewModel.firebaseLoginErrorHandler = injectFirebaseLoginErrorHandler();
+    viewModel.firebaseImageDatabaseExceptionsHandler = injectFirebaseImageDatabaseExceptionsHandler();
+    viewModel.firebaseFireStoreErrorHandler = injectFirebaseFireStoreErrorHandler();
+    viewModel.firebaseAuthExceptionHandler = injectFirebaseAuthExceptionHandler();
+    viewModel.addGameToWishListUseCase = injectAddGameToWishListUseCase();
+    viewModel.deleteGameFromWishListUseCase = injectDeleteGameFromWishListUseCase();
   }
 
   @override
   void dispose() {
     super.dispose();
-    viewModel!.navigator = null ;
-    viewModel!.appConfigProvider = null;
-    viewModel!.themeProvider = null ;
-    viewModel!.localProvider =null;
-    viewModel =null;
+    viewModel.navigator = null ;
+    viewModel.appConfigProvider = null;
+    viewModel.themeProvider = null ;
+    viewModel.localProvider =null;
   }
 
   VM initViewModel();
 
   @override
   Widget build(BuildContext context) {
-    viewModel!.themeProvider = Provider.of<ThemeProvider>(context);
-    viewModel!.localProvider = Provider.of<LocalProvider>(context);
-    viewModel!.local = AppLocalizations.of(context)!;
-    viewModel!.mediaQuery = MediaQuery.of(context).size;
+    viewModel.themeProvider = Provider.of<ThemeProvider>(context);
+    viewModel.localProvider = Provider.of<LocalProvider>(context);
+    viewModel.local = AppLocalizations.of(context)!;
+    viewModel.mediaQuery = MediaQuery.of(context).size;
     return const SizedBox();
   }
 
@@ -125,7 +124,7 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
       displayCloseButton: false,
       progressIndicatorBackground: Colors.transparent,
       showProgressIndicator: false,
-      width: viewModel!.mediaQuery!.width,
+      width: viewModel.mediaQuery!.width,
       radius: 15,
       height: 50,
     ).show(context);
@@ -141,7 +140,7 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
       displayCloseButton: false,
       progressIndicatorBackground: Colors.transparent,
       showProgressIndicator: false,
-      width: viewModel!.mediaQuery!.width,
+      width: viewModel.mediaQuery!.width,
       radius: 15,
       height: 50,
     ).show(context);
@@ -162,7 +161,7 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
       displayCloseButton: false,
       progressIndicatorBackground: Colors.transparent,
       showProgressIndicator: false,
-      width: viewModel!.mediaQuery!.width,
+      width: viewModel.mediaQuery!.width,
       radius: 15,
       height: height,
     ).show(context);
@@ -185,13 +184,13 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
         context: context,
         isScrollControlled: true,
         builder: (context) => MyBottomSheetWidget(
-          title: viewModel!.local!.selectPickingImageMethod,
-          pickImageFromCamera: viewModel!.pickImageFromCamera,
-          cameraTitle: viewModel!.local!.camera,
-          galleryTitle: viewModel!.local!.gallery,
-          pickImageFromGallery: viewModel!.pickImageFromGallery,
+          title: viewModel.local!.selectPickingImageMethod,
+          pickImageFromCamera: viewModel.pickImageFromCamera,
+          cameraTitle: viewModel.local!.camera,
+          galleryTitle: viewModel.local!.gallery,
+          pickImageFromGallery: viewModel.pickImageFromGallery,
         ),
-        backgroundColor: viewModel!.themeProvider!.isDark()
+        backgroundColor: viewModel.themeProvider!.isDark()
             ? MyTheme.purple
             : MyTheme.offWhite,
         shape: const RoundedRectangleBorder(

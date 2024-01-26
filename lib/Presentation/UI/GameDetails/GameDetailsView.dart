@@ -41,19 +41,19 @@ class _GameDetailsViewState extends BaseState<GameDetailsView , GameDetailsViewM
   @override
   void initState() {
     super.initState();
-    viewModel!.getGameDetails();
+    viewModel.getGameDetails();
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return ChangeNotifierProvider(
-      create: (context) => viewModel!,
+      create: (context) => viewModel,
       child: Stack(
         children: [
           // the backGround Image
           CachedNetworkImage(
-            imageUrl: viewModel!.game.backgroundImage??"",
+            imageUrl: viewModel.game.backgroundImage??"",
             imageBuilder: (context, imageProvider) => Stack(
               children: [
                 Image(image: imageProvider,
@@ -85,7 +85,7 @@ class _GameDetailsViewState extends BaseState<GameDetailsView , GameDetailsViewM
             backgroundColor: Colors.transparent,
             appBar: AppBar(
               title: Text(
-                viewModel!.game.name??"No Name",
+                viewModel.game.name??"No Name",
               ),
             ),
             body: ScrollConfiguration(
@@ -93,7 +93,7 @@ class _GameDetailsViewState extends BaseState<GameDetailsView , GameDetailsViewM
               child: ListView(
                 children: [
                   // the game screen shots
-                  ImagesSlider(images: viewModel!.game.shortScreenshots??[]),
+                  ImagesSlider(images: viewModel.game.shortScreenshots??[]),
                   Consumer<GameDetailsViewModel>(
                       builder: (context, value, child) {
                         if (value.gameErrorMessage != null){

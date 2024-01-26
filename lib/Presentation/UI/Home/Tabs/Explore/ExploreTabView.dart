@@ -23,14 +23,14 @@ class _ExploreTabViewState
   @override
   void initState() {
     super.initState();
-    viewModel!.getGenres();
+    viewModel.getGenres();
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return ChangeNotifierProvider(
-      create: (context) => viewModel!,
+      create: (context) => viewModel,
       builder: (context, child) => Scaffold(
         appBar: AppBar(
           toolbarHeight: 70,
@@ -38,7 +38,7 @@ class _ExploreTabViewState
           centerTitle: true,
           leadingWidth: 0,
           title: CustomSearchBarButton(
-            navigation: viewModel!.goToSearchScreen,
+            navigation: viewModel.goToSearchScreen,
           ),
         ),
         body: Consumer<ExploreTabViewModel>(

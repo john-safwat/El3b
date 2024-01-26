@@ -47,11 +47,7 @@ class EditProfileViewModel extends BaseViewModel<EditProfileNavigator> {
       selectedDate = user!.birthDate;
       notifyListeners();
     }catch(e){
-      navigator!.goBack();
-      navigator!.showFailMessage(
-        message: handleExceptions(e as Exception),
-        posActionTitle: local!.tryAgain,
-      );
+      errorMessage = handleExceptions(e as Exception);
       notifyListeners();
     }
   }

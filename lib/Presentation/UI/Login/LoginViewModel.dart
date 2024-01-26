@@ -204,61 +204,61 @@ class LoginViewModel extends BaseViewModel<LoginNavigator>{
     }
   }
 
-  // login with facebook
-  // in this function login with facebook if user doesn't exist it will create a new user in firebase auth
-  void loginWithFacebook()async{
-    navigator!.showLoading(message: local!.loggingYouIn);
-    try{
-      // sing user in using facebook sign in
-      var response = await signInWithFacebookUseCase.invoke();
-      // update Provider
-      appConfigProvider!.updateUser(user: response);
-      try{
-        // check if user exist in data base to make sure that we have the user info
-        var exist = await checkIfUserExistUseCase.invoke(uid: response.uid);
-        // if exist navigate to home screen else add user data to database
-        if(exist) {
-          navigator!.goBack();
-          navigator!.showSuccessMessage(
-              message: local!.welcomeBack,
-              posActionTitle: local!.ok,
-              posAction: goToHomeScreen
-          );
-        }else {
-          try{
-            // add user data to database
-            await addUserUseCase.invoke(uid: response.uid,
-                myUser: MyUser(
-                    name: response.displayName!,
-                    email: response.email!,
-                    password: "Private",
-                    image: response.photoURL??"",
-                    phoneNumber: "",
-                    bio: local!.defaultBio,
-                    birthDate: "--/--/----"
-                )
-            );
-            navigator!.goBack();
-            navigator!.showSuccessMessage(
-                message: local!.welcomeBack,
-                posActionTitle: local!.ok,
-                posAction: goToExtraInfoScreen
-            );
-          }catch(e){
-            throw FirebaseFireStoreDatabaseException(errorMessage: local!.tryAgain);
-          }
-        }
-      }catch(e){
-        throw FirebaseFireStoreDatabaseException(errorMessage: local!.tryAgain);
-      }
-    }catch(e){
-      navigator!.goBack();
-      navigator!.showFailMessage(
-        message: handleExceptions(e as Exception),
-        posActionTitle: local!.tryAgain,
-      );
-    }
-  }
+  // // login with facebook
+  // // in this function login with facebook if user doesn't exist it will create a new user in firebase auth
+  // void loginWithFacebook()async{
+  //   navigator!.showLoading(message: local!.loggingYouIn);
+  //   try{
+  //     // sing user in using facebook sign in
+  //     var response = await signInWithFacebookUseCase.invoke();
+  //     // update Provider
+  //     appConfigProvider!.updateUser(user: response);
+  //     try{
+  //       // check if user exist in data base to make sure that we have the user info
+  //       var exist = await checkIfUserExistUseCase.invoke(uid: response.uid);
+  //       // if exist navigate to home screen else add user data to database
+  //       if(exist) {
+  //         navigator!.goBack();
+  //         navigator!.showSuccessMessage(
+  //             message: local!.welcomeBack,
+  //             posActionTitle: local!.ok,
+  //             posAction: goToHomeScreen
+  //         );
+  //       }else {
+  //         try{
+  //           // add user data to database
+  //           await addUserUseCase.invoke(uid: response.uid,
+  //               myUser: MyUser(
+  //                   name: response.displayName!,
+  //                   email: response.email!,
+  //                   password: "Private",
+  //                   image: response.photoURL??"",
+  //                   phoneNumber: "",
+  //                   bio: local!.defaultBio,
+  //                   birthDate: "--/--/----"
+  //               )
+  //           );
+  //           navigator!.goBack();
+  //           navigator!.showSuccessMessage(
+  //               message: local!.welcomeBack,
+  //               posActionTitle: local!.ok,
+  //               posAction: goToExtraInfoScreen
+  //           );
+  //         }catch(e){
+  //           throw FirebaseFireStoreDatabaseException(errorMessage: local!.tryAgain);
+  //         }
+  //       }
+  //     }catch(e){
+  //       throw FirebaseFireStoreDatabaseException(errorMessage: local!.tryAgain);
+  //     }
+  //   }catch(e){
+  //     navigator!.goBack();
+  //     navigator!.showFailMessage(
+  //       message: handleExceptions(e as Exception),
+  //       posActionTitle: local!.tryAgain,
+  //     );
+  //   }
+  // }
 
   Future<void> sendVerificationMail()async{
     navigator!.goBack();

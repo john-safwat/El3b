@@ -32,7 +32,7 @@ class _RegisterViewState extends BaseState<RegisterView, RegisterViewModel>
   Widget build(BuildContext context) {
     super.build(context);
     return ChangeNotifierProvider(
-      create: (context) => viewModel!,
+      create: (context) => viewModel,
       builder: (context, child) => Consumer<RegisterViewModel>(
         builder: (context, value, child) =>  Scaffold(
           body: SingleChildScrollView(
@@ -47,12 +47,12 @@ class _RegisterViewState extends BaseState<RegisterView, RegisterViewModel>
                   ),
                   //Image Picker
                   InkWell(
-                    onTap: viewModel!.showMyModalBottomSheet,
+                    onTap: viewModel.showMyModalBottomSheet,
                     child: Container(
                       width: 200,
                       height: 200,
                       decoration: BoxDecoration(
-                          color: viewModel!.themeProvider!.isDark()
+                          color: viewModel.themeProvider!.isDark()
                               ? MyTheme.lightPurple
                               : MyTheme.offWhite,
                           borderRadius: BorderRadius.circular(20),
@@ -65,9 +65,9 @@ class _RegisterViewState extends BaseState<RegisterView, RegisterViewModel>
                           ]),
                       child: Column(
                         children: [
-                          viewModel!.image == null?
+                          viewModel.image == null?
                           Image.asset(
-                            viewModel!.themeProvider!.isDark()
+                            viewModel.themeProvider!.isDark()
                                 ? "Assets/Images/DarkLogo2.png"
                                 : "Assets/Images/LightLogo2.png",
                           ):Container(
@@ -75,7 +75,7 @@ class _RegisterViewState extends BaseState<RegisterView, RegisterViewModel>
                             height: 200,
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: FileImage(File(viewModel!.image!.path)),
+                                image: FileImage(File(viewModel.image!.path)),
                                 fit: BoxFit.cover,
                               ),
                               borderRadius: BorderRadius.circular(20)
@@ -89,14 +89,14 @@ class _RegisterViewState extends BaseState<RegisterView, RegisterViewModel>
                     height: 30,
                   ),
                   Form(
-                      key: viewModel!.formKey,
+                      key: viewModel.formKey,
                       child: Column(
                         children: [
                           // Name Text Filed
                           CustomTextFormField(
-                            label: viewModel!.local!.name,
-                            controller: viewModel!.nameController,
-                            validator: viewModel!.nameValidation,
+                            label: viewModel.local!.name,
+                            controller: viewModel.nameController,
+                            validator: viewModel.nameValidation,
                             inputType: TextInputType.name,
                             icon: EvaIcons.file,
                           ),
@@ -105,10 +105,10 @@ class _RegisterViewState extends BaseState<RegisterView, RegisterViewModel>
                           ),
                           // Email Text Filed
                           CustomTextFormField(
-                            label: viewModel!.local!.email,
-                            controller: viewModel!.emailController,
+                            label: viewModel.local!.email,
+                            controller: viewModel.emailController,
                             inputType: TextInputType.emailAddress,
-                            validator: viewModel!.emailValidation,
+                            validator: viewModel.emailValidation,
                             icon: EvaIcons.email,
                           ),
                           const SizedBox(
@@ -116,31 +116,31 @@ class _RegisterViewState extends BaseState<RegisterView, RegisterViewModel>
                           ),
                           // Password Text Filed
                           CustomPasswordTextFormField(
-                              label: viewModel!.local!.password,
-                              controller: viewModel!.passwordController,
+                              label: viewModel.local!.password,
+                              controller: viewModel.passwordController,
                               inputType: TextInputType.visiblePassword,
-                              validator: viewModel!.passwordValidation,
+                              validator: viewModel.passwordValidation,
                               icon: EvaIcons.lock),
                           const SizedBox(height: 20),
                           // Password Confirmation Text Filed
                           CustomPasswordTextFormField(
-                              label: viewModel!.local!.passwordConfirmation,
-                              controller: viewModel!.passwordConfirmationController,
+                              label: viewModel.local!.passwordConfirmation,
+                              controller: viewModel.passwordConfirmationController,
                               inputType: TextInputType.visiblePassword,
-                              validator: viewModel!.passwordConfirmationValidation,
+                              validator: viewModel.passwordConfirmationValidation,
                               icon: EvaIcons.lock),
                           const SizedBox(height: 30),
                           // Create Account Button
                           ElevatedButton(
                               onPressed: () {
-                                viewModel!.createAccount();
+                                viewModel.createAccount();
                               },
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.all(10),
-                                    child: Text(viewModel!.local!.createNewAccount),
+                                    child: Text(viewModel.local!.createNewAccount),
                                   ),
                                 ],
                               )),
@@ -156,19 +156,19 @@ class _RegisterViewState extends BaseState<RegisterView, RegisterViewModel>
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        viewModel!.local!.alreadyHaveAccount,
+                        viewModel.local!.alreadyHaveAccount,
                         style: Theme.of(context)
                             .textTheme
                             .displayMedium!
                             .copyWith(
-                            color: viewModel!.themeProvider!.isDark()
+                            color: viewModel.themeProvider!.isDark()
                                 ? MyTheme.offWhite
                                 : MyTheme.darkPurple),
                       ),
                       TextButton(
-                        onPressed: viewModel!.goToLoginScreen,
+                        onPressed: viewModel.goToLoginScreen,
                         child: Text(
-                          viewModel!.local!.login,
+                          viewModel.local!.login,
                           style:
                           Theme.of(context).textTheme.displayMedium!.copyWith(
                             color: MyTheme.lightPurple,
