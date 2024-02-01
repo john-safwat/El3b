@@ -1,8 +1,10 @@
 import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Presentation/UI/About/AboutNavigator.dart';
 import 'package:El3b/Presentation/UI/About/AboutViewModel.dart';
+import 'package:El3b/Presentation/UI/About/Widgets/ListPoints.dart';
 import 'package:El3b/Presentation/UI/About/Widgets/TextCard.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class AboutView extends StatefulWidget {
   static const String routeName = "About";
@@ -27,27 +29,39 @@ class _AboutViewState extends BaseState<AboutView, AboutViewModel>
           child: ListView(
             padding: const EdgeInsets.all(20),
             children: [
-              Container(
-                alignment: Alignment.center,
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Text(
-                  viewModel.local!.appVersion,
-                  style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                      color: Theme.of(context).scaffoldBackgroundColor,
-                      fontWeight: FontWeight.bold),
-                ),
+              Text(
+                "El3b",
+                style: Theme.of(context)
+                    .textTheme
+                    .displayLarge!
+                    .copyWith(fontSize: 40, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 20),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Image.asset("Assets/Images/me.jpg"),
+              const SizedBox(height: 10),
+              Text(
+                viewModel.local!.aboutUsMessage1,
+                style: Theme.of(context).textTheme.displayLarge,
+                textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 20),
-              Text(viewModel.local!.aboutUsMessage1, style: Theme.of(context).textTheme.displayLarge)
+              const SizedBox(height: 30),
+              Image.asset("Assets/Images/aboutUs.png"),
+              const SizedBox(height: 50),
+              Text(
+                viewModel.local!.aboutUsMessage2,
+                style: Theme.of(context).textTheme.displayLarge,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 30),
+              TextCard(content: viewModel.local!.mainFeatures),
+              const SizedBox(height: 30),
+              ListPoints(content: viewModel.local!.aboutUsMessage3),
+              ListPoints(content: viewModel.local!.aboutUsMessage4),
+              ListPoints(content: viewModel.local!.aboutUsMessage5),
+              ListPoints(content: viewModel.local!.aboutUsMessage6),
+              ListPoints(content: viewModel.local!.aboutUsMessage7),
+              Lottie.asset("Assets/Animations/aboutUs2.json"),
+              const SizedBox(height: 30),
+              TextCard(content: viewModel.local!.appVersion),
             ],
           )),
     );

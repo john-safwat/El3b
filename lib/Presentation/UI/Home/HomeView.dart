@@ -18,7 +18,6 @@ class _HomeViewState extends BaseState<HomeView , HomeViewModel> implements Home
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    debugPrint("this ew is john");
 
     return ChangeNotifierProvider(
       create: (context) => viewModel,
