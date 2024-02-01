@@ -49,8 +49,8 @@ class _RegisterViewState extends BaseState<RegisterView, RegisterViewModel>
                   InkWell(
                     onTap: viewModel.showMyModalBottomSheet,
                     child: Container(
-                      width: 200,
-                      height: 200,
+                      width: viewModel.mediaQuery!.width - 40,
+                      height: viewModel.mediaQuery!.width - 40,
                       decoration: BoxDecoration(
                           color: viewModel.themeProvider!.isDark()
                               ? MyTheme.lightPurple
@@ -71,8 +71,8 @@ class _RegisterViewState extends BaseState<RegisterView, RegisterViewModel>
                                 ? "Assets/Images/DarkLogo2.png"
                                 : "Assets/Images/LightLogo2.png",
                           ):Container(
-                            width: 200,
-                            height: 200,
+                            width: viewModel.mediaQuery!.width - 40,
+                            height: viewModel.mediaQuery!.width - 40,
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image: FileImage(File(viewModel.image!.path)),

@@ -18,9 +18,8 @@ class EditProfileViewModel extends BaseViewModel<EditProfileNavigator> {
   late String selectedDate;
 
   LoadUserDataUseCase loadUserDataUseCase;
-  ResetPasswordUseCase resetPasswordUseCase;
   UpdateUserProfileUseCase updateUserProfileUseCase;
-  EditProfileViewModel({required this.loadUserDataUseCase ,required this.resetPasswordUseCase , required this.updateUserProfileUseCase});
+  EditProfileViewModel({required this.loadUserDataUseCase ,required this.updateUserProfileUseCase});
 
   MyUser? user;
   String? errorMessage;
@@ -121,19 +120,8 @@ class EditProfileViewModel extends BaseViewModel<EditProfileNavigator> {
 
 
   // function to reset user password
-  changePassword()async{
-    navigator!.showLoading(message: local!.sendingEmail);
-    try {
-      await resetPasswordUseCase.invoke(email: appConfigProvider!.getUser()!.email??"");
-      navigator!.goBack();
-      navigator!.showSuccessMessage(
-          message: local!.emailSentSuccessfully,
-          posActionTitle: local!.ok
-      );
-    }catch (e){
-      navigator!.goBack();
-      navigator!.showFailMessage(message: handleExceptions(e as Exception), negativeActionTitle: local!.tryAgain);
-    }
+  changePassword(){
+    navigator!.goToResetPasswordScreen();
   }
 
 }

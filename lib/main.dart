@@ -13,6 +13,7 @@ import 'package:El3b/Presentation/UI/History/HistoryView.dart';
 import 'package:El3b/Presentation/UI/Intro/IntroView.dart';
 import 'package:El3b/Presentation/UI/Login/LoginView.dart';
 import 'package:El3b/Presentation/UI/Register/RegisterView.dart';
+import 'package:El3b/Presentation/UI/ResetPassword/ResetPasswordView.dart';
 import 'package:El3b/Presentation/UI/Splash/SplashScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -92,7 +93,8 @@ class MyApp extends StatelessWidget {
         HistoryView.routeName :(_) => const HistoryView(),
         FeedbackView.routeName :(_) => const FeedbackView(),
         AboutView.routeName :(_) => const AboutView(),
-        CreateRoomView.routeName :(_) => const CreateRoomView()
+        CreateRoomView.routeName :(_) => const CreateRoomView(),
+        ResetPasswordView.routeName : (_) => const ResetPasswordView()
       },
       initialRoute: SplashScreen.routeName,
       theme: MyTheme.lightTheme,
