@@ -7,19 +7,17 @@ class TextCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Container(
-      padding: const EdgeInsets.symmetric(vertical: 15 , horizontal: 25),
+      alignment: Alignment.center,
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-          color: Theme.of(context).primaryColor,
-          borderRadius: BorderRadius.circular(20)),
-      child: Center(
-        child: Text(
-          content,
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.titleLarge!.copyWith(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-              color: Theme.of(context).scaffoldBackgroundColor),
-        ),
+        color: Theme.of(context).primaryColor,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Text(
+        content,
+        style: Theme.of(context).textTheme.displayLarge!.copyWith(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            fontWeight: FontWeight.bold),
       ),
     );
   }

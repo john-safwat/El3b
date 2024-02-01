@@ -20,7 +20,7 @@ class FreeToPlayGamesList extends StatelessWidget {
           animateToClosest: false,
           viewportFraction: 0.7,
           height: 150,
-          initialPage: 0,
+          initialPage: 26,
           enableInfiniteScroll: true,
           enlargeCenterPage: true,
           enlargeStrategy: CenterPageEnlargeStrategy.height

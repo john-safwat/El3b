@@ -15,8 +15,14 @@ class ThemeSwitch extends StatelessWidget {
       current: theme.getTheme(),
       values: const [ThemeMode.dark, ThemeMode.light],
       height: 40,
-      colorBuilder: (value) => MyTheme.lightPurple,
-      iconBuilder: (value, size, foreground) {
+      style: ToggleStyle(
+        indicatorColor: MyTheme.lightPurple,
+        borderRadius: BorderRadius.circular(15),
+        backgroundColor: Colors.transparent,
+        borderColor: MyTheme.lightPurple,
+      ),
+      spacing:10,
+      iconBuilder:(value, foreground){
         if (value == ThemeMode.dark) {
           return Icon(EvaIcons.moon , color: theme.isDark()? MyTheme.offWhite : MyTheme.lightPurple ,);
         } else {
@@ -24,11 +30,8 @@ class ThemeSwitch extends StatelessWidget {
         }
       },
       onChanged: (p0) => theme.changeTheme(theme.isDark()? ThemeMode.light : ThemeMode.dark),
-      transitionType: ForegroundIndicatorTransitionType.fading,
-      borderRadius: BorderRadius.circular(12),
-      borderColor: MyTheme.lightPurple,
       borderWidth: 1,
-      dif: 10,
+
     );
   }
 }

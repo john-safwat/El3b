@@ -28,7 +28,6 @@ class _ProfileTabViewState extends BaseState<ProfileTabView , ProfileTabViewMode
   Widget build(BuildContext context) {
     super.build(context);
     viewModel.setButtonsData();
-    debugPrint("john");
     return  ChangeNotifierProvider(
       create: (context) => viewModel,
       child: Column(

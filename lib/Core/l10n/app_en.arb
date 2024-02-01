@@ -129,5 +129,12 @@
   "permissionDenied" : "Permission Denied",
   "makeItYourOwn" : "Crafted exclusively for you, customize your experience with personal flair.",
   "appVersion" : "App Version : 1.0.1",
-  "aboutUsMessage1" : "Hello\nI'm John Safwat The Creator of This App"
+  "mainFeatures": "Main Features",
+  "aboutUsMessage1" : "Your Gateway to the Gaming Galaxy!",
+  "aboutUsMessage2" : "El3b, the brainchild of Cairo-born developer John Safwat, is more than just a mobile app - it's a one-stop shop for all your gaming needs! Whether you're a seasoned veteran or a curious newbie, El3b has something for everyone.",
+  "aboutUsMessage3" : "Free-to-play haven: Dive into a vast library of free-to-play games across various genres. Find hidden gems, explore new experiences, and have endless fun - all without spending a dime!",
+  "aboutUsMessage4" : "Giveaways galore: Keep your eyes peeled for exciting giveaways of premium games. El3b partners with developers to bring you exclusive opportunities to snag coveted titles for free!",
+  "aboutUsMessage5" : "Gamepedia at your fingertips: No more scouring the internet for info. El3b provides detailed descriptions, captivating images, developer insights, tag-based categorization, achievement lists, and user ratings for every game. Make informed choices and dive into experiences that truly resonate with you!",
+  "aboutUsMessage6" : "Search smarter, play faster: Find your next gaming obsession with El3b's intuitive search function. Filter by genre, tags, or specific keywords to discover hidden gems or revisit old favorites.",
+  "aboutUsMessage7" : "Connect with fellow gamers: El3b fosters a vibrant community with its built-in chat feature. Discuss strategies, share experiences, and forge friendships with fellow players who share your passion."
 }

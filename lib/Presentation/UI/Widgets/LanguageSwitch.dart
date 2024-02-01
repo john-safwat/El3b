@@ -15,8 +15,14 @@ class LanguageSwitch extends StatelessWidget {
       current: localProvider.getLocal(),
       values: const ["en", "ar"],
       height: 40,
-      colorBuilder: (value) => MyTheme.lightPurple,
-      iconBuilder: (value, size, foreground) {
+      style: ToggleStyle(
+        borderRadius: BorderRadius.circular(15),
+        backgroundColor: Colors.transparent,
+        borderColor: MyTheme.lightPurple,
+        indicatorColor: MyTheme.lightPurple
+      ),
+      spacing:10,
+      iconBuilder: (value, foreground) {
         if (value == "en") {
           return Flag(Flags.united_kingdom);
         } else {
@@ -24,11 +30,7 @@ class LanguageSwitch extends StatelessWidget {
         }
       },
       onChanged: (p0) => localProvider.isEn()? localProvider.changeLocal("ar"):localProvider.changeLocal("en"),
-      transitionType: ForegroundIndicatorTransitionType.fading,
-      borderRadius: BorderRadius.circular(12),
-      borderColor: MyTheme.lightPurple,
-      borderWidth: 1,
-      dif: 10,
+      borderWidth: 2,
     );
   }
 }
