@@ -122,4 +122,9 @@ class UserRepositoryImpl implements UserRepository {
     var response = await authRemoteDatasource.updateUserDisplayName(name: name);
     return response;
   }
+
+  @override
+  Future<void> updatePassword({required String email, required String password, required String newPassword}) async{
+    await authRemoteDatasource.updatePassword(email: email, password: password, newPassword: newPassword);
+  }
 }

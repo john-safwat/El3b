@@ -7,6 +7,7 @@ import 'package:El3b/Domain/UseCase/ResetPasswordUseCase.dart';
 import 'package:El3b/Domain/UseCase/UpdateUserProfileUseCase.dart';
 import 'package:El3b/Presentation/UI/EditProfile/EditProfileNavigator.dart';
 import 'package:El3b/Presentation/UI/EditProfile/EditProfileViewModel.dart';
+import 'package:El3b/Presentation/UI/ResetPassword/ResetPasswordView.dart';
 import 'package:El3b/Presentation/UI/Widgets/CustomLongTextFormField.dart';
 import 'package:El3b/Presentation/UI/Widgets/CustomTextFormField.dart';
 import 'package:flutter/material.dart';
@@ -60,8 +61,8 @@ class _EditProfileViewState extends BaseState<EditProfileView , EditProfileViewM
                     InkWell(
                       onTap: viewModel.showMyModalBottomSheet,
                       child: Container(
-                        width: 200,
-                        height: 200,
+                        width: viewModel.mediaQuery!.width - 40,
+                        height: viewModel.mediaQuery!.width - 40,
                         decoration: BoxDecoration(
                             color: viewModel.themeProvider!.isDark()
                                 ? MyTheme.lightPurple
@@ -77,8 +78,8 @@ class _EditProfileViewState extends BaseState<EditProfileView , EditProfileViewM
                         child: Column(
                           children: [
                             viewModel.image == null? viewModel.user!.image != ""?Container(
-                          width: 200,
-                          height: 200,
+                          width: viewModel.mediaQuery!.width - 40,
+                          height: viewModel.mediaQuery!.width - 40,
                           decoration: BoxDecoration(
                               image: DecorationImage(
                                 image: NetworkImage(viewModel.user!.image),
@@ -92,8 +93,8 @@ class _EditProfileViewState extends BaseState<EditProfileView , EditProfileViewM
                                   ? "Assets/Images/DarkLogo2.png"
                                   : "Assets/Images/LightLogo2.png",
                             ):Container(
-                              width: 200,
-                              height: 200,
+                              width: viewModel.mediaQuery!.width - 40,
+                              height: viewModel.mediaQuery!.width - 40,
                               decoration: BoxDecoration(
                                   image: DecorationImage(
                                     image: FileImage(File(viewModel.image!.path)),
@@ -193,7 +194,6 @@ class _EditProfileViewState extends BaseState<EditProfileView , EditProfileViewM
   EditProfileViewModel initViewModel() {
     return EditProfileViewModel(
       loadUserDataUseCase: injectLoadUserDataUseCase(),
-      resetPasswordUseCase: injectResetPasswordUseCase(),
       updateUserProfileUseCase: injectUpdateUserProfileUseCase()
     );
   }
@@ -234,5 +234,10 @@ class _EditProfileViewState extends BaseState<EditProfileView , EditProfileViewM
     );
 
     viewModel.changeDate(newDateTime);
+  }
+
+  @override
+  goToResetPasswordScreen() {
+    Navigator.pushNamed(context, ResetPasswordView.routeName);
   }
 }
