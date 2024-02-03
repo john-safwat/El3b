@@ -35,6 +35,41 @@ class _ChatRoomViewState extends BaseState<ChatRoomView, ChatRoomViewModel>
         builder: (context, value, child) => Scaffold(
           appBar: AppBar(
             title: Text(widget.room.name),
+            actions: [
+              PopupMenuButton<Widget>(
+                color: Theme.of(context).scaffoldBackgroundColor,
+                itemBuilder: (BuildContext context) => <PopupMenuEntry<Widget>>[
+                  PopupMenuItem<Widget>(
+                    onTap: () => value.onMoreInfoPress(),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          value.local!.info,
+                          style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem<Widget>(
+                    onTap: () => value.onExitPress(),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          value.local!.exit,
+                          style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
           body: Column(
             children: [

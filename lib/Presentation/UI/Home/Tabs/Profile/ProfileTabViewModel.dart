@@ -17,7 +17,13 @@ class ProfileTabViewModel extends BaseViewModel <ProfileTabNavigator> {
     buttonsData = [
       Button(
           id: 1,
-          icon: Bootstrap.clock_history,
+          icon: EvaIcons.lock,
+          title: local!.changePassword,
+          onClickListener: goToResetPasswordScreen,
+          color: const Color(0xFFF9A541)),
+      Button(
+          id: 1,
+          icon: EvaIcons.clock_outline,
           title: local!.history,
           onClickListener: goToHistoryScreen,
           color: const Color(0xff007aff)),
@@ -29,13 +35,13 @@ class ProfileTabViewModel extends BaseViewModel <ProfileTabNavigator> {
           color: const Color(0xff4cd964)),
       Button(
           id: 3,
-          icon: Bootstrap.info_circle,
+          icon: EvaIcons.info_outline,
           title: local!.aboutUs,
           onClickListener: goToAboutUsScreen,
           color: const Color(0xff34aadc)),
       Button(
           id: 4,
-          icon: Bootstrap.box_arrow_in_right,
+          icon: EvaIcons.log_out,
           title: local!.signOut,
           onClickListener: onSignOutPress,
           color: const Color(0xFFF73645))
@@ -58,6 +64,9 @@ class ProfileTabViewModel extends BaseViewModel <ProfileTabNavigator> {
   // function to to about us Screen
   goToAboutUsScreen(){
     navigator!.goToAboutUsScreen();
+  }
+  goToResetPasswordScreen(){
+    navigator!.goToResetPasswordScreen();
   }
 
 

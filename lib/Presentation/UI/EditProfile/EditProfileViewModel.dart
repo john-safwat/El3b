@@ -119,9 +119,4 @@ class EditProfileViewModel extends BaseViewModel<EditProfileNavigator> {
   }
 
 
-  // function to reset user password
-  changePassword(){
-    navigator!.goToResetPasswordScreen();
-  }
-
 }

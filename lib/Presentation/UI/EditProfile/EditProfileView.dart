@@ -157,11 +157,6 @@ class _EditProfileViewState extends BaseState<EditProfileView , EditProfileViewM
                                 validator: value.bioValidation,
                             ),
                             const SizedBox(height: 20,),
-                            TextButton(
-                              onPressed: (){value.changePassword();},
-                              child: Text(value.local!.changePassword ,style: Theme.of(context).textTheme.displayLarge!.copyWith(fontWeight: FontWeight.bold),)
-                            ),
-                            const SizedBox(height: 20,),
                             // confirm button
                             ElevatedButton(
                               onPressed: viewModel.updateUserData,
@@ -236,8 +231,4 @@ class _EditProfileViewState extends BaseState<EditProfileView , EditProfileViewM
     viewModel.changeDate(newDateTime);
   }
 
-  @override
-  goToResetPasswordScreen() {
-    Navigator.pushNamed(context, ResetPasswordView.routeName);
-  }
 }

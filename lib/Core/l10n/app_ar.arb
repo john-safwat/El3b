@@ -141,5 +141,7 @@
   "newPassword" : "الرقم السري الجديد",
   "newPasswordConfirmation" : "تاكيد الرقم السري الجديد",
   "save": "حفظ",
-  "passwordUpdated" : "تم تحديث كلمة المرور بنجاح"
+  "passwordUpdated" : "تم تحديث كلمة المرور بنجاح",
+  "info" : "معلومات",
+  "exit" : "خروج"
 }
