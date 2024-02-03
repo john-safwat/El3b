@@ -141,5 +141,7 @@
   "newPassword" : "New Password",
   "newPasswordConfirmation" : "New Password Confirmation",
   "save": "Save",
-  "passwordUpdated" : "Password Updated Successfully"
+  "passwordUpdated" : "Password Updated Successfully",
+  "info" : "Info",
+  "exit" : "Exit"
 }

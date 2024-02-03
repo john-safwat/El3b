@@ -10,6 +10,7 @@ import 'package:El3b/Presentation/UI/Home/Tabs/Profile/ProfileTabViewModel.dart'
 import 'package:El3b/Presentation/UI/Home/Tabs/Profile/Widgets/CustomButton.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Profile/Widgets/UserProfileDataWidget.dart';
 import 'package:El3b/Presentation/UI/Login/LoginView.dart';
+import 'package:El3b/Presentation/UI/ResetPassword/ResetPasswordView.dart';
 import 'package:El3b/Presentation/UI/Widgets/LanguageSwitch.dart';
 import 'package:El3b/Presentation/UI/Widgets/ThemeSwitch.dart';
 import 'package:flutter/material.dart';
@@ -70,6 +71,8 @@ class _ProfileTabViewState extends BaseState<ProfileTabView , ProfileTabViewMode
                   CustomButton(button: viewModel.buttonsData[2]),
                   const SizedBox(height: 10,),
                   CustomButton(button: viewModel.buttonsData[3]),
+                  const SizedBox(height: 10,),
+                  CustomButton(button: viewModel.buttonsData[4]),
                 ],
               )
           )
@@ -109,6 +112,11 @@ class _ProfileTabViewState extends BaseState<ProfileTabView , ProfileTabViewMode
   @override
   goToLoginScreen() {
     Navigator.pushReplacementNamed(context, LoginView.routeName);
+  }
+
+  @override
+  goToResetPasswordScreen() {
+    Navigator.pushNamed(context, ResetPasswordView.routeName);
   }
 
 }
