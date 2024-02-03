@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:El3b/Data/Firebase/RoomUsersDataBase.dart';
+import 'package:El3b/Data/Firebase/FirebaseRoomUsersDataBase.dart';
 import 'package:El3b/Data/Models/User/UserDTO.dart';
 import 'package:El3b/Domain/DataSource/RoomUserRemoteDataSource.dart';
 import 'package:El3b/Domain/Exception/FirebaseUserAuthException.dart';
@@ -13,12 +13,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 // dependency injection
 RoomUserRemoteDataSource injectRoomUserRemoteDataSource(){
-  return RoomUserRemoteDataSourceImpl( database: injectRoomUsersDatabase());
+  return RoomUserRemoteDataSourceImpl( database: injectFirebaseRoomUsersDataBase());
 }
 
 class RoomUserRemoteDataSourceImpl implements RoomUserRemoteDataSource {
 
-  RoomUsersDatabase database ;
+  FirebaseRoomUsersDataBase database ;
   RoomUserRemoteDataSourceImpl({ required this.database});
 
   @override

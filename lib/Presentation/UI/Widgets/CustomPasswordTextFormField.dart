@@ -50,11 +50,11 @@ class _CustomPasswordTextFormFieldState extends State<CustomPasswordTextFormFiel
           },
           child: visiabel
               ? const Icon(
-            Iconsax.eye,
+            AntDesign.eye_invisible_fill,
             color: MyTheme.lightPurple,
           )
               : const Icon(
-            Iconsax.eye_slash,
+            AntDesign.eye_fill,
             color: MyTheme.lightPurple,
           ),
         ),

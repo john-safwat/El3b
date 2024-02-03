@@ -25,7 +25,7 @@ class _DeveloperProfileViewState extends BaseState<DeveloperProfileView , Develo
   @override
   void initState() {
     super.initState();
-    viewModel!.getDeveloperDetails();
+    viewModel.getDeveloperDetails();
   }
 
   @override
@@ -35,7 +35,7 @@ class _DeveloperProfileViewState extends BaseState<DeveloperProfileView , Develo
       children: [
         // the backGround Image
         CachedNetworkImage(
-          imageUrl: viewModel!.developer.imageBackground??"",
+          imageUrl: viewModel.developer.imageBackground??"",
           imageBuilder: (context, imageProvider) => Stack(
             children: [
               Image(image: imageProvider,
@@ -70,10 +70,10 @@ class _DeveloperProfileViewState extends BaseState<DeveloperProfileView , Develo
           backgroundColor: Colors.transparent,
           extendBodyBehindAppBar: true,
           appBar: AppBar(
-            title: Text(viewModel!.developer.name??"No Name"),
+            title: Text(viewModel.developer.name??"No Name"),
           ),
           body: ChangeNotifierProvider(
-            create: (context) => viewModel!,
+            create: (context) => viewModel,
             child: Consumer<DeveloperProfileViewModel>(
               builder:(context, value, child) {
                 if(value.errorMessage != null){

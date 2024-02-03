@@ -5,8 +5,6 @@ import 'package:El3b/Domain/Models/Games/FreeToPlayGame/FreeToPlayGame.dart';
 import 'package:El3b/Domain/Models/Games/GiveawayGames/GiveawayGame.dart';
 import 'package:El3b/Domain/Models/Games/RAWG/RAWGGame.dart';
 import 'package:El3b/Domain/UseCase/AddGameToHistoryUseCase.dart';
-import 'package:El3b/Domain/UseCase/AddGameToWishListUseCase.dart';
-import 'package:El3b/Domain/UseCase/DeleteGameFromWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetAllGiveGamesUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetFreeToPlayGamesUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetGiveawayGamesFromServerUseCase.dart';
@@ -21,16 +19,12 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator> {
 
   GetFreeToPlayGamesUseCase getFreeToPlayGamesUseCase;
   GetRAWGGeneralGamesUseCase getRAWGGeneralGamesUseCase;
-  AddGameToWishListUseCase addGameToWishListUseCase;
-  DeleteGameFromWishListUseCase deleteGameFromWishListUseCase;
   GetGiveawayGamesFromServerUseCase gamesFromServerUseCase;
   AddGameToHistoryUseCase addGameToHistoryUseCase;
   HomeTabViewModel({
     required this.getAllGiveGamesUseCase,
     required this.getFreeToPlayGamesUseCase,
     required this.getRAWGGeneralGamesUseCase,
-    required this.addGameToWishListUseCase,
-    required this.deleteGameFromWishListUseCase,
     required this.gamesFromServerUseCase,
     required this.addGameToHistoryUseCase
   });
@@ -96,37 +90,6 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator> {
     }
   }
 
-
-  // function to add game to wishlist
-  Future<void> editGameWishListState(RAWGGame game) async {
-    try {
-      if (!game.inWishList!) {
-        game.inWishList = true;
-        var response = await addGameToWishListUseCase.invoke(
-            game: game, uid: appConfigProvider!.getUser()!.uid);
-        if (response != 0) {
-          navigator!.showSuccessNotification(
-              message: local!.gameAddedToWishList);
-        } else {
-          navigator!.showErrorNotification(message: local!.someThingWentWrong);
-        }
-      } else {
-        game.inWishList = false;
-        var response = await deleteGameFromWishListUseCase.invoke(
-            game: int.parse(game.id!.toString()),
-            uid: appConfigProvider!.getUser()!.uid);
-        if (response != 0) {
-          navigator!.showSuccessNotification(
-              message: local!.gameDeletedFromWishList);
-        } else {
-          navigator!.showErrorNotification(message: local!.someThingWentWrong);
-        }
-      }
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-    notifyListeners();
-  }
 
   // function to add game to history
   void addGameToHistory(RAWGGame game)async{

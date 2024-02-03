@@ -3,7 +3,6 @@ import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Domain/UseCase/UpdateUserDataUseCase.dart';
 import 'package:El3b/Presentation/UI/ExtraInfo/ExtraInfoNavigator.dart';
 import 'package:El3b/Presentation/UI/ExtraInfo/ExtraInfoViewModel.dart';
-import 'package:El3b/Presentation/UI/Home/HomeView.dart';
 import 'package:El3b/Presentation/UI/Login/LoginView.dart';
 import 'package:El3b/Presentation/UI/Widgets/CustomLongTextFormField.dart';
 import 'package:El3b/Presentation/UI/Widgets/CustomTextFormField.dart';
@@ -27,9 +26,10 @@ class _ExtraInfoViewState extends BaseState<ExtraInfoView , ExtraInfoViewModel> 
     super.build(context);
     return Scaffold(
       body: ChangeNotifierProvider(
-        create: (context) => viewModel!,
+        create: (context) => viewModel,
         child: Consumer<ExtraInfoViewModel>(
           builder: (context, value, child) => SingleChildScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             physics: const BouncingScrollPhysics(),
             child: Padding(
               padding: const EdgeInsets.all(20.0),
@@ -44,7 +44,7 @@ class _ExtraInfoViewState extends BaseState<ExtraInfoView , ExtraInfoViewModel> 
                         width: 200,
                         height: 200,
                         decoration: BoxDecoration(
-                            color: viewModel!.themeProvider!.isDark()
+                            color: viewModel.themeProvider!.isDark()
                                 ? MyTheme.lightPurple
                                 : MyTheme.offWhite,
                             borderRadius: BorderRadius.circular(20),
@@ -57,9 +57,9 @@ class _ExtraInfoViewState extends BaseState<ExtraInfoView , ExtraInfoViewModel> 
                             ]),
                         child: Column(
                           children: [
-                            viewModel!.appConfigProvider!.getUser()!.photoURL == null?
+                            viewModel.appConfigProvider!.getUser()!.photoURL == null?
                             Image.asset(
-                              viewModel!.themeProvider!.isDark()
+                              viewModel.themeProvider!.isDark()
                                   ? "Assets/Images/DarkLogo2.png"
                                   : "Assets/Images/LightLogo2.png",
                             ):Container(
@@ -67,7 +67,7 @@ class _ExtraInfoViewState extends BaseState<ExtraInfoView , ExtraInfoViewModel> 
                               height: 200,
                               decoration: BoxDecoration(
                                   image: DecorationImage(
-                                    image: NetworkImage(viewModel!.appConfigProvider!.getUser()!.photoURL!),
+                                    image: NetworkImage(viewModel.appConfigProvider!.getUser()!.photoURL!),
                                     fit: BoxFit.cover,
                                   ),
                                   borderRadius: BorderRadius.circular(20)
@@ -81,33 +81,33 @@ class _ExtraInfoViewState extends BaseState<ExtraInfoView , ExtraInfoViewModel> 
                   const SizedBox(height: 20,),
                   // welcome message
                   Text(
-                    "${viewModel!.local!.welcome} ${viewModel!.appConfigProvider!.getUser()!.displayName!.split(" ")[0]}",
+                    "${viewModel.local!.welcome} ${viewModel.appConfigProvider!.getUser()!.displayName!.split(" ")[0]}",
                     style: Theme.of(context).textTheme.displayLarge!.copyWith(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 20,),
                   Text(
-                    viewModel!.local!.weNeedSomeAdditionalInfo,
+                    viewModel.local!.weNeedSomeAdditionalInfo,
                     style: Theme.of(context).textTheme.displayMedium,
                   ),
                   const SizedBox(height: 30,),
                   // data form
                   Form(
-                    key: viewModel!.formKey,
+                    key: viewModel.formKey,
                     child: Column(
                       children: [
                         // phone number text form field
                         CustomTextFormField(
-                          label: viewModel!.local!.phone,
-                          controller: viewModel!.phoneController,
+                          label: viewModel.local!.phone,
+                          controller: viewModel.phoneController,
                           inputType: TextInputType.phone,
-                          validator: viewModel!.phoneValidation,
+                          validator: viewModel.phoneValidation,
                           icon: Bootstrap.telephone_fill
                         ),
                         const SizedBox(height: 20,),
                         // date piker button
                         InkWell(
                           onTap: (){
-                            viewModel!.showDatePicker();
+                            viewModel.showDatePicker();
                           },
                           child: Container(
                             padding:const EdgeInsets.all(10),
@@ -119,7 +119,7 @@ class _ExtraInfoViewState extends BaseState<ExtraInfoView , ExtraInfoViewModel> 
                               children: [
                                 const Icon(Bootstrap.calendar_date_fill , color: MyTheme.lightPurple,size: 30,),
                                 const SizedBox(width: 10,),
-                                Text(viewModel!.selectedDate , style: Theme.of(context).textTheme.displayMedium,),
+                                Text(viewModel.selectedDate , style: Theme.of(context).textTheme.displayMedium,),
                               ],
                             ),
                           ),
@@ -127,21 +127,21 @@ class _ExtraInfoViewState extends BaseState<ExtraInfoView , ExtraInfoViewModel> 
                         const SizedBox(height: 20,),
                         // bio text field
                         CustomLongTextFormField(
-                          label: viewModel!.local!.bio,
-                          controller: viewModel!.bioController,
+                          label: viewModel.local!.bio,
+                          controller: viewModel.bioController,
                           inputType: TextInputType.text,
-                          validator: viewModel!.bioValidation
+                          validator: viewModel.bioValidation
                         ),
                         const SizedBox(height: 30,),
                         // confirm button
                         ElevatedButton(
-                          onPressed: viewModel!.updateUserData,
+                          onPressed: viewModel.updateUserData,
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(viewModel!.local!.gj),
+                                Text(viewModel.local!.gj),
                               ],
                             ),
                           ),
@@ -167,7 +167,7 @@ class _ExtraInfoViewState extends BaseState<ExtraInfoView , ExtraInfoViewModel> 
   showCustomDatePicker() async{
     DateTime? newDateTime = await showRoundedDatePicker(
       context: context,
-      initialDate: viewModel!.birthDate,
+      initialDate: viewModel.birthDate,
       firstDate: DateTime(DateTime.now().year - 100),
       lastDate: DateTime(DateTime.now().year + 1),
       borderRadius: 16,
@@ -198,7 +198,7 @@ class _ExtraInfoViewState extends BaseState<ExtraInfoView , ExtraInfoViewModel> 
       ),
     );
 
-    viewModel!.changeDate(newDateTime);
+    viewModel.changeDate(newDateTime);
   }
 
   @override

@@ -42,8 +42,7 @@ class TabButton extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: MyTheme.lightPurple,
                         borderRadius: BorderRadius.circular(15)
-                    ),
-                    child:const Center(child: CircularProgressIndicator(color: MyTheme.offWhite,),),
+                    )
                   ),
                 )
               ],

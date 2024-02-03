@@ -1,8 +1,4 @@
 import 'package:El3b/Core/Base/BaseViewModel.dart';
-import 'package:El3b/Domain/Exception/FirebaseUserAuthException.dart';
-import 'package:El3b/Domain/Exception/FirebaseUserDatabaseException.dart';
-import 'package:El3b/Domain/Exception/TimeOutOperationsException.dart';
-import 'package:El3b/Domain/Exception/UnknownException.dart';
 import 'package:El3b/Domain/Models/User/MyUser.dart';
 import 'package:El3b/Domain/UseCase/UpdateUserDataUseCase.dart';
 import 'package:El3b/Presentation/UI/ExtraInfo/ExtraInfoNavigator.dart';

@@ -152,5 +152,20 @@ class FirebaseUserAuthRemoteDatasourceImpl implements FirebaseUserAuthRemoteData
     }
   }
 
+  @override
+  Future<void> updatePassword({required String email, required String password, required String newPassword}) async{
+    try{
+      await firebaseUserAuth.updatePassword(email: email, password: password, newPassword: newPassword).timeout(const Duration(seconds: 180));
+    }on FirebaseAuthException catch(e){
+      throw FirebaseUserAuthException(errorMessage: e.code);
+    }on TimeoutException catch(e){
+      throw TimeOutOperationsException(errorMessage: "Operation Timed Out");
+    }on FirebaseException catch(e){
+      throw FirebaseUserAuthException(errorMessage: e.code);
+    }catch (e){
+      throw UnknownException(errorMessage: e.toString());
+    }
+  }
+
 
 }

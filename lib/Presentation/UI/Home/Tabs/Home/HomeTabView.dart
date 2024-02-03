@@ -1,8 +1,6 @@
 import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
 import 'package:El3b/Domain/UseCase/AddGameToHistoryUseCase.dart';
-import 'package:El3b/Domain/UseCase/AddGameToWishListUseCase.dart';
-import 'package:El3b/Domain/UseCase/DeleteGameFromWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetAllGiveGamesUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetFreeToPlayGamesUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetGiveawayGamesFromServerUseCase.dart';
@@ -32,15 +30,15 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
   @override
   void initState() {
     super.initState();
-    viewModel!.getGames();
-    viewModel!.getGeneralGames();
+    viewModel.getGames();
+    viewModel.getGeneralGames();
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return ChangeNotifierProvider(
-      create: (context) => viewModel!,
+      create: (context) => viewModel,
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
@@ -48,11 +46,11 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
           titleSpacing: 10,
           centerTitle: true,
           leadingWidth: 0,
-          title: CustomSearchBarButton(navigation: viewModel!.goToSearchScreen,),
+          title: CustomSearchBarButton(navigation: viewModel.goToSearchScreen,),
         ),
         body: RefreshIndicator(
           color: MyTheme.lightPurple,
-          onRefresh: viewModel!.loadNewGame,
+          onRefresh: viewModel.loadNewGame,
           edgeOffset: 100,
           child: Consumer<HomeTabViewModel>(
             builder: (context, value, child) {
@@ -60,8 +58,8 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
                 return ErrorMessageWidget(
                   errorMessage: value.errorMessage!,
                   fixErrorFunction: (){
-                    viewModel!.getGames();
-                    viewModel!.getGeneralGames();
+                    viewModel.getGames();
+                    viewModel.getGeneralGames();
                   },
                 );
               } else if (value.listGiveawayGames.isEmpty) {
@@ -126,7 +124,7 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
                                           Center(child: Lottie.asset("Assets/Animations/error.json" ,width: 120 ,fit: BoxFit.cover )),
                                           const SizedBox(height: 20,),
                                           Text(
-                                            viewModel!.local!.someThingWentWrong,
+                                            viewModel.local!.someThingWentWrong,
                                             style: Theme.of(context).textTheme.displayMedium,
                                           ),
                                           const SizedBox(height: 20,),
@@ -169,15 +167,15 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
                         ),
                       ),
                     ),
-                    viewModel!.giveawayGameSelected
+                    viewModel.giveawayGameSelected
                         ? GiveawayGamesHoldWidget(
                             game: value.giveawaySelectedGame,
                           )
-                        : viewModel!.freeToPlayGameSelected
+                        : viewModel.freeToPlayGameSelected
                             ? FreeToPlayGamesHoldWidget(
                                 game: value.freeToPlayGameSelectedGame,
                               )
-                            : viewModel!.rawgGameSelected
+                            : viewModel.rawgGameSelected
                                 ? GameHoldWidget(
                                     game: value.rawgGameSelectedGame,
                                   )
@@ -198,8 +196,6 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
         getAllGiveGamesUseCase: injectGetAllGiveGamesUseCase(),
         getFreeToPlayGamesUseCase: injectGetFreeToPlayGamesUseCase(),
         getRAWGGeneralGamesUseCase: injectGetRAWGGeneralGamesUseCase(),
-        addGameToWishListUseCase: injectAddGameToWishListUseCase(),
-        deleteGameFromWishListUseCase: injectDeleteGameFromWishListUseCase(),
         gamesFromServerUseCase: injectGetGiveawayGamesFromServerUseCase(),
         addGameToHistoryUseCase: injectAddGameToHistoryUseCase()
     );

@@ -1,7 +1,5 @@
 import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Domain/UseCase/AddGameToHistoryUseCase.dart';
-import 'package:El3b/Domain/UseCase/AddGameToWishListUseCase.dart';
-import 'package:El3b/Domain/UseCase/DeleteGameFromWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/SearchFromGameFromServerUseCase.dart';
 import 'package:El3b/Presentation/UI/GamesSearch/GameSearchNavigator.dart';
 import 'package:El3b/Presentation/UI/GamesSearch/GameSearchViweModel.dart';
@@ -28,19 +26,19 @@ class _GameSearchViewState
   Widget build(BuildContext context) {
     super.build(context);
     return ChangeNotifierProvider(
-      create: (context) => viewModel!,
+      create: (context) => viewModel,
       child: Scaffold(
         extendBodyBehindAppBar: true,
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           toolbarHeight: 70,
           title: CustomSearchBar(
-            label: viewModel!.local!.whatAreYouSearchingFor +
-                viewModel!.appConfigProvider!
+            label: viewModel.local!.whatAreYouSearchingFor +
+                viewModel.appConfigProvider!
                     .getUser()!
                     .displayName!
                     .split(" ")[0],
-            onSubmit: viewModel!.search,
+            onSubmit: viewModel.search,
           ),
           titleSpacing: 10,
         ),
@@ -117,8 +115,6 @@ class _GameSearchViewState
   GameSearchViewModel initViewModel() {
     return GameSearchViewModel(
       searchFromGameFromServerUseCase: injectSearchFromGameFromServerUseCase(),
-      addGameToWishListUseCase: injectAddGameToWishListUseCase(),
-      deleteGameFromWishListUseCase: injectDeleteGameFromWishListUseCase(),
       addGameToHistoryUseCase: injectAddGameToHistoryUseCase()
     );
   }

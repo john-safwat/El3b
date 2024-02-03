@@ -21,7 +21,7 @@ class _FeedbackViewState extends BaseState<FeedbackView , FeedbackViewModel> imp
     super.build(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(viewModel!.local!.feedback),
+        title: Text(viewModel.local!.feedback),
       ),
       body: Column(
         children: [
@@ -32,7 +32,7 @@ class _FeedbackViewState extends BaseState<FeedbackView , FeedbackViewModel> imp
                 padding: const EdgeInsets.all(20),
                 children: [
                   Text(
-                    viewModel!.local!.feedbackMessage,
+                    viewModel.local!.feedbackMessage,
                     style: Theme.of(context).textTheme.displayMedium!.copyWith(
                         letterSpacing: 1
                     ),
@@ -41,14 +41,14 @@ class _FeedbackViewState extends BaseState<FeedbackView , FeedbackViewModel> imp
                   Row(
                     children: [
                       Text(
-                        viewModel!.local!.rating,
+                        viewModel.local!.rating,
                         style: Theme.of(context).textTheme.displayLarge!.copyWith(fontWeight: FontWeight.w500),
                       ),
                     ],
                   ),
                   const SizedBox(height: 15,),
                   RatingBar.builder(
-                    initialRating: viewModel!.rating,
+                    initialRating: viewModel.rating,
                     minRating: 0,
                     direction: Axis.horizontal,
                     allowHalfRating: true,
@@ -62,26 +62,26 @@ class _FeedbackViewState extends BaseState<FeedbackView , FeedbackViewModel> imp
                       color: Colors.amber,
                     ),
                     onRatingUpdate: (rating) {
-                      viewModel!.changeRating(rating);
+                      viewModel.changeRating(rating);
                     },
                   ),
                   const SizedBox(height: 30,),
                   CustomLongTextFormField(
-                    label: viewModel!.local!.yourFeedback,
-                    controller: viewModel!.controller,
+                    label: viewModel.local!.yourFeedback,
+                    controller: viewModel.controller,
                     inputType: TextInputType.text,
-                    validator: viewModel!.feedbackValidation,
+                    validator: viewModel.feedbackValidation,
                   ),
                   const SizedBox(height: 30,),
                   ElevatedButton(
-                      onPressed: viewModel!.sendFeedback,
+                      onPressed: viewModel.sendFeedback,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Text(
-                                viewModel!.local!.sendYourFeedback
+                                viewModel.local!.sendYourFeedback
                             ),
                           ),
                         ],

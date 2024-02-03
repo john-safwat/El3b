@@ -7,6 +7,7 @@ import 'package:El3b/Domain/UseCase/ResetPasswordUseCase.dart';
 import 'package:El3b/Domain/UseCase/UpdateUserProfileUseCase.dart';
 import 'package:El3b/Presentation/UI/EditProfile/EditProfileNavigator.dart';
 import 'package:El3b/Presentation/UI/EditProfile/EditProfileViewModel.dart';
+import 'package:El3b/Presentation/UI/ResetPassword/ResetPasswordView.dart';
 import 'package:El3b/Presentation/UI/Widgets/CustomLongTextFormField.dart';
 import 'package:El3b/Presentation/UI/Widgets/CustomTextFormField.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ class _EditProfileViewState extends BaseState<EditProfileView , EditProfileViewM
   @override
   void initState() {
     super.initState();
-    viewModel!.loadData();
+    viewModel.loadData();
   }
 
   @override
@@ -36,11 +37,11 @@ class _EditProfileViewState extends BaseState<EditProfileView , EditProfileViewM
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          viewModel!.local!.editProfile
+          viewModel.local!.editProfile
         ),
       ),
       body: ChangeNotifierProvider(
-        create: (context) => viewModel!,
+        create: (context) => viewModel,
         child: Consumer<EditProfileViewModel>(
           builder:(context, value, child) {
             if (value.errorMessage != null){
@@ -58,12 +59,12 @@ class _EditProfileViewState extends BaseState<EditProfileView , EditProfileViewM
                     ),
                     //Image Picker
                     InkWell(
-                      onTap: viewModel!.showMyModalBottomSheet,
+                      onTap: viewModel.showMyModalBottomSheet,
                       child: Container(
-                        width: 200,
-                        height: 200,
+                        width: viewModel.mediaQuery!.width - 40,
+                        height: viewModel.mediaQuery!.width - 40,
                         decoration: BoxDecoration(
-                            color: viewModel!.themeProvider!.isDark()
+                            color: viewModel.themeProvider!.isDark()
                                 ? MyTheme.lightPurple
                                 : MyTheme.offWhite,
                             borderRadius: BorderRadius.circular(20),
@@ -76,27 +77,27 @@ class _EditProfileViewState extends BaseState<EditProfileView , EditProfileViewM
                             ]),
                         child: Column(
                           children: [
-                            viewModel!.image == null? viewModel!.user!.image != ""?Container(
-                          width: 200,
-                          height: 200,
+                            viewModel.image == null? viewModel.user!.image != ""?Container(
+                          width: viewModel.mediaQuery!.width - 40,
+                          height: viewModel.mediaQuery!.width - 40,
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: NetworkImage(viewModel!.user!.image),
+                                image: NetworkImage(viewModel.user!.image),
                                 fit: BoxFit.cover,
                               ),
                               borderRadius: BorderRadius.circular(20)
                           ),
                         ):
                             Image.asset(
-                              viewModel!.themeProvider!.isDark()
+                              viewModel.themeProvider!.isDark()
                                   ? "Assets/Images/DarkLogo2.png"
                                   : "Assets/Images/LightLogo2.png",
                             ):Container(
-                              width: 200,
-                              height: 200,
+                              width: viewModel.mediaQuery!.width - 40,
+                              height: viewModel.mediaQuery!.width - 40,
                               decoration: BoxDecoration(
                                   image: DecorationImage(
-                                    image: FileImage(File(viewModel!.image!.path)),
+                                    image: FileImage(File(viewModel.image!.path)),
                                     fit: BoxFit.cover,
                                   ),
                                   borderRadius: BorderRadius.circular(20)
@@ -131,7 +132,7 @@ class _EditProfileViewState extends BaseState<EditProfileView , EditProfileViewM
                             // date piker button
                             InkWell(
                               onTap: (){
-                                viewModel!.showDatePicker();
+                                viewModel.showDatePicker();
                               },
                               child: Container(
                                 padding:const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
@@ -143,7 +144,7 @@ class _EditProfileViewState extends BaseState<EditProfileView , EditProfileViewM
                                   children: [
                                     const Icon(Bootstrap.calendar_date_fill , color: MyTheme.lightPurple,size: 30,),
                                     const SizedBox(width: 10,),
-                                    Text(viewModel!.selectedDate , style: Theme.of(context).textTheme.displayMedium,),
+                                    Text(viewModel.selectedDate , style: Theme.of(context).textTheme.displayMedium,),
                                   ],
                                 ),
                               ),
@@ -156,20 +157,15 @@ class _EditProfileViewState extends BaseState<EditProfileView , EditProfileViewM
                                 validator: value.bioValidation,
                             ),
                             const SizedBox(height: 20,),
-                            TextButton(
-                              onPressed: (){value.changePassword();},
-                              child: Text(value.local!.changePassword ,style: Theme.of(context).textTheme.displayLarge!.copyWith(fontWeight: FontWeight.bold),)
-                            ),
-                            const SizedBox(height: 20,),
                             // confirm button
                             ElevatedButton(
-                              onPressed: viewModel!.updateUserData,
+                              onPressed: viewModel.updateUserData,
                               child: Padding(
                                 padding: const EdgeInsets.all(12.0),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text(viewModel!.local!.updateAccount),
+                                    Text(viewModel.local!.updateAccount),
                                   ],
                                 ),
                               ),
@@ -193,7 +189,6 @@ class _EditProfileViewState extends BaseState<EditProfileView , EditProfileViewM
   EditProfileViewModel initViewModel() {
     return EditProfileViewModel(
       loadUserDataUseCase: injectLoadUserDataUseCase(),
-      resetPasswordUseCase: injectResetPasswordUseCase(),
       updateUserProfileUseCase: injectUpdateUserProfileUseCase()
     );
   }
@@ -202,7 +197,7 @@ class _EditProfileViewState extends BaseState<EditProfileView , EditProfileViewM
   showCustomDatePicker() async{
     DateTime? newDateTime = await showRoundedDatePicker(
       context: context,
-      initialDate: viewModel!.birthDate,
+      initialDate: viewModel.birthDate,
       firstDate: DateTime(DateTime.now().year - 100),
       lastDate: DateTime(DateTime.now().year + 1),
       borderRadius: 16,
@@ -233,6 +228,7 @@ class _EditProfileViewState extends BaseState<EditProfileView , EditProfileViewM
       ),
     );
 
-    viewModel!.changeDate(newDateTime);
+    viewModel.changeDate(newDateTime);
   }
+
 }

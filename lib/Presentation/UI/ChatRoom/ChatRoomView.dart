@@ -1,6 +1,5 @@
 import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Core/Theme/Theme.dart';
-import 'package:El3b/Data/Models/Messages/MessageDTO.dart';
 import 'package:El3b/Domain/Models/Room/Room.dart';
 import 'package:El3b/Domain/UseCase/GetMessagesUseCase.dart';
 import 'package:El3b/Domain/UseCase/SendMessageUseCase.dart';
@@ -24,18 +23,53 @@ class _ChatRoomViewState extends BaseState<ChatRoomView, ChatRoomViewModel>
   @override
   void initState() {
     super.initState();
-    viewModel!.room = widget.room;
+    viewModel.room = widget.room;
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return ChangeNotifierProvider(
-      create: (context) => viewModel!,
+      create: (context) => viewModel,
       child: Consumer<ChatRoomViewModel>(
         builder: (context, value, child) => Scaffold(
           appBar: AppBar(
             title: Text(widget.room.name),
+            actions: [
+              PopupMenuButton<Widget>(
+                color: Theme.of(context).scaffoldBackgroundColor,
+                itemBuilder: (BuildContext context) => <PopupMenuEntry<Widget>>[
+                  PopupMenuItem<Widget>(
+                    onTap: () => value.onMoreInfoPress(),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          value.local!.info,
+                          style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem<Widget>(
+                    onTap: () => value.onExitPress(),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          value.local!.exit,
+                          style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
           body: Column(
             children: [
@@ -46,20 +80,20 @@ class _ChatRoomViewState extends BaseState<ChatRoomView, ChatRoomViewModel>
                     Expanded(
                       child:
                       StreamBuilder(
-                        stream: viewModel!.getMessages(),
+                        stream: viewModel.getMessages(),
                         builder: (context, snapshot) {
                           if(snapshot.connectionState == ConnectionState.waiting){
                             return const Center(
                               child: CircularProgressIndicator(),
                             );
                           }else if (snapshot.hasError){
-                            return ErrorWidget(viewModel!.handleExceptions(snapshot.error! as Exception));
+                            return ErrorWidget(viewModel.handleExceptions(snapshot.error! as Exception));
                           } else {
-                            viewModel!.messages =  snapshot.data!.docs.map((e) => e.data().toDomain()).toList();
+                            viewModel.messages =  snapshot.data!.docs.map((e) => e.data().toDomain()).toList();
                             return ListView.builder(
                               reverse: true,
-                              itemBuilder: (context, index) => MessageWidget(message: viewModel!.messages[index]),
-                              itemCount: viewModel!.messages.length,
+                              itemBuilder: (context, index) => MessageWidget(message: viewModel.messages[index]),
+                              itemCount: viewModel.messages.length,
                             );
                           }
                         },
@@ -75,18 +109,18 @@ class _ChatRoomViewState extends BaseState<ChatRoomView, ChatRoomViewModel>
                               style: Theme.of(context).textTheme.displayMedium,
                               cursorColor: MyTheme.lightPurple,
                               keyboardType: TextInputType.text,
-                              controller: viewModel!.controller,
+                              controller: viewModel.controller,
                               decoration: InputDecoration(
                                 suffixIcon: InkWell(
                                   overlayColor:
                                       MaterialStateProperty.all(Colors.transparent),
-                                  onTap: viewModel!.sendMessage,
+                                  onTap: viewModel.sendMessage,
                                   child:  Padding(
                                     padding:const EdgeInsets.symmetric(
                                         vertical: 10.0, horizontal: 20),
                                     child: Icon(
                                       EvaIcons.paper_plane,
-                                      color: viewModel!.themeProvider!.isDark()?MyTheme.offWhite:MyTheme.lightPurple,
+                                      color: viewModel.themeProvider!.isDark()?MyTheme.offWhite:MyTheme.lightPurple,
                                     ),
                                   ),
                                 ),
@@ -100,12 +134,12 @@ class _ChatRoomViewState extends BaseState<ChatRoomView, ChatRoomViewModel>
                                         vertical: 10.0, horizontal: 10),
                                     child: Icon(
                                       Bootstrap.emoji_smile,
-                                      color: viewModel!.themeProvider!.isDark()?MyTheme.offWhite:MyTheme.lightPurple,
+                                      color: viewModel.themeProvider!.isDark()?MyTheme.offWhite:MyTheme.lightPurple,
                                     ),
                                   ),
                                 ),
                                 contentPadding: const EdgeInsets.all(20),
-                                hintText: viewModel!.local!.message,
+                                hintText: viewModel.local!.message,
                                 hintStyle: Theme.of(context).textTheme.displayMedium,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15),

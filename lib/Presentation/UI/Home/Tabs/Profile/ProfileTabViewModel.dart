@@ -1,11 +1,52 @@
 import 'package:El3b/Core/Base/BaseViewModel.dart';
 import 'package:El3b/Domain/UseCase/SignUserOutUseCase.dart';
+import 'package:El3b/Presentation/Models/Button.dart';
 import 'package:El3b/Presentation/UI/Home/Tabs/Profile/ProfileTabNavigator.dart';
+import 'package:flutter/material.dart';
+import 'package:icons_plus/icons_plus.dart';
 
 class ProfileTabViewModel extends BaseViewModel <ProfileTabNavigator> {
 
   SignUserOutUseCase useCase ;
   ProfileTabViewModel({required this.useCase});
+
+  late List<Button> buttonsData;
+
+  // function to set the buttons data
+  setButtonsData() {
+    buttonsData = [
+      Button(
+          id: 1,
+          icon: EvaIcons.lock,
+          title: local!.changePassword,
+          onClickListener: goToResetPasswordScreen,
+          color: const Color(0xFFF9A541)),
+      Button(
+          id: 1,
+          icon: EvaIcons.clock_outline,
+          title: local!.history,
+          onClickListener: goToHistoryScreen,
+          color: const Color(0xff007aff)),
+      Button(
+          id: 2,
+          icon: EvaIcons.smiling_face,
+          title: local!.feedback,
+          onClickListener: goToFeedbackScreen,
+          color: const Color(0xff4cd964)),
+      Button(
+          id: 3,
+          icon: EvaIcons.info_outline,
+          title: local!.aboutUs,
+          onClickListener: goToAboutUsScreen,
+          color: const Color(0xff34aadc)),
+      Button(
+          id: 4,
+          icon: EvaIcons.log_out,
+          title: local!.signOut,
+          onClickListener: onSignOutPress,
+          color: const Color(0xFFF73645))
+    ];
+  }
 
   // function to navigate to Edit Profile Screen
   goToEditProfileScreen(){
@@ -23,6 +64,9 @@ class ProfileTabViewModel extends BaseViewModel <ProfileTabNavigator> {
   // function to to about us Screen
   goToAboutUsScreen(){
     navigator!.goToAboutUsScreen();
+  }
+  goToResetPasswordScreen(){
+    navigator!.goToResetPasswordScreen();
   }
 
 

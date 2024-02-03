@@ -2,17 +2,17 @@ import 'package:El3b/Data/Models/User/UserDTO.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 // dependency injection
-UserFirebaseDatabase injectUserFirebaseDatabase(){
-  return UserFirebaseDatabase.getInstance();
+FirebaseRoomUserDatabase injectFirebaseRoomUserDatabase(){
+  return FirebaseRoomUserDatabase.getInstance();
 }
 
 // the object
-class UserFirebaseDatabase {
+class FirebaseRoomUserDatabase {
 
-  UserFirebaseDatabase._();
-  static UserFirebaseDatabase? instance;
+  FirebaseRoomUserDatabase._();
+  static FirebaseRoomUserDatabase? instance;
   static getInstance(){
-    return instance ??= UserFirebaseDatabase._();
+    return instance ??= FirebaseRoomUserDatabase._();
   }
 
   // function to get the collection references for users collection

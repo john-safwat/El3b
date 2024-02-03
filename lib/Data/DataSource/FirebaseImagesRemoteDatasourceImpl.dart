@@ -42,10 +42,10 @@ class FirebaseImagesRemoteDatasourceImpl
 
   // function to upload user image to firebase fireStore
   @override
-  Future<String> updateImage({required XFile file , required String name}) async {
+  Future<String> updateImage({required XFile file , required String url}) async {
     try {
       var response = await database
-          .updateImage(file: file, name: name)
+          .updateImage(file: file, url: url)
           .timeout(const Duration(seconds: 60));
       return response;
     } on FirebaseException catch (e) {

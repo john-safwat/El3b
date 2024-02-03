@@ -1,7 +1,5 @@
 import 'package:El3b/Core/Base/BaseState.dart';
 import 'package:El3b/Domain/UseCase/AddGameToHistoryUseCase.dart';
-import 'package:El3b/Domain/UseCase/AddGameToWishListUseCase.dart';
-import 'package:El3b/Domain/UseCase/DeleteGameFromWishListUseCase.dart';
 import 'package:El3b/Domain/UseCase/GetGamesByGenreUseCase.dart';
 import 'package:El3b/Presentation/UI/GamesList/GamesListNavigator.dart';
 import 'package:El3b/Presentation/UI/GamesList/GamesListViewModel.dart';
@@ -26,19 +24,19 @@ class _GamesListViewState extends BaseState<GamesListView , GamesListViewModel> 
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    if(viewModel!.genre.isEmpty){
-      viewModel!.genre = ModalRoute.of(context)?.settings.arguments as String;
-      viewModel!.getGames();
+    if(viewModel.genre.isEmpty){
+      viewModel.genre = ModalRoute.of(context)?.settings.arguments as String;
+      viewModel.getGames();
     }
     return ChangeNotifierProvider(
-      create: (context) => viewModel!,
+      create: (context) => viewModel,
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           toolbarHeight: 70,
           titleSpacing: 10,
           centerTitle: true,
-          title: CustomSearchBarButton(navigation: viewModel!.goToSearchScreen,),
+          title: CustomSearchBarButton(navigation: viewModel.goToSearchScreen,),
         ),
         body: Consumer<GamesListViewModel>(
           builder: (context, value, child) {
@@ -126,8 +124,6 @@ class _GamesListViewState extends BaseState<GamesListView , GamesListViewModel> 
   GamesListViewModel initViewModel() {
     return GamesListViewModel(
         getGamesByGenreUseCase: injectGetGamesByGenreUseCase(),
-        addGameToWishListUseCase: injectAddGameToWishListUseCase(),
-        deleteGameFromWishListUseCase: injectDeleteGameFromWishListUseCase(),
       addGameToHistoryUseCase: injectAddGameToHistoryUseCase()
     );
   }

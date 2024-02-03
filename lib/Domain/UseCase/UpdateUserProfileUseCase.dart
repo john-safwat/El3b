@@ -20,7 +20,7 @@ class UpdateUserProfileUseCase {
 
   Future<User> invoke({required MyUser user , XFile? file , required String uid})async{
     if(file!= null){
-      var response = await repository.uploadUserImage(file: file);
+      var response = await repository.updateUserProfileImage(url: user.image,file: file);
       await repository.updateUserPhotoUrl(image: response);
       user.image = response;
     }

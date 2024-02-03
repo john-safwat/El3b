@@ -107,14 +107,24 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<String> updateUserProfileImage({required XFile file, required String name})async {
-    var image = await imagesRemoteDatasource.updateImage(file: file , name: name);
-    return image;
+  Future<String> updateUserProfileImage({required XFile file, required String url})async {
+    if(url.isEmpty){
+      var image = await imagesRemoteDatasource.uploadImage(file: file);
+      return image;
+    }else {
+      var image = await imagesRemoteDatasource.updateImage(file: file , url: url);
+      return image;
+    }
   }
 
   @override
   Future<User> updateUserDisplayName({required String name}) async{
     var response = await authRemoteDatasource.updateUserDisplayName(name: name);
     return response;
+  }
+
+  @override
+  Future<void> updatePassword({required String email, required String password, required String newPassword}) async{
+    await authRemoteDatasource.updatePassword(email: email, password: password, newPassword: newPassword);
   }
 }

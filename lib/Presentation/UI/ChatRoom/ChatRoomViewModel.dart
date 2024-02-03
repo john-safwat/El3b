@@ -47,4 +47,12 @@ class ChatRoomViewModel extends BaseViewModel<ChatRoomNavigator>{
     }
   }
 
+  onMoreInfoPress(){
+
+  }
+
+  onExitPress(){
+
+  }
+
 }
