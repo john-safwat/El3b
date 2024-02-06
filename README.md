@@ -40,11 +40,11 @@ In addition to news, El3b provides a chat feature that allows you to connect and
 ## Key Features of El3b:
 
 #### Games News: Stay updated with the latest news, announcements, and developments in the gaming industry. Our dedicated team curates and delivers reliable and engaging content to keep you informed.
-![all image](https://github.com/john-safwat/El3b/blob/master/Images/iPhone%2015%20Mockup%20(1).png?raw=true)
+![all image](https://github.com/john-safwat/El3b/blob/master/Images/02%20Free%20iPhone%2015%20Pro%20On%20Rock%20Mockup.png?raw=true)
 <br>
 
 #### Multilingual Chat: Connect with a diverse community of gamers through our chat feature, available in both English and Arabic. Engage in discussions, ask questions, and share your gaming experiences in a language that suits you.
-![all image](https://github.com/john-safwat/El3b/blob/master/Images/iPhone%2015%20Set%20Mockup.png?raw=true)
+![all image](https://github.com/john-safwat/El3b/blob/master/Images/Free_iPhone_Mockup_3.png?raw=true)
 
 User-Friendly Interface: El3b is designed with a user-friendly interface to provide a seamless browsing and chatting experience. Easily navigate through different sections, access news articles, and interact with other users effortlessly.
 <br>
@@ -56,7 +56,7 @@ We are dedicated to continuously improving El3b to meet the needs and expectatio
 Thank you for choosing El3b! Join our vibrant gaming community and dive into the exciting world of games news and chat. Enjoy your journey with us!
 
 El3b is a captivating and versatile mobile app designed for gaming enthusiasts, news aficionados, and vibrant chatting communities. Developed using the powerful Flutter framework, El3b offers a seamless and engaging user experience for both casual and dedicated gamers.
-![all image](https://github.com/john-safwat/El3b/blob/master/Images/iPhone%2015%20Mockup%20(2).png?raw=true)
+![all image](https://github.com/john-safwat/El3b/blob/master/Images/Mockup.png?raw=true)
 
 One of the primary features of El3b is its comprehensive game news coverage. Users can stay up to date with the latest gaming trends, releases, reviews, and industry news through an intuitive and visually appealing interface. Whether you're interested in console gaming, PC games, mobile games, or even esports, El3b provides a diverse range of articles, videos, and exclusive interviews to keep you informed and entertained.
 
@@ -152,27 +152,10 @@ John Safwat
     * Initial Release
 
 ## Images
-````
-images
-````
 
+![all image](https://github.com/john-safwat/El3b/blob/master/Images/all%20images.png?raw=true)
 
-<img src="https://github.com/john-safwat/El3b/blob/master/Images/iPhone%2015%20Pro%20Max%20Mockup,%20Front%20View.png?raw=true" alt="J1HFv14.png" border="0" width = "200px">
-<img src="https://github.com/john-safwat/El3b/blob/master/Images/iPhone%2015%20Pro%20Max%20Mockup,%20Front%20View%20(9).png?raw=true" alt="J1HKSna.png" border="0" width = "200px">
-<img src="https://github.com/john-safwat/El3b/blob/master/Images/iPhone%2015%20Pro%20Max%20Mockup,%20Front%20View%20(8).png?raw=true" alt="J1HKkwF.png" border="0" width = "200px">
-<img src="https://github.com/john-safwat/El3b/blob/master/Images/iPhone%2015%20Pro%20Max%20Mockup,%20Front%20View%20(7).png?raw=true" alt="J1HKeu1.png" border="0" width = "200px">
-<img src="https://github.com/john-safwat/El3b/blob/master/Images/iPhone%2015%20Pro%20Max%20Mockup,%20Front%20View%20(6).png?raw=true" alt="J1HfxSV.png" border="0" width = "200px">
-<img src="https://github.com/john-safwat/El3b/blob/master/Images/iPhone%2015%20Pro%20Max%20Mockup,%20Front%20View%20(5).png?raw=true" alt="J1Hq9sa.png" border="0" width = "200px">
-<img src="https://github.com/john-safwat/El3b/blob/master/Images/iPhone%2015%20Pro%20Max%20Mockup,%20Front%20View%20(4).png?raw=true" alt="J1HfEHN.png" border="0" width = "200px">
-<img src="https://github.com/john-safwat/El3b/blob/master/Images/iPhone%2015%20Pro%20Max%20Mockup,%20Front%20View%20(3).png?raw=true" alt="J1HqFJp.png" border="0" width = "200px">
-<img src="https://github.com/john-safwat/El3b/blob/master/Images/iPhone%2015%20Pro%20Max%20Mockup,%20Front%20View%20(2).png?raw=true" alt="J1HqCzX.png" border="0" width = "200px">
-<img src="https://github.com/john-safwat/El3b/blob/master/Images/iPhone%2015%20Pro%20Max%20Mockup,%20Front%20View%20(13).png?raw=true" alt="J1HqVdQ.png" border="0" width = "200px">
-<img src="https://github.com/john-safwat/El3b/blob/master/Images/iPhone%2015%20Pro%20Max%20Mockup,%20Front%20View%20(12).png?raw=true" alt="J1HqnXn.png" border="0" width = "200px">
-<img src="https://github.com/john-safwat/El3b/blob/master/Images/iPhone%2015%20Pro%20Max%20Mockup,%20Front%20View%20(11).png?raw=true" alt="J1HqGrx.png" border="0" width = "200px">
-<img src="https://github.com/john-safwat/El3b/blob/master/Images/iPhone%2015%20Pro%20Max%20Mockup,%20Front%20View%20(10).png?raw=true" alt="J1HqXkB.png" border="0" width = "200px">
-<img src="https://github.com/john-safwat/El3b/blob/master/Images/iPhone%2015%20Pro%20Max%20Mockup,%20Front%20View%20(1).png?raw=true" alt="J1HqhmP.png" border="0" width = "200px">
-
-![all image](https://github.com/john-safwat/El3b/blob/master/Images/Mobile%20App%20Screen%20Mockup,%20Mosaic.png?raw=true)
+![all image](https://github.com/john-safwat/El3b/blob/master/Images/all%20images_light.png?raw=true)
 
 ## License
 
