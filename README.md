@@ -132,9 +132,9 @@ Whether you're a casual gamer looking for the latest news, a dedicated player se
 
 ### Download and Try The APK Android App From The Link
 
-[![](https://img.shields.io/badge/Download%20Link%202-37a779?style=for-the-badge)](https://www.upload-apk.com/en/JdauEqUa7IdrWX1)
-
-[![](https://img.shields.io/badge/Download%20Link%202-37a779?style=for-the-badge)](https://www.upload-apk.com/en/JdauEqUa7IdrWX1)
+[Button Example2]: https://img.shields.io/badge/Download%20Link%201-37a779?style=for-the-badge
+[Link]: https://www.upload-apk.com/en/JdauEqUa7IdrWX1
+[![Button Example2]][Link]
 
 [Button Example2]: https://img.shields.io/badge/Download%20Link%202-37a779?style=for-the-badge
 [Link]: https://fastupload.io/en/KOM1sA7ynWqkS8G/file
