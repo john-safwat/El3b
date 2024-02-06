@@ -28,7 +28,7 @@
 
 # El3b
 
-![all image](https://freeimage.host/i/J1H20Tg)
+![all image](https://iili.io/J1H20Tg.png)
 ## Description
 
 Welcome to El3b, the mobile app designed to provide you with the latest games news and a platform for chatting. We appreciate your usage of our app and strive to offer you an enjoyable and informative experience along with other app users.
