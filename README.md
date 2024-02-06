@@ -31,7 +31,6 @@
 ![all image](https://iili.io/J1HNAmv.png)
 ## Description
 
-
 Welcome to El3b, the mobile app designed to provide you with the latest games news and a platform for chatting. We appreciate your usage of our app and strive to offer you an enjoyable and informative experience along with other app users.
 
 El3b delivers the most up-to-date news and updates from the world of gaming. Whether you're interested in video games, mobile games, or electronic games in general, our app covers it all. Stay informed about new game releases, updates, events, and industry trends.
