@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 class ImagesSlider extends StatelessWidget {
 
   List<ShortScreenshots> images ;
-  ImagesSlider({required this.images , super.key});
+  String tag;
+  ImagesSlider({required this.images,required this.tag, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +21,12 @@ class ImagesSlider extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
               child: CachedNetworkImage(
                 imageUrl: e.image??"",
-                imageBuilder: (context, imageProvider) => Image(image: imageProvider,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
+                imageBuilder: (context, imageProvider) => Hero(
+                  tag: images.indexOf(e) == 0? tag : images.indexOf(e).toString() ,
+                  child: Image(image: imageProvider,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 errorWidget: (context, url, error) =>  Image.asset(
                   "Assets/Images/errorImage.png" ,

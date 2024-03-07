@@ -1,4 +1,5 @@
 import 'package:El3b/Core/Base/BaseNavigator.dart';
+import 'package:El3b/Core/Constants/Constants.dart';
 import 'package:El3b/Core/Errors/DioErrorHandler.dart';
 import 'package:El3b/Core/Errors/FirebaseAuthExceptionHandler.dart';
 import 'package:El3b/Core/Errors/FirebaseFireStoreErrorHandler.dart';
@@ -32,7 +33,7 @@ class BaseViewModel<N extends BaseNavigator> extends ChangeNotifier {
   AppConfigProvider? appConfigProvider;
   AppLocalizations? local;
   Size? mediaQuery;
-
+  Constants constants = Constants.getInstance();
   late AddGameToWishListUseCase addGameToWishListUseCase;
   late DeleteGameFromWishListUseCase deleteGameFromWishListUseCase;
 

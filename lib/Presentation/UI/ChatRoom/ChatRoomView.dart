@@ -8,6 +8,7 @@ import 'package:El3b/Presentation/UI/ChatRoom/ChatRoomViewModel.dart';
 import 'package:El3b/Presentation/UI/ChatRoom/Widgets/MessageWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class ChatRoomView extends StatefulWidget {
@@ -90,6 +91,11 @@ class _ChatRoomViewState extends BaseState<ChatRoomView, ChatRoomViewModel>
                             return ErrorWidget(viewModel.handleExceptions(snapshot.error! as Exception));
                           } else {
                             viewModel.messages =  snapshot.data!.docs.map((e) => e.data().toDomain()).toList();
+                            if(viewModel.messages.isEmpty){
+                              return Center(
+                                child: Lottie.asset("Assets/Animations/messages.json"),
+                              );
+                            }
                             return ListView.builder(
                               reverse: true,
                               itemBuilder: (context, index) => MessageWidget(message: viewModel.messages[index]),

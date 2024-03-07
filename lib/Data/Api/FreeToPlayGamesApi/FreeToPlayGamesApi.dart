@@ -14,7 +14,7 @@ class FreeToPlayGamesApi extends BaseAPIManager <FreeToPlayGamesApiAssets> {
   FreeToPlayGamesApi._(super.apiAssets);
   static FreeToPlayGamesApi? _instance ;
   static FreeToPlayGamesApi getInstance(FreeToPlayGamesApiAssets apiAssets){
-    return FreeToPlayGamesApi._(apiAssets);
+    return _instance??= FreeToPlayGamesApi._(apiAssets);
   }
 
 

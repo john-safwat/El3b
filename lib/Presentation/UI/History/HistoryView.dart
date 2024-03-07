@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 
 class HistoryView extends StatefulWidget {
   static const String routeName = "History";
+
   const HistoryView({super.key});
 
   @override
@@ -68,6 +69,7 @@ class _HistoryViewState extends BaseState<HistoryView, HistoryViewModel>
                                 .copyWith(overscroll: false),
                             child: ListView.builder(
                               itemBuilder: (context, index) => GameWidget(
+                                tag: value.games[index].id.toString(),
                                 game: value.games[index],
                                 selectGame: value.selectRAWGGame,
                                 unselectGame: value.unselectRAWGGame,
@@ -83,7 +85,10 @@ class _HistoryViewState extends BaseState<HistoryView, HistoryViewModel>
                       ],
                     ),
                     value.rawgGameSelected
-                        ? GameHoldWidget(game: value.rawgGameSelectedGame)
+                        ? GameHoldWidget(
+                            game: value.rawgGameSelectedGame,
+                            tag: viewModel.rawgGameSelectedGame.id.toString(),
+                          )
                         : const SizedBox()
                   ],
                 );

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:El3b/Core/Base/BaseDatabase.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:randomstring_dart/randomstring_dart.dart';
@@ -9,7 +10,7 @@ FirebaseImagesDatabase injectFirebaseImagesDatabase(){
 }
 
 // the object
-class FirebaseImagesDatabase {
+class FirebaseImagesDatabase extends BaseDatabase {
 
   FirebaseImagesDatabase._();
   static FirebaseImagesDatabase? instance;
@@ -22,7 +23,7 @@ class FirebaseImagesDatabase {
   // upload image to firebase storage
   Future<String> uploadImage({required XFile file})async{
     // upload image to firebase storage
-    var snapshot = await _firebaseStorage.ref().child('images/${generateName()}').putFile(File(file.path));
+    var snapshot = await _firebaseStorage.ref().child('${constants.imagesFolderName}/${generateName()}').putFile(File(file.path));
     // get the image URL from firebase storage
     var downloadUrl = await snapshot.ref.getDownloadURL();
     return downloadUrl;

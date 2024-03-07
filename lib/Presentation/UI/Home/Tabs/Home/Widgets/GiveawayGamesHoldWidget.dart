@@ -5,13 +5,14 @@ import 'package:El3b/Domain/Models/Games/GiveawayGames/GiveawayGame.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:super_banners/super_banners.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GiveawayGamesHoldWidget extends StatelessWidget {
   GiveawayGame game;
+
   GiveawayGamesHoldWidget({required this.game});
 
   @override
@@ -61,9 +62,12 @@ class GiveawayGamesHoldWidget extends StatelessWidget {
                               height: 170,
                               decoration: BoxDecoration(
                                   color: MyTheme.lightPurple,
-                                  borderRadius: BorderRadius.circular(15)
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: const Center(
+                                child: CircularProgressIndicator(
+                                  color: MyTheme.offWhite,
+                                ),
                               ),
-                              child:const Center(child: CircularProgressIndicator(color: MyTheme.offWhite,),),
                             ),
                           )),
                       // the giveaway title
@@ -125,17 +129,19 @@ class GiveawayGamesHoldWidget extends StatelessWidget {
                         ),
                         // the Platforms
                         Wrap(
-                          children: game.icons.map((e) => Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: SvgPicture.asset(
-                                e,
-                                color: themeProvider.isDark()
-                                    ? MyTheme.offWhite
-                                    : MyTheme.lightPurple,
-                                width: 30,
-                                fit: BoxFit.cover,
-                              ),
-                            )).toList(),
+                          children: game.icons
+                              .map((e) => Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: SvgPicture.asset(
+                                      e,
+                                      color: themeProvider.isDark()
+                                          ? MyTheme.offWhite
+                                          : MyTheme.lightPurple,
+                                      width: 30,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ))
+                              .toList(),
                         ),
                         const SizedBox(
                           height: 10,

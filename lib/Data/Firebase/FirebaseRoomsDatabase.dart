@@ -1,3 +1,4 @@
+import 'package:El3b/Core/Base/BaseDatabase.dart';
 import 'package:El3b/Data/Models/Room/RoomDTO.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -6,7 +7,7 @@ FirebaseRoomsDatabase injectFirebaseRoomsDatabase(){
   return FirebaseRoomsDatabase.getInstance();
 }
 
-class FirebaseRoomsDatabase {
+class FirebaseRoomsDatabase extends BaseDatabase{
 
   // obtain the singleton pattern
   FirebaseRoomsDatabase._();
@@ -18,7 +19,7 @@ class FirebaseRoomsDatabase {
 
   // get the collection reference from firebase
   CollectionReference<RoomDTO> getRoomCollectionReference (){
-    return FirebaseFirestore.instance.collection("Rooms").withConverter(
+    return FirebaseFirestore.instance.collection(constants.roomsCollection).withConverter(
         fromFirestore: (snapshot, options) => RoomDTO.fromFireStore(snapshot.data()!),
         toFirestore: (value, options) => value.toFireStore(),
     );

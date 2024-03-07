@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 
 class GameWidget extends StatelessWidget {
   RAWGGame game;
+  String tag;
   Function selectGame ;
   Function unselectGame ;
   Function editWishListState;
@@ -15,6 +16,7 @@ class GameWidget extends StatelessWidget {
   Function addGameToHistory;
 
   GameWidget({
+    required this.tag,
     required this.game ,
     required this.selectGame ,
     required this.unselectGame,
@@ -52,15 +54,21 @@ class GameWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15),
                   child: CachedNetworkImage(
                     imageUrl: game.backgroundImage??"",
-                    imageBuilder: (context, imageProvider) => Image(
-                      image: imageProvider,
-                      fit: BoxFit.cover ,
-                      width: double.infinity,
+                    imageBuilder: (context, imageProvider) => Hero(
+                      tag: tag,
+                      child: Image(
+                        image: imageProvider,
+                        fit: BoxFit.cover ,
+                        width: double.infinity,
+                      ),
                     ),
-                    errorWidget: (context, url, error) =>  Image.asset(
-                      "Assets/Images/errorImage.png" ,
-                      fit: BoxFit.cover ,
-                      width: double.infinity,
+                    errorWidget: (context, url, error) =>  Hero(
+                      tag: tag,
+                      child: Image.asset(
+                        "Assets/Images/errorImage.png" ,
+                        fit: BoxFit.cover ,
+                        width: double.infinity,
+                      ),
                     ),
                     placeholder: (context, url) => Container(
                       width: double.infinity,
