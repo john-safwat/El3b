@@ -1,4 +1,5 @@
 
+import 'package:El3b/Core/Base/BaseDatabase.dart';
 import 'package:El3b/Data/Models/User/UserDTO.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -7,7 +8,7 @@ FirebaseRoomUsersDataBase injectFirebaseRoomUsersDataBase(){
   return FirebaseRoomUsersDataBase.getInstance();
 }
 
-class FirebaseRoomUsersDataBase {
+class FirebaseRoomUsersDataBase extends BaseDatabase{
 
   FirebaseRoomUsersDataBase._();
   static FirebaseRoomUsersDataBase? _instance;
@@ -18,9 +19,9 @@ class FirebaseRoomUsersDataBase {
 
   CollectionReference<UserDTO> getCollectionReference(String roomId) {
     return FirebaseFirestore.instance
-        .collection("Rooms")
+        .collection(constants.roomsCollection)
         .doc(roomId)
-        .collection("Users")
+        .collection(constants.userCollection)
         .withConverter(
       fromFirestore: (snapshot, options) => UserDTO.fromFireStore(snapshot.data()!),
       toFirestore: (value, options) => value.toFireStore(),

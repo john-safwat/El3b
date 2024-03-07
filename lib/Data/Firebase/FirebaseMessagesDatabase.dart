@@ -1,3 +1,4 @@
+import 'package:El3b/Core/Base/BaseDatabase.dart';
 import 'package:El3b/Data/Models/Messages/MessageDTO.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -6,7 +7,7 @@ FirebaseMessagesDatabase injectFirebaseMessagesDatabase(){
   return FirebaseMessagesDatabase.getInstance();
 }
 
-class FirebaseMessagesDatabase {
+class FirebaseMessagesDatabase extends BaseDatabase{
 
 
   FirebaseMessagesDatabase._();
@@ -19,9 +20,9 @@ class FirebaseMessagesDatabase {
 
   CollectionReference<MessageDTO> getCollectionReference(String roomId) {
     return FirebaseFirestore.instance
-        .collection("Rooms")
+        .collection(constants.roomsCollection)
         .doc(roomId)
-        .collection("Messages")
+        .collection(constants.messagesCollection)
         .withConverter(
       fromFirestore: (snapshot, options) =>
           MessageDTO.fromFireStore(snapshot.data()!),

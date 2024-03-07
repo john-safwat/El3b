@@ -48,11 +48,14 @@ class _JoinRoomViewState extends BaseState<JoinRoomView , JoinRoomViewModel> imp
                   borderRadius: BorderRadius.circular(20),
                   child: CachedNetworkImage(
                     imageUrl: viewModel.room.image,
-                    imageBuilder: (context, imageProvider) => Image(
-                      image: imageProvider,
-                      width: double.infinity,
-                      height: 200,
-                      fit: BoxFit.cover,
+                    imageBuilder: (context, imageProvider) => Hero(
+                      tag: viewModel.room.id,
+                      child: Image(
+                        image: imageProvider,
+                        width: double.infinity,
+                        height: 200,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                     errorWidget: (context, url, error) => Container(
                         width: double.infinity,

@@ -93,7 +93,7 @@ class _GameDetailsViewState extends BaseState<GameDetailsView , GameDetailsViewM
               child: ListView(
                 children: [
                   // the game screen shots
-                  ImagesSlider(images: viewModel.game.shortScreenshots??[]),
+                  ImagesSlider(images: viewModel.game.shortScreenshots??[] , tag: viewModel.game.id.toString()),
                   Consumer<GameDetailsViewModel>(
                       builder: (context, value, child) {
                         if (value.gameErrorMessage != null){

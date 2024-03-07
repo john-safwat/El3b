@@ -10,7 +10,6 @@ class FreeToPlayGameWidget extends StatelessWidget {
   Function selectGame;
   Function unselectGame;
   Function urlLauncher;
-
   FreeToPlayGameWidget(
       {required this.game,
       required this.selectGame,
@@ -37,7 +36,6 @@ class FreeToPlayGameWidget extends StatelessWidget {
                     fit: BoxFit.cover,
                     height: double.infinity,
                     width: double.infinity,
-
                   ),
                   errorWidget: (context, url, error) => Image.asset(
                     "Assets/Images/errorImage.png",

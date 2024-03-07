@@ -1,6 +1,6 @@
 import 'package:El3b/Core/Constants/Constants.dart';
 
-abstract class BaseAPIAssets{
+class BaseDatabase {
 
   Constants constants = Constants.getInstance();
 

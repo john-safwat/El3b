@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 
 class GameSearchView extends StatefulWidget {
   static const String routeName = "HomeSearch";
+
   const GameSearchView({super.key});
 
   @override
@@ -48,7 +49,7 @@ class _GameSearchViewState
               return SingleChildScrollView(
                 child: ErrorMessageWidget(
                   errorMessage: value.errorMessage ?? "There is A error",
-                  fixErrorFunction: (){},
+                  fixErrorFunction: () {},
                 ),
               );
             } else if (value.loading) {
@@ -82,17 +83,20 @@ class _GameSearchViewState
               return Stack(
                 children: [
                   ScrollConfiguration(
-                    behavior: const ScrollBehavior().copyWith(overscroll: false),
+                    behavior:
+                        const ScrollBehavior().copyWith(overscroll: false),
                     child: Column(
                       children: [
                         Expanded(
                           child: ListView.builder(
                             itemBuilder: (context, index) => GameWidget(
-                                game: value.games[index],
-                                selectGame: value.selectRAWGGame,
-                                unselectGame: value.unselectRAWGGame,
-                                editWishListState: value.editGameWishListState,
-                                goToGameDetailsScreen: value.goToGameDetailsScreen,
+                              tag: value.games[index].id.toString(),
+                              game: value.games[index],
+                              selectGame: value.selectRAWGGame,
+                              unselectGame: value.unselectRAWGGame,
+                              editWishListState: value.editGameWishListState,
+                              goToGameDetailsScreen:
+                                  value.goToGameDetailsScreen,
                               addGameToHistory: value.addGameToHistory,
                             ),
                             itemCount: value.games.length,
@@ -101,7 +105,11 @@ class _GameSearchViewState
                       ],
                     ),
                   ),
-                  value.rawgGameSelected?GameHoldWidget(game: value.rawgGameSelectedGame) : const SizedBox()
+                  value.rawgGameSelected
+                      ? GameHoldWidget(
+                          tag:  value.rawgGameSelectedGame.id.toString(),
+                          game: value.rawgGameSelectedGame)
+                      : const SizedBox()
                 ],
               );
             }
@@ -114,8 +122,8 @@ class _GameSearchViewState
   @override
   GameSearchViewModel initViewModel() {
     return GameSearchViewModel(
-      searchFromGameFromServerUseCase: injectSearchFromGameFromServerUseCase(),
-      addGameToHistoryUseCase: injectAddGameToHistoryUseCase()
-    );
+        searchFromGameFromServerUseCase:
+            injectSearchFromGameFromServerUseCase(),
+        addGameToHistoryUseCase: injectAddGameToHistoryUseCase());
   }
 }

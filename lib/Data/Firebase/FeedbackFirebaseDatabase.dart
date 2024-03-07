@@ -1,3 +1,4 @@
+import 'package:El3b/Core/Base/BaseDatabase.dart';
 import 'package:El3b/Data/Models/Feedback/FeedbackDTO.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -7,7 +8,7 @@ FeedbackFirebaseDatabase injectFeedbackFirebaseDatabase(){
   return FeedbackFirebaseDatabase.getInstance();
 }
 
-class FeedbackFirebaseDatabase {
+class FeedbackFirebaseDatabase extends BaseDatabase{
 
   // singleton pattern
   FeedbackFirebaseDatabase._();
@@ -18,7 +19,7 @@ class FeedbackFirebaseDatabase {
   
   // get collection Feedback collection references
   CollectionReference<FeedbackDTO> getCollectionReference(){
-    return FirebaseFirestore.instance.collection("Feedback").withConverter(
+    return FirebaseFirestore.instance.collection(constants.feedbacksCollection).withConverter(
         fromFirestore: (snapshot, options) => FeedbackDTO.fromFireStore(snapshot.data()!),
         toFirestore: (value, options) => value.toFireStore(),
     );

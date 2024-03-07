@@ -10,7 +10,9 @@ import 'package:provider/provider.dart';
 
 class GameHoldWidget extends StatelessWidget {
   RAWGGame game;
-  GameHoldWidget({required this.game, super.key});
+  String tag;
+
+  GameHoldWidget({required this.game, required this.tag, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -51,31 +53,38 @@ class GameHoldWidget extends StatelessWidget {
                                 topRight: Radius.circular(15)),
                             child: CachedNetworkImage(
                               imageUrl: game.backgroundImage ?? "",
-                              imageBuilder: (context, imageProvider) =>
-                                  Image(
-                                image: imageProvider,
-                                width: double.infinity,
-
-                                fit: BoxFit.cover,
+                              imageBuilder: (context, imageProvider) => Hero(
+                                tag: tag,
+                                child: Image(
+                                  image: imageProvider,
+                                  width: double.infinity,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
-                              errorWidget: (context, url, error) => Image.asset(
-                                "Assets/Images/errorImage.png",
+                              errorWidget: (context, url, error) => Hero(
+                                tag: tag,
+                                child: Image.asset(
+                                  "Assets/Images/errorImage.png",
+                                ),
                               ),
                               placeholder: (context, url) => Container(
                                 width: double.infinity,
                                 height: 170,
                                 decoration: BoxDecoration(
                                     color: MyTheme.lightPurple,
-                                    borderRadius: BorderRadius.circular(15)
+                                    borderRadius: BorderRadius.circular(15)),
+                                child: const Center(
+                                  child: CircularProgressIndicator(
+                                    color: MyTheme.offWhite,
+                                  ),
                                 ),
-                                child:const Center(child: CircularProgressIndicator(color: MyTheme.offWhite,),),
                               ),
                             )),
                       ),
                       Positioned(
-                          top:10,
+                          top: 10,
                           right: localProvider.isEn() ? 10 : null,
-                          left: localProvider.isEn() ? null :10,
+                          left: localProvider.isEn() ? null : 10,
                           child: Container(
                             padding: const EdgeInsets.all(10),
                             decoration: BoxDecoration(
@@ -91,7 +100,8 @@ class GameHoldWidget extends StatelessWidget {
                                   .textTheme
                                   .displayLarge!
                                   .copyWith(
-                                  color: MyTheme.offWhite , fontWeight: FontWeight.bold),
+                                      color: MyTheme.offWhite,
+                                      fontWeight: FontWeight.bold),
                             ),
                           ))
                     ],

@@ -21,6 +21,7 @@ import 'package:provider/provider.dart';
 
 class HomeTabView extends StatefulWidget {
   const HomeTabView({super.key});
+
   @override
   State<HomeTabView> createState() => _HomeTabViewState();
 }
@@ -46,7 +47,9 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
           titleSpacing: 10,
           centerTitle: true,
           leadingWidth: 0,
-          title: CustomSearchBarButton(navigation: viewModel.goToSearchScreen,),
+          title: CustomSearchBarButton(
+            navigation: viewModel.goToSearchScreen,
+          ),
         ),
         body: RefreshIndicator(
           color: MyTheme.lightPurple,
@@ -57,7 +60,7 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
               if (value.errorMessage != null) {
                 return ErrorMessageWidget(
                   errorMessage: value.errorMessage!,
-                  fixErrorFunction: (){
+                  fixErrorFunction: () {
                     viewModel.getGames();
                     viewModel.getGeneralGames();
                   },
@@ -71,9 +74,9 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
                       padding: const EdgeInsets.all(30.0),
                       child: value.themeProvider!.isDark()
                           ? Lottie.asset("Assets/Animations/loading2.json",
-                          width: 150, height: 120)
+                              width: 150, height: 120)
                           : Lottie.asset("Assets/Animations/loading3.json",
-                          width: 300, height: 300),
+                              width: 300, height: 300),
                     ),
                   ],
                 );
@@ -81,11 +84,14 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
                 return Stack(
                   children: [
                     ScrollConfiguration(
-                      behavior: const ScrollBehavior().copyWith(overscroll: false),
+                      behavior:
+                          const ScrollBehavior().copyWith(overscroll: false),
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
-                            const SizedBox(height: 100,),
+                            const SizedBox(
+                              height: 100,
+                            ),
                             GiveawayGamesList(
                               games: value.listGiveawayGames,
                               selectGame: value.selectGiveawayGame,
@@ -110,58 +116,85 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
                                 ),
                                 Text(
                                   value.local!.recommendedGames,
-                                  style: Theme.of(context).textTheme.displayMedium,
+                                  style:
+                                      Theme.of(context).textTheme.displayMedium,
                                 ),
                               ],
                             ),
                             Consumer<HomeTabViewModel>(
-                                builder: (context, value, child) {
-                                  if(value.rawgErrorMessage != null){
-                                    return Padding(
-                                      padding: const EdgeInsets.all(20.0),
-                                      child: Column(
-                                        children: [
-                                          Center(child: Lottie.asset("Assets/Animations/error.json" ,width: 120 ,fit: BoxFit.cover )),
-                                          const SizedBox(height: 20,),
-                                          Text(
-                                            viewModel.local!.someThingWentWrong,
-                                            style: Theme.of(context).textTheme.displayMedium,
-                                          ),
-                                          const SizedBox(height: 20,),
-                                          ElevatedButton(
-                                            onPressed: (){
+                              builder: (context, value, child) {
+                                if (value.rawgErrorMessage != null) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(20.0),
+                                    child: Column(
+                                      children: [
+                                        Center(
+                                            child: Lottie.asset(
+                                                "Assets/Animations/error.json",
+                                                width: 120,
+                                                fit: BoxFit.cover)),
+                                        const SizedBox(
+                                          height: 20,
+                                        ),
+                                        Text(
+                                          viewModel.local!.someThingWentWrong,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .displayMedium,
+                                        ),
+                                        const SizedBox(
+                                          height: 20,
+                                        ),
+                                        ElevatedButton(
+                                            onPressed: () {
                                               value.getGeneralGames();
                                             },
                                             child: Padding(
-                                              padding: const EdgeInsets.symmetric(horizontal: 20.0 , vertical: 10),
-                                              child: Text(value.local!.tryAgain),
-                                            )
-                                          )
-                                        ],
-                                      ),
-                                    );
-                                  }else if (value.listRAWGGames.isEmpty){
-                                    return  Padding(
-                                      padding: const EdgeInsets.all(80.0),
-                                      child: value.themeProvider!.isDark()
-                                        ? Lottie.asset("Assets/Animations/loading2.json",
-                                        width: 150, height: 120)
-                                        : Lottie.asset("Assets/Animations/loading3.json",
-                                        width: 300, height: 300),
-                                    );
-                                  }else {
-                                    return Column(
-                                      children: value.listRAWGGames.map((e) =>  GameWidget(
-                                        game: e,
-                                        selectGame: value.selectRAWGGame,
-                                        unselectGame: value.unselectRAWGGame,
-                                        editWishListState: value.editGameWishListState,
-                                        goToGameDetailsScreen: value.goToGameDetailsScreen,
-                                        addGameToHistory: value.addGameToHistory,
-                                      ),).toList(),
-                                    );
-                                  }
-                                },
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 20.0,
+                                                      vertical: 10),
+                                              child:
+                                                  Text(value.local!.tryAgain),
+                                            ))
+                                      ],
+                                    ),
+                                  );
+                                } else if (value.listRAWGGames.isEmpty) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(80.0),
+                                    child: value.themeProvider!.isDark()
+                                        ? Lottie.asset(
+                                            "Assets/Animations/loading2.json",
+                                            width: 150,
+                                            height: 120)
+                                        : Lottie.asset(
+                                            "Assets/Animations/loading3.json",
+                                            width: 300,
+                                            height: 300),
+                                  );
+                                } else {
+                                  return Column(
+                                    children: value.listRAWGGames
+                                        .map(
+                                          (e) => GameWidget(
+                                            game: e,
+                                            selectGame: value.selectRAWGGame,
+                                            unselectGame:
+                                                value.unselectRAWGGame,
+                                            editWishListState:
+                                                value.editGameWishListState,
+                                            goToGameDetailsScreen:
+                                                value.goToGameDetailsScreen,
+                                            addGameToHistory:
+                                                value.addGameToHistory,
+                                            tag: e.id.toString()
+                                          ),
+                                        )
+                                        .toList(),
+                                  );
+                                }
+                              },
                             ),
                           ],
                         ),
@@ -178,6 +211,7 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
                             : viewModel.rawgGameSelected
                                 ? GameHoldWidget(
                                     game: value.rawgGameSelectedGame,
+                                    tag: value.rawgGameSelectedGame.id.toString(),
                                   )
                                 : const SizedBox()
                   ],
@@ -197,8 +231,6 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
         getFreeToPlayGamesUseCase: injectGetFreeToPlayGamesUseCase(),
         getRAWGGeneralGamesUseCase: injectGetRAWGGeneralGamesUseCase(),
         gamesFromServerUseCase: injectGetGiveawayGamesFromServerUseCase(),
-        addGameToHistoryUseCase: injectAddGameToHistoryUseCase()
-    );
+        addGameToHistoryUseCase: injectAddGameToHistoryUseCase());
   }
-
 }
