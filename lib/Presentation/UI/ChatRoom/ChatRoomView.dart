@@ -139,7 +139,7 @@ class _ChatRoomViewState extends BaseState<ChatRoomView, ChatRoomViewModel>
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 10.0, horizontal: 10),
                                     child: Icon(
-                                      Bootstrap.emoji_smile,
+                                      EvaIcons.smiling_face_outline,
                                       color: viewModel.themeProvider!.isDark()?MyTheme.offWhite:MyTheme.lightPurple,
                                     ),
                                   ),
@@ -193,7 +193,7 @@ class _ChatRoomViewState extends BaseState<ChatRoomView, ChatRoomViewModel>
                             ),
                             child: const Padding(
                               padding: EdgeInsets.symmetric(vertical: 18.0),
-                              child: Icon(Bootstrap.mic_fill,color: MyTheme.offWhite,),
+                              child: Icon(EvaIcons.mic_outline,color: MyTheme.offWhite,),
                             )
                           )
                         ],

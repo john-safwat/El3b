@@ -13,7 +13,9 @@ import 'package:El3b/Presentation/UI/Login/LoginView.dart';
 import 'package:El3b/Presentation/UI/ResetPassword/ResetPasswordView.dart';
 import 'package:El3b/Presentation/UI/Widgets/LanguageSwitch.dart';
 import 'package:El3b/Presentation/UI/Widgets/ThemeSwitch.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:provider/provider.dart';
 
@@ -24,12 +26,14 @@ class ProfileTabView extends StatefulWidget {
   State<ProfileTabView> createState() => _ProfileTabViewState();
 }
 
-class _ProfileTabViewState extends BaseState<ProfileTabView , ProfileTabViewModel> implements ProfileTabNavigator {
+class _ProfileTabViewState
+    extends BaseState<ProfileTabView, ProfileTabViewModel>
+    implements ProfileTabNavigator {
   @override
   Widget build(BuildContext context) {
     super.build(context);
     viewModel.setButtonsData();
-    return  ChangeNotifierProvider(
+    return ChangeNotifierProvider(
       create: (context) => viewModel,
       child: Column(
         children: [
@@ -47,46 +51,108 @@ class _ProfileTabViewState extends BaseState<ProfileTabView , ProfileTabViewMode
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(viewModel.local!.theme , style: Theme.of(context).textTheme.displayLarge!.copyWith(fontWeight: FontWeight.bold),),
+                        Text(
+                          viewModel.local!.theme,
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayLarge!
+                              .copyWith(fontWeight: FontWeight.bold),
+                        ),
                         const ThemeSwitch(),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 20,),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(viewModel.local!.language , style: Theme.of(context).textTheme.displayLarge!.copyWith(fontWeight: FontWeight.bold),),
+                        Text(
+                          viewModel.local!.language,
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayLarge!
+                              .copyWith(fontWeight: FontWeight.bold),
+                        ),
                         const LanguageSwitch(),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 20,),
-                  CustomButton(button: viewModel.buttonsData[0]),
-                  const SizedBox(height: 10,),
-                  CustomButton(button: viewModel.buttonsData[1]),
-                  const SizedBox(height: 10,),
-                  CustomButton(button: viewModel.buttonsData[2]),
-                  const SizedBox(height: 10,),
-                  CustomButton(button: viewModel.buttonsData[3]),
-                  const SizedBox(height: 10,),
-                  CustomButton(button: viewModel.buttonsData[4]),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      Expanded(child: CustomButton(button: viewModel.buttonsData[0])),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(child: CustomButton(button: viewModel.buttonsData[1])),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      Expanded(child: CustomButton(button: viewModel.buttonsData[2])),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(child: CustomButton(button: viewModel.buttonsData[3])),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  InkWell(
+                    onTap: () => viewModel.buttonsData[4].onClickListener(),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: viewModel.buttonsData[4].color,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Icon(
+                              viewModel.buttonsData[4].icon,
+                              size: 25,
+                              color: MyTheme.white,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            viewModel.buttonsData[4].title,
+                            style: Theme.of(context).textTheme.displayMedium,
+                          ),
+                          const Expanded(child: SizedBox()),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: 20,
+                            color: Theme.of(context).primaryColor,
+                          )
+                        ],
+                      ),
+                    ),
+                  )
                 ],
-              )
-          )
+              ))
         ],
       ),
     );
-
   }
 
   @override
   ProfileTabViewModel initViewModel() {
-    return ProfileTabViewModel(
-      useCase: injectSignUserOutUseCase()
-    );
+    return ProfileTabViewModel(useCase: injectSignUserOutUseCase());
   }
 
   @override
@@ -118,5 +184,4 @@ class _ProfileTabViewState extends BaseState<ProfileTabView , ProfileTabViewMode
   goToResetPasswordScreen() {
     Navigator.pushNamed(context, ResetPasswordView.routeName);
   }
-
 }

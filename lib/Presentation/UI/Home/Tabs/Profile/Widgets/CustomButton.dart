@@ -9,35 +9,28 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => button.onClickListener(),
-      child: Padding(
+      child: Container(
+        height: 100,
+        decoration: BoxDecoration(
+          color: button.color,
+          borderRadius: BorderRadius.circular(15),
+        ),
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8),
-        child: Row(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: button.color,
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Icon(
-                button.icon,
-                size: 25,
-                color: MyTheme.white,
-              ),
+            Icon(
+              button.icon,
+              size: 40,
+              color: MyTheme.white,
             ),
             const SizedBox(
               width: 10,
             ),
             Text(
               button.title,
-              style: Theme.of(context).textTheme.displayMedium,
+              style: Theme.of(context).textTheme.displayLarge,
             ),
-            const Expanded(child: SizedBox()),
-            Icon(
-              Icons.arrow_forward_ios,
-              size: 20,
-              color: Theme.of(context).primaryColor,
-            )
           ],
         ),
       ),
