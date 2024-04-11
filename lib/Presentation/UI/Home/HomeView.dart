@@ -30,29 +30,29 @@ class _HomeViewState extends BaseState<HomeView , HomeViewModel> implements Home
 
             items: [
               BottomNavigationBarItem(
-                label: viewModel.local!.home,
-                icon: const Icon(Bootstrap.house , size: 20,),
-                activeIcon: const Icon(Bootstrap.house_fill , size: 20,)
+                  label: viewModel.local!.home,
+                  icon: const Icon(EvaIcons.home_outline , size: 20,),
+                  activeIcon: const Icon(EvaIcons.home , size: 20,)
               ),
               BottomNavigationBarItem(
                   label: viewModel.local!.chat,
-                  icon: const Icon(Bootstrap.chat_left_text, size: 20,),
-                  activeIcon: const Icon(Bootstrap.chat_left_text_fill, size: 20,)
+                  icon: const Icon(EvaIcons.message_square_outline, size: 20,),
+                  activeIcon: const Icon(EvaIcons.message_square, size: 20,)
               ),
               BottomNavigationBarItem(
-                  label: viewModel.local!.explore,
-                  icon: const Icon(Bootstrap.compass, size: 20,),
-                  activeIcon: const Icon(Bootstrap.compass_fill, size: 20,),
+                label: viewModel.local!.explore,
+                icon: const Icon(EvaIcons.grid_outline, size: 20,),
+                activeIcon: const Icon(EvaIcons.grid, size: 20,),
               ),
               BottomNavigationBarItem(
-                  label: viewModel.local!.favorite,
-                  icon:const Icon(Bootstrap.heart, size: 20,),
-                  activeIcon:const Icon(Bootstrap.heart_fill, size: 20,),
+                label: viewModel.local!.favorite,
+                icon:const Icon(EvaIcons.heart_outline, size: 20,),
+                activeIcon:const Icon(EvaIcons.heart, size: 20,),
               ),
               BottomNavigationBarItem(
-                  label: viewModel.local!.home,
-                  icon:const Icon(Bootstrap.person, size: 20,),
-                  activeIcon:const Icon(Bootstrap.person_fill, size: 20,),
+                label: viewModel.local!.home,
+                icon:const Icon(EvaIcons.person_outline, size: 20,),
+                activeIcon:const Icon(EvaIcons.person, size: 20,),
               ),
             ],
             onTap: (value) {

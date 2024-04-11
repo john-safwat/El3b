@@ -101,7 +101,7 @@ class _ExtraInfoViewState extends BaseState<ExtraInfoView , ExtraInfoViewModel> 
                           controller: viewModel.phoneController,
                           inputType: TextInputType.phone,
                           validator: viewModel.phoneValidation,
-                          icon: Bootstrap.telephone_fill
+                          icon: EvaIcons.smartphone
                         ),
                         const SizedBox(height: 20,),
                         // date piker button
@@ -117,7 +117,7 @@ class _ExtraInfoViewState extends BaseState<ExtraInfoView , ExtraInfoViewModel> 
                             ),
                             child: Row(
                               children: [
-                                const Icon(Bootstrap.calendar_date_fill , color: MyTheme.lightPurple,size: 30,),
+                                const Icon(EvaIcons.calendar , color: MyTheme.lightPurple,size: 30,),
                                 const SizedBox(width: 10,),
                                 Text(viewModel.selectedDate , style: Theme.of(context).textTheme.displayMedium,),
                               ],

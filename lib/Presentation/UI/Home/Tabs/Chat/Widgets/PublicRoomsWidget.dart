@@ -114,7 +114,7 @@ class PublicRoomsWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     const Icon(
-                      Bootstrap.people,
+                      EvaIcons.people_outline,
                       color: MyTheme.offWhite,
                       size: 30,
                     ),

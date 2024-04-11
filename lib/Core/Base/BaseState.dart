@@ -117,7 +117,7 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
   @override
   showSuccessNotification({required String message}){
     ElegantNotification(
-      icon:const Icon(Bootstrap.check , color: MyTheme.offWhite,),
+      icon:const Icon(EvaIcons.checkmark , color: MyTheme.offWhite,),
       description: Text(message , style: Theme.of(context).textTheme.displaySmall!.copyWith(color: MyTheme.offWhite),),
       background: Colors.green,
       animation: AnimationType.fromTop,
@@ -133,7 +133,7 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
   @override
   showErrorNotification({required String message}){
     ElegantNotification(
-      icon:const Icon(Bootstrap.x_circle , color: MyTheme.offWhite,),
+      icon:const Icon(EvaIcons.close , color: MyTheme.offWhite,),
       description: Text(message , style: Theme.of(context).textTheme.displaySmall!.copyWith(color: MyTheme.offWhite),),
       background: Colors.red,
       animation: AnimationType.fromTop,
