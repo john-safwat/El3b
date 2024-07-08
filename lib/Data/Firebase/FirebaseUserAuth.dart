@@ -79,7 +79,7 @@ class FirebaseUserAuth {
     // await FacebookAuth.instance.logOut();
     final LoginResult loginResult = await FacebookAuth.instance.login();
     final OAuthCredential facebookAuthCredential =
-        FacebookAuthProvider.credential(loginResult.accessToken!.token);
+        FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
     await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setBool("loggedIn", true);
