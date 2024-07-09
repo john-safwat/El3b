@@ -45,7 +45,7 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator> {
   late FreeToPlayGame freeToPlayGameSelectedGame;
 
   // function to call games apis using use case
-  void getGames() async {
+  Future<void> getGames() async {
     errorMessage = null;
     listGiveawayGames = [];
     listFreeToPLayGames = [];
@@ -60,7 +60,7 @@ class HomeTabViewModel extends BaseViewModel <HomeTabNavigator> {
     notifyListeners();
   }
 
-  void getGeneralGames()async{
+  Future<void> getGeneralGames()async{
     rawgErrorMessage = null;
     listRAWGGames = [];
     notifyListeners();

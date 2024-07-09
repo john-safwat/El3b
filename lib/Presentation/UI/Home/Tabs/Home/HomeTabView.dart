@@ -31,8 +31,7 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
   @override
   void initState() {
     super.initState();
-    viewModel.getGames();
-    viewModel.getGeneralGames();
+    Future.wait([viewModel.getGames(), viewModel.getGeneralGames()]);
   }
 
   @override
@@ -178,18 +177,17 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
                                     children: value.listRAWGGames
                                         .map(
                                           (e) => GameWidget(
-                                            game: e,
-                                            selectGame: value.selectRAWGGame,
-                                            unselectGame:
-                                                value.unselectRAWGGame,
-                                            editWishListState:
-                                                value.editGameWishListState,
-                                            goToGameDetailsScreen:
-                                                value.goToGameDetailsScreen,
-                                            addGameToHistory:
-                                                value.addGameToHistory,
-                                            tag: e.id.toString()
-                                          ),
+                                              game: e,
+                                              selectGame: value.selectRAWGGame,
+                                              unselectGame:
+                                                  value.unselectRAWGGame,
+                                              editWishListState:
+                                                  value.editGameWishListState,
+                                              goToGameDetailsScreen:
+                                                  value.goToGameDetailsScreen,
+                                              addGameToHistory:
+                                                  value.addGameToHistory,
+                                              tag: e.id.toString()),
                                         )
                                         .toList(),
                                   );
@@ -211,7 +209,8 @@ class _HomeTabViewState extends BaseState<HomeTabView, HomeTabViewModel>
                             : viewModel.rawgGameSelected
                                 ? GameHoldWidget(
                                     game: value.rawgGameSelectedGame,
-                                    tag: value.rawgGameSelectedGame.id.toString(),
+                                    tag: value.rawgGameSelectedGame.id
+                                        .toString(),
                                   )
                                 : const SizedBox()
                   ],
