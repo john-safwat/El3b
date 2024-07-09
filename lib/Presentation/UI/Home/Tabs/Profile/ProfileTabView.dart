@@ -81,68 +81,16 @@ class _ProfileTabViewState
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      Expanded(child: CustomButton(button: viewModel.buttonsData[0])),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(child: CustomButton(button: viewModel.buttonsData[1])),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    children: [
-                      Expanded(child: CustomButton(button: viewModel.buttonsData[2])),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(child: CustomButton(button: viewModel.buttonsData[3])),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  InkWell(
-                    onTap: () => viewModel.buttonsData[4].onClickListener(),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8),
-                      decoration: BoxDecoration(
-                        color: viewModel.buttonsData[4].color,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8),
-                            child: Icon(
-                              viewModel.buttonsData[4].icon,
-                              size: 25,
-                              color: MyTheme.white,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            viewModel.buttonsData[4].title,
-                            style: Theme.of(context).textTheme.displayMedium,
-                          ),
-                          const Expanded(child: SizedBox()),
-                          Icon(
-                            Icons.arrow_forward_ios,
-                            size: 20,
-                            color: Theme.of(context).primaryColor,
-                          )
-                        ],
-                      ),
-                    ),
-                  )
+                  const SizedBox(height: 20,),
+                  CustomButton(button: viewModel.buttonsData[0]),
+                  const SizedBox(height: 10,),
+                  CustomButton(button: viewModel.buttonsData[1]),
+                  const SizedBox(height: 10,),
+                  CustomButton(button: viewModel.buttonsData[2]),
+                  const SizedBox(height: 10,),
+                  CustomButton(button: viewModel.buttonsData[3]),
+                  const SizedBox(height: 10,),
+                  CustomButton(button: viewModel.buttonsData[4]),
                 ],
               ))
         ],
