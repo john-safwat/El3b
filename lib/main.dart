@@ -5,7 +5,7 @@ import 'package:core/Theme/theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:presentation/UI/About/AboutView.dart';
+import 'package:presentation/UI/About/about_view.dart';
 import 'package:presentation/UI/CreateRoom/CreateRoomView.dart';
 import 'package:presentation/UI/EditProfile/EditProfileView.dart';
 import 'package:presentation/UI/ExtraInfo/ExtraInfoView.dart';

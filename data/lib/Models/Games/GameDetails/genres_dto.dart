@@ -1,4 +1,4 @@
-import 'package:domain/Models/Games/GameDetails/Genres.dart';
+import 'package:domain/Models/Games/GameDetails/genres.dart';
 
 class GenresDTO {
   num? id;

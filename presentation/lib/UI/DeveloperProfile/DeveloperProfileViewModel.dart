@@ -1,7 +1,7 @@
 
 import 'package:core/Base/base_view_model.dart';
-import 'package:domain/Models/Developers/Developers.dart';
-import 'package:domain/UseCase/GetGameDeveloperDetailsUseCase.dart';
+import 'package:domain/Models/Developers/developers.dart';
+import 'package:domain/UseCase/get_game_developer_details_use_case.dart';
 import 'package:presentation/UI/DeveloperProfile/DeveloperProfileNavigator.dart';
 
 class DeveloperProfileViewModel extends BaseViewModel<DeveloperProfileNavigator>{

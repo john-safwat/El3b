@@ -1,14 +1,14 @@
 
 import 'package:core/Base/base_view_model.dart';
-import 'package:domain/Exception/URLLauncherException.dart';
-import 'package:domain/Models/Games/FreeToPlayGame/FreeToPlayGame.dart';
-import 'package:domain/Models/Games/GiveawayGames/GiveawayGame.dart';
-import 'package:domain/Models/Games/RAWG/RAWGGame.dart';
-import 'package:domain/UseCase/AddGameToHistoryUseCase.dart';
-import 'package:domain/UseCase/GetAllGiveGamesUseCase.dart';
-import 'package:domain/UseCase/GetFreeToPlayGamesUseCase.dart';
-import 'package:domain/UseCase/GetGiveawayGamesFromServerUseCase.dart';
-import 'package:domain/UseCase/GetRAWGGeneralGamesUseCase.dart';
+import 'package:domain/Exception/url_launcher_exception.dart';
+import 'package:domain/Models/Games/FreeToPlayGame/free_to_play_game.dart';
+import 'package:domain/Models/Games/GiveawayGames/giveaway_game.dart';
+import 'package:domain/Models/Games/RAWG/rawg_game.dart';
+import 'package:domain/UseCase/add_game_to_history_use_case.dart';
+import 'package:domain/UseCase/get_all_give_games_use_case.dart';
+import 'package:domain/UseCase/get_free_to_play_games_use_case.dart';
+import 'package:domain/UseCase/get_giveaway_games_from_server_use_case.dart';
+import 'package:domain/UseCase/get_rawg_general_games_use_case.dart';
 import 'package:presentation/UI/Home/Tabs/Home/HomeTabNavigator.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';

@@ -1,4 +1,4 @@
-import 'package:domain/Models/Games/GameDetails/Store.dart';
+import 'package:domain/Models/Games/GameDetails/store.dart';
 
 class StoreDTO {
   num? id;

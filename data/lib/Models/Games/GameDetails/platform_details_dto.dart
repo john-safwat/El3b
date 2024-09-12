@@ -1,5 +1,5 @@
 
-import 'package:domain/Models/Games/GameDetails/PlatformDetails.dart';
+import 'package:domain/Models/Games/GameDetails/platform_details.dart';
 
 class PlatformDetailsDTO {
   num? id;

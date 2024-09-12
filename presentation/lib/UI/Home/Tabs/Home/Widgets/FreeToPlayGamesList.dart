@@ -1,4 +1,4 @@
-import 'package:domain/Models/Games/FreeToPlayGame/FreeToPlayGame.dart';
+import 'package:domain/Models/Games/FreeToPlayGame/free_to_play_game.dart';
 import 'package:presentation/UI/Home/Tabs/Home/Widgets/FreeToPlayGamesWidget.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';

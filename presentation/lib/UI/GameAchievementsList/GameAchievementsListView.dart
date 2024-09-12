@@ -2,7 +2,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/Base/base_state.dart';
 import 'package:core/Theme/theme.dart';
-import 'package:domain/UseCase/GetAllGameAchievementsUseCase.dart';
+import 'package:domain/UseCase/get_all_game_achievements_use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:presentation/UI/GameAchievementsList/GameAchievementsListNavigator.dart';

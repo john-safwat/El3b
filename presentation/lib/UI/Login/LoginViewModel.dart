@@ -1,11 +1,11 @@
 import 'package:core/Base/base_view_model.dart';
-import 'package:domain/Exception/FirebaseUserDatabaseException.dart';
-import 'package:domain/Models/User/MyUser.dart';
-import 'package:domain/UseCase/AddUserUseCase.dart';
-import 'package:domain/UseCase/CheckIfUserExistUseCase.dart';
-import 'package:domain/UseCase/SignInUserWithEmailAndPasswordUseCase.dart';
-import 'package:domain/UseCase/SignInWithFacebookUseCase.dart';
-import 'package:domain/UseCase/SignInWithGoogleUseCase.dart';
+import 'package:domain/Exception/firebase_user_database_exception.dart';
+import 'package:domain/Models/User/my_user.dart';
+import 'package:domain/UseCase/add_user_use_case.dart';
+import 'package:domain/UseCase/check_if_user_exist_use_case.dart';
+import 'package:domain/UseCase/sign_in_user_with_email_and_password_use_case.dart';
+import 'package:domain/UseCase/sign_in_with_facebook_use_case.dart';
+import 'package:domain/UseCase/sign_in_with_google_use_case.dart';
 import 'package:presentation/UI/Login/LoginNavigator.dart';
 import 'package:flutter/material.dart';
 

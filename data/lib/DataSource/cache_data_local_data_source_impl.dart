@@ -5,12 +5,12 @@ import 'package:data/Models/Games/FreeToPlayGame/free_to_play_game_dto.dart';
 import 'package:data/Models/Games/GiveawayGame/giveaway_game_dto.dart';
 import 'package:data/Models/Games/RAWG/rawg_game_dto.dart';
 import 'package:data/Models/Genres/genre_dto.dart';
-import 'package:domain/DataSource/CacheDataLocalDataSource.dart';
-import 'package:domain/Exception/CacheException.dart';
-import 'package:domain/Models/Games/FreeToPlayGame/FreeToPlayGame.dart';
-import 'package:domain/Models/Games/GiveawayGames/GiveawayGame.dart';
-import 'package:domain/Models/Games/RAWG/RAWGGame.dart';
-import 'package:domain/Models/Genres/Genre.dart';
+import 'package:domain/DataSource/cache_data_local_data_source.dart';
+import 'package:domain/Exception/cache_exception.dart';
+import 'package:domain/Models/Games/FreeToPlayGame/free_to_play_game.dart';
+import 'package:domain/Models/Games/GiveawayGames/giveaway_game.dart';
+import 'package:domain/Models/Games/RAWG/rawg_game.dart';
+import 'package:domain/Models/Genres/genre.dart';
 
 
 // dependency injection

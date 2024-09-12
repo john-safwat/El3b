@@ -1,7 +1,7 @@
 
 import 'package:core/Base/base_view_model.dart';
-import 'package:domain/Models/Achievements/Achievement.dart';
-import 'package:domain/UseCase/GetAllGameAchievementsUseCase.dart';
+import 'package:domain/Models/Achievements/achievement.dart';
+import 'package:domain/UseCase/get_all_game_achievements_use_case.dart';
 import 'package:presentation/UI/GameAchievementsList/GameAchievementsListNavigator.dart';
 
 class GameAchievementsListViewModel extends BaseViewModel<GameAchievementsListNavigator>{

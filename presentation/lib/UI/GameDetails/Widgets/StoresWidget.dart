@@ -1,5 +1,5 @@
 import 'package:core/Theme/theme.dart';
-import 'package:domain/Models/Games/GameDetails/Stores.dart';
+import 'package:domain/Models/Games/GameDetails/stores.dart';
 import 'package:presentation/UI/GameDetails/Widgets/TitleWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

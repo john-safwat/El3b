@@ -1,6 +1,6 @@
 import 'package:core/Base/base_state.dart';
-import 'package:domain/UseCase/AddGameToHistoryUseCase.dart';
-import 'package:domain/UseCase/SearchFromGameFromServerUseCase.dart';
+import 'package:domain/UseCase/add_game_to_history_use_case.dart';
+import 'package:domain/UseCase/search_from_game_from_server_use_case.dart';
 import 'package:presentation/UI/GamesSearch/GameSearchNavigator.dart';
 import 'package:presentation/UI/GamesSearch/GameSearchViweModel.dart';
 import 'package:presentation/UI/Widgets/CustomSearchBar.dart';

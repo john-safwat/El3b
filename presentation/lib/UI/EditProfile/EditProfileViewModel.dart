@@ -1,8 +1,8 @@
 
 import 'package:core/Base/base_view_model.dart';
-import 'package:domain/Models/User/MyUser.dart';
-import 'package:domain/UseCase/LoadUserDataUseCase.dart';
-import 'package:domain/UseCase/UpdateUserProfileUseCase.dart';
+import 'package:domain/Models/User/my_user.dart';
+import 'package:domain/UseCase/load_user_data_use_case.dart';
+import 'package:domain/UseCase/update_user_profile_use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:presentation/UI/EditProfile/EditProfileNavigator.dart';

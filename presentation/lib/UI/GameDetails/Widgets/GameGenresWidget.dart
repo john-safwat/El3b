@@ -1,6 +1,6 @@
 
 import 'package:core/Theme/theme.dart';
-import 'package:domain/Models/Games/GameDetails/Genres.dart';
+import 'package:domain/Models/Games/GameDetails/genres.dart';
 import 'package:flutter/material.dart';
 import 'package:presentation/UI/GameDetails/Widgets/TitleWidget.dart';
 

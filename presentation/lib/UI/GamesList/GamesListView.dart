@@ -1,6 +1,6 @@
 import 'package:core/Base/base_state.dart';
-import 'package:domain/UseCase/AddGameToHistoryUseCase.dart';
-import 'package:domain/UseCase/GetGamesByGenreUseCase.dart';
+import 'package:domain/UseCase/add_game_to_history_use_case.dart';
+import 'package:domain/UseCase/get_games_by_genre_use_case.dart';
 import 'package:presentation/UI/GamesList/GamesListNavigator.dart';
 import 'package:presentation/UI/GamesList/GamesListViewModel.dart';
 import 'package:presentation/UI/Widgets/CustomSearchBarButton.dart';

@@ -1,5 +1,5 @@
 
-import 'package:domain/Models/Games/GameDetails/Ratings.dart';
+import 'package:domain/Models/Games/GameDetails/ratings.dart';
 
 class RatingsDTO {
   num? id;

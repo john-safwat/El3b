@@ -1,5 +1,5 @@
 import 'package:core/Base/base_state.dart';
-import 'package:domain/UseCase/SendFeedbackUseCase.dart';
+import 'package:domain/UseCase/send_feedback_use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:presentation/UI/Feedback/FeedbackNavigator.dart';

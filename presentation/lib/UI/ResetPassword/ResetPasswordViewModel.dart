@@ -1,5 +1,5 @@
 import 'package:core/Base/base_view_model.dart';
-import 'package:domain/UseCase/UpdateUserPasswordUseCase.dart';
+import 'package:domain/UseCase/update_user_password_use_case.dart';
 import 'package:presentation/UI/ResetPassword/ResetPasswordNavigator.dart';
 import 'package:flutter/material.dart';
 class ResetPasswordViewModel extends BaseViewModel<ResetPasswordNavigator>{

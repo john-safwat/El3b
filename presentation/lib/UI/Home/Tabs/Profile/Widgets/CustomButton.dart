@@ -1,5 +1,5 @@
 import 'package:core/Theme/theme.dart';
-import 'package:presentation/Models/Button.dart';
+import 'package:presentation/Models/button.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {

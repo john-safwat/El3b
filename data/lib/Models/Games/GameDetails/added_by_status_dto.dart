@@ -1,4 +1,4 @@
-import 'package:domain/Models/Games/GameDetails/AddedByStatus.dart';
+import 'package:domain/Models/Games/GameDetails/added_by_status.dart';
 
 class AddedByStatusDTO {
   num? yet;

@@ -1,7 +1,7 @@
 import 'package:core/Base/base_view_model.dart';
-import 'package:domain/Models/Games/RAWG/RAWGGame.dart';
-import 'package:domain/UseCase/AddGameToHistoryUseCase.dart';
-import 'package:domain/UseCase/SearchFromGameFromServerUseCase.dart';
+import 'package:domain/Models/Games/RAWG/rawg_game.dart';
+import 'package:domain/UseCase/add_game_to_history_use_case.dart';
+import 'package:domain/UseCase/search_from_game_from_server_use_case.dart';
 import 'package:presentation/UI/GamesSearch/GameSearchNavigator.dart';
 import 'package:flutter/material.dart';
 

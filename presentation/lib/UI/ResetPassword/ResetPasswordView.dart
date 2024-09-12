@@ -1,5 +1,5 @@
 import 'package:core/Base/base_state.dart';
-import 'package:domain/UseCase/UpdateUserPasswordUseCase.dart';
+import 'package:domain/UseCase/update_user_password_use_case.dart';
 import 'package:presentation/UI/ResetPassword/ResetPasswordNavigator.dart';
 import 'package:presentation/UI/ResetPassword/ResetPasswordViewModel.dart';
 import 'package:presentation/UI/Widgets/CustomPasswordTextFormField.dart';

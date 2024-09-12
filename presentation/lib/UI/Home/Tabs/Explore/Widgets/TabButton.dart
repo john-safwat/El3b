@@ -1,6 +1,6 @@
 
 import 'package:core/Theme/theme.dart';
-import 'package:domain/Models/Genres/Genre.dart';
+import 'package:domain/Models/Genres/genre.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 

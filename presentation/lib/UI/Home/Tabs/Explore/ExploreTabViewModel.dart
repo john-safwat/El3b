@@ -1,6 +1,6 @@
 import 'package:core/Base/base_view_model.dart';
-import 'package:domain/Models/Genres/Genre.dart';
-import 'package:domain/UseCase/GetGenresUseCase.dart';
+import 'package:domain/Models/Genres/genre.dart';
+import 'package:domain/UseCase/get_genres_use_case.dart';
 import 'package:presentation/UI/Home/Tabs/Explore/ExploreTabNavigator.dart';
 
 class ExploreTabViewModel extends BaseViewModel <ExploreTabNavigator> {

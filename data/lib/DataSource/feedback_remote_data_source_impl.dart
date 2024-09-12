@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:core/Errors/firebase_fire_store_error_handler.dart';
 import 'package:data/Firebase/feedback_firebase_database.dart';
 import 'package:data/Models/Feedback/feedback_dto.dart';
-import 'package:domain/DataSource/FeedbackRemoteDataSource.dart';
-import 'package:domain/Exception/FirebaseUserDatabaseException.dart';
-import 'package:domain/Exception/TimeOutOperationsException.dart';
-import 'package:domain/Exception/UnknownException.dart';
+import 'package:domain/DataSource/feedback_remote_data_source.dart';
+import 'package:domain/Exception/firebase_user_database_exception.dart';
+import 'package:domain/Exception/time_out_operations_exception.dart';
+import 'package:domain/Exception/unknown_exception.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 // dependency injection

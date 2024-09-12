@@ -1,6 +1,6 @@
 
 import 'package:data/Models/Developers/positions_dto.dart';
-import 'package:domain/Models/Developers/Developers.dart';
+import 'package:domain/Models/Developers/developers.dart';
 
 class DevelopersDTO {
   DevelopersDTO({

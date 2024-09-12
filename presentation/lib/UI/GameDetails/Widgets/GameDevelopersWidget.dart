@@ -1,5 +1,5 @@
 
-import 'package:domain/Models/Developers/Developers.dart';
+import 'package:domain/Models/Developers/developers.dart';
 import 'package:flutter/material.dart';
 import 'package:presentation/UI/GameDetails/Widgets/DeveloperWidget.dart';
 import 'package:presentation/UI/GameDetails/Widgets/TitleWidget.dart';

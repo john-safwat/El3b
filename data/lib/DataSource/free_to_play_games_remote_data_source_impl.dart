@@ -2,12 +2,12 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:data/Api/FreeToPlayGamesApi/free_to_play_games_api.dart';
-import 'package:domain/DataSource/FreeToPlayGamesRemoteDataSource.dart';
-import 'package:domain/Exception/DioServerException.dart';
-import 'package:domain/Exception/InternetConnectionException.dart';
-import 'package:domain/Exception/TimeOutOperationsException.dart';
-import 'package:domain/Exception/UnknownException.dart';
-import 'package:domain/Models/Games/FreeToPlayGame/FreeToPlayGame.dart';
+import 'package:domain/DataSource/free_to_play_games_remote_data_source.dart';
+import 'package:domain/Exception/dio_server_exception.dart';
+import 'package:domain/Exception/internet_connection_exception.dart';
+import 'package:domain/Exception/time_out_operations_exception.dart';
+import 'package:domain/Exception/unknown_exception.dart';
+import 'package:domain/Models/Games/FreeToPlayGame/free_to_play_game.dart';
 import 'package:dio/dio.dart';
 
 // dependency injection

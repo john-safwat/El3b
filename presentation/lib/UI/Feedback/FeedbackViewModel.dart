@@ -1,6 +1,6 @@
 import 'package:core/Base/base_view_model.dart';
-import 'package:domain/Models/Feedback/Feedback.dart';
-import 'package:domain/UseCase/SendFeedbackUseCase.dart';
+import 'package:domain/Models/Feedback/feedback.dart';
+import 'package:domain/UseCase/send_feedback_use_case.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:presentation/UI/Feedback/FeedbackNavigator.dart';
 

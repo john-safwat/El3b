@@ -1,6 +1,6 @@
 import 'package:core/Theme/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:presentation/Models/RoomType.dart';
+import 'package:presentation/Models/room_type.dart';
 
 class TypeDropdownButtonWidget extends StatelessWidget {
 

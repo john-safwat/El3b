@@ -1,6 +1,6 @@
 import 'package:data/Models/Games/GameDetails/platform_details_dto.dart';
 import 'package:data/Models/Games/GameDetails/requirements_dto.dart';
-import 'package:domain/Models/Games/GameDetails/Platforms.dart';
+import 'package:domain/Models/Games/GameDetails/platforms.dart';
 
 class PlatformsDTO {
   PlatformDetailsDTO? platform;

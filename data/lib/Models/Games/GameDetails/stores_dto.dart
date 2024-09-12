@@ -1,5 +1,5 @@
 import 'package:data/Models/Games/GameDetails/store_dto.dart';
-import 'package:domain/Models/Games/GameDetails/Stores.dart';
+import 'package:domain/Models/Games/GameDetails/stores.dart';
 
 class StoresDTO {
   num? id;

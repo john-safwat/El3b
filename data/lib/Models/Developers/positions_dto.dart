@@ -1,5 +1,5 @@
 
-import 'package:domain/Models/Developers/Positions.dart';
+import 'package:domain/Models/Developers/positions.dart';
 
 class PositionsDTO {
   PositionsDTO({

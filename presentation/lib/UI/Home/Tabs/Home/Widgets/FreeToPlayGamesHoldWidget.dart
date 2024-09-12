@@ -1,6 +1,6 @@
 import 'package:core/Providers/theme_provider.dart';
 import 'package:core/Theme/theme.dart';
-import 'package:domain/Models/Games/FreeToPlayGame/FreeToPlayGame.dart';
+import 'package:domain/Models/Games/FreeToPlayGame/free_to_play_game.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';

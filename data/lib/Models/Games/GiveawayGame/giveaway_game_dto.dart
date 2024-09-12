@@ -1,4 +1,4 @@
-import 'package:domain/Models/Games/GiveawayGames/GiveawayGame.dart';
+import 'package:domain/Models/Games/GiveawayGames/giveaway_game.dart';
 
 class GiveawayGameDTO {
   GiveawayGameDTO({

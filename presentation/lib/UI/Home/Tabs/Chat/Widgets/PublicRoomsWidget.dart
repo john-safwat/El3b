@@ -1,6 +1,6 @@
 import 'package:core/Providers/theme_provider.dart';
 import 'package:core/Theme/theme.dart';
-import 'package:domain/Models/Room/Room.dart';
+import 'package:domain/Models/Room/room.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';

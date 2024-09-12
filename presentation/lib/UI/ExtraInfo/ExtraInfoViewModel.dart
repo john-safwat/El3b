@@ -1,7 +1,7 @@
 
 import 'package:core/Base/base_view_model.dart';
-import 'package:domain/Models/User/MyUser.dart';
-import 'package:domain/UseCase/UpdateUserDataUseCase.dart';
+import 'package:domain/Models/User/my_user.dart';
+import 'package:domain/UseCase/update_user_data_use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:presentation/UI/ExtraInfo/ExtraInfoNavigator.dart';

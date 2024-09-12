@@ -1,7 +1,7 @@
 import 'package:core/Providers/local_provider.dart';
 import 'package:core/Providers/theme_provider.dart';
 import 'package:core/Theme/theme.dart';
-import 'package:domain/Models/Games/RAWG/RAWGGame.dart';
+import 'package:domain/Models/Games/RAWG/rawg_game.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';

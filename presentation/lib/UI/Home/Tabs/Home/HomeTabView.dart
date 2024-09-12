@@ -1,10 +1,10 @@
 import 'package:core/Base/base_state.dart';
 import 'package:core/Theme/theme.dart';
-import 'package:domain/UseCase/AddGameToHistoryUseCase.dart';
-import 'package:domain/UseCase/GetAllGiveGamesUseCase.dart';
-import 'package:domain/UseCase/GetFreeToPlayGamesUseCase.dart';
-import 'package:domain/UseCase/GetGiveawayGamesFromServerUseCase.dart';
-import 'package:domain/UseCase/GetRAWGGeneralGamesUseCase.dart';
+import 'package:domain/UseCase/add_game_to_history_use_case.dart';
+import 'package:domain/UseCase/get_all_give_games_use_case.dart';
+import 'package:domain/UseCase/get_free_to_play_games_use_case.dart';
+import 'package:domain/UseCase/get_giveaway_games_from_server_use_case.dart';
+import 'package:domain/UseCase/get_rawg_general_games_use_case.dart';
 import 'package:presentation/UI/Home/Tabs/Home/HomeTabNavigator.dart';
 import 'package:presentation/UI/Home/Tabs/Home/HomeTabViewModel.dart';
 import 'package:presentation/UI/Home/Tabs/Home/Widgets/FreeToPlayGamesHoldWidget.dart';

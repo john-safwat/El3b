@@ -1,4 +1,4 @@
-import 'package:domain/Models/User/MyUser.dart';
+import 'package:domain/Models/User/my_user.dart';
 
 class UserDTO {
 

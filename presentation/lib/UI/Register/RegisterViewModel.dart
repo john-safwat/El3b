@@ -1,6 +1,6 @@
 import 'package:core/Base/base_view_model.dart';
-import 'package:domain/Models/User/MyUser.dart';
-import 'package:domain/UseCase/CreateAccountUseCase.dart';
+import 'package:domain/Models/User/my_user.dart';
+import 'package:domain/UseCase/create_account_use_case.dart';
 import 'package:presentation/UI/Register/RegisterNavigator.dart';
 import 'package:flutter/material.dart';
 

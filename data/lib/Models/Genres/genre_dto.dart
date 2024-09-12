@@ -1,4 +1,4 @@
-import 'package:domain/Models/Genres/Genre.dart';
+import 'package:domain/Models/Genres/genre.dart';
 
 import 'games_dto.dart';
 

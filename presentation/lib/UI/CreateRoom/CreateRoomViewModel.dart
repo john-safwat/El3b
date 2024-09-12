@@ -1,8 +1,8 @@
 
 import 'package:core/Base/base_view_model.dart';
-import 'package:domain/UseCase/AddRoomUseCase.dart';
+import 'package:domain/UseCase/add_room_use_case.dart';
 import 'package:flutter/material.dart';
-import 'package:presentation/Models/RoomType.dart';
+import 'package:presentation/Models/room_type.dart';
 import 'package:presentation/UI/CreateRoom/CreateRoomNavigator.dart';
 
 class CreateRoomViewModel extends BaseViewModel<CreateRoomNavigator> {

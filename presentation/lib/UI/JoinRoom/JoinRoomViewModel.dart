@@ -1,6 +1,6 @@
 import 'package:core/Base/base_view_model.dart';
-import 'package:domain/Models/Room/Room.dart';
-import 'package:domain/UseCase/AddUserToRoomUseCase.dart';
+import 'package:domain/Models/Room/room.dart';
+import 'package:domain/UseCase/add_user_to_room_use_case.dart';
 import 'package:presentation/UI/JoinRoom/JoinRoomNavigator.dart';
 
 class JoinRoomViewModel extends BaseViewModel<JoinRoomNavigator> {

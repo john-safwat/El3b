@@ -1,4 +1,4 @@
-import 'package:domain/Models/Achievements/Achievement.dart';
+import 'package:domain/Models/Achievements/achievement.dart';
 
 class AchievementDTO {
   AchievementDTO({

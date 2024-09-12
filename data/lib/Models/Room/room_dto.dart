@@ -1,4 +1,4 @@
-import 'package:domain/Models/Room/Room.dart';
+import 'package:domain/Models/Room/room.dart';
 
 class RoomDTO {
   String id;

@@ -1,7 +1,7 @@
 import 'package:data/DataSource/feedback_remote_data_source_impl.dart';
-import 'package:domain/DataSource/FeedbackRemoteDataSource.dart';
-import 'package:domain/Models/Feedback/Feedback.dart';
-import 'package:domain/Repository/FeedbackRepository.dart';
+import 'package:domain/DataSource/feedback_remote_data_source.dart';
+import 'package:domain/Models/Feedback/feedback.dart';
+import 'package:domain/Repository/feedback_repository.dart';
 
 
 // dependency injection

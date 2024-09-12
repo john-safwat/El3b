@@ -1,4 +1,4 @@
-import 'package:domain/Models/Games/GameDetails/Requirements.dart';
+import 'package:domain/Models/Games/GameDetails/requirements.dart';
 
 class RequirementsDTO {
   String? minimum;

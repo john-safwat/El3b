@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:core/Base/base_state.dart';
 import 'package:core/Theme/theme.dart';
-import 'package:domain/UseCase/LoadUserDataUseCase.dart';
-import 'package:domain/UseCase/UpdateUserProfileUseCase.dart';
+import 'package:domain/UseCase/load_user_data_use_case.dart';
+import 'package:domain/UseCase/update_user_profile_use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 import 'package:icons_plus/icons_plus.dart';

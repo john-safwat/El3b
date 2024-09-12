@@ -1,8 +1,8 @@
 import 'package:core/Base/base_view_model.dart';
-import 'package:domain/UseCase/SignUserOutUseCase.dart';
+import 'package:domain/UseCase/sign_user_out_use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:presentation/Models/Button.dart';
+import 'package:presentation/Models/button.dart';
 import 'package:presentation/UI/Home/Tabs/Profile/ProfileTabNavigator.dart';
 
 class ProfileTabViewModel extends BaseViewModel<ProfileTabNavigator> {

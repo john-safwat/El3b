@@ -7,7 +7,7 @@ import 'package:data/Models/Games/RAWG/ratings_dto.dart';
 import 'package:data/Models/Games/RAWG/short_screenshots_dto.dart';
 import 'package:data/Models/Games/RAWG/stores_dto.dart';
 import 'package:data/Models/Games/RAWG/tags_dto.dart';
-import 'package:domain/Models/Games/RAWG/RAWGGame.dart';
+import 'package:domain/Models/Games/RAWG/rawg_game.dart';
 
 class RAWGGameDTO {
   num? id;

@@ -7,7 +7,7 @@ import 'package:data/Models/Games/GameDetails/platforms_dto.dart';
 import 'package:data/Models/Games/GameDetails/ratings_dto.dart';
 import 'package:data/Models/Games/GameDetails/stores_dto.dart';
 import 'package:data/Models/Games/GameDetails/tags_dto.dart';
-import 'package:domain/Models/Games/GameDetails/GameDetails.dart';
+import 'package:domain/Models/Games/GameDetails/game_details.dart';
 
 class GameDetailsDTO {
   num? id;

@@ -1,4 +1,4 @@
-import 'package:domain/Models/Games/GameDetails/Tags.dart';
+import 'package:domain/Models/Games/GameDetails/tags.dart';
 
 class TagsDTO {
   num? id;

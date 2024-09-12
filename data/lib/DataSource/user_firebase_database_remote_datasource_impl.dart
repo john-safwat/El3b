@@ -2,12 +2,12 @@ import 'dart:async';
 
 import 'package:data/Firebase/firebase_user_database.dart';
 import 'package:data/Models/User/user_dto.dart';
-import 'package:domain/DataSource/UserFirebaseDatabaseRemoteDatasource.dart';
-import 'package:domain/Exception/FirebaseUserAuthException.dart';
-import 'package:domain/Exception/FirebaseUserDatabaseException.dart';
-import 'package:domain/Exception/TimeOutOperationsException.dart';
-import 'package:domain/Exception/UnknownException.dart';
-import 'package:domain/Models/User/MyUser.dart';
+import 'package:domain/DataSource/user_firebase_database_remote_datasource.dart';
+import 'package:domain/Exception/firebase_user_auth_exception.dart';
+import 'package:domain/Exception/firebase_user_database_exception.dart';
+import 'package:domain/Exception/time_out_operations_exception.dart';
+import 'package:domain/Exception/unknown_exception.dart';
+import 'package:domain/Models/User/my_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 

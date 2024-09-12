@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'package:data/Firebase/firebase_user_auth.dart';
 import 'package:data/Models/User/user_dto.dart';
-import 'package:domain/DataSource/FirebaseUserAuthRemoteDatasource.dart';
-import 'package:domain/Exception/FirebaseLoginException.dart';
-import 'package:domain/Exception/FirebaseUserAuthException.dart';
-import 'package:domain/Exception/TimeOutOperationsException.dart';
-import 'package:domain/Exception/UnknownException.dart';
+import 'package:domain/DataSource/firebase_user_auth_remote_datasource.dart';
+import 'package:domain/Exception/firebase_login_exception.dart';
+import 'package:domain/Exception/firebase_user_auth_exception.dart';
+import 'package:domain/Exception/time_out_operations_exception.dart';
+import 'package:domain/Exception/unknown_exception.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 // dependency injection

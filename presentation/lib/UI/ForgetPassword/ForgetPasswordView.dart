@@ -1,6 +1,6 @@
 
 import 'package:core/Base/base_state.dart';
-import 'package:domain/UseCase/ResetPasswordUseCase.dart';
+import 'package:domain/UseCase/reset_password_use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:lottie/lottie.dart';

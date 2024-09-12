@@ -1,4 +1,4 @@
-import 'package:domain/Models/Games/GameDetails/Platform.dart';
+import 'package:domain/Models/Games/GameDetails/platform.dart';
 
 class PlatformDTO {
   num? platform;

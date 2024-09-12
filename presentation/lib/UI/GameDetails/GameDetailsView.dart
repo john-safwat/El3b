@@ -1,10 +1,10 @@
 import 'package:core/Base/base_state.dart';
 import 'package:core/Theme/theme.dart';
-import 'package:domain/Models/Developers/Developers.dart';
-import 'package:domain/Models/Games/RAWG/RAWGGame.dart';
-import 'package:domain/UseCase/GetGameAchievementsUseCase.dart';
-import 'package:domain/UseCase/GetGameDetailsUseCase.dart';
-import 'package:domain/UseCase/GetGameDevelopersUseCase.dart';
+import 'package:domain/Models/Developers/developers.dart';
+import 'package:domain/Models/Games/RAWG/rawg_game.dart';
+import 'package:domain/UseCase/get_game_achievements_use_case.dart';
+import 'package:domain/UseCase/get_game_details_use_case.dart';
+import 'package:domain/UseCase/get_game_developers_use_case.dart';
 import 'package:presentation/UI/DeveloperProfile/DeveloperProfileView.dart';
 import 'package:presentation/UI/GameAchievementsList/GameAchievementsListView.dart';
 import 'package:presentation/UI/GameDetails/GameDetailsNavigator.dart';

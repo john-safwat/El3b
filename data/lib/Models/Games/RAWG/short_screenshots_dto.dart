@@ -1,5 +1,5 @@
 
-import 'package:domain/Models/Games/RAWG/ShortScreenshots.dart';
+import 'package:domain/Models/Games/RAWG/short_screenshots.dart';
 
 class ShortScreenshotsDTO {
   num? id;

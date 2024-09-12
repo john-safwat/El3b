@@ -1,5 +1,5 @@
 
-import 'package:domain/Models/Games/RAWG/Store.dart';
+import 'package:domain/Models/Games/RAWG/store.dart';
 
 class StoreDTO {
   num? id;

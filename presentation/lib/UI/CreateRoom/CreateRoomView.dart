@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:core/Base/base_state.dart';
 import 'package:core/Theme/theme.dart';
-import 'package:domain/UseCase/AddRoomUseCase.dart';
+import 'package:domain/UseCase/add_room_use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:presentation/Models/RoomType.dart';
+import 'package:presentation/Models/room_type.dart';
 import 'package:presentation/UI/CreateRoom/CreateRoomNavigator.dart';
 import 'package:presentation/UI/CreateRoom/CreateRoomViewModel.dart';
 import 'package:presentation/UI/CreateRoom/Widgets/TypeDropdownButtonWidget.dart';

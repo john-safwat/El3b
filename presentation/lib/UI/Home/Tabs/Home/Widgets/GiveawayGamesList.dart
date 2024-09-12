@@ -1,4 +1,4 @@
-import 'package:domain/Models/Games/GiveawayGames/GiveawayGame.dart';
+import 'package:domain/Models/Games/GiveawayGames/giveaway_game.dart';
 import 'package:presentation/UI/Home/Tabs/Home/Widgets/GiveawayGamesWidget.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';

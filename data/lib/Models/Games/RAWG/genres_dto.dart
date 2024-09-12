@@ -1,4 +1,4 @@
-import 'package:domain/Models/Games/RAWG/Genres.dart';
+import 'package:domain/Models/Games/RAWG/genres.dart';
 
 class GenresDTO {
   num? id;

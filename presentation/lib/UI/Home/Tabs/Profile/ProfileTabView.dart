@@ -1,6 +1,6 @@
 import 'package:core/Base/base_state.dart';
-import 'package:domain/UseCase/SignUserOutUseCase.dart';
-import 'package:presentation/UI/About/AboutView.dart';
+import 'package:domain/UseCase/sign_user_out_use_case.dart';
+import 'package:presentation/UI/About/about_view.dart';
 import 'package:presentation/UI/EditProfile/EditProfileView.dart';
 import 'package:presentation/UI/Feedback/FeedbackView.dart';
 import 'package:presentation/UI/History/HistoryView.dart';

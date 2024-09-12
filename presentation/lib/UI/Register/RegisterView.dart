@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:core/Base/base_state.dart';
 import 'package:core/Theme/theme.dart';
-import 'package:domain/UseCase/CreateAccountUseCase.dart';
+import 'package:domain/UseCase/create_account_use_case.dart';
 import 'package:presentation/UI/ExtraInfo/ExtraInfoView.dart';
 import 'package:presentation/UI/Login/LoginView.dart';
 import 'package:presentation/UI/Register/RegisterNavigator.dart';

@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:data/Firebase/firebase_messages_database.dart';
 import 'package:data/Models/Messages/message_dto.dart';
-import 'package:domain/DataSource/MessagesRemoteDataSource.dart';
-import 'package:domain/Exception/FirebaseUserDatabaseException.dart';
-import 'package:domain/Exception/TimeOutOperationsException.dart';
-import 'package:domain/Exception/UnknownException.dart';
-import 'package:domain/Models/Messages/Message.dart';
+import 'package:domain/DataSource/messages_remote_data_source.dart';
+import 'package:domain/Exception/firebase_user_database_exception.dart';
+import 'package:domain/Exception/time_out_operations_exception.dart';
+import 'package:domain/Exception/unknown_exception.dart';
+import 'package:domain/Models/Messages/message.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 

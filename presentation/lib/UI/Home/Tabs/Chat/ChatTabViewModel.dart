@@ -1,8 +1,8 @@
 import 'package:core/Base/base_view_model.dart';
 import 'package:data/Models/Room/room_dto.dart';
-import 'package:domain/Models/Room/Room.dart';
-import 'package:domain/UseCase/GetGeneralRoomsUseCase.dart';
-import 'package:domain/UseCase/GetUserRoomsUseCase.dart';
+import 'package:domain/Models/Room/room.dart';
+import 'package:domain/UseCase/get_general_rooms_use_case.dart';
+import 'package:domain/UseCase/get_user_rooms_use_case.dart';
 import 'package:presentation/UI/Home/Tabs/Chat/ChatTabNavigator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 

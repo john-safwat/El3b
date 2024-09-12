@@ -1,9 +1,9 @@
-import 'package:data/SQL/LocalDatabase.dart';
-import 'package:domain/DataSource/GamesListLocalDataSource.dart';
-import 'package:domain/Models/Games/RAWG/Genres.dart';
-import 'package:domain/Models/Games/RAWG/RAWGGame.dart';
-import 'package:domain/Models/Games/RAWG/ShortScreenshots.dart';
-import 'package:domain/Models/Games/RAWG/Store.dart';
+import 'package:data/SQL/local_database.dart';
+import 'package:domain/DataSource/games_list_local_data_source.dart';
+import 'package:domain/Models/Games/RAWG/genres.dart';
+import 'package:domain/Models/Games/RAWG/rawg_game.dart';
+import 'package:domain/Models/Games/RAWG/short_screenshots.dart';
+import 'package:domain/Models/Games/RAWG/store.dart';
 
 
 // dependency injection

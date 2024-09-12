@@ -1,6 +1,6 @@
 
 import 'package:core/Theme/theme.dart';
-import 'package:domain/Models/Games/GameDetails/MetacriticPlatforms.dart';
+import 'package:domain/Models/Games/GameDetails/metacritic_platforms.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

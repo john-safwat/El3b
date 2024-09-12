@@ -2,8 +2,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/Base/base_state.dart';
 import 'package:core/Theme/theme.dart';
-import 'package:domain/Models/Developers/Developers.dart';
-import 'package:domain/UseCase/GetGameDeveloperDetailsUseCase.dart';
+import 'package:domain/Models/Developers/developers.dart';
+import 'package:domain/UseCase/get_game_developer_details_use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:lottie/lottie.dart';

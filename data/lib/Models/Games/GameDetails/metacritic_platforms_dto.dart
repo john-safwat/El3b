@@ -1,5 +1,5 @@
 import 'package:data/Models/Games/GameDetails/platform_dto.dart';
-import 'package:domain/Models/Games/GameDetails/MetacriticPlatforms.dart';
+import 'package:domain/Models/Games/GameDetails/metacritic_platforms.dart';
 
 class MetacriticPlatformsDTO {
   num? metascore;

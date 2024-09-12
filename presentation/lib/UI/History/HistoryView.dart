@@ -1,6 +1,6 @@
 import 'package:core/Base/base_state.dart';
-import 'package:domain/UseCase/AddGameToHistoryUseCase.dart';
-import 'package:domain/UseCase/GatGamesFromHistoryUseCase.dart';
+import 'package:domain/UseCase/add_game_to_history_use_case.dart';
+import 'package:domain/UseCase/gat_games_from_history_use_case.dart';
 import 'package:presentation/UI/History/HistoryNavigator.dart';
 import 'package:presentation/UI/History/HistoryViewModel.dart';
 import 'package:presentation/UI/Widgets/ErrorMessageWidget.dart';

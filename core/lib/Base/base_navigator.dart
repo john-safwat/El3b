@@ -1,4 +1,4 @@
-import 'package:domain/Models/Games/RAWG/RAWGGame.dart';
+import 'package:domain/Models/Games/RAWG/rawg_game.dart';
 import 'package:flutter/material.dart';
 
 abstract class BaseNavigator {
