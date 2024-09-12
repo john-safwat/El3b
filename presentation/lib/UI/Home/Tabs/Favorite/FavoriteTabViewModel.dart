@@ -1,4 +1,4 @@
-import 'package:core/Base/BaseViewModel.dart';
+import 'package:core/Base/base_view_model.dart';
 import 'package:domain/Models/Games/RAWG/RAWGGame.dart';
 import 'package:domain/UseCase/AddGameToHistoryUseCase.dart';
 import 'package:domain/UseCase/DeleteGameFromWishListUseCase.dart';

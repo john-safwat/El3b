@@ -1,4 +1,4 @@
-import 'package:core/Theme/Theme.dart';
+import 'package:core/Theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class ReleaseDateWidget extends StatelessWidget {

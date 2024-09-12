@@ -1,7 +1,7 @@
 
-import 'package:data/DataSource/FirebaseImagesRemoteDatasourceImpl.dart';
-import 'package:data/DataSource/RoomDataRemoteDataSourceImpl.dart';
-import 'package:data/Models/Room/RoomDTO.dart';
+import 'package:data/DataSource/firebase_images_remote_datasource_impl.dart';
+import 'package:data/DataSource/room_data_remote_data_source_impl.dart';
+import 'package:data/Models/Room/room_dto.dart';
 import 'package:domain/DataSource/FirebaseImagesRemoteDatasource.dart';
 import 'package:domain/DataSource/RoomDataRemoteDataSource.dart';
 import 'package:domain/Models/Room/Room.dart';

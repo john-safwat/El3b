@@ -1,6 +1,6 @@
-import 'package:data/DataSource/FirebaseImagesRemoteDatasourceImpl.dart';
-import 'package:data/DataSource/MessagesRemoteDataSourceImpl.dart';
-import 'package:data/Models/Messages/MessageDTO.dart';
+import 'package:data/DataSource/firebase_images_remote_datasource_impl.dart';
+import 'package:data/DataSource/messages_remote_data_source_impl.dart';
+import 'package:data/Models/Messages/message_dto.dart';
 import 'package:domain/DataSource/FirebaseImagesRemoteDatasource.dart';
 import 'package:domain/DataSource/MessagesRemoteDataSource.dart';
 import 'package:domain/Models/Messages/Message.dart';

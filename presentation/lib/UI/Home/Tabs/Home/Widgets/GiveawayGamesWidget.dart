@@ -1,5 +1,5 @@
-import 'package:core/Providers/LocalProvider.dart';
-import 'package:core/Theme/Theme.dart';
+import 'package:core/Providers/local_provider.dart';
+import 'package:core/Theme/theme.dart';
 import 'package:domain/Models/Games/GiveawayGames/GiveawayGame.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';

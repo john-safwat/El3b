@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:core/Extension/DateOnlyExtinsion.dart';
-import 'package:data/DataSource/CacheDataLocalDataSourceImpl.dart';
-import 'package:data/DataSource/GenresListRemoteDataSourceImpl.dart';
+import 'package:core/Extension/date_only_extension.dart';
+import 'package:data/DataSource/cache_data_local_data_source_impl.dart';
+import 'package:data/DataSource/genres_list_remote_data_source_impl.dart';
 import 'package:domain/DataSource/CacheDataLocalDataSource.dart';
 import 'package:domain/DataSource/GenresListRemoteDataSource.dart';
 import 'package:domain/Models/Genres/Genre.dart';

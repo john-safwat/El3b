@@ -1,7 +1,7 @@
-import 'package:core/Providers/AppConfigProvider.dart';
-import 'package:core/Providers/LocalProvider.dart';
-import 'package:core/Providers/ThemeProvider.dart';
-import 'package:core/Theme/Theme.dart';
+import 'package:core/Providers/app_config_provider.dart';
+import 'package:core/Providers/local_provider.dart';
+import 'package:core/Providers/theme_provider.dart';
+import 'package:core/Theme/theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';

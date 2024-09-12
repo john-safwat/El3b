@@ -1,4 +1,4 @@
-import 'package:data/Repository/FeedbackRepositoryImpl.dart';
+import 'package:data/Repository/feedback_repository_impl.dart';
 import 'package:domain/Models/Feedback/Feedback.dart';
 import 'package:domain/Repository/FeedbackRepository.dart';
 

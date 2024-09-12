@@ -1,4 +1,4 @@
-import 'package:core/Base/BaseState.dart';
+import 'package:core/Base/base_state.dart';
 import 'package:domain/UseCase/SignUserOutUseCase.dart';
 import 'package:presentation/UI/About/AboutView.dart';
 import 'package:presentation/UI/EditProfile/EditProfileView.dart';

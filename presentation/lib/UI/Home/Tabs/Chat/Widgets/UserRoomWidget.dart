@@ -1,4 +1,4 @@
-import 'package:core/Theme/Theme.dart';
+import 'package:core/Theme/theme.dart';
 import 'package:domain/Models/Room/Room.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';

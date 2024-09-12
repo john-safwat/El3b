@@ -1,4 +1,4 @@
-import 'package:data/Models/Games/RAWG/GenresDTO.dart';
+import 'package:data/Models/Games/RAWG/genres_dto.dart';
 
 class Genres {
   num? gameID;

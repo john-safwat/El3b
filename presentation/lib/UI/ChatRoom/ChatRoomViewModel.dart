@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:core/Base/BaseViewModel.dart';
-import 'package:data/Models/Messages/MessageDTO.dart';
+import 'package:core/Base/base_view_model.dart';
+import 'package:data/Models/Messages/message_dto.dart';
 import 'package:domain/Models/Messages/Message.dart';
 import 'package:domain/Models/Room/Room.dart';
 import 'package:domain/UseCase/GetMessagesUseCase.dart';

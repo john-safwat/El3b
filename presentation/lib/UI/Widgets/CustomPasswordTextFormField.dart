@@ -1,4 +1,4 @@
-import 'package:core/Theme/Theme.dart';
+import 'package:core/Theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 

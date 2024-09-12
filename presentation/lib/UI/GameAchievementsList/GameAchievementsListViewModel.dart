@@ -1,5 +1,5 @@
 
-import 'package:core/Base/BaseViewModel.dart';
+import 'package:core/Base/base_view_model.dart';
 import 'package:domain/Models/Achievements/Achievement.dart';
 import 'package:domain/UseCase/GetAllGameAchievementsUseCase.dart';
 import 'package:presentation/UI/GameAchievementsList/GameAchievementsListNavigator.dart';

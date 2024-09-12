@@ -1,5 +1,5 @@
 
-import 'package:core/Base/BaseViewModel.dart';
+import 'package:core/Base/base_view_model.dart';
 import 'package:domain/Models/User/MyUser.dart';
 import 'package:domain/UseCase/LoadUserDataUseCase.dart';
 import 'package:domain/UseCase/UpdateUserProfileUseCase.dart';

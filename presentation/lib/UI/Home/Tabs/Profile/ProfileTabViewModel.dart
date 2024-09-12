@@ -1,4 +1,4 @@
-import 'package:core/Base/BaseViewModel.dart';
+import 'package:core/Base/base_view_model.dart';
 import 'package:domain/UseCase/SignUserOutUseCase.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';

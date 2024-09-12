@@ -1,9 +1,9 @@
 
 import 'dart:convert';
 
-import 'package:data/DataSource/CacheDataLocalDataSourceImpl.dart';
-import 'package:data/DataSource/RAWGGamesRemoteDataSourceImpl.dart';
-import 'package:data/DataSource/GamesListLocalDataSourceImpl.dart';
+import 'package:data/DataSource/cache_data_local_data_source_impl.dart';
+import 'package:data/DataSource/rawg_games_remote_data_source_impl.dart';
+import 'package:data/DataSource/games_list_local_data_source_impl.dart';
 import 'package:domain/DataSource/CacheDataLocalDataSource.dart';
 import 'package:domain/DataSource/RAWGGamesRemoteDataSource.dart';
 import 'package:domain/DataSource/GamesListLocalDataSource.dart';

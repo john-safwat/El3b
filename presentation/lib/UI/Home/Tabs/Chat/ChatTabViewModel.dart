@@ -1,5 +1,5 @@
-import 'package:core/Base/BaseViewModel.dart';
-import 'package:data/Models/Room/RoomDTO.dart';
+import 'package:core/Base/base_view_model.dart';
+import 'package:data/Models/Room/room_dto.dart';
 import 'package:domain/Models/Room/Room.dart';
 import 'package:domain/UseCase/GetGeneralRoomsUseCase.dart';
 import 'package:domain/UseCase/GetUserRoomsUseCase.dart';

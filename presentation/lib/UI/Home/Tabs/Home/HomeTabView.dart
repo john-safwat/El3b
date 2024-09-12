@@ -1,5 +1,5 @@
-import 'package:core/Base/BaseState.dart';
-import 'package:core/Theme/Theme.dart';
+import 'package:core/Base/base_state.dart';
+import 'package:core/Theme/theme.dart';
 import 'package:domain/UseCase/AddGameToHistoryUseCase.dart';
 import 'package:domain/UseCase/GetAllGiveGamesUseCase.dart';
 import 'package:domain/UseCase/GetFreeToPlayGamesUseCase.dart';

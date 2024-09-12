@@ -1,4 +1,4 @@
-import 'package:core/Base/BaseState.dart';
+import 'package:core/Base/base_state.dart';
 import 'package:domain/UseCase/UpdateUserPasswordUseCase.dart';
 import 'package:presentation/UI/ResetPassword/ResetPasswordNavigator.dart';
 import 'package:presentation/UI/ResetPassword/ResetPasswordViewModel.dart';

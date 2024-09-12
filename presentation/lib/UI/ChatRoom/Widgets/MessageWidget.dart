@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:core/Providers/AppConfigProvider.dart';
-import 'package:core/Theme/Theme.dart';
+import 'package:core/Providers/app_config_provider.dart';
+import 'package:core/Theme/theme.dart';
 import 'package:domain/Models/Messages/Message.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

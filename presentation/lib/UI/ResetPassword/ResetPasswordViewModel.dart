@@ -1,4 +1,4 @@
-import 'package:core/Base/BaseViewModel.dart';
+import 'package:core/Base/base_view_model.dart';
 import 'package:domain/UseCase/UpdateUserPasswordUseCase.dart';
 import 'package:presentation/UI/ResetPassword/ResetPasswordNavigator.dart';
 import 'package:flutter/material.dart';

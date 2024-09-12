@@ -1,7 +1,7 @@
 
-import 'package:data/Models/Games/RAWG/RAWGGameDTO.dart';
-import 'package:data/Models/Games/RAWG/RAWGGamesResponseDTO.dart';
-import 'package:data/Models/Games/RAWG/StoresDTO.dart';
+import 'package:data/Models/Games/RAWG/rawg_game_dto.dart';
+import 'package:data/Models/Games/RAWG/rawg_games_response_dto.dart';
+import 'package:data/Models/Games/RAWG/stores_dto.dart';
 import 'package:domain/Models/Games/RAWG/Genres.dart';
 import 'package:domain/Models/Games/RAWG/ShortScreenshots.dart';
 import 'package:domain/Models/Games/RAWG/Store.dart';

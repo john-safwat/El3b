@@ -1,4 +1,4 @@
-import 'package:data/Models/Feedback/FeedbackDTO.dart';
+import 'package:data/Models/Feedback/feedback_dto.dart';
 
 class Feedback {
 

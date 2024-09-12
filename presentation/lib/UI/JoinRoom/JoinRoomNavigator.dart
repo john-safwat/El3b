@@ -1,4 +1,4 @@
-import 'package:core/Base/BaseNavigator.dart';
+import 'package:core/Base/base_navigator.dart';
 import 'package:domain/Models/Room/Room.dart';
 
 abstract class JoinRoomNavigator extends BaseNavigator {

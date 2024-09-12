@@ -1,5 +1,5 @@
-import 'package:core/Base/BaseState.dart';
-import 'package:core/Theme/Theme.dart';
+import 'package:core/Base/base_state.dart';
+import 'package:core/Theme/theme.dart';
 import 'package:domain/Models/Room/Room.dart';
 import 'package:domain/UseCase/GetMessagesUseCase.dart';
 import 'package:domain/UseCase/SendMessageUseCase.dart';

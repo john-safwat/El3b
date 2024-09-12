@@ -1,4 +1,4 @@
-import 'package:data/DataSource/GameDevelopersRemoteDataSourceImpl.dart';
+import 'package:data/DataSource/game_developers_remote_data_source_impl.dart';
 import 'package:domain/DataSource/GameDevelopersRemoteDataSource.dart';
 import 'package:domain/Models/Developers/Developers.dart';
 import 'package:domain/Repository/GameDevelopersRepository.dart';

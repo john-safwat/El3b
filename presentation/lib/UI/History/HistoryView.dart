@@ -1,4 +1,4 @@
-import 'package:core/Base/BaseState.dart';
+import 'package:core/Base/base_state.dart';
 import 'package:domain/UseCase/AddGameToHistoryUseCase.dart';
 import 'package:domain/UseCase/GatGamesFromHistoryUseCase.dart';
 import 'package:presentation/UI/History/HistoryNavigator.dart';

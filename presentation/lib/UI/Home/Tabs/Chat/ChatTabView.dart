@@ -1,4 +1,4 @@
-import 'package:core/Base/BaseState.dart';
+import 'package:core/Base/base_state.dart';
 import 'package:domain/Models/Room/Room.dart';
 import 'package:domain/UseCase/GetGeneralRoomsUseCase.dart';
 import 'package:domain/UseCase/GetUserRoomsUseCase.dart';

@@ -1,5 +1,5 @@
 
-import 'package:core/Base/BaseViewModel.dart';
+import 'package:core/Base/base_view_model.dart';
 import 'package:domain/Exception/URLLauncherException.dart';
 import 'package:domain/Models/Games/FreeToPlayGame/FreeToPlayGame.dart';
 import 'package:domain/Models/Games/GiveawayGames/GiveawayGame.dart';

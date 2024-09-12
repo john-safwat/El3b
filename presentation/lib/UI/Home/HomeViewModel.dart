@@ -1,4 +1,4 @@
-import 'package:core/Base/BaseViewModel.dart';
+import 'package:core/Base/base_view_model.dart';
 import 'package:presentation/UI/Home/HomeNavigator.dart';
 import 'package:presentation/UI/Home/Tabs/Chat/ChatTabView.dart';
 import 'package:presentation/UI/Home/Tabs/Explore/ExploreTabView.dart';

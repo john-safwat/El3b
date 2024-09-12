@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:core/Extension/DateOnlyExtinsion.dart';
-import 'package:data/DataSource/CacheDataLocalDataSourceImpl.dart';
-import 'package:data/DataSource/FreeToPlayGamesRemoteDataSourceImpl.dart';
+import 'package:core/Extension/date_only_extension.dart';
+import 'package:data/DataSource/cache_data_local_data_source_impl.dart';
+import 'package:data/DataSource/free_to_play_games_remote_data_source_impl.dart';
 import 'package:domain/DataSource/CacheDataLocalDataSource.dart';
 import 'package:domain/DataSource/FreeToPlayGamesRemoteDataSource.dart';
 import 'package:domain/Models/Games/FreeToPlayGame/FreeToPlayGame.dart';

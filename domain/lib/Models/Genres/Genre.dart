@@ -1,4 +1,4 @@
-import 'package:data/Models/Genres/GenreDTO.dart';
+import 'package:data/Models/Genres/genre_dto.dart';
 
 class Genre {
   Genre({

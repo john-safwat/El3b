@@ -1,4 +1,4 @@
-import 'package:core/Base/BaseViewModel.dart';
+import 'package:core/Base/base_view_model.dart';
 import 'package:domain/Models/Feedback/Feedback.dart';
 import 'package:domain/UseCase/SendFeedbackUseCase.dart';
 import 'package:flutter/cupertino.dart';

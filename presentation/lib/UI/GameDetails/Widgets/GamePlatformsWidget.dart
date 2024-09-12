@@ -1,5 +1,5 @@
 
-import 'package:core/Theme/Theme.dart';
+import 'package:core/Theme/theme.dart';
 import 'package:domain/Models/Games/GameDetails/Platforms.dart';
 import 'package:flutter/material.dart';
 import 'package:presentation/UI/GameDetails/Widgets/TitleWidget.dart';

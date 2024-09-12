@@ -1,6 +1,6 @@
-import 'package:data/DataSource/FirebaseImagesRemoteDatasourceImpl.dart';
-import 'package:data/DataSource/FirebaseUserAuthRemoteDatasourceImpl.dart';
-import 'package:data/DataSource/UserFirebaseDatabaseRemoteDatasourceImpl.dart';
+import 'package:data/DataSource/firebase_images_remote_datasource_impl.dart';
+import 'package:data/DataSource/firebase_user_auth_remote_datasource_impl.dart';
+import 'package:data/DataSource/user_firebase_database_remote_datasource_impl.dart';
 import 'package:domain/DataSource/FirebaseImagesRemoteDatasource.dart';
 import 'package:domain/DataSource/FirebaseUserAuthRemoteDatasource.dart';
 import 'package:domain/DataSource/UserFirebaseDatabaseRemoteDatasource.dart';

@@ -1,5 +1,5 @@
 
-import 'package:core/Base/BaseViewModel.dart';
+import 'package:core/Base/base_view_model.dart';
 import 'package:domain/UseCase/AddRoomUseCase.dart';
 import 'package:flutter/material.dart';
 import 'package:presentation/Models/RoomType.dart';

@@ -1,4 +1,4 @@
-import 'package:data/DataSource/GameAchievementsRemoteDataSourceImpl.dart';
+import 'package:data/DataSource/game_achievements_remote_data_source_impl.dart';
 import 'package:domain/DataSource/GameAchievementsRemoteDataSource.dart';
 import 'package:domain/Models/Achievements/Achievement.dart';
 import 'package:domain/Repository/GameAchievementsRepository.dart';

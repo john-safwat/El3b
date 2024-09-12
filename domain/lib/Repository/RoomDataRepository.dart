@@ -1,4 +1,4 @@
-import 'package:data/Models/Room/RoomDTO.dart';
+import 'package:data/Models/Room/room_dto.dart';
 import 'package:domain/Models/Room/Room.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';

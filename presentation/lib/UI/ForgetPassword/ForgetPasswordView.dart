@@ -1,5 +1,5 @@
 
-import 'package:core/Base/BaseState.dart';
+import 'package:core/Base/base_state.dart';
 import 'package:domain/UseCase/ResetPasswordUseCase.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';

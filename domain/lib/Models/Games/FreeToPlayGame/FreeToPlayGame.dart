@@ -1,4 +1,4 @@
-import 'package:data/Models/Games/FreeToPlayGame/FreeToPlayGameDTO.dart';
+import 'package:data/Models/Games/FreeToPlayGame/free_to_play_game_dto.dart';
 
 class FreeToPlayGame {
   FreeToPlayGame({

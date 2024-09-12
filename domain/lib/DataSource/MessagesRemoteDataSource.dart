@@ -1,4 +1,4 @@
-import 'package:data/Models/Messages/MessageDTO.dart';
+import 'package:data/Models/Messages/message_dto.dart';
 import 'package:domain/Models/Messages/Message.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 

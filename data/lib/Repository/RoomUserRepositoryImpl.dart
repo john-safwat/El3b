@@ -1,5 +1,5 @@
-import 'package:data/DataSource/RoomUserRemoteDataSourceImpl.dart';
-import 'package:data/Models/User/UserDTO.dart';
+import 'package:data/DataSource/room_user_remote_data_source_impl.dart';
+import 'package:data/Models/User/user_dto.dart';
 import 'package:domain/DataSource/RoomUserRemoteDataSource.dart';
 import 'package:domain/Models/User/MyUser.dart';
 import 'package:domain/Repository/RoomUserRepository.dart';

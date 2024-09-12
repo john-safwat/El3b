@@ -1,5 +1,5 @@
 
-import 'package:data/Models/Room/RoomDTO.dart';
+import 'package:data/Models/Room/room_dto.dart';
 import 'package:data/Repository/RoomDataRepositoryImpl.dart';
 import 'package:domain/Repository/RoomDataRepository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

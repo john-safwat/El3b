@@ -1,7 +1,7 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:core/Base/BaseState.dart';
-import 'package:core/Theme/Theme.dart';
+import 'package:core/Base/base_state.dart';
+import 'package:core/Theme/theme.dart';
 import 'package:domain/UseCase/GetAllGameAchievementsUseCase.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';

@@ -1,4 +1,4 @@
-import 'package:core/Base/BaseState.dart';
+import 'package:core/Base/base_state.dart';
 import 'package:domain/UseCase/GetGenresUseCase.dart';
 import 'package:presentation/UI/GamesList/GamesListView.dart';
 import 'package:presentation/UI/Home/Tabs/Explore/ExploreTabNavigator.dart';

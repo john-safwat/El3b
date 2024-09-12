@@ -1,6 +1,6 @@
-import 'package:core/Providers/LocalProvider.dart';
-import 'package:core/Providers/ThemeProvider.dart';
-import 'package:core/Theme/Theme.dart';
+import 'package:core/Providers/local_provider.dart';
+import 'package:core/Providers/theme_provider.dart';
+import 'package:core/Theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';

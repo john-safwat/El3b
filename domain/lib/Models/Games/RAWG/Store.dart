@@ -1,6 +1,6 @@
 
-import 'package:data/Models/Games/RAWG/StoreDTO.dart';
-import 'package:data/Models/Games/RAWG/StoresDTO.dart';
+import 'package:data/Models/Games/RAWG/store_dto.dart';
+import 'package:data/Models/Games/RAWG/stores_dto.dart';
 
 class Store {
   num? gameID;

@@ -1,4 +1,4 @@
-import 'package:data/Models/Messages/MessageDTO.dart';
+import 'package:data/Models/Messages/message_dto.dart';
 
 class Message{
   String roomId;

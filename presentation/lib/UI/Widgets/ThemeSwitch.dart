@@ -1,5 +1,5 @@
-import 'package:core/Providers/ThemeProvider.dart';
-import 'package:core/Theme/Theme.dart';
+import 'package:core/Providers/theme_provider.dart';
+import 'package:core/Theme/theme.dart';
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';

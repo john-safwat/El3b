@@ -1,4 +1,4 @@
-import 'package:core/Base/BaseViewModel.dart';
+import 'package:core/Base/base_view_model.dart';
 import 'package:presentation/UI/Intro/IntroNavigator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
