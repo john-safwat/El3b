@@ -13,9 +13,9 @@ import 'package:core/Utils/dialog_utils.dart';
 import 'package:domain/Models/Games/RAWG/rawg_game.dart';
 import 'package:domain/UseCase/add_game_to_wish_list_use_case.dart';
 import 'package:domain/UseCase/delete_game_from_wish_list_use_case.dart';
-import 'package:presentation/UI/GameDetails/GameDetailsView.dart';
-import 'package:presentation/UI/GamesSearch/GameSearchView.dart';
-import 'package:presentation/UI/Widgets/BottomSheetImagePicker.dart';
+import 'package:presentation/UI/GameDetails/game_details_view.dart';
+import 'package:presentation/UI/GamesSearch/game_search_view.dart';
+import 'package:presentation/UI/Widgets/bottom_sheet_image_picker.dart';
 import 'package:elegant_notification/elegant_notification.dart';
 import 'package:elegant_notification/resources/arrays.dart';
 import 'package:flutter/material.dart';
@@ -120,7 +120,8 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
       icon:const Icon(EvaIcons.checkmark , color: MyTheme.offWhite,),
       description: Text(message , style: Theme.of(context).textTheme.displaySmall!.copyWith(color: MyTheme.offWhite),),
       background: Colors.green,
-      animation: AnimationType.fromTop,
+      position: Alignment.bottomCenter,
+      animation: AnimationType.fromBottom,
       displayCloseButton: false,
       progressIndicatorBackground: Colors.transparent,
       showProgressIndicator: false,
@@ -136,7 +137,8 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
       icon:const Icon(EvaIcons.close , color: MyTheme.offWhite,),
       description: Text(message , style: Theme.of(context).textTheme.displaySmall!.copyWith(color: MyTheme.offWhite),),
       background: Colors.red,
-      animation: AnimationType.fromTop,
+      position: Alignment.bottomCenter,
+      animation: AnimationType.fromBottom,
       displayCloseButton: false,
       progressIndicatorBackground: Colors.transparent,
       showProgressIndicator: false,
@@ -157,7 +159,8 @@ abstract class BaseState< T extends StatefulWidget , VM extends BaseViewModel> e
       icon:Icon(iconData , color: MyTheme.offWhite,),
       description: Text(message , style: Theme.of(context).textTheme.displaySmall!.copyWith(color: MyTheme.offWhite),),
       background: background,
-      animation: AnimationType.fromTop,
+      position: Alignment.bottomCenter,
+      animation: AnimationType.fromBottom,
       displayCloseButton: false,
       progressIndicatorBackground: Colors.transparent,
       showProgressIndicator: false,
