@@ -1,5 +1,5 @@
 import 'package:core/Base/base_view_model.dart';
-import 'package:domain/Models/Feedback/feedback.dart';
+import 'package:domain/Models/Feedback/user_feedback.dart';
 import 'package:domain/UseCase/send_feedback_use_case.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -29,7 +29,7 @@ class FeedbackViewModel extends BaseViewModel{
     navigator!.showLoading(message: local!.loading);
     try{
       var response = await useCase.invoke(
-          feedback: Feedback(
+          feedback: UserFeedback(
               uid: appConfigProvider!.getUser()!.uid,
               message: controller.text,
               rating: rating,

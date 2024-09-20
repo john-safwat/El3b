@@ -1,6 +1,6 @@
 import 'package:data/DataSource/feedback_remote_data_source_impl.dart';
 import 'package:domain/DataSource/feedback_remote_data_source.dart';
-import 'package:domain/Models/Feedback/feedback.dart';
+import 'package:domain/Models/Feedback/user_feedback.dart';
 import 'package:domain/Repository/feedback_repository.dart';
 
 
@@ -15,7 +15,7 @@ class FeedbackRepositoryImpl implements FeedbackRepository{
   FeedbackRepositoryImpl ({required this.remoteDataSource});
 
   @override
-  Future<String> sendFeedback({required Feedback feedback}) async{
+  Future<String> sendFeedback({required UserFeedback feedback}) async{
     var response = await remoteDataSource.sendFeedback(feedback: feedback.toDatasource());
     return response;
   }
