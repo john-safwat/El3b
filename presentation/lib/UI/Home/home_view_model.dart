@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 class HomeViewModel extends BaseViewModel{
   int currentIndex = 0;
 
+  PageController pageController = PageController();
   List<int> selectedIndexes = [];
   List<Widget> tabs = [
     const HomeTabView(),
@@ -19,10 +20,15 @@ class HomeViewModel extends BaseViewModel{
     const ProfileTabView()
   ];
 
+
+  initPageView(){
+    pageController.addListener(changeSelectedIndexOnScroll);
+  }
   // function to change the selected index to change the tab
   changeSelectedIndex(int selectedIndex) {
     selectedIndexes.add(currentIndex);
     currentIndex = selectedIndex;
+    pageController.animateToPage(currentIndex, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
     notifyListeners();
   }
 
@@ -44,4 +50,10 @@ class HomeViewModel extends BaseViewModel{
     notifyListeners();
   }
 
+
+  void changeSelectedIndexOnScroll() {
+    selectedIndexes.add(currentIndex);
+    currentIndex = pageController.page?.toInt()??0;
+    notifyListeners();
+  }
 }

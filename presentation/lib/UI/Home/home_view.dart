@@ -2,7 +2,6 @@
 import 'package:core/Base/base_state.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:presentation/UI/Home/HomeNavigator.dart';
 import 'package:presentation/UI/Home/home_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +16,12 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends BaseState<HomeView , HomeViewModel> {
   @override
+  void initState() {
+    super.initState();
+    viewModel.initPageView();
+  }
+
+  @override
   Widget build(BuildContext context) {
     super.build(context);
 
@@ -24,12 +29,15 @@ class _HomeViewState extends BaseState<HomeView , HomeViewModel> {
       create: (context) => viewModel,
       child: PopScope(
         canPop: false,
-        onPopInvoked: (didPop) async{
+        onPopInvokedWithResult: (didPop , result) async{
           viewModel.onScreenPop(didPop);},
         child: Consumer<HomeViewModel>(
           builder:(context, value, child) => Scaffold(
             resizeToAvoidBottomInset: false,
-            body: viewModel.tabs[viewModel.currentIndex],
+            body: PageView(
+              controller: viewModel.pageController,
+              children: viewModel.tabs,
+            ),
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: value.currentIndex,
 

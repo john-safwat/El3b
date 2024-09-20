@@ -1,7 +1,7 @@
-import 'package:domain/Models/Feedback/feedback.dart';
+import 'package:domain/Models/Feedback/user_feedback.dart';
 
 abstract class FeedbackRepository{
 
-  Future<String> sendFeedback({required Feedback feedback});
+  Future<String> sendFeedback({required UserFeedback feedback});
 
 }

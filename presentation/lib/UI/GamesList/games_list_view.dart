@@ -26,6 +26,7 @@ class _GamesListViewState extends BaseState<GamesListView, GamesListViewModel>{
     if (viewModel.genre.isEmpty) {
       viewModel.genre = ModalRoute.of(context)?.settings.arguments as String;
       viewModel.getGames();
+      viewModel.initScrollController();
     }
     return ChangeNotifierProvider(
       create: (context) => viewModel,
@@ -71,6 +72,7 @@ class _GamesListViewState extends BaseState<GamesListView, GamesListViewModel>{
                         children: [
                           Expanded(
                               child: ListView.builder(
+                                controller: viewModel.controller,
                             itemBuilder: (context, index) {
                               if (index < value.games.length) {
                                 return GameWidget(
@@ -90,7 +92,6 @@ class _GamesListViewState extends BaseState<GamesListView, GamesListViewModel>{
                                   fixErrorFunction: value.getGames,
                                 );
                               } else {
-                                value.getGames();
                                 return Padding(
                                   padding: const EdgeInsets.all(30.0),
                                   child: value.themeProvider!.isDark()

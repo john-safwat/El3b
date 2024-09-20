@@ -4,6 +4,7 @@ import 'package:domain/UseCase/add_game_to_history_use_case.dart';
 import 'package:domain/UseCase/get_games_by_genre_use_case.dart';
 import 'package:flutter/material.dart';
 
+
 class GamesListViewModel extends BaseViewModel{
 
   GetGamesByGenreUseCase getGamesByGenreUseCase;
@@ -21,6 +22,11 @@ class GamesListViewModel extends BaseViewModel{
 
   String genre = "";
 
+  ScrollController controller = ScrollController();
+
+  void initScrollController(){
+    controller.addListener(updateList);
+  }
 
   // function to get games by genre and page number
   void getGames()async{
@@ -54,4 +60,10 @@ class GamesListViewModel extends BaseViewModel{
 
 
 
+
+  void updateList() {
+    if(controller.position.pixels == (controller.position.maxScrollExtent)){
+      getGames();
+    }
+  }
 }

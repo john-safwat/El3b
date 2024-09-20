@@ -1,6 +1,6 @@
 import 'package:data/Models/Feedback/feedback_dto.dart';
 
-class Feedback {
+class UserFeedback {
 
   String uid;
   String message;
@@ -9,7 +9,7 @@ class Feedback {
   String userEmail;
   String image;
 
-  Feedback({
+  UserFeedback({
     required this.uid,
     required this.message,
     required this.rating,
